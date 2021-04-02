@@ -7,7 +7,7 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 
 - Login to your saas instance <yourinstancename>.jfrog.io with  your admin credentials
 - Navigate to admin section
-  <img src="/images/repository.png" alt="Repositories tab" style="height: 100px; width:100px;"/>
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/repository.png" alt="Repositories tab" style="height: 100px; width:100px;"/>
 
 
 
