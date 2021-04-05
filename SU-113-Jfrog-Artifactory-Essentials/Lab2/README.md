@@ -36,6 +36,10 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
    
 -   Add a new Virtual Repository with the Docker package type. Enter the Repository Key “docker” and add the local and remote docker repositories you created in Steps 2 and 3 (move them from Available Repositories to Selected Repositories using the arrow buttons). The order of these repositories in the list will determine the order used to resolve the dependencies required for building your docker image. Select your local repository(docker-dev-local) that you created in Step 2 as the Default Deployment Repository. The Default Deployment Repository is the repository that the docker image you build will be pushed to. Keep the rest of the default settings.
    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-virtual.png" alt="mame the repo" style="height: 100px; width:100px;"/>
+    
+- After the docker virtual registry is created. It will provide you with the details on how to access this docker registry. Copy that information and keep it in locally on your laptop
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-commands.png" alt="docker commands" style="height: 100px; width:100px;"/>
+
 
 ### Awesome !!! You have successfully completed Lab2.
 
