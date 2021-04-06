@@ -16,14 +16,17 @@
 
 - Login to your docker virtual repository
     - ``` $docker login ${SERVER_NAME}.jfrog.io```
+      
       <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab4/images/docker-login.png" alt="docker login" style="height: 100px; width:100px;"/>
       
 - Build your docker image
     - ```$ docker build --tag ${SERVER_NAME}.jfrog.io/${VIRTUAL_REPO_NAME}/my-docker-image:latest . ```
+      
       <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab4/images/docker-build.png" alt="docker build" style="height: 100px; width:100px;"/>
       
 - Push the build docker image to your docker registry
     - ``` $ docker push ${SERVER_NAME}.jfrog.io/${VIRTUAL_REPO_NAME}/my-docker-image:latest ```
+      
       <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab4/images/docker-push.png" alt="docker push" style="height: 100px; width:100px;"/>
 
 ### Awesome !!! You have successfully completed Lab4. Next lab we will help you to search and view the artifacts.
