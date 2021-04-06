@@ -9,5 +9,7 @@
 
     - The VIRTUAL_REPO_NAME is the name “docker” that you assigned to your virtual repository in Step 3 on Lab2.
     
-- Push the changes to your git repository which you forked
+- 
+    
+- 
       
