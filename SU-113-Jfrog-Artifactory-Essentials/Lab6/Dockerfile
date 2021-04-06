@@ -1,4 +1,4 @@
-FROM sivasjpg.jfrog.io/docker/alpine:3.11.5
+FROM ${SERVER_NAME}.jfrog.io/${VIRTUAL_REPO_NAME}/ubuntu:18.04
 
 RUN echo 'hello there!' > /message
 
