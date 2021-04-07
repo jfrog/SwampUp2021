@@ -2,44 +2,43 @@
 
 curl -fL https://getcli.jfrog.io | sh
 echo -n "Configuration name for CLI : "
-read -r
-CLIName=$REPLY
+read -r CLIName
 
 echo -n "Jfrog instance Name : "
-read -r
-instancename=$REPLY
+read -r instancename
 
 echo -n "Jfrog instance username : "
-read -r
-username=$REPLY
+read -r username
 
 echo -n "Jfrog instance password : "
-read -r
-password=$REPLY
+read -r password
 
-echo -n "Docker registry name : "
-read -r
-dockerregistryname=$REPLY
+echo -n "Docker Virtual Repository name : "
+read -r docker_virtual_repository_name
 
+echo -n "Modifying  the Dockerfile with Jfrog Instance name and docker repository provided"
+sed -i "" "s/SERVER_NAME/$instancename/g" Dockerfile
+sed -i "" "s/VIRTUAL_REPO_NAME/$docker_virtual_repository_name/g" Dockerfile
+
+echo -n
 chmod +x jfrog
 ./jfrog config add $CLIName --artifactory-url https://$instancename.jfrog.io/artifactory --user $username --password $password --interactive=false
 ./jfrog config use $CLIName
 
 echo -n "Build name : "
-read -r
-buildname=$REPLY
+read -r buildname
 
 echo -n "Build number : "
-read -r
-buildnumber=$REPLY
+read -r buildnumber
 
-echo -n "Docker Image name: "
-read -r
-dockerimagename=$REPLY
+#echo -n "Docker Image name: "
+#read -r dockerimagename
 
-docker build --tag $instancename.jfrog.io/$dockerregistryname/$dockerimagename:$buildnumber .
+#docker build --tag $instancename.jfrog.io/$docker_virtual_repository_name/$dockerimagename:$buildnumber .
+docker build --tag $instancename.jfrog.io/$docker_virtual_repository_name/docker-example-build-image:$buildnumber .
 
-./jfrog rt docker-push $instancename.jfrog.io/$dockerregistryname/$dockerimagename:$buildnumber $dockerregistryname --build-name=$buildname --build-number=$buildnumber
+#./jfrog rt docker-push $instancename.jfrog.io/$docker_virtual_repository_name/$dockerimagename:$buildnumber $docker_virtual_repository_name --build-name=$buildname --build-number=$buildnumber
+./jfrog rt docker-push $instancename.jfrog.io/$docker_virtual_repository_name/docker-example-build-image:$buildnumber $docker_virtual_repository_name --build-name=$buildname --build-number=$buildnumber
 
 ./jfrog rt build-add-git $buildname $buildnumber
 ./jfrog rt build-collect-env $buildname $buildnumber
