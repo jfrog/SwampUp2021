@@ -1,5 +1,3 @@
-FROM ${SERVER_NAME}.jfrog.io/${VIRTUAL_REPO_NAME}/ubuntu:18.04
+FROM sivasjpd.jfrog.io/docker/ubuntu:18.04
 
-RUN echo 'hello there!' > /message
-
-CMD ["cat", "/message"]
+CMD printf "\nCONGRATULATIONS!!!\n\nYou have just set up your first Docker repository with the new JFrog Platform!\n\n"
