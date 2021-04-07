@@ -22,9 +22,6 @@
   * Build name : Provide a name to your build. This Build name will be displayed under the Builds tab in Jfrog platform. 
      <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildname.png" alt="buildname" style="height: 100px; width:100px;"/>
     
-  * Build name : Provide a name to your build. This Build name will be displayed under the Builds tab in Jfrog platform.
-      <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildname.png" alt="buildname" style="height: 100px; width:100px;"/>
-
   * Build number : Provide a number to your build. This Buildnumber is usually your CI build run number.
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildnumber.png" alt="Build Number" style="height: 100px; width:100px;"/>
 
