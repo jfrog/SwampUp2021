@@ -15,10 +15,10 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/choose-docker.png" alt="choose-docker-package tab" style="height: 100px; width:100px;"/>
 
 - Enter the Repository Key “docker-dev-local” and keep the rest of the default settings.
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/swampup-docker-dev-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-dev-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
 - Once done, Create another local repository with docker package type and name it as "docker-prod-local". Keep the rest of the default settings
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/swampup-docker-prod-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-prod-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
 
 ### Step2 - Remote Repository - Docker
