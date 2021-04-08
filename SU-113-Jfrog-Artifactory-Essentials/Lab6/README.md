@@ -24,6 +24,8 @@
     
   * Build number : Provide a number to your build. This Buildnumber is usually your CI build run number.
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildnumber.png" alt="Build Number" style="height: 100px; width:100px;"/>
+    
+- Once the above information is entered, the script dynamically modifies the Dockerfile to point to your SERVER_NAME and to the docker virtual repository ("swampup-docker")
 
 ## View the Build information in Artifactory
 
