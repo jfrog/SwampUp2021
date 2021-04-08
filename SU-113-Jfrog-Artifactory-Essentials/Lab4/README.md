@@ -20,7 +20,7 @@
     - The SERVER_NAME is the first part of the URL given to you for your environment: ```https://<SERVER_NAME>.jfrog.io.``` You can also get this information from the docker login command from Lab2
       <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab4/images/docker-commands.png" alt="docker commands" style="height: 100px; width:100px;"/>
 
-    - The VIRTUAL_REPO_NAME is the name “docker” that you assigned to your virtual repository in Step 3 on Lab2.
+    - The VIRTUAL_REPO_NAME is the name “swampup-docker” that you assigned to your virtual repository in Step 3 on Lab2.
     - After modifying your dockerfile should be something like below
       <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab4/images/modified-dockerfile.png" alt="dockerfile" style="height: 100px; width:100px;"/>
     
