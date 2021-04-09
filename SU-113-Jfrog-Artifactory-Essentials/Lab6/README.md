@@ -47,6 +47,14 @@
 
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/publishedmodule-layer.png" alt="Build Number" style="height: 100px; width:100px;"/>
 
+## Promote the Build 
+
+- Promote the build and its associated build information to production. Below we are promoting our "Sample-docker-cli-build" to "swampup-docker-prod-local" repository
+```$ ./jfrog rt build-promote sample-docker-cli-build 1 swampup-docker-prod-local```
+  
+- View the published module to validate the binary is now in swampup-docker-prod-local
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-promotion.png" alt="Build Number" style="height: 100px; width:100px;"/>
+
 
 ### Awesome !!! You have successfully completed Lab6. You can use CLI to push the build information from any CI build agent.
 
