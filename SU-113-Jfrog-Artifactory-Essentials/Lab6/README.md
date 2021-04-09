@@ -17,7 +17,7 @@
   
   * Jfrog instance username : password for accessing your jfrog platform instance
   
-  * Docker Virtual Repository name : Please provide this as "docker". This is the name of the virtual repository which you created in Step3 of Lab2
+  * Docker Virtual Repository name : Please provide this as "swampup-docker". This is the name of the virtual repository which you created in Step3 of Lab2
   
   * Build name : Provide a name to your build. This Build name will be displayed under the Builds tab in Jfrog platform. 
      <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildname.png" alt="buildname" style="height: 100px; width:100px;"/>
@@ -25,7 +25,10 @@
   * Build number : Provide a number to your build. This Buildnumber is usually your CI build run number.
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildnumber.png" alt="Build Number" style="height: 100px; width:100px;"/>
     
-- Once the above information is entered, the script dynamically modifies the Dockerfile to point to your SERVER_NAME and to the docker virtual repository ("swampup-docker")
+- Once the above information is entered, the script dynamically modifies the Dockerfile to point to your SERVER_NAME and  VIRTUAL_REPO_NAME to point to your docker virtual repository ("swampup-docker")
+
+- Finally, You should see that CLI builds the docker image and pushes to artifactory
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-success.png" alt="Build success" style="height: 100px; width:100px;"/>
 
 ## View the Build information in Artifactory
 
