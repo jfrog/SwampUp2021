@@ -1,6 +1,6 @@
 # Lab6 - Leverage CLI to publish build to Artifactory
 
-## Run the build.sh script
+## Step 1 - Run the build.sh script
 - Navigate to Lab6 on the forked project on your local box.
   ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab6```
   
@@ -31,7 +31,7 @@
 - Finally, You should see that CLI builds the docker image and pushes to artifactory
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-success.png" alt="Build success" style="height: 100px; width:100px;"/>
 
-## View the Build information in Artifactory
+## Step 2 - View the Build information in Artifactory
 
 - Navigate to the Application Module, expand the Artifactory menu and click the Build menu item. The published build is displayed here
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build.png" alt="Build" style="height: 100px; width:100px;"/>
@@ -47,16 +47,20 @@
 
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/publishedmodule-layer.png" alt="Build Number" style="height: 100px; width:100px;"/>
 
-## Adding properties to the pushed build
+## Step 3- Adding properties/metadata to the published build
 
 - You can add properties to the docker image published. Below is a sample on how to add properties to the published docker image as part of the build
 
-```$./jfrog rt sp  --include-dirs=true "swampup-docker-prod-local/docker-example-build-image/1*" "unittest=passed"```
+```$./jfrog rt sp  --include-dirs=true "swampup-docker-dev-local/docker-example-build-image/1*" "unittest=passed"```
 
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/properties.png" alt="properties" style="height: 100px; width:100px;"/>
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/properties.png" alt="properties" style="height: 100px; width:100px;"/>
+
+- Once the properties are added, we can navigate to the respective docker image to view the data on the UI
+
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/properties-ui.png" alt="properties-ui" style="height: 100px; width:100px;"/>
 
 
-## Promote the Build 
+## Step 4-  Promote the Build 
 
 - Promote the build and its associated build information to production. Below we are promoting our "Sample-docker-cli-build" to "swampup-docker-prod-local" repository
 ```$ ./jfrog rt build-promote sample-docker-cli-build 1 swampup-docker-prod-local```
