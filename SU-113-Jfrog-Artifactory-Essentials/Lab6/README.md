@@ -53,7 +53,7 @@
 
 ```$./jfrog rt sp  --include-dirs=true "swampup-docker-dev-local/docker-example-build-image/1*" "unittest=passed"```
 
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/properties.png" alt="properties" style="height: 100px; width:100px;"/>
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/properties-update.png" alt="properties" style="height: 100px; width:100px;"/>
 
 - Once the properties are added, we can navigate to the respective docker image to view the data on the UI
 
