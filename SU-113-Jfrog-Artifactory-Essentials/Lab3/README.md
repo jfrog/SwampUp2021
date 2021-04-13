@@ -26,6 +26,8 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 
 **ADD SCREENSOHTS**
 
+## Permissions
+
 ### Step3 - Create a Permission
 
 - Click on the plus sign and create a new permission with the ability to read and deploy from a 'dev' repository.
