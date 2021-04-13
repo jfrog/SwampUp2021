@@ -1,37 +1,33 @@
-# Lab5 - Browsing & Searching
+# Lab3.1 - Projects
 
 ## Prerequisites
 
-The Docker repositories and image created in the previous labs.
+The 'Developer1' and 'ReleaseEngineer1' users from the previous lab.
 
-## Browse
+## Create a Project and assign members
 
-### Step1 - Browsing Through the UI
+### Step1 - Create a Project
 
-- Navigate to the Application module and click on 'Artifactory' -> 'Packages'.
-- In the top search bar, brwose packages and filter by repository type - docker.
-- Locate the sample docker image you've pushed to artifactory.
+- Navigate to the Administration module and click on 'Projects'.
+- Click on the plus sign and create a new project - 'Docker Project'.
+- Add 'ReleaseEngineer1' as the project's admin.
+- Assign the docker repositories to the project.
+- Set a storage quota and save.
 
   **ADD SCREENSOHTS**
 
-### Step2 - Assign Custom Properties
+### Step2 - Assign Roles & Members
 
-- Navigate to the Application module and click on 'Artifactory' -> 'Artifacts'.
-- Filter by repository type - docker, and click on the docker package you've pushed, in the latest version.
-- In the 'properties' tab, add a new property: 'deployement' : 'test'.
-
-**ADD SCREENSOHTS**
-
-### Step3 - Search by Custom Properties
-
-- In the top search bar, choose 'artifacts' and filter by the custom property you've just inserted - 'deployment' : 'test'.
+- Click on 'Identity and Access' -> 'Roles'.
+- Click on the plus sign and create a new role - 'Custom Developer'.
+- Navigate to 'Members' and click on the plus sign to add 'Developer1'.
+- Assign the proper role for it.
 
 **ADD SCREENSOHTS**
 
-### Step4 - Srearch Properties With the REST API
+### Step3 - Inspect the Project
 
-- Use cURL or any other HTTP client to search for the atrifact that you've modified:
-
-`curl -u ${user}:${password} -X GET https://platform-us.staging.gcp.devopsacc.team/artifactory/api/search/prop?deployment=test`
+- Click on the project selector and select your project.
+- Inspect your view and the resources assigned to the project.
 
 **ADD SCREENSOHTS**
