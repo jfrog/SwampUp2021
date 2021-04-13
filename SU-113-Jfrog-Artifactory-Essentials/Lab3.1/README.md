@@ -1,33 +1,37 @@
-# Lab3 - Security & Permissions
+# Lab5 - Browsing & Searching
 
 ## Prerequisites
 
-The 'Developer1' and 'ReleaseEngineer1' users from the previous lab.
+The Docker repositories and image created in the previous labs.
 
-## Create a Project and assign members
+## Browse
 
-### Step1 - Create a Project
+### Step1 - Browsing Through the UI
 
-- Navigate to the Administration module and click on 'Projects'.
-- Click on the plus sign and create a new project - 'Docker Project'.
-- Add 'ReleaseEngineer1' as the project's admin.
-- Assign the docker repositories to the project.
-- Set a storage quota and save.
+- Navigate to the Application module and click on 'Artifactory' -> 'Packages'.
+- In the top search bar, brwose packages and filter by repository type - docker.
+- Locate the sample docker image you've pushed to artifactory.
 
   **ADD SCREENSOHTS**
 
-### Step2 - Assign Roles & Members
+### Step2 - Assign Custom Properties
 
-- Click on 'Identity and Access' -> 'Roles'.
-- Click on the plus sign and create a new role - 'Custom Developer'.
-- Navigate to 'Members' and click on the plus sign to add 'Developer1'.
-- Assign the proper role for it.
+- Navigate to the Application module and click on 'Artifactory' -> 'Artifacts'.
+- Filter by repository type - docker, and click on the docker package you've pushed, in the latest version.
+- In the 'properties' tab, add a new property: 'deployement' : 'test'.
 
 **ADD SCREENSOHTS**
 
-### Step3 - Inspect the Project
+### Step3 - Search by Custom Properties
 
-- Click on the project selector and select your project.
-- Inspect your view and the resources assigned to the project.
+- In the top search bar, choose 'artifacts' and filter by the custom property you've just inserted - 'deployment' : 'test'.
+
+**ADD SCREENSOHTS**
+
+### Step4 - Srearch Properties With the REST API
+
+- Use cURL or any other HTTP client to search for the atrifact that you've modified:
+
+`curl -u ${user}:${password} -X GET https://platform-us.staging.gcp.devopsacc.team/artifactory/api/search/prop?deployment=test`
 
 **ADD SCREENSOHTS**
