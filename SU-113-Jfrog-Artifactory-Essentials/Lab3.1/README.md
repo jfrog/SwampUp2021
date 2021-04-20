@@ -14,7 +14,7 @@ The 'Developer1' and 'ReleaseEngineer1' users from the previous lab.
 
 - Click on the plus sign and create a new project - 'Docker Project'.
 
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/new_project.png" alt="Admin tab" style="height: 100px; width:100px;"/>
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3.1/images/new_project.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Add 'ReleaseEngineer1' as the project's admin.
 - Assign the docker repositories to the project.
@@ -24,11 +24,11 @@ The 'Developer1' and 'ReleaseEngineer1' users from the previous lab.
 
 - Make sure to choose your project at the project selector.
 
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/selector.png" alt="Admin tab" style="height: 100px; width:100px;"/>
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3.1/images/selector.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Click on 'Identity and Access' -> 'Roles'.
 
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/roles.png" alt="Admin tab" style="height: 100px; width:100px;"/>
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3.1/images/roles.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Click on the plus sign and create a new role - 'Custom Developer'.
 - Navigate to 'Members' and click on the plus sign to add 'Developer1'.
