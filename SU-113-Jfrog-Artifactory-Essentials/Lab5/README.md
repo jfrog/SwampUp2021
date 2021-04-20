@@ -9,7 +9,7 @@ The Docker repositories and image created in the previous labs.
 ### Step1 - Browsing Through the UI
 
 - Navigate to the Application module and click on 'Artifactory' -> 'Packages'.
-- In the top search bar, brwose packages and filter by repository type - docker.
+- In the top search bar, browse packages and filter by repository type - docker.
 - Locate the sample docker image you've pushed to artifactory.
 
   **ADD SCREENSOHTS**
@@ -29,5 +29,6 @@ The Docker repositories and image created in the previous labs.
 ### Step4 - Srearch Properties With the REST API
 
 - Use cURL or any other HTTP client to search for the atrifact that you've modified:
+
   `curl -u ${user}:${password} -X GET https://**RT_ADDRESS**/artifactory/api/search/prop?deployment=test`
   **ADD SCREENSOHTS**
