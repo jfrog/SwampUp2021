@@ -24,10 +24,10 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
 
 <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/users.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
-- Click on the plus sign and create a new user - 'Developer1'.
+- Click on the plus sign and create a new user - 'developer1'.
 - Explore the different options and permissions a user can have.
 - Assign a the group 'Developers' and save.
-- Create another user - 'ReleaseEngineer1' and add to the 'SRE' group.
+- Create another user - 'releaseEngineer1' and add to the 'SRE' group.
 - Navigate to 'Permissions'.
 
 ### Step3 - Create a Permission

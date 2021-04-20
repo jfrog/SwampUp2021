@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-The 'Developer1' and 'ReleaseEngineer1' users from the previous lab.
+The 'developer1' and 'releaseEngineer1' users from the previous lab.
 
 ## Create a Project and assign members
 
@@ -34,7 +34,7 @@ The 'Developer1' and 'ReleaseEngineer1' users from the previous lab.
 <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3.1/images/roles.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Click on the plus sign and create a new role - 'Custom Developer'.
-- Navigate to 'Members' and click on the plus sign to add 'Developer1'.
+- Navigate to 'Members' and click on the plus sign to add 'developer1'.
 - Assign the proper role for it.
 
 ### Step3 - Inspect the Project
