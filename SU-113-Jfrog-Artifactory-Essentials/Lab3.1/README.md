@@ -12,12 +12,15 @@ The 'Developer1' and 'ReleaseEngineer1' users from the previous lab.
 
 <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3.1/images/projects.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
-- Click on the plus sign and create a new project - 'Docker Project'.
+- Click on the plus sign and create a new project with name: 'SwampUp', key: 'su'.
 
 <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3.1/images/new_project.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Add 'ReleaseEngineer1' as the project's admin.
 - Assign the docker repositories to the project.
+
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3.1/images/project_repositories.png" alt="Admin tab" style="height: 100px; width:100px;"/>
+
 - Set a storage quota and save.
 
 ### Step2 - Assign Roles & Members

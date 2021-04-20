@@ -13,7 +13,10 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
 <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/groups.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Click on the plus sign and create a new group - 'Developers'.
-- Explore the different options and permissions a group can have.
+- Explore the different options and permissions a group can have but don't check any box.
+
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/new_group.png" alt="Admin tab" style="height: 100px; width:100px;"/>
+
 - Create another group - 'SRE'.
 - Save and navigate to 'Users'.
 
@@ -34,5 +37,8 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
 - Click on the plus sign and create a new permission with the ability to read and deploy from a 'dev' repository.
 - Notice the different resources a permission can realte to.
 - Assign the permission to your developers group.
+
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/permission_group.png" alt="Admin tab" style="height: 100px; width:100px;"/>
+
 - Create another permission for the 'SRE' group with the ability to deploy to the 'prod' repository.
 - Save!
