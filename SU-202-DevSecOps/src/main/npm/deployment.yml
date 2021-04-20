@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xray-custom-provider-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xray-custom-provider-app
+  template:
+    metadata:
+      labels:
+        app: xray-custom-provider-app
+    spec:
+      containers:
+        - name: xray-custom-provider-app
+          image: platform-us.staging.gcp.devopsacc.team/devsecops-docker-dev/swampup/custom-provider:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: artifactory-pull-secret
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: xray-custom-provider-service
+  namespace: default
+spec:
+  selector:
+    app: xray-custom-provider-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
