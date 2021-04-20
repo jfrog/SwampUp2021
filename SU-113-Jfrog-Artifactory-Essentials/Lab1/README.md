@@ -2,17 +2,7 @@
 
 ## Prerequisites
 
-A SAAS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
-
-## Fork the Repository
-
-Step1 - Fork the repository
-Fork this repository - https://github.com/jfrog/SwampUp2021 Fork repo
-
-Clone the forked repository -- git clone <your git repo path>
-git clone
-
-Navigate to Lab4 on the forked project on your local box. cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab4
+A SaaS Instance of JFrog. This will be provided as part of your enrollment to the training class.
 
 ## Navigating Through the Platform
 
@@ -22,7 +12,7 @@ Navigate to Lab4 on the forked project on your local box. cd SwampUp2021/SU-113-
 - Navigate to the Administration module and get familiar with the different options.
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab1/images/admin.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
-### Step2 - Application overview
+### Step2 - Application Overview
 
 - Navigate to the Application module and get familiar with the different options.
 - Click on 'Artifactory' and get familiar with the Packages, Builds and Artifacts views.  
