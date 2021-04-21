@@ -1,45 +1,32 @@
-# Lab1 - Get familiar with JFrog Platform and Xray
+d# Lab1 - Get familiar with JFrog Platform and Xray
 
 ## Prerequisites
 A SAAS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
 
-## Creating Repositories
+## Creating Watches & Policies
 
-### Step1 - Local Repository - Docker
+### Step1 - Create a policy 
 
 - Login to your saas instance <XXXXX>.jfrog.io with  your admin credentials
-- Navigate to the Administration Module. Expand the Repositories menu and click on the Repositories menu item.
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/repository.png" alt="Repositories tab" style="height: 100px; width:100px;"/>
+- Navigate to the Administration Module. Expand the Xray menu at the bottom and click on the Watches & Policies menu item.
+  <img src="/SU-201-Intro-to-DevSecOps-with-JFrog-Xray/Lab1/images/1.png" alt="Watches & Policies tab" style="height: 100px; width:100px;"/>
   
-- Add a new Local Repository with the Docker package type.
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/choose-docker.png" alt="choose-docker-package tab" style="height: 100px; width:100px;"/>
+- Click on the new Policy button and let's create our first policy
+  <img src="SU-201-Intro-to-DevSecOps-with-JFrog-Xray/Lab1/images/2.png" alt="New Policy" style="height: 100px; width:100px;"/>
 
-- Enter the Repository Key “swampup-docker-dev-local” and keep the rest of the default settings.
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-dev-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
+### Step2 - Create a rule
 
-- Once done, Create another local repository with docker package type and name it as "swampup-docker-prod-local". Keep the rest of the default settings
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-prod-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
+- Enter the policy name “Swampup-policy” and keep the security type then click on New Rule button
+  <img src="/SU-201-Intro-to-DevSecOps-with-JFrog-Xray/Lab1/images/3.png" alt="New rule" style="height: 100px; width:100px;"/>
 
+- Enter the rule name "Swampup-rule" scroll down a bit and enable block download action
+  <img src="/SU-201-Intro-to-DevSecOps-with-JFrog-Xray/Lab1/images/4.gif" alt="Rule configuration" style="height: 100px; width:100px;"/>
 
-### Step2 - Remote Repository - Docker
+### Step3 - Create a Watch
 
--  Add a remote repository to cache docker images from docker hub or any other external registries
-   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/remote-repo.png" alt="Remote repo" style="height: 100px; width:100px;"/>
+-  Click om the Watch tab and create a new watch name “Swampup-watch”  
+   <img src="/SU-201-Intro-to-DevSecOps-with-JFrog-Xray/Lab1/images/5.png" alt="Create a watch" style="height: 100px; width:100px;"/>
    
--  Add a new Remote Repository with the Docker package type and name the repository as "swampup-docker-remote" and keep the rest of the default settings.
-   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-remote.png" alt="mame the repo" style="height: 100px; width:100px;"/>
-
-### Step3 - Virtual  Repository - Docker
-
--  Add a Virtual repository to work with a single URL from your docker client. Click on the Virtual tab on the Repositories page
-   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/virtual-repo.png" alt="Virtual repo" style="height: 100px; width:100px;"/>
-   
--   Add a new Virtual Repository with the Docker package type. Enter the Repository Key “swampup-docker” and add the local and remote docker repositories you created in Steps 2 and 3 (move them from Available Repositories to Selected Repositories using the arrow buttons). The order of these repositories in the list will determine the order used to resolve the dependencies required for building your docker image. Select your local repository(swampup-docker-dev-local) that you created in Step 2 as the Default Deployment Repository. The Default Deployment Repository is the repository that the docker image you build will be pushed to. Keep the rest of the default settings.
-   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-virtual.png" alt="mame the repo" style="height: 100px; width:100px;"/>
-    
-- After the docker virtual registry is created. It will provide you with the details on how to access this docker registry. Copy that information and keep it in locally on your laptop
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-commands-display.png" alt="docker commands" style="height: 100px; width:100px;"/>
-
-
-
+-  Add the repositories to by clicking on the add repositories plus button and add the policy that we just created by clicking on the Manage policies button 
+   <img src="/SU-201-Intro-to-DevSecOps-with-JFrog-Xray/Lab1/images/6.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
