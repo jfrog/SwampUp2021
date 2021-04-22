@@ -9,6 +9,7 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
 ### Step1 - Create Groups
 
 - Navigate to the Administration module and click on 'Identity and Access' -> 'Groups'.
+  
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/groups.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Click on the plus sign and create a new group - 'Developers'.
