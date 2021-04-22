@@ -12,33 +12,38 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/groups.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Click on the plus sign and create a new group - 'Developers'.
-- Explore the different options and permissions a group can have but don't check any box.
+- Explore the different options and permissions a group can have but don't check any box.  
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/developers_grp.png" alt="DevelopersGroup" style="height: 100px; width:100px;"/>
 
 - Create another group - 'SRE'.
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/sre_grp.png" alt="SRE Group" style="height: 100px; width:100px;"/>
+  
+   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/sre_grp.png" alt="SRE Group" style="height: 100px; width:100px;"/>
 - Save and navigate to 'Users'.
 
 ### Step2 - Create a User
-
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/users.png" alt="Admin tab" style="height: 100px; width:100px;"/>
+- Navigate to the Administration module and click on 'Identity and Access' -> 'Users'.  
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/users.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Click on the plus sign and create a new user - 'developer1'.'
-- Email address and password are mandatory fields. Please fill the relevant information as shown in the UI
+- Email address and password are mandatory fields. Please fill the relevant information as shown in the UI.
+
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/developer1.png" alt="Developer" style="height: 100px; width:100px;"/>
   
 - Scroll down to related groups and Assign the group 'Developers' and save.
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/group-association.png" alt="Developer group association" style="height: 100px; width:100px;"/>
 - Explore the different options and permissions a user can have.
 - Follow the same process as above and Create another user - 'releaseEngineer1' and add to the 'SRE' group. Once completed you should see the below 2 users under the user tab
+
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/users-groups.png" alt="Developer group association" style="height: 100px; width:100px;"/>
 - Navigate to 'Permissions'.
 
 ### Step3 - Create a Permission
+- Navigate to the Administration module and click on 'Identity and Access' -> 'Permissions'.
 
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/permissions.png" alt="Admin tab" style="height: 100px; width:100px;"/>
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/permissions.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 - Click on the plus sign and create a new permission "docker-dev-permission" for the developers group to have read and deploy permissions to the "swampup-docker-dev-local" repository created in Lab2
+
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/docker-dev-permission.png" alt="Admin tab" style="height: 100px; width:100px;"/>  
 
 - Navigate to the Groups tab and add "developers" group
