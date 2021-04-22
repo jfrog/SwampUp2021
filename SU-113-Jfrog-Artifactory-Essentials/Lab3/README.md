@@ -53,7 +53,7 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
 - Provide the appropriate permissions to the developers group. In our case, we have given Read,Annotate and Deploy/Cache permissions
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/group-permissions.png" alt="Choose Developers tab" style="height: 100px; width:100px;"/>
 
-- Create another permission for the 'SRE' group with the ability to deploy to the 'prod' repository and save.
+- Create another permission for the 'SRE' group with the ability to deploy to the 'prod' repository and save. In our case, we have given Read,Annotate ,Deploy/Cache, Delete/Overwrite permissions to our SRE team
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/prod-permission.png" alt="Choose SRE tab" style="height: 100px; width:100px;"/>
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/prod-association.png" alt="Choose SRE tab" style="height: 100px; width:100px;"/>
  
