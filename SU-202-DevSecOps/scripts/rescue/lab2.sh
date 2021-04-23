@@ -1,31 +1,8 @@
-#!/usr/bin/env bash
-
-################################
-# Sourcing external properties #
-################################
-readonly BUILD_ENV_FILE=../build.env
-if [ ! -f "${BUILD_ENV_FILE}" ]; then
-    echo "ERROR - could not find ${BUILD_ENV_FILE}"
-    exit 1
-fi
-
-source "${BUILD_ENV_FILE}"
-
-echo "INFO - artifactory = ${ARTIFACTORY_HOSTNAME}"
-echo "INFO - login = ${ARTIFACTORY_LOGIN}"
+#!/usr/bin/env sh
 
 #######################
 # internal properties #
 #######################
-
-readonly PROJECT_VERSION='0.0.9'
-
-readonly DOCKER_REPO_PROD=devsecops-docker-prod
-
-readonly DOCKER_REGISTRY_PROD="${ARTIFACTORY_HOSTNAME}/${DOCKER_REPO_PROD}"
-
-readonly IMAGE_NAME='swampup/devsecops'
-readonly IMAGE_ABSOLUTE_NAME_PROD="${DOCKER_REGISTRY_PROD}/${IMAGE_NAME}:${PROJECT_VERSION}"
 
 readonly XRAY_URL="https://${ARTIFACTORY_HOSTNAME}/xray"
 
@@ -104,7 +81,8 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -d "{\"componentID\": \"docker://${IMAGE_NAME}:${PROJECT_VERSION}\"}"
 
 echo "INFO - Remove local docker image"
-docker rmi "${IMAGE_ABSOLUTE_NAME_PROD}" 2>/dev/null
+docker rmi "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" 2>/dev/null
+docker rmi "${IMAGE_ABSOLUTE_NAME_PROD_LAB1}" 2>/dev/null
 
 echo "INFO - Try to pull docker image"
-docker pull "${IMAGE_ABSOLUTE_NAME_PROD}"
+docker pull "${IMAGE_ABSOLUTE_NAME_PROD_LAB1}"

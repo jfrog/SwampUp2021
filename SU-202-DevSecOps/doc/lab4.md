@@ -2,7 +2,7 @@
 
 ## Context
 
-- You are eventually asked to deliver clean software
+- You have been provided a vulnerability report and told to clean your software.
 
 ## Objective
 
@@ -13,12 +13,6 @@
 - Upload the artifacts to Artifactory
 - Promote the Docker image to a production grade repository
 - Download the Docker image 
-
-## Source properties
-
-```bash
-source scripts/build.env
-```
 
 ## Init Lab properties
 
@@ -54,34 +48,34 @@ IMAGE_ABSOLUTE_NAME_PROD="${DOCKER_REGISTRY_PROD}/${IMAGE_NAME}:${PROJECT_VERSIO
 ## Configure Gradle build
 
 ```bash
-./jfrog rt gradle-config --server-id-resolve="${CLI_INSTANCE_ID}" --repo-resolve="${GRADLE_REPO_DEV}" --server-id-deploy="${CLI_INSTANCE_ID}" --repo-deploy="${GRADLE_REPO_DEV}" --use-wrapper=true --uses-plugin=true --deploy-ivy-desc=false
+jfrog rt gradle-config --server-id-resolve="${CLI_INSTANCE_ID}" --repo-resolve="${GRADLE_REPO_DEV}" --server-id-deploy="${CLI_INSTANCE_ID}" --repo-deploy="${GRADLE_REPO_DEV}" --use-wrapper=false --uses-plugin=true --deploy-ivy-desc=false
 ```
 
 ## Build the gradle project
 
 ```bash
-./jfrog rt gradle clean artifactoryPublish \
+jfrog rt gradle clean artifactoryPublish \
             -b build.gradle \
             --build-name "${CLI_GRADLE_BUILD_NAME}" \
-            --build-number "${CLI_BUILD_ID}" \
-            -PprojectVersion="${PROJECT_VERSION}" \
+            --build-number 2 \
+            -PprojectVersion="${PROJECT_VERSION_LAB4}" \
             -PartifactoryUrl="${ARTIFACTORY_URL}" \
             -PartifactoryGradleRepo="${GRADLE_REPO_DEV}" \
             -PartifactoryUser="${ARTIFACTORY_LOGIN}" \
             -PartifactoryApiKey="${ARTIFACTORY_API_KEY}" \
-            -PstrutsVersion="${STRUTS_VERSION}"
+            -PstrutsVersion="${STRUTS_VERSION_SAFE}"
 ```
 
 ## Publish Gradle Build info
 
 ```bash
-./jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" "${CLI_BUILD_ID}"
+jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" 2
 ```
 
 ## Promote Gradle build to production repository
 
 ```bash
-./jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" "${CLI_BUILD_ID}" "${GRADLE_REPO_PROD}-local" 
+jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" 2 "${GRADLE_REPO_PROD}-local" 
 ```
 
 ## Log into Docker registry
@@ -93,34 +87,40 @@ docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REG
 ## Build Docker image
 
 ```bash
-docker build -t "${IMAGE_ABSOLUTE_NAME_DEV}" --build-arg "BASE_IMAGE=${BASE_IMAGE}" .
+docker build -t "${IMAGE_ABSOLUTE_NAME_DEV_LAB4}" --build-arg "BASE_IMAGE=${BASE_IMAGE_SAFE}" .
 ```
 
 ## Push Docker image to Artifactory
 
 ```bash
-./jfrog rt docker-push --server-id="${CLI_INSTANCE_ID}" --skip-login --build-name="${CLI_DOCKER_BUILD_NAME}" --build-number="${CLI_BUILD_ID}" --module="${CLI_DOCKER_BUILD_NAME}" "${IMAGE_ABSOLUTE_NAME_DEV}" "${DOCKER_REPO_DEV}"
+jfrog rt docker-push --server-id="${CLI_INSTANCE_ID}" --skip-login --build-name="${CLI_DOCKER_BUILD_NAME}" --build-number=2 --module="${CLI_DOCKER_BUILD_NAME}" "${IMAGE_ABSOLUTE_NAME_DEV_LAB4}" "${DOCKER_REPO_DEV}"
 ```
 
 ## Publish Docker Build info
 
 ```bash
-./jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" "${CLI_BUILD_ID}"
+jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 2
 ```
 
 ## Scan Docker Build
 
 ```bash
-./jfrog rt build-scan --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" "${CLI_BUILD_ID}"
+jfrog rt build-scan --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 2
 ```
 
 ## Promote Docker image to production repository
 
 ```bash
-./jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" "${CLI_BUILD_ID}" "${DOCKER_REPO_PROD}-local" 
+jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 2 "${DOCKER_REPO_PROD}-local" 
 ```
 
 ## Download image
+
+Remove local docker image:
+```bash
+docker rmi ${BASE_IMAGE_UNSAFE}
+docker rmi ${BASE_IMAGE_SAFE}
+```
 
 Check local docker image:
 ```bash
@@ -129,7 +129,7 @@ docker images | grep "${DOCKER_REPO_PROD}"
 
 Pull docker image:
 ```bash
-docker pull "${IMAGE_ABSOLUTE_NAME_PROD}"
+docker pull "${IMAGE_ABSOLUTE_NAME_PROD_LAB4}"
 ```
 
 Check local docker image:

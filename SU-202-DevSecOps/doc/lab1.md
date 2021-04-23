@@ -11,44 +11,16 @@
 - Promote the Docker image to a production grade repository
 - Download the Docker image
 
-## Source properties
-
-```bash
-source scripts/build.env
-```
-
-## Init Lab properties
-
-```bash
-ARTIFACTORY_URL="https://${ARTIFACTORY_HOSTNAME}/artifactory"
-
-PROJECT_VERSION='0.0.9'
-STRUTS_VERSION='2.0.5'
-
-DOCKER_REPO_DEV=devsecops-docker-dev
-DOCKER_REPO_PROD=devsecops-docker-prod
-
-DOCKER_REGISTRY_DEV="${ARTIFACTORY_HOSTNAME}/${DOCKER_REPO_DEV}"
-DOCKER_REGISTRY_PROD="${ARTIFACTORY_HOSTNAME}/${DOCKER_REPO_PROD}"
-
-BASE_IMAGE_REGISTRY="${DOCKER_REGISTRY_PROD}"
-BASE_IMAGE_TAG='3.1'
-BASE_IMAGE="${BASE_IMAGE_REGISTRY}/alpine:${BASE_IMAGE_TAG}"
-IMAGE_NAME='swampup/devsecops'
-IMAGE_ABSOLUTE_NAME_DEV="${DOCKER_REGISTRY_DEV}/${IMAGE_NAME}:${PROJECT_VERSION}"
-IMAGE_ABSOLUTE_NAME_PROD="${DOCKER_REGISTRY_PROD}/${IMAGE_NAME}:${PROJECT_VERSION}"
-```
-
 ## Build the gradle project
 
 ```bash
-./gradlew clean artifactoryPublish \
-    -PprojectVersion="${PROJECT_VERSION}" \
+gradle clean artifactoryPublish \
+    -PprojectVersion="${PROJECT_VERSION_LAB1}" \
     -PartifactoryUrl="${ARTIFACTORY_URL}" \
-    -PartifactoryGradleRepo="devsecops-gradle-dev" \
+    -PartifactoryGradleRepo=${GRADLE_REPO_DEV} \
     -PartifactoryUser="${ARTIFACTORY_LOGIN}" \
     -PartifactoryApiKey="${ARTIFACTORY_API_KEY}" \
-    -PstrutsVersion="${STRUTS_VERSION}"
+    -PstrutsVersion="${STRUTS_VERSION_UNSAFE}"
 ```
 
 ## Log into Docker registry
@@ -60,13 +32,13 @@ docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REG
 ## Build Docker image
 
 ```bash
-docker build -t "${IMAGE_ABSOLUTE_NAME_DEV}" --build-arg "BASE_IMAGE=${BASE_IMAGE}" .
+docker build -t "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" --build-arg "BASE_IMAGE=${BASE_IMAGE_UNSAFE}" .
 ```
 
 ## Push Docker image to Artifactory
 
 ```bash
-docker push "${IMAGE_ABSOLUTE_NAME_DEV}"
+docker push "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}"
 ```
 
 ## Promote Docker image to production repository
@@ -80,6 +52,11 @@ curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
 
 ## Download image
 
+Remove local images:
+```bash
+docker rmi ${BASE_IMAGE_UNSAFE}
+```
+
 Check local docker image:
 ```bash
 docker images | grep "${DOCKER_REPO_PROD}"
@@ -87,7 +64,7 @@ docker images | grep "${DOCKER_REPO_PROD}"
 
 Pull docker image:
 ```bash
-docker pull "${IMAGE_ABSOLUTE_NAME_PROD}"
+docker pull "${IMAGE_ABSOLUTE_NAME_PROD_LAB1}"
 ```
 
 Check local docker image:

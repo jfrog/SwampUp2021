@@ -1,4 +1,4 @@
-# Demo 2 - License compliance
+# Demo 3 - License compliance
 
 ## Context
 

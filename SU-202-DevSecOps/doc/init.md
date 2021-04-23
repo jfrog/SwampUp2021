@@ -1,34 +1,29 @@
 # Setup
 
-All command line instructions have to be run from the root folder of the project
+Open a shell at the root folder of the project
 
-## Environment
+## Build docker runner
 
-copy *scripts/build.env.template* to *scripts/build.env* and set values accordingly:
+Replace the variables according to your setup
 
 ```bash
-ARTIFACTORY_HOSTNAME='my-instance.jfrog.io'
-ARTIFACTORY_LOGIN='foo@bar.com'
-ARTIFACTORY_API_KEY='MY_KEY'
+docker build \
+      --build-arg ARTIFACTORY_HOSTNAME="my-instance.jfrog.io" \
+      --build-arg ARTIFACTORY_LOGIN="foo@bar.com" \
+      --build-arg ARTIFACTORY_API_KEY='MY_KEY' \
+      -t swampup:runner . 
 ```
 
-## Source properties
+## Run docker container
 
 ```bash
-source scripts/build.env
-```
-
-## More properties
-
-```bash
-ARTIFACTORY_URL="https://${ARTIFACTORY_HOSTNAME}/artifactory"
-CLI_INSTANCE_ID='my-instance'
-```
-
-## Download JFrog CLI
-
-```bash
-curl -fL https://getcli.jfrog.io | sh
+docker run \
+      --name swampup-runner \
+      --rm \
+      -it \ 
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      swampup:runner \
+      /bin/sh
 ```
 
 ## Configure JFrog CLI
