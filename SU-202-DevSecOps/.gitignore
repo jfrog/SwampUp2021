@@ -1,0 +1,7 @@
+.idea
+.gradle
+.jfrog
+build
+node_modules
+scripts/build.env
+jfrog
