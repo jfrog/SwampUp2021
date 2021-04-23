@@ -64,4 +64,4 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
 - Once completed,  you should see the below 2 permissions under the Permissions tab
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/all-permissions.png" alt="Choose SRE tab" style="height: 100px; width:100px;"/>
 
-### Awesome !!! You have now successfully secured your repositories
+### Awesome !!! You have now successfully secured your repositories. Only SRE team members have deploy/write access to your production repositories
