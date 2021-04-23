@@ -4,15 +4,31 @@
 
 The Docker repositories and image created in the previous labs.
 
-## Browse
+## Browsing
 
 ### Step1 - Browsing Through the UI
 
-- Navigate to the Application module and click on 'Artifactory' -> 'Packages'.
-- In the top search bar, browse packages and filter by repository type - docker.
-- Locate the sample docker image you've pushed to artifactory.
+- Package View
 
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/package_docker.png" style="height: 100px; width:100px;"/>
+  - Navigate to the Application module and click on 'Artifactory' -> 'Packages'.
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/package-view.png" alt="package-view" style="height: 100px; width:100px;"/>
+  
+  - View More information about the package. Click on the docker image(my-docker-image)
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/docker-package.png" alt="docker-package" style="height: 100px; width:100px;"/>
+  
+  - Click on the version(latest) to view more details about the docker image
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/docker-version.png" alt="docker-version" style="height: 100px; width:100px;"/>
+    
+  - Navigate to the Docker layers tab to view the different docker layers on that docker image which we pushed as part of Lab5
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/docker-layers.png" alt="docker-layers" style="height: 100px; width:100px;"/>
+
+- Tree View    
+  - Navigate to the Application module and click on 'Artifactory' -> 'Artifacts'.
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/artifacts-view.png" alt="artifact-view" style="height: 100px; width:100px;"/>
+    
+  - The docker image which we pushed as part of Lab5 actually resides in "swampup-docker-dev-local" repository which is the default deployment repository.
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/tree-view.png" alt="tree-view" style="height: 100px; width:100px;"/>
+
 
 ### Step2 - Assign Custom Properties
 
