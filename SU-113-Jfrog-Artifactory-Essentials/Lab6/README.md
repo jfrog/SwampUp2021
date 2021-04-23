@@ -1,75 +1,35 @@
-# Lab6 - Leverage CLI to publish build to Artifactory
+# Lab6 - Browsing & Searching
 
-## Step 1 - Run the build.sh script
-- Navigate to Lab6 on the forked project on your local box.
-  ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab6```
-  
-- Execute the ./build.sh script. Ensure you have the right permission to execute this on your local box
-- You will be prompted to enter some important details. We will discuss each one of these during the class and while implementing this lab 
-* Detail about each input
-  * Configuration name for CLI : The name used to reference your instance using Jfrog CLI on your local machine. e.g - "JPD" is the name which I am giving to access my Jfrog platform
-    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/CLI-Config-name.png" alt="CLI Config" style="height: 100px; width:100px;"/>
-  
-  * Jfrog instance name : The SERVER_NAME is the first part of the URL given to you for your environment: https://<SERVER_NAME>.jfrog.io. You can also get this information from the docker login command from Lab2.
-    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/docker-commands-display.png" alt="ServerName" style="height: 100px; width:100px;"/>
-    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/ServerName.png" alt="ServerName" style="height: 100px; width:100px;"/>
-  
-  * Jfrog instance username : username for accessing your jfrog platform instance with deployment privileges 
-  
-  * Jfrog instance username : password for accessing your jfrog platform instance
-  
-  * Docker Virtual Repository name : Please provide this as "swampup-docker". This is the name of the virtual repository which you created in Step3 of Lab2
-  
-  * Build name : Provide a name to your build. This Build name will be displayed under the Builds tab in Jfrog platform. 
-     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildname.png" alt="buildname" style="height: 100px; width:100px;"/>
-    
-  * Build number : Provide a number to your build. This Buildnumber is usually your CI build run number.
-    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildnumber.png" alt="Build Number" style="height: 100px; width:100px;"/>
-    
-- Once the above information is entered, the script dynamically modifies the Dockerfile to point to your SERVER_NAME and  VIRTUAL_REPO_NAME to point to your docker virtual repository ("swampup-docker")
+## Prerequisites
 
-- Finally, You should see that CLI builds the docker image and pushes to artifactory
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-success.png" alt="Build success" style="height: 100px; width:100px;"/>
+The Docker repositories and image created in the previous labs.
 
-## Step 2 - View the Build information in Artifactory
+## Browse
 
-- Navigate to the Application Module, expand the Artifactory menu and click the Build menu item. The published build is displayed here
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build.png" alt="Build" style="height: 100px; width:100px;"/>
-  
-  
-- Click the BuildName and the build number to view the published modules
-  
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-name.png" alt="Build Name" style="height: 100px; width:100px;"/>
+### Step1 - Browsing Through the UI
 
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-number.png" alt="Build Number" style="height: 100px; width:100px;"/>
+- Navigate to the Application module and click on 'Artifactory' -> 'Packages'.
+- In the top search bar, browse packages and filter by repository type - docker.
+- Locate the sample docker image you've pushed to artifactory.
 
-- Click the published docker image to view the different layers on it
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/package_docker.png" style="height: 100px; width:100px;"/>
 
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/publishedmodule-layer.png" alt="Build Number" style="height: 100px; width:100px;"/>
+### Step2 - Assign Custom Properties
 
-## Step 3- Adding properties/metadata to the published build
+- Navigate to the Application module and click on 'Artifactory' -> 'Artifacts'.
+- Filter by repository type - docker, and click on the docker package you've pushed, in the latest version.
+- In the 'properties' tab, add a new property: 'deployement' : 'test'.
 
-- You can add properties to the docker image published. Below is a sample on how to add properties to the published docker image as part of the build
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/property.png" style="height: 100px; width:100px;"/>
 
-```$./jfrog rt sp  --include-dirs=true "swampup-docker-dev-local/docker-example-build-image/1*" "unittest=passed"```
+### Step3 - Search by Custom Properties
 
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/properties-update.png" alt="properties" style="height: 100px; width:100px;"/>
+- In the top search bar, choose 'artifacts' and filter by the custom property you've just inserted - 'deployment' : 'test'.
 
-- Once the properties are added, we can navigate to the respective docker image to view the data on the UI
+<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/search_property.png" style="height: 100px; width:100px;"/>
 
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/properties-ui.png" alt="properties-ui" style="height: 100px; width:100px;"/>
+### Step4 - Srearch Properties With the REST API
 
+- Use cURL or any other HTTP client to search for the atrifact that you've modified:
 
-## Step 4-  Promote the Build 
-
-- Promote the build and its associated build information to production. Below we are promoting our "Sample-docker-cli-build" to "swampup-docker-prod-local" repository
-```$ ./jfrog rt build-promote sample-docker-cli-build 1 swampup-docker-prod-local```
-  
-- View the published module to validate the binary is now in swampup-docker-prod-local
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-promotion.png" alt="Build Number" style="height: 100px; width:100px;"/>
-
-
-### Awesome !!! You have successfully completed Lab6. You can use CLI to push the build information from any CI build agent.
-
-    
-      
+  `curl -u ${user}:${password} -X GET https://**RT_ADDRESS**/artifactory/api/search/prop?deployment=test`
