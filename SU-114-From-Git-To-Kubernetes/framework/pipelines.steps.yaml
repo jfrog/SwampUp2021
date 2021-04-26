@@ -1,5 +1,9 @@
 pipelines:
   - name: suv_114_docker_framework_pipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          serverName: soleng
     steps:
       - name: build_docker_framework
         type: DockerBuild
@@ -7,9 +11,9 @@ pipelines:
           affinityGroup: fmkGroup
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/framework/
           dockerFileName: Dockerfile
-          dockerImageName: soleng-docker.jfrog.io/jfrog-docker-framework
+          dockerImageName: ${serverName}-docker.jfrog.io/jfrog-docker-framework
           dockerImageTag: ${run_number}
-          dockerOptions: --build-arg SERVER_NAME=soleng
+          dockerOptions: --build-arg SERVER_NAME=${serverName}
           integrations:        
             - name: artifactory
             - name: docker

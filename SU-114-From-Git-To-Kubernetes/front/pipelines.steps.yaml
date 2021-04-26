@@ -102,6 +102,10 @@ pipelines:
             - write_output build_info_frontapp_promoted_staging myversion=${appVersion}
 
   - name: suv_114_frontapp_docker_pipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          serverName: soleng
     steps:
       - name: build_docker_frontapp
         type: DockerBuild
@@ -109,9 +113,9 @@ pipelines:
           affinityGroup: swampupgrp
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/front/
-          dockerImageName: soleng-docker.jfrog.io/frontapp
+          dockerImageName: ${serverName}-docker.jfrog.io/frontapp
           dockerImageTag: ${appVersion}-${res_source_code_frontapp_commitSha}
-          dockerOptions: --build-arg SERVER_NAME=soleng
+          dockerOptions: --build-arg SERVER_NAME=${serverName}
           inputResources:
             - name: source_code_frontapp
             - name: build_info_frontapp_promoted_staging
