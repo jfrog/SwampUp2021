@@ -12,7 +12,6 @@ pipelines:
             - name: artifactory
           inputResources:
             - name: src_code_frontapp
-            - name: frontapp_exec
         execution:
           onSuccess:
             - echo ${res_src_code_frontapp_isGitTag}
