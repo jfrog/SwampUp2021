@@ -159,7 +159,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           affinityGroup: swampupgrp
-          targetRepository: docker-prod
+          targetRepository: docker-prod-local
           includeDependencies: false
           status: "DOCKER_SCAN_OK"
           comment: "Xray scan passed succesfully"
