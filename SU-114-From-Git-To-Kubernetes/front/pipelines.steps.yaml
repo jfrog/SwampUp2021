@@ -126,10 +126,10 @@ pipelines:
         execution:
           onStart:
             - add_pipeline_variables appVersion="${res_build_info_frontapp_promoted_staging_myversion}"
-            - cp ${res_frontapp_exec_resourcePath}/front* ${res_source_code_frontapp_resourcePath}/front/
-            - cd ${res_source_code_frontapp_resourcePath}/front/
+            - cp ${res_frontapp_exec_resourcePath}/front* ${res_source_code_frontapp_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
+            - cd ${res_source_code_frontapp_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
             - tar xvf front*.tgz
-            - ls -l ${res_source_code_frontapp_resourcePath}/front/
+            - ls -l ${res_source_code_frontapp_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
             - add_pipeline_variables myDockerTag="${appVersion}-${res_source_code_frontapp_commitSha}"
 
       - name: publish_docker_frontapp
@@ -159,7 +159,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           affinityGroup: swampupgrp
-          targetRepository: docker-prod
+          targetRepository: docker-prod-local
           includeDependencies: false
           status: "DOCKER_SCAN_OK"
           comment: "Xray scan passed succesfully"
