@@ -5,7 +5,7 @@ pipelines:
         type: GradleBuild
         configuration: 
           gradleCommand: clean artifactoryPublish -b build.gradle
-          sourceLocation: back/src  
+          sourceLocation: SU-114-From-Git-To-Kubernetes/back/src
           configFileLocation: .  
           configFileName: gradle-art-config  
           inputResources:
