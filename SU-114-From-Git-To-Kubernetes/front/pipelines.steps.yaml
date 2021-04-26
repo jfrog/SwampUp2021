@@ -118,7 +118,7 @@ pipelines:
             - name: frontapp_exec
           integrations:
             - name: artifactory
-            - name: docker_integration
+            - name: docker
         execution:
           onStart:
             - echo ${int_artifactory_url}
@@ -172,7 +172,7 @@ pipelines:
           outputResources:
             - name: build_info_docker_frontapp_promoted_staging
         execution:
-          onStart:
+          #onStart:
             #- jfrog rt cp --build=${res_build_info_docker_frontapp_buildName}/${res_build_info_docker_frontapp_buildNumber} app-docker-dev-local/ app-docker-rc-local/
           onSuccess:
             - jfrog rt sp --build=${res_build_info_docker_frontapp_buildName}/${res_build_info_docker_frontapp_buildNumber} app-docker-rc-local/**/manifest.json "docker.tag=${myDockerTag}"
