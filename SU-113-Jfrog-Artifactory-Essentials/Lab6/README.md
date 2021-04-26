@@ -32,20 +32,22 @@ The Docker repositories and image created in the previous labs.
 
 ### Step2 - Assign Custom Properties
 
-- Navigate to the Application module and click on 'Artifactory' -> 'Artifacts'.
-- Filter by repository type - docker, and click on the docker package you've pushed, in the latest version.
-- In the 'properties' tab, add a new property: 'deployement' : 'test'.
-
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/property.png" style="height: 100px; width:100px;"/>
+- Navigate to the properties tab and add a property "uat-test": "passed" to the latest tagged image and select the "Recursive" checkbox so that all the docker layers have this property set.
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/add-properties.png" alt="properties-add" style="height: 100px; width:100px;"/>
 
 ### Step3 - Search by Custom Properties
 
-- In the top search bar, choose 'artifacts' and filter by the custom property you've just inserted - 'deployment' : 'test'.
+- In the top search bar, choose 'Artifacts' and click on the double-sided filter to enable searching by the custom property you've just inserted.
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/search-artifacts.png" alt="search-artifact" style="height: 100px; width:100px;"/>
+    
+- Add the property which we inserted in the step above "uat-test : passed" to filter only that artifact
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/search-prop.png" alt="search-property" style="height: 100px; width:100px;"/>
+  
+- Search result will provide all the folders/subfolders which have "uat-test: passed" property set. You can choose that respective artifact and navigate to it.
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/search-result.png" alt="search-result" style="height: 100px; width:100px;"/>
 
-<img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/search_property.png" style="height: 100px; width:100px;"/>
+### Step4 - Search Properties using REST API
 
-### Step4 - Srearch Properties With the REST API
+- Use cURL or any other HTTP client to search for the artifact that you've modified. The SERVER_NAME is the first part of the URL given to you for your environment: ```https://<SERVER_NAME>.jfrog.io.```. Update the username/password for your instance 
 
-- Use cURL or any other HTTP client to search for the atrifact that you've modified:
-
-  `curl -u ${user}:${password} -X GET https://**RT_ADDRESS**/artifactory/api/search/prop?deployment=test`
+  `curl -u${user}:${password} -X GET "https://<SERVER_NAME>/artifactory/api/search/prop?uat-test=passed"`
