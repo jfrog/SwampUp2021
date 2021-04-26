@@ -1,0 +1,141 @@
+pipelines:
+  - name: suv_114_back_app_gradle_pipeline
+    steps:
+      - name: build_app_gradle_backend
+        type: GradleBuild
+        configuration: 
+          gradleCommand: clean artifactoryPublish -b build.gradle
+          sourceLocation: back/src  
+          configFileLocation: .  
+          configFileName: gradle-art-config  
+          inputResources:
+            - name: src_code_back_app
+          outputResources:
+            - name: back_app_build_info            
+          integrations:
+            - name: artifactory
+        execution:
+          onSuccess:
+            - echo ${res_src_code_back_app_isGitTag}
+            - appVersion=`if [[ ${res_src_code_back_app_isGitTag} == "True" ]]; then echo ${res_src_code_back_app_gitTagName}; else echo ${res_src_code_back_app_commitSha}; fi`
+            - echo $appVersion
+            - add_pipeline_variables appVersion="${appVersion}"
+            - add_pipeline_variables subPath="${res_src_code_back_app_branchName}/${appVersion}"      
+
+      - name: publish_backend_buildinfo
+        type: PublishBuildInfo
+        configuration:
+          inputSteps:
+            - name: build_app_gradle_backend
+          outputResources:
+            - name: back_app_build_info
+
+      - name: xray_scan_gradle_back_app
+        type: XrayScan
+        configuration:
+          affinityGroup: together
+          failOnScan: false
+          inputSteps:
+            - name: publish_backend_buildinfo
+          inputResources:
+            - name: back_app_build_info
+
+      - name: promote_build_info_gradle_back_app
+        type: PromoteBuild
+        configuration:
+          targetRepository: app-gradle-rc-local
+          includeDependencies: false
+          status: SANDBOX_OK
+          comment: Unit testing and Xray scan passed succesfully
+          copy: true
+          inputResources:
+            - name: back_app_build_info
+              trigger: true
+          inputSteps:
+            - name: xray_scan_gradle_back_app
+          outputResources:
+            - name: back_app_build_info_promoted_staging
+        execution:
+          onSuccess:
+            - jfrog rt sp --build=${res_back_app_build_info_buildName}/${res_back_app_build_info_buildNumber} app-gradle-rc-local/ "app.version=${appVersion}"
+            - write_output back_app_build_info_promoted_staging myversion=${appVersion}
+
+  - name: suv_114_backapp_docker_pipeline
+    steps:
+      - name: build_docker_backapp
+        type: DockerBuild
+        configuration:
+          affinityGroup: swampup
+          dockerFileName: Dockerfile
+          dockerFileLocation: back/
+          dockerImageName: talyi-docker.jfrog.io/backapp
+          dockerImageTag: '${res_back_app_build_info_promoted_staging_myversion}-${res_src_code_back_app_commitSha}'
+          inputResources:
+            - name: src_code_back_app
+            - name: back_app_build_info_promoted_staging
+            - name: docker_framework_build_info_promoted
+            - name: back_app_exec
+          integrations:
+            - name: artifactory
+            - name: docker_integration
+        execution:
+          onStart:
+            - 'export ArtIP=$(echo ${int_artifactory_url}|awk -F ''/'' ''{print $3}'')'
+            - echo ${res_build_info_back_app_promoted_staging_myversion}
+            - add_pipeline_variables appVersion="${res_build_info_back_app_promoted_staging_myversion}"
+            - add_pipeline_variables triggerBuildInfoName="${res_build_info_back_app_promoted_staging_buildName}"
+            - add_pipeline_variables triggerBuildInfoNumber="${res_build_info_back_app_promoted_staging_buildNumber}"
+            - add_pipeline_variables myDockerTag="${appVersion}-${res_src_code_back_app_commitSha}"
+
+      - name: publish_docker_backapp
+        type: DockerPush
+        configuration:
+          affinityGroup: swampup
+          targetRepository: docker
+          autoPublishBuildInfo: true
+          inputSteps:
+            - name: build_docker_backapp
+          integrations:
+            - name: artifactory
+          outputResources:
+            - name: build_info_docker_backapp
+
+      - name: xray_scan_docker_build_info_back_app
+        type: XrayScan
+        configuration:
+          affinityGroup: swampup
+          failOnScan: true
+          inputSteps:
+            - name: publish_docker_backapp
+          inputResources:
+            - name: build_info_docker_backapp
+
+      - name: promoting_docker_build_info_backapp
+        type: PromoteBuild
+        configuration:
+          affinityGroup: swampup
+          targetRepository: docker-prod
+          includeDependencies: false
+          status: "DOCKER_SCAN_OK"
+          comment: "Xray scan passed succesfully"
+          copy: "True"
+          integrations:
+            - name: artifactory
+          inputResources:
+            - name: build_info_docker_backapp
+              trigger: true
+          inputSteps:
+            - name: xray_scan_docker_build_info_back_app
+          outputResources:
+            - name: build_info_docker_backapp_promoted_staging
+        execution:
+          onStart:
+            - 'export ArtIP=$(echo ${int_artifactory_url}|awk -F ''/'' ''{print $3}'')'
+            - echo ${res_build_info_docker_backapp_buildName}
+            - echo ${res_build_info_docker_backapp_buildNumber}
+            - jfrog rt cp --build=${res_build_info_docker_backapp_buildName}/${res_build_info_docker_backapp_buildNumber} app-docker-dev-local/ app-docker-rc-local/
+          onSuccess:
+            - jfrog rt sp --build=${res_build_info_docker_backapp_buildName}/${res_build_info_docker_backapp_buildNumber} app-docker-rc-local/**/manifest.json "docker.tag=${myDockerTag}"
+            - write_output build_info_docker_backapp_promoted_staging "backregistry=\"${ArtIP}/app-docker-virtual\""
+            - write_output build_info_docker_backapp_promoted_staging "backimage=\"backapp\""
+            - write_output build_info_docker_backapp_promoted_staging "backtag=${myDockerTag}"

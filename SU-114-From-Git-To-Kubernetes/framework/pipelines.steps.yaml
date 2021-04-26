@@ -1,0 +1,64 @@
+pipelines:
+  - name: suv_114_docker_framework_pipeline
+    steps:
+      - name: build_docker_framework
+        type: DockerBuild
+        configuration:
+          affinityGroup: fmkGroup
+          dockerFileLocation: framework/
+          dockerFileName: Dockerfile
+          dockerImageName: talyi-docker.jfrog.io/jfrog-docker-framework
+          dockerImageTag: ${run_number}
+          integrations:        
+            - name: artifactory
+            - name: docker_integration
+          inputResources:
+            - name: src_dockerfile_framework
+            - name: framework_generic_fileSpec
+        execution:
+          onStart:
+            - 'export ArtIP=$(echo ${int_artifactory_url}|awk -F ''/'' ''{print $3}'')'
+#            - sed -i "s/registry/${ArtIP}/g" ${res_src_dockerfile_framework_resourcePath}/framework/Dockerfile
+
+      - name: push_docker_framework
+        type: DockerPush
+        configuration:
+          affinityGroup: fmkGroup
+          targetRepository: docker
+          autoPublishBuildInfo: true
+          integrations:
+            - name: artifactory
+          inputSteps:
+            - name: build_docker_framework
+          outputResources:
+            - name: docker_framework_build_info
+
+      - name: xray_scan_docker_framework_build
+        type: XrayScan
+        configuration:
+          affinityGroup: fmkGroup
+          failOnScan: false
+          inputSteps:
+            - name: push_docker_framework
+          inputResources:
+            - name: docker_framework_build_info
+              trigger: false
+
+      - name: promote_framework_build
+        type: PromoteBuild
+        configuration:
+          affinityGroup: fmkGroup
+          targetRepository: docker-prod
+          status: "DOCKER_SCAN_OK"
+          comment: "Xray scan passed succesfully"
+          copy: "True"
+          inputSteps:
+            - name: xray_scan_docker_framework_build
+          inputResources:
+            - name: docker_framework_build_info
+          outputResources:
+            - name: docker_framework_build_info_promoted
+        execution:
+          onSuccess:
+            - jfrog rt cp app-docker-dev-local/jfrog-docker-framework/${res_docker_Framework_BuildInfo_buildNumber}/* app-docker-release-local/jfrog-docker-framework/latest --flat=true
+      
