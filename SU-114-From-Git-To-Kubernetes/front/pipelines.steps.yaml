@@ -1,0 +1,181 @@
+pipelines:
+  - name: suv_114_frontapp_npm_pipeline
+    steps:
+      - name: build_npm_frontend
+        type: NpmBuild
+        configuration:
+          npmArgs: '--no-progress --no-audit'
+          affinityGroup: together
+          repositoryName: npm
+          sourceLocation: front/
+          integrations:
+            - name: artifactory
+          inputResources:
+            - name: src_code_frontapp
+            - name: frontapp_exec
+        execution:
+          onSuccess:
+            - echo ${res_src_code_frontapp_isGitTag}
+            - appVersion=`if [[ ${res_src_code_frontapp_isGitTag} == "True" ]]; then echo ${res_src_code_frontapp_gitTagName}; else echo ${res_src_code_frontapp_commitSha}; fi`
+            - echo $appVersion 
+            - add_pipeline_variables appVersion="${appVersion}"
+            - add_pipeline_variables subPath="${res_src_code_frontapp_branchName}/${appVersion}"      
+
+      - name: npm_package_frontend
+        type: Bash
+        configuration:
+          affinityGroup: together
+          environmentVariables:
+            OFFLINE_MODE: "true"
+          inputSteps:
+            - name: build_npm_frontend
+          integrations:
+            - name: artifactory
+        execution:
+          onStart:
+            - echo "Run Unit Testing ..." 
+            - if [ $OFFLINE_MODE == "true" ]; then echo "Offline mode turned on";fi
+            - ls -la
+            - restore_run_files $build_npm_frontend_sourceStateName .
+            - cd front
+            - ls -la
+            - npm run build
+          onComplete:
+            - ls -la
+            - cd ..
+            - add_run_files . $build_npm_frontend_sourceStateName    
+            - ls -la
+
+      - name: publish_frontend
+        type: NpmPublish
+        configuration:
+          affinityGroup: together
+          environmentVariables:
+            inputNpmBuildStepName: build_npm_frontend
+          repositoryName: npm
+          inputSteps:
+            - name: npm_package_frontend
+          integrations:
+            - name: artifactory 
+
+      - name: publish_frontend_buildinfo
+        type: PublishBuildInfo
+        configuration:
+          affinityGroup: together
+          inputSteps:
+            - name: publish_frontend
+          outputResources:
+            - name: FrontAppBuildInfo
+
+      - name: xray_scan_npm_front_app
+        type: XrayScan
+        configuration:
+          affinityGroup: together
+          failOnScan: true
+          inputSteps:
+            - name: publish_frontend_buildinfo
+          inputResources:
+            - name: FrontAppBuildInfo
+
+      - name: promote_build_info_npm_frontapp
+        type: PromoteBuild
+        configuration:
+          affinityGroup: together
+          targetRepository: app-npm-rc-local
+          includeDependencies: false
+          status: SANDBOX_OK
+          comment: Unit testing and Xray scan passed succesfully
+          copy: true
+          inputSteps:
+            - name: xray_scan_npm_front_app
+          inputResources:
+            - name: FrontAppBuildInfo
+              trigger: true
+          outputResources:
+            - name: build_info_frontapp_promoted_staging
+        execution:  
+          onStart:
+            - echo ${res_FrontAppBuildInfo_buildName} 
+            - echo ${res_FrontAppBuildInfo_buildNumber} 
+            - echo ${appVersion}
+          onSuccess:
+            - jfrog rt sp --build=${res_FrontAppBuildInfo_buildName}/${res_FrontAppBuildInfo_buildNumber} app-npm-rc-local/ "app.version=${appVersion}"
+            - write_output build_info_frontapp_promoted_staging myversion=${appVersion}
+
+  - name: suv_114_frontapp_docker_pipeline
+    steps:
+      - name: build_docker_frontapp
+        type: DockerBuild
+        configuration:
+          affinityGroup: swampupgrp
+          dockerFileName: Dockerfile
+          dockerFileLocation: front/
+          dockerImageName: talyi-docker.jfrog.io/frontapp
+          dockerImageTag: ${appVersion}-${res_src_code_frontapp_commitSha}
+          inputResources:
+            - name: src_code_frontapp
+            - name: build_info_frontapp_promoted_staging
+            - name: frontapp_exec
+          integrations:
+            - name: artifactory
+            - name: docker_integration
+        execution:
+          onStart:
+            - echo ${int_artifactory_url}
+            - 'export ArtIP=$(echo ${int_artifactory_url}|awk -F ''/'' ''{print $3}'')'
+            - add_pipeline_variables appVersion="${res_build_info_frontapp_promoted_staging_myversion}"
+            - cp ${res_frontapp_exec_resourcePath}/front* ${res_src_code_frontapp_resourcePath}/front/
+            - cd ${res_src_code_frontapp_resourcePath}/front/
+            - tar xvf front*.tgz
+            - ls -l ${res_src_code_frontapp_resourcePath}/front/
+            - add_pipeline_variables myDockerTag="${appVersion}-${res_src_code_frontapp_commitSha}"
+
+      - name: publish_docker_frontapp
+        type: DockerPush
+        configuration:
+          affinityGroup: swampupgrp
+          targetRepository: docker
+          autoPublishBuildInfo: true
+          inputSteps:
+            - name: build_docker_frontapp
+          integrations:
+            - name: artifactory
+          outputResources:
+            - name: build_info_docker_frontapp
+
+      - name: xray_scan_docker_build_info_front_app
+        type: XrayScan
+        configuration:
+          affinityGroup: swampupgrp
+          failOnScan: true
+          inputSteps:
+            - name: publish_docker_frontapp
+          inputResources:
+            - name: build_info_docker_frontapp
+
+      - name: promote_docker_build_info_frontapp
+        type: PromoteBuild
+        configuration:
+          affinityGroup: swampupgrp
+          targetRepository: docker-prod
+          includeDependencies: false
+          status: "DOCKER_SCAN_OK"
+          comment: "Xray scan passed succesfully"
+          copy: true
+          integrations:
+            - name: artifactory
+          inputSteps:
+            - name: xray_scan_docker_build_info_front_app
+          inputResources:
+            - name: build_info_docker_frontapp
+              trigger: true
+          outputResources:
+            - name: build_info_docker_frontapp_promoted_staging
+        execution:
+          onStart:
+            #- jfrog rt cp --build=${res_build_info_docker_frontapp_buildName}/${res_build_info_docker_frontapp_buildNumber} app-docker-dev-local/ app-docker-rc-local/
+          onSuccess:
+            - jfrog rt sp --build=${res_build_info_docker_frontapp_buildName}/${res_build_info_docker_frontapp_buildNumber} app-docker-rc-local/**/manifest.json "docker.tag=${myDockerTag}"
+            - write_output build_info_docker_frontapp_promoted_staging "frontregistry=\"${ArtIP}/docker\""
+            - write_output build_info_docker_frontapp_promoted_staging "frontimage=\"frontapp\""
+            - write_output build_info_docker_frontapp_promoted_staging "fronttag=${myDockerTag}"

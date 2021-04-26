@@ -1,0 +1,60 @@
+resources:
+  #Gradle Application
+  - name: src_code_back_app
+    type: GitRepo
+    configuration:
+      files:
+        include: ^back\/.+
+      gitProvider: talitz_github
+      path: talitz/su-114-from-git-to-kubernetes
+
+  - name: back_app_build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory
+      buildName: suv_114_back_app_gradle_pipeline
+      buildNumber: ${run_number}
+  
+  - name: back_app_build_info_promoted_staging
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory
+      buildName: suv_114_back_app_gradle_pipeline
+      buildNumber: '${run_number}'
+  
+  - name: build_info_back_app_promoted_prod
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory
+      buildName: suv_114_back_app_gradle_pipeline
+      buildNumber: '${run_number}'
+
+#Dockerize Gradle Application
+  - name: back_app_exec
+    type: FileSpec
+    configuration:
+      sourceArtifactory: artifactory
+      pattern: 'app-gradle-rc-local/*/webservice-*.war'
+      target: war/webservice.war
+      flat: true
+
+  - name: build_info_docker_backapp
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory
+      buildName: suv_114_backapp_docker_pipeline
+      buildNumber: '${run_number}'
+
+  - name: build_info_docker_backapp_scanned
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory
+      buildName: suv_114_backapp_docker_pipeline
+      buildNumber: '${run_number}'
+
+  - name: build_info_docker_backapp_promoted_staging
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory
+      buildName: suv_114_back_app_docker
+      buildNumber: '${run_number}'
