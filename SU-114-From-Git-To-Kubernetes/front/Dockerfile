@@ -1,4 +1,5 @@
-FROM talyi-docker.jfrog.io/node:14-alpine3.10
+ARG SERVER_NAME
+FROM $SERVER_NAME-docker.jfrog.io/node:14-alpine3.10
 
 WORKDIR /tmp/
 

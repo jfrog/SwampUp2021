@@ -109,8 +109,9 @@ pipelines:
           affinityGroup: swampupgrp
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/front/
-          dockerImageName: talyi-docker.jfrog.io/frontapp
+          dockerImageName: soleng-docker.jfrog.io/frontapp
           dockerImageTag: ${appVersion}-${res_source_code_frontapp_commitSha}
+          dockerOptions: --build-arg SERVER_NAME=soleng
           inputResources:
             - name: source_code_frontapp
             - name: build_info_frontapp_promoted_staging
