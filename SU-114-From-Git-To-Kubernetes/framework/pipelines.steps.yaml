@@ -53,7 +53,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           affinityGroup: fmkGroup
-          targetRepository: docker-prod
+          targetRepository: docker-prod-local
           status: "DOCKER_SCAN_OK"
           comment: "Xray scan passed succesfully"
           copy: "True"

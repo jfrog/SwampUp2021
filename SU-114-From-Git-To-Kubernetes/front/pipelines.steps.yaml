@@ -125,8 +125,6 @@ pipelines:
             - name: docker
         execution:
           onStart:
-            - echo ${int_artifactory_url}
-            - 'export ArtIP=$(echo ${int_artifactory_url}|awk -F ''/'' ''{print $3}'')'
             - add_pipeline_variables appVersion="${res_build_info_frontapp_promoted_staging_myversion}"
             - cp ${res_frontapp_exec_resourcePath}/front* ${res_source_code_frontapp_resourcePath}/front/
             - cd ${res_source_code_frontapp_resourcePath}/front/
