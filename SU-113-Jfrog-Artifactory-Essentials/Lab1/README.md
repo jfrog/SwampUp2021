@@ -1,4 +1,4 @@
-# Lab1 - Artifactory Overview
+# Lab1 - Artifactory Overview - UI navigation and access
 
 ## Prerequisites
 
