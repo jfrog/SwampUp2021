@@ -4,7 +4,7 @@ resources:
     type: GitRepo
     configuration:
       files:
-        include: ^SU-114-From-Git-To-Kubernetes\/back\/.+
+        include: ^back\/.+
       gitProvider: talitz_github
       path: talitz/SwampUp2021
 
