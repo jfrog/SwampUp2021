@@ -14,12 +14,12 @@ pipelines:
             - name: artifactory
             - name: docker
           inputResources:
-            - name: src_dockerfile_framework
+            - name: source_dockerfile_framework
             - name: framework_generic_fileSpec
         execution:
           onStart:
             - 'export ArtIP=$(echo ${int_artifactory_url}|awk -F ''/'' ''{print $3}'')'
-#            - sed -i "s/registry/${ArtIP}/g" ${res_src_dockerfile_framework_resourcePath}/framework/Dockerfile
+#            - sed -i "s/registry/${ArtIP}/g" ${res_source_dockerfile_framework_resourcePath}/framework/Dockerfile
 
       - name: push_docker_framework
         type: DockerPush

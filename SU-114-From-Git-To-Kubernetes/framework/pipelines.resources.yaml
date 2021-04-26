@@ -1,5 +1,5 @@
 resources:
-  - name: src_dockerfile_framework
+  - name: source_dockerfile_framework
     type: GitRepo
     configuration:
       files:

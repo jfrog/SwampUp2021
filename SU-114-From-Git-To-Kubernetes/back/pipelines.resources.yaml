@@ -1,6 +1,6 @@
 resources:
   #Gradle Application
-  - name: source_code_back_app
+  - name: source_code_back_application
     type: GitRepo
     configuration:
       files:

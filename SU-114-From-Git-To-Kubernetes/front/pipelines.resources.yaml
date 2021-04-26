@@ -1,6 +1,6 @@
 resources:
 #Build NPM Application
-  - name: src_code_frontapp
+  - name: source_code_frontapp
     type: GitRepo
     configuration:
       files:

@@ -9,18 +9,18 @@ pipelines:
           configFileLocation: .  
           configFileName: gradle-art-config  
           inputResources:
-            - name: source_code_back_app
+            - name: source_code_back_application
           outputResources:
             - name: back_app_build_info            
           integrations:
             - name: artifactory
         execution:
           onSuccess:
-            - echo ${res_source_code_back_app_isGitTag}
-            - appVersion=`if [[ ${res_source_code_back_app_isGitTag} == "True" ]]; then echo ${res_source_code_back_app_gitTagName}; else echo ${res_source_code_back_app_commitSha}; fi`
+            - echo ${res_source_code_back_application_isGitTag}
+            - appVersion=`if [[ ${res_source_code_back_application_isGitTag} == "True" ]]; then echo ${res_source_code_back_application_gitTagName}; else echo ${res_source_code_back_application_commitSha}; fi`
             - echo $appVersion
             - add_pipeline_variables appVersion="${appVersion}"
-            - add_pipeline_variables subPath="${res_source_code_back_app_branchName}/${appVersion}"      
+            - add_pipeline_variables subPath="${res_source_code_back_application_branchName}/${appVersion}"      
 
       - name: publish_backend_buildinfo
         type: PublishBuildInfo
@@ -69,9 +69,9 @@ pipelines:
           dockerFileName: Dockerfile
           dockerFileLocation: back/
           dockerImageName: talyi-docker.jfrog.io/backapp
-          dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_app_commitSha}
+          dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_application_commitSha}
           inputResources:
-            - name: source_code_back_app
+            - name: source_code_back_application
             - name: back_app_build_info_promoted_staging
             - name: docker_framework_build_info_promoted
             - name: back_app_war_executable
@@ -85,7 +85,7 @@ pipelines:
             - add_pipeline_variables appVersion="${res_build_info_back_app_promoted_staging_myversion}"
             - add_pipeline_variables triggerBuildInfoName="${res_build_info_back_app_promoted_staging_buildName}"
             - add_pipeline_variables triggerBuildInfoNumber="${res_build_info_back_app_promoted_staging_buildNumber}"
-            - add_pipeline_variables myDockerTag="${appVersion}-${res_source_code_back_app_commitSha}"
+            - add_pipeline_variables myDockerTag="${appVersion}-${res_source_code_back_application_commitSha}"
 
       - name: publish_docker_backapp
         type: DockerPush
