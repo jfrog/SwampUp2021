@@ -1,4 +1,5 @@
-FROM talyi-docker.jfrog.io/jfrog-docker-framework:67
+ARG SERVER_NAME
+FROM $SERVER_NAME-docker.jfrog.io/jfrog-docker-framework:67
 
 RUN rm -rf /home/exec/apache-tomcat-8.0.32/webapps/*
 

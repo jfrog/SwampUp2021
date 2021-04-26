@@ -1,12 +1,12 @@
 resources:
 #Build NPM Application
-  - name: src_code_frontapp
+  - name: source_code_frontapp
     type: GitRepo
     configuration:
       files:
         include: ^front\/.+
       gitProvider: talitz_github
-      path: talitz/su-114-from-git-to-kubernetes
+      path: talitz/SwampUp2021
 
   - name: FrontAppBuildInfo
     type: BuildInfo
@@ -34,7 +34,7 @@ resources:
     type: FileSpec
     configuration:
       sourceArtifactory: artifactory
-      pattern: app-npm-dev-local/front/-/front-0.1.0.tgz
+      pattern: app-npm-rc-local/front/-/front-0.1.0.tgz
       flat: true
 
   - name: build_info_docker_frontapp

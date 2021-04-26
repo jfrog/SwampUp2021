@@ -1,10 +1,10 @@
 resources:
-  - name: src_dockerfile_framework
+  - name: source_dockerfile_framework
     type: GitRepo
     configuration:
       files:
         include: ^framework\/.+
-      path: talitz/su-114-from-git-to-kubernetes
+      path: talitz/SwampUp2021
       gitProvider: talitz_github
 
   - name: framework_generic_fileSpec
