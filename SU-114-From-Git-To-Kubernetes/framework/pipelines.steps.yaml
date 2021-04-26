@@ -11,7 +11,7 @@ pipelines:
           dockerImageTag: ${run_number}
           integrations:        
             - name: artifactory
-            - name: docker_integration
+            - name: docker
           inputResources:
             - name: src_dockerfile_framework
             - name: framework_generic_fileSpec

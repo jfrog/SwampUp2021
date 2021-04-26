@@ -1,6 +1,6 @@
 resources:
   #Gradle Application
-  - name: src_code_back_app
+  - name: source_code_back_app
     type: GitRepo
     configuration:
       files:
@@ -22,7 +22,7 @@ resources:
       buildName: suv_114_back_app_gradle_pipeline
       buildNumber: '${run_number}'
   
-  - name: build_info_back_app_promoted_prod
+  - name: build_info_back_app_promoted_to_prod
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory
@@ -30,7 +30,7 @@ resources:
       buildNumber: '${run_number}'
 
 #Dockerize Gradle Application
-  - name: back_app_exec
+  - name: back_app_war_executable
     type: FileSpec
     configuration:
       sourceArtifactory: artifactory
@@ -38,21 +38,21 @@ resources:
       target: war/webservice.war
       flat: true
 
-  - name: build_info_docker_backapp
+  - name: build_info_docker_back_app
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory
       buildName: suv_114_backapp_docker_pipeline
       buildNumber: '${run_number}'
 
-  - name: build_info_docker_backapp_scanned
+  - name: build_info_docker_back_app_scanned
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory
       buildName: suv_114_backapp_docker_pipeline
       buildNumber: '${run_number}'
 
-  - name: build_info_docker_backapp_promoted_staging
+  - name: build_info_docker_back_app_promoted_staging
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory
