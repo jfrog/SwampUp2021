@@ -126,8 +126,8 @@ pipelines:
         execution:
           onStart:
             - add_pipeline_variables appVersion="${res_build_info_frontapp_promoted_staging_myversion}"
-            - ls ${res_frontapp_exec_resourcePath} -la
-            - cp ${res_frontapp_exec_resourcePath}/front* ${res_source_code_frontapp_resourcePath}/front/
+            - ls ${res_source_code_frontapp_resourcePath} -la
+            - cp ${res_frontapp_exec_resourcePath}/front* ${res_source_code_frontapp_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
             - cd ${res_source_code_frontapp_resourcePath}/front/
             - tar xvf front*.tgz
             - ls -l ${res_source_code_frontapp_resourcePath}/front/
