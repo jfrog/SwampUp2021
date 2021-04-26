@@ -7,10 +7,12 @@
 
 ## Objective
 
+![](images/lab3.png)
+
 - Build the Docker image in a CI like environment using JFrog CLI
 - Upload the build information to Artifactory
-- Scan while building
-- [Try to] Download the Docker image created during build
+- Scan your build
+- [Try to] Promote / Download the Docker image
 
 ## Configure Gradle build
 
@@ -93,4 +95,4 @@ jfrog rt build-scan --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 
 
 ## Conclusion
 
-Image can't be built successfully if we had a scanning step.
+Some vulnerabilities were detected when scanning the build, build pipeline is stopped.

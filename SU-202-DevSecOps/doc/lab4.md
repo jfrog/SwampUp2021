@@ -6,6 +6,8 @@
 
 ## Objective
 
+![](images/lab4.png)
+
 - Fix the security issues
 - Build the Docker image in a CI like environment using JFrog CLI
 - Upload the build information to Artifactory

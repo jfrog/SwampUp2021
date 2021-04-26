@@ -4,16 +4,16 @@
 # reset process #
 #################
 echo "INFO - deleting repos"
-jfrog rt repo-delete devsecops-docker-dev-local --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-docker-prod-local --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-docker-remote --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-docker-dev --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-docker-prod --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-gradle-dev-local --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-gradle-prod-local --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-gradle-remote --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-gradle-dev --quiet --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-delete devsecops-gradle-prod --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${DOCKER_REPO_DEV}"-local --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${DOCKER_REPO_PROD}"-local --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${DOCKER_REPO_REMOTE}" --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${DOCKER_REPO_DEV}" --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${DOCKER_REPO_PROD}" --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${GRADLE_REPO_DEV}"-local --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${GRADLE_REPO_PROD}"-local --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${GRADLE_REPO_REMOTE}" --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${GRADLE_REPO_DEV}" --quiet --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-delete "${GRADLE_REPO_PROD}" --quiet --server-id="${CLI_INSTANCE_ID}"
 
 echo "INFO - deleting builds"
 curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \

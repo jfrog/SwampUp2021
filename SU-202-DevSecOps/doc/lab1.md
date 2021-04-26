@@ -6,6 +6,8 @@
 
 ## Objective
 
+![](images/lab1.png)
+
 - Create a Gradle project and ship the archive in a Docker image
 - Upload the artifacts to Artifactory
 - Promote the Docker image to a production grade repository

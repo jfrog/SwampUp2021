@@ -75,8 +75,8 @@ echo "INFO - configure CLI for Gradle"
 jfrog rt gradle-config --server-id-resolve="${CLI_INSTANCE_ID}" --repo-resolve="${GRADLE_REPO_DEV}" --server-id-deploy="${CLI_INSTANCE_ID}" --repo-deploy="${GRADLE_REPO_DEV}" --use-wrapper=false --uses-plugin=true --deploy-ivy-desc=false
 
 echo "INFO - build gradle project"
-(cd ../.. ; jfrog rt gradle clean artifactoryPublish \
-            -b build.gradle \
+jfrog rt gradle clean artifactoryPublish \
+            -b ../../build.gradle \
             --build-name "${CLI_GRADLE_BUILD_NAME}" \
             --build-number 1 \
             -PprojectVersion="${PROJECT_VERSION_LAB3}" \
@@ -85,7 +85,6 @@ echo "INFO - build gradle project"
             -PartifactoryUser="${ARTIFACTORY_LOGIN}" \
             -PartifactoryApiKey="${ARTIFACTORY_API_KEY}" \
             -PstrutsVersion="${STRUTS_VERSION_UNSAFE}"
-)
 
 echo "INFO - publish Gradle build info"
 jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" 1

@@ -7,6 +7,8 @@
 
 ## Objective
 
+![](images/lab2.png)
+
 - Configure JFrog Xray
 - [Try to] Download the Docker image created during Lab 1
 

@@ -13,7 +13,7 @@ echo "INFO - Collect indexing configuration"
 INDEXED_REPOS=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                   -H 'Content-Type: application/json' \
                   -X GET "${XRAY_URL}/api/v1/binMgr/default/repos" \
-                  | jq -r '.indexed_repos + [{"name": "devsecops-docker-prod-local","type": "local","pkg_type": "Docker"}] + [{"name": "devsecops-gradle-prod-local","type": "local","pkg_type": "Gradle"}]')
+                  | jq -r ".indexed_repos + [{\"name\": \"$DOCKER_REPO_PROD-local\",\"type\": \"local\",\"pkg_type\": \"Docker\"}] + [{\"name\": \"$GRADLE_REPO_PROD-local\",\"type\": \"local\",\"pkg_type\": \"Gradle\"}]")
 
 echo "INFO - Updating indexing configuration"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
@@ -65,7 +65,7 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
             \"resources\": [{
                 \"type\": \"repository\",
                 \"bin_mgr_id\": \"default\",
-                \"name\": \"devsecops-docker-prod-local\"
+                \"name\": \"$DOCKER_REPO_PROD-local\"
             }]
         },
         \"assigned_policies\": [{
@@ -78,7 +78,7 @@ echo "INFO - scan artifact"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
      -X POST "${XRAY_URL}/api/v1/scanArtifact" \
-     -d "{\"componentID\": \"docker://${IMAGE_NAME}:${PROJECT_VERSION}\"}"
+     -d "{\"componentID\": \"docker://${IMAGE_NAME}:${PROJECT_VERSION_LAB1}\"}"
 
 echo "INFO - Remove local docker image"
 docker rmi "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" 2>/dev/null
