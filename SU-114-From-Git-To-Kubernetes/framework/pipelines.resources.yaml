@@ -4,7 +4,7 @@ resources:
     configuration:
       files:
         include: ^framework\/.+
-      path: talitz/su-114-from-git-to-kubernetes
+      path: talitz/SwampUp2021
       gitProvider: talitz_github
 
   - name: framework_generic_fileSpec

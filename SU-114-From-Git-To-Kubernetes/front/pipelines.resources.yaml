@@ -6,7 +6,7 @@ resources:
       files:
         include: ^front\/.+
       gitProvider: talitz_github
-      path: talitz/su-114-from-git-to-kubernetes
+      path: talitz/SwampUp2021
 
   - name: FrontAppBuildInfo
     type: BuildInfo
