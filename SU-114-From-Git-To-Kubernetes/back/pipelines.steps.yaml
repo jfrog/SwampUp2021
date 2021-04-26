@@ -57,8 +57,9 @@ pipelines:
             - name: back_app_build_info_promoted_staging
         execution:
           onSuccess:
-            - jfrog rt sp --build=${res_back_app_build_info_buildName}/${res_back_app_build_info_buildNumber} app-gradle-rc-local/ "app.version=${appVersion}"
             - write_output back_app_build_info_promoted_staging myversion=${appVersion}
+            - jfrog rt sp --build=${res_back_app_build_info_buildName}/${res_back_app_build_info_buildNumber} app-gradle-rc-local/ "app.version=${appVersion}"
+
 
   - name: suv_114_backapp_docker_pipeline
     configuration:
