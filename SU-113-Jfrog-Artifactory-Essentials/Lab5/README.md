@@ -1,4 +1,4 @@
-# Lab5 - Docker Package manager
+# Lab5 - Working with Artifactory as your docker registry
 
 ## Step1 - Fork the repository
 - Fork this repository - https://github.com/jfrog/SwampUp2021
