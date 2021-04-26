@@ -5,7 +5,7 @@ pipelines:
         type: DockerBuild
         configuration:
           affinityGroup: fmkGroup
-          dockerFileLocation: framework/
+          dockerFileLocation: SU-114-From-Git-To-Kubernetes/framework/
           dockerFileName: Dockerfile
           dockerImageName: soleng-docker.jfrog.io/jfrog-docker-framework
           dockerImageTag: ${run_number}

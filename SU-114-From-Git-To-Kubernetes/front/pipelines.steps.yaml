@@ -108,7 +108,7 @@ pipelines:
         configuration:
           affinityGroup: swampupgrp
           dockerFileName: Dockerfile
-          dockerFileLocation: front/
+          dockerFileLocation: SU-114-From-Git-To-Kubernetes/front/
           dockerImageName: talyi-docker.jfrog.io/frontapp
           dockerImageTag: ${appVersion}-${res_source_code_frontapp_commitSha}
           inputResources:
