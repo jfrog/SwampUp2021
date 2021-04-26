@@ -6,12 +6,12 @@
 #### Lab #0 - On Boarding to Labs Environment
 
 - Fork this repository to your GitHub Account.
-- In all pipelines.resources, change the GitRepo path based on your github user name. 
+- In all pipelines.resources, change the GitRepo path and provider based on your github user name. 
 - Login to your SaaS E+ Environment.
 - Create Repositories using the wizard of type Gradle, Docker, NPM and Generic.
 - Upload apache tomcat v8.0.32 (https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.32/bin/apache-tomcat-8.0.32.tar.gz) to generic-local repository.
 - Create new Source in JFrog Pipelines and add this repository.
-- Create 2 integration in Artifactory: artifactory (of Type Artifactory), docker (of Type Docker Integration).
+- Create 2 integration in Artifactory: artifactory (of Type Artifactory), docker (of Type Docker Integration), and git.
 
 #### Lab #1 - On Boarding to Labs Environment
 
