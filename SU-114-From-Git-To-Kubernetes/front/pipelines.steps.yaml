@@ -36,7 +36,7 @@ pipelines:
             - if [ $OFFLINE_MODE == "true" ]; then echo "Offline mode turned on";fi
             - ls -la
             - restore_run_files $build_npm_frontend_sourceStateName .
-            - cd front
+            - cd SU-114-From-Git-To-Kubernetes/front
             - ls -la
             - npm run build
           onComplete:
