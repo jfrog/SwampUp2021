@@ -57,14 +57,16 @@ pipelines:
             - name: back_app_build_info_promoted_staging
         execution:
           onSuccess:
-            - jfrog rt sp --build=${res_back_app_build_info_buildName}/${res_back_app_build_info_buildNumber} app-gradle-rc-local/ "app.version=${appVersion}"
             - write_output back_app_build_info_promoted_staging myversion=${appVersion}
+            - jfrog rt sp --build=${res_back_app_build_info_buildName}/${res_back_app_build_info_buildNumber} app-gradle-rc-local/ "app.version=${appVersion}"
+
 
   - name: suv_114_backapp_docker_pipeline
     configuration:
       environmentVariables:
         readOnly:
           serverName: soleng
+          dockerFrameworkVersion: 6 #should be the latest successful docker framework build, not hardcoded
     steps:
       - name: build_docker_backapp
         type: DockerBuild
@@ -74,7 +76,7 @@ pipelines:
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/back/
           dockerImageName: ${serverName}-docker.jfrog.io/backapp
           dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_application_commitSha}
-          dockerOptions: --build-arg SERVER_NAME=${serverName}
+          dockerOptions: --build-arg SERVER_NAME=${serverName} --build-arg DOCKER_FRAMEWORK_VERSION=${dockerFrameworkVersion}
           inputResources:
             - name: source_code_back_application
             - name: back_app_build_info_promoted_staging
