@@ -69,7 +69,7 @@ pipelines:
           dockerFileName: Dockerfile
           dockerFileLocation: back/
           dockerImageName: talyi-docker.jfrog.io/backapp
-          dockerImageTag: '${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_app_commitSha}'
+          dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_app_commitSha}
           inputResources:
             - name: source_code_back_app
             - name: back_app_build_info_promoted_staging

@@ -7,8 +7,9 @@ pipelines:
           affinityGroup: fmkGroup
           dockerFileLocation: framework/
           dockerFileName: Dockerfile
-          dockerImageName: talyi-docker.jfrog.io/jfrog-docker-framework
+          dockerImageName: soleng-docker.jfrog.io/jfrog-docker-framework
           dockerImageTag: ${run_number}
+          dockerOptions: --build-arg SERVER_NAME=soleng
           integrations:        
             - name: artifactory
             - name: docker
