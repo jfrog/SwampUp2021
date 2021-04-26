@@ -61,15 +61,20 @@ pipelines:
             - write_output back_app_build_info_promoted_staging myversion=${appVersion}
 
   - name: suv_114_backapp_docker_pipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          serverName: soleng
     steps:
       - name: build_docker_backapp
         type: DockerBuild
         configuration:
           affinityGroup: swampup
           dockerFileName: Dockerfile
-          dockerFileLocation: back/
-          dockerImageName: talyi-docker.jfrog.io/backapp
+          dockerFileLocation: SU-114-From-Git-To-Kubernetes/back/
+          dockerImageName: ${serverName}-docker.jfrog.io/backapp
           dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_application_commitSha}
+          dockerOptions: --build-arg SERVER_NAME=${serverName}
           inputResources:
             - name: source_code_back_application
             - name: back_app_build_info_promoted_staging
