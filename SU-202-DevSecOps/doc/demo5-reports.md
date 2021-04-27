@@ -1,4 +1,4 @@
-# Demo 3 - Reports
+# Demo 5 - Reports
 
 ## Context
 
@@ -13,23 +13,23 @@
 ### General scope
 - name: devsecops-prod-swampup
 - Scope: repository devsecops-docker-prod-local
-- impacted artifact: */swampup/devsecops:*
+- impacted artifact: docker://swampup/devsecops:*
 
 => this is a lot of information, maybe we can narrow down a bit the list of vulnerabilities
 
 ### Refine on severity
 - name: devsecops-prod-swampup-high
 - Scope: repository devsecops-docker-prod-local
-- impacted artifact: */swampup/devsecops:*
-- severity: high
+- impacted artifact: docker://swampup/devsecops:*
+- severity: critical
 
 => let's make this actionable
 
-### Refine on severity
+### Add remediation option
 - name: devsecops-prod-swampup-high-with-fix
 - Scope: repository devsecops-docker-prod-local
-- impacted artifact: */swampup/devsecops:*
-- severity: high
+- impacted artifact: docker://swampup/devsecops:*
+- severity: Critical
 - Remediation: Has Fix
 
 => We can transmit this information to the Dev team, 
@@ -51,7 +51,7 @@ you may need to expose licenses of your open source dependencies.
 ### Create report
 - name: devsecops-prod-swampup-licenses
 - Scope: repository devsecops-docker-prod-local
-- artifact: */swampup/devsecops:0.0.9
+- artifact: docker://swampup/devsecops:*
 - Known Licenses
 
 => unrecognized license = license found in the dependency but not known by Xray 

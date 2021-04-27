@@ -7,29 +7,10 @@
 
 ## Objective
 
+![](images/lab2.png)
+
 - Configure JFrog Xray
 - [Try to] Download the Docker image created during Lab 1
-
-## Source properties
-
-```bash
-source scripts/build.env
-```
-
-## Init Lab properties
-
-```bash
-PROJECT_VERSION='0.0.9'
-
-DOCKER_REPO_PROD=devsecops-docker-prod
-
-DOCKER_REGISTRY_PROD="${ARTIFACTORY_HOSTNAME}/${DOCKER_REPO_PROD}"
-
-IMAGE_NAME='swampup/devsecops'
-IMAGE_ABSOLUTE_NAME_PROD="${DOCKER_REGISTRY_PROD}/${IMAGE_NAME}:${PROJECT_VERSION}"
-```
-
-## Check database synchronization is achieved
 
 ## Index resources
 
@@ -52,14 +33,15 @@ Create **devsecops-docker-repo-watch** watch:
 
 ## Download image
 
-Remove local image:
+Remove local images:
 ```bash
-docker rmi "${IMAGE_ABSOLUTE_NAME_PROD}" 2>/dev/null
+docker rmi "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" 2>/dev/null
+docker rmi "${IMAGE_ABSOLUTE_NAME_PROD_LAB1}" 2>/dev/null
 ```
 
 Try to pull image from Artifactory:
 ```bash
-docker pull "${IMAGE_ABSOLUTE_NAME_PROD}"
+docker pull "${IMAGE_ABSOLUTE_NAME_PROD_LAB1}"
 ```
 
 ## Conclusion

@@ -3,5 +3,5 @@
 .jfrog
 build
 node_modules
-scripts/build.env
+scripts/security.env
 jfrog

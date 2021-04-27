@@ -1,4 +1,4 @@
-# Demo 1 - IDE Plugin
+# Demo 3 - IDE Plugin
 
 ## Context
 

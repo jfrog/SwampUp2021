@@ -1,4 +1,4 @@
-# Demo 5 - Custom Issue
+# Demo 6 - Custom Issue
 
 ## Context
 
@@ -7,28 +7,6 @@
 ## Objective
 
 - Create issues on your artifacts and have them reported by Xray
-
-## Source properties
-
-```bash
-source scripts/build.env
-```
-
-## Init demo properties
-
-```bash
-ARTIFACTORY_URL="https://${ARTIFACTORY_HOSTNAME}/artifactory"
-
-CLI_INSTANCE_ID='my-instance'
-CLI_GRADLE_BUILD_NAME='devsecops-legacy-gradle'
-CLI_BUILD_ID='1'
-CLI_FIX_BUILD_ID='2'
-
-PROJECT_VERSION='0.0.11'
-STRUTS_VERSION='2.5.12'
-
-GRADLE_REPO_DEV=devsecops-gradle-dev
-```
 
 ## Indexing
 

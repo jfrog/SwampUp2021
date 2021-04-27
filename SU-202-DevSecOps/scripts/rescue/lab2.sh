@@ -1,31 +1,8 @@
-#!/usr/bin/env bash
-
-################################
-# Sourcing external properties #
-################################
-readonly BUILD_ENV_FILE=../build.env
-if [ ! -f "${BUILD_ENV_FILE}" ]; then
-    echo "ERROR - could not find ${BUILD_ENV_FILE}"
-    exit 1
-fi
-
-source "${BUILD_ENV_FILE}"
-
-echo "INFO - artifactory = ${ARTIFACTORY_HOSTNAME}"
-echo "INFO - login = ${ARTIFACTORY_LOGIN}"
+#!/usr/bin/env sh
 
 #######################
 # internal properties #
 #######################
-
-readonly PROJECT_VERSION='0.0.9'
-
-readonly DOCKER_REPO_PROD=devsecops-docker-prod
-
-readonly DOCKER_REGISTRY_PROD="${ARTIFACTORY_HOSTNAME}/${DOCKER_REPO_PROD}"
-
-readonly IMAGE_NAME='swampup/devsecops'
-readonly IMAGE_ABSOLUTE_NAME_PROD="${DOCKER_REGISTRY_PROD}/${IMAGE_NAME}:${PROJECT_VERSION}"
 
 readonly XRAY_URL="https://${ARTIFACTORY_HOSTNAME}/xray"
 
@@ -36,7 +13,7 @@ echo "INFO - Collect indexing configuration"
 INDEXED_REPOS=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                   -H 'Content-Type: application/json' \
                   -X GET "${XRAY_URL}/api/v1/binMgr/default/repos" \
-                  | jq -r '.indexed_repos + [{"name": "devsecops-docker-prod-local","type": "local","pkg_type": "Docker"}] + [{"name": "devsecops-gradle-prod-local","type": "local","pkg_type": "Gradle"}]')
+                  | jq -r ".indexed_repos + [{\"name\": \"$DOCKER_REPO_PROD-local\",\"type\": \"local\",\"pkg_type\": \"Docker\"}] + [{\"name\": \"$GRADLE_REPO_PROD-local\",\"type\": \"local\",\"pkg_type\": \"Gradle\"}]")
 
 echo "INFO - Updating indexing configuration"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
@@ -88,7 +65,7 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
             \"resources\": [{
                 \"type\": \"repository\",
                 \"bin_mgr_id\": \"default\",
-                \"name\": \"devsecops-docker-prod-local\"
+                \"name\": \"$DOCKER_REPO_PROD-local\"
             }]
         },
         \"assigned_policies\": [{
@@ -101,10 +78,11 @@ echo "INFO - scan artifact"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
      -X POST "${XRAY_URL}/api/v1/scanArtifact" \
-     -d "{\"componentID\": \"docker://${IMAGE_NAME}:${PROJECT_VERSION}\"}"
+     -d "{\"componentID\": \"docker://${IMAGE_NAME}:${PROJECT_VERSION_LAB1}\"}"
 
 echo "INFO - Remove local docker image"
-docker rmi "${IMAGE_ABSOLUTE_NAME_PROD}" 2>/dev/null
+docker rmi "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" 2>/dev/null
+docker rmi "${IMAGE_ABSOLUTE_NAME_PROD_LAB1}" 2>/dev/null
 
 echo "INFO - Try to pull docker image"
-docker pull "${IMAGE_ABSOLUTE_NAME_PROD}"
+docker pull "${IMAGE_ABSOLUTE_NAME_PROD_LAB1}"
