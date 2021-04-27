@@ -74,7 +74,7 @@ pipelines:
           affinityGroup: swampup
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/back/
-          dockerImageName: ${serverName}-docker.jfrog.io/backapp
+          dockerImageName: ${serverName}.jfrog.io/docker/backapp
           dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_application_commitSha}
           dockerOptions: --build-arg SERVER_NAME=${serverName} --build-arg DOCKER_FRAMEWORK_VERSION=${dockerFrameworkVersion}
           inputResources:

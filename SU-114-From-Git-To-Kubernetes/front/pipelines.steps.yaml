@@ -113,7 +113,7 @@ pipelines:
           affinityGroup: swampupgrp
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/front/
-          dockerImageName: ${serverName}-docker.jfrog.io/frontapp
+          dockerImageName: ${serverName}.jfrog.io/docker/frontapp
           dockerImageTag: ${appVersion}-${res_source_code_frontapp_commitSha}
           dockerOptions: --build-arg SERVER_NAME=${serverName}
           inputResources:
