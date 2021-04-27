@@ -1,4 +1,4 @@
-# Demo 1 - Ignore Violations
+# Demo 2 - Ignore Violations
 
 ## Context
 
