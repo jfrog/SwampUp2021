@@ -11,7 +11,7 @@ pipelines:
           affinityGroup: fmkGroup
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/framework/
           dockerFileName: Dockerfile
-          dockerImageName: ${serverName}-docker.jfrog.io/jfrog-docker-framework
+          dockerImageName: ${serverName}.jfrog.io/docker/jfrog-docker-framework
           dockerImageTag: ${run_number}
           dockerOptions: --build-arg SERVER_NAME=${serverName}
           integrations:        
