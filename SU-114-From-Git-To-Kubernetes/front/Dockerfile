@@ -1,6 +1,6 @@
 ARG SERVER_NAME
-#FROM $SERVER_NAME-docker.jfrog.io/node:14-alpine3.10
-FROM $SERVER_NAME-docker.jfrog.io/node:latest
+FROM $SERVER_NAME-docker.jfrog.io/node:14-alpine3.10
+#FROM $SERVER_NAME-docker.jfrog.io/node:latest
 
 WORKDIR /tmp/
 
