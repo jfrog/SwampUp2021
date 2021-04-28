@@ -1,6 +1,6 @@
 # Setup
 
-Reminder: if your lost, please contact our training assistant!
+Reminder: if you're lost, please contact our training assistant!
 
 ## Source code
 
@@ -18,30 +18,20 @@ Generate an Artifactory [API Key](https://www.jfrog.com/confluence/display/JFROG
 
 ## Build docker lab runner
 
-- Open a shell and navigate to the current session's root folder:
+- Open a terminal and navigate to the current session's root folder:
 ```bash
 cd SU-202-DevSecOps
 ```
 
 Build the Docker lab runner image, replacing the variables according to your setup:
 ```bash
-docker build \
-      --build-arg ARTIFACTORY_HOSTNAME="my-instance.jfrog.io" \
-      --build-arg ARTIFACTORY_LOGIN="foo@bar.com" \
-      --build-arg ARTIFACTORY_API_KEY='MY_API_KEY' \
-      -t swampup:runner . 
+docker build --build-arg ARTIFACTORY_HOSTNAME="my-instance.jfrog.io" --build-arg ARTIFACTORY_LOGIN="foo@bar.com" --build-arg ARTIFACTORY_API_KEY='MY_API_KEY' -t swampup:runner . 
 ```
 
 ## Start the lab runner
 
 ```bash
-docker run \
-      --name swampup-runner \
-      --rm \
-      -it \
-      -v "/var/run/docker.sock:/var/run/docker.sock" \
-      swampup:runner \
-      /bin/sh
+docker run --name swampup-runner --rm -it -v "/var/run/docker.sock:/var/run/docker.sock" swampup:runner /bin/sh
 ```
 
 From this point onward, every command will be run from within the container.
@@ -74,4 +64,3 @@ jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devseco
 jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-gradle-dev;repo-type=virtual;tech=gradle;repositories=devsecops-gradle-remote,devsecops-gradle-dev-local;default=devsecops-gradle-dev-local" --server-id="${CLI_INSTANCE_ID}"
 jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-gradle-prod;repo-type=virtual;tech=gradle;repositories=devsecops-gradle-remote,devsecops-gradle-prod-local;default=devsecops-gradle-prod-local" --server-id="${CLI_INSTANCE_ID}"
 ```
-
