@@ -25,7 +25,7 @@ cd SU-202-DevSecOps
 
 Build the Docker lab runner image, replacing the variables according to your setup:
 ```bash
-docker build --build-arg ARTIFACTORY_HOSTNAME="my-instance.jfrog.io" --build-arg ARTIFACTORY_LOGIN="foo@bar.com" --build-arg ARTIFACTORY_API_KEY='MY_API_KEY' -t swampup:runner . 
+docker build --build-arg ARTIFACTORY_HOSTNAME="my-instance.jfrog.io" --build-arg ARTIFACTORY_LOGIN="foo@bar.com" --build-arg ARTIFACTORY_API_KEY="MY_API_KEY" -t swampup:runner . --no-cache 
 ```
 
 ## Start the lab runner

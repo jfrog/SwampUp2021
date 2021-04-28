@@ -61,9 +61,10 @@ RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.
 RUN curl -fL https://getcli.jfrog.io | sh
 
 # add sources
-ADD src src
 ADD build.gradle .
 ADD settings.gradle .
+ADD src src
 ADD docker/Dockerfile .
+
 # add scripts
 ADD scripts scripts
