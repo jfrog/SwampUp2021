@@ -32,7 +32,7 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
 - Scroll down to related groups and Assign the group 'Developers' and save.
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/group-association.png" alt="Developer group association" style="height: 100px; width:100px;"/>
 - Explore the different options and permissions a user can have.
-- Follow the same process as above and Create another user - 'releaseEngineer1' and add to the 'SRE' group. Once completed you should see the below 2 users under the user tab
+- Follow the same process as above and Create another user - 'releaseengineer1' and add to the 'SRE' group. Once completed you should see the below 2 users under the user tab
 
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/users-groups.png" alt="Developer group association" style="height: 100px; width:100px;"/>
 - Navigate to 'Permissions'.

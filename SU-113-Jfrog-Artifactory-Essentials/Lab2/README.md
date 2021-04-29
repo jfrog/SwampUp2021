@@ -38,7 +38,7 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-virtual.png" alt="mame the repo" style="height: 100px; width:100px;"/>
     
 - After the docker virtual registry is created. It will provide you with the details on how to access this docker registry. Copy that information and keep it in locally on your laptop
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-commands-display.png" alt="docker commands" style="height: 100px; width:100px;"/>
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-command-display.png" alt="docker commands" style="height: 100px; width:100px;"/>
 
 
 ### Awesome !!! You have successfully completed Lab2.
