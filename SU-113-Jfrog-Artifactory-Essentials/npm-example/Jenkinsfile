@@ -28,8 +28,8 @@ pipeline {
 
         stage ('Exec npm install and publish') {
             steps {
-                rtNpmInstall (tool: "NPM_TOOL", path:"npm-example", resolverId: "NPM_RESOLVER")
-                rtNpmPublish (tool: "NPM_TOOL", path:"npm-example", deployerId: "NPM_DEPLOYER")
+                rtNpmInstall (tool: "NPM_TOOL", path:"SU-113-Jfrog-Artifactory-Essentials/npm-example", resolverId: "NPM_RESOLVER")
+                rtNpmPublish (tool: "NPM_TOOL", path:"SU-113-Jfrog-Artifactory-Essentials/npm-example", deployerId: "NPM_DEPLOYER")
             }
         }
 
