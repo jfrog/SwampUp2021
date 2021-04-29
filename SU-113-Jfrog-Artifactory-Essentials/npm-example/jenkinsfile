@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "${tool 'go1.15.2'}/bin:${PATH}"
+    }
+
     stages {
         stage ('Clone') {
             steps {
@@ -19,13 +23,13 @@ pipeline {
                 rtNpmResolver (
                     id: "NPM_RESOLVER",
                     serverId: "ARTIFACTORY_SERVER",
-                    repo: "npm-remote"
+                    repo: "swampup-npm-remote"
                 )
 
                 rtNpmDeployer (
                     id: "NPM_DEPLOYER",
                     serverId: "ARTIFACTORY_SERVER",
-                    repo: "npm-local"
+                    repo: "swampup-npm-dev-local"
                 )
             }
         }
@@ -33,7 +37,7 @@ pipeline {
         stage ('Exec npm install') {
             steps {
                 rtNpmInstall (
-                    tool: NPM_TOOL, // Tool name from Jenkins configuration
+                    tool: "NPM_TOOL", // Tool name from Jenkins configuration
                     path: "npm-example",
                     resolverId: "NPM_RESOLVER"
                 )
@@ -43,7 +47,7 @@ pipeline {
         stage ('Exec npm publish') {
             steps {
                 rtNpmPublish (
-                    tool: NPM_TOOL, // Tool name from Jenkins configuration
+                    tool: "NPM_TOOL", // Tool name from Jenkins configuration
                     path: "npm-example",
                     deployerId: "NPM_DEPLOYER"
                 )
