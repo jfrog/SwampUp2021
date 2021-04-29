@@ -20,9 +20,11 @@ pipeline {
 
         stage ('Artifactory configuration') {
             steps {
-                rtServer ( id: "swampup113",url: SERVER_URL,credentialsId: 'CREDENTIALS_SWAMPUP')
-                rtNpmResolver (id: "NPM_RESOLVER",serverId: "swampup113",repo: "swampup-npm-remote")
-                rtNpmDeployer (id: "NPM_DEPLOYER",serverId: "swampup113",repo: "swampup-npm-dev-local")
+                dir('SU-113-Jfrog-Artifactory-Essentials/npm-example'){
+                    rtServer ( id: "swampup113",url: SERVER_URL,credentialsId: 'CREDENTIALS_SWAMPUP')
+                    rtNpmResolver (id: "NPM_RESOLVER",serverId: "swampup113",repo: "swampup-npm-remote")
+                    rtNpmDeployer (id: "NPM_DEPLOYER",serverId: "swampup113",repo: "swampup-npm-dev-local")
+                }
             }
         }
 
