@@ -13,7 +13,7 @@ pipeline {
 
         stage ('Clone') {
             steps {
-                git branch: 'master', credentialsId: 'GIT_CREDENTIALS', url: "https://github.com/jfrog/SwampUp2021.git"
+                git branch: 'main', credentialsId: 'GIT_CREDENTIALS', url: "https://github.com/jfrog/SwampUp2021.git"
             }
         }
 
