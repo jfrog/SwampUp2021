@@ -29,7 +29,6 @@ pipeline {
        stage ('Exec npm install and publish') {
             steps {
                 dir('SU-113-Jfrog-Artifactory-Essentials/npm-example/hello-world'){
-                    sh 'echo $BUILD_NUMBER'
                     sh 'sed -i "s/0.0.3/0.0.$BUILD_NUMBER/g" package.json'
                     rtNpmInstall (tool: "NPM_TOOL", resolverId: "NPM_RESOLVER")
                     rtNpmPublish (tool: "NPM_TOOL", deployerId: "NPM_DEPLOYER")
