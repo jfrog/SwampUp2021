@@ -1,9 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        PATH = "${tool 'go1.15.2'}/bin:${PATH}"
-    }
 
     stages {
         stage ('Clone') {
