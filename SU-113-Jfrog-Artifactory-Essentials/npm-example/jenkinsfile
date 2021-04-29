@@ -31,23 +31,12 @@ pipeline {
             }
         }
 
-        stage ('Exec npm install') {
+        stage ('Exec npm install and publish') {
             steps {
-                rtNpmInstall (
-                    tool: "NPM_TOOL", // Tool name from Jenkins configuration
-                    path: "npm-example",
-                    resolverId: "NPM_RESOLVER"
-                )
-            }
-        }
-
-        stage ('Exec npm publish') {
-            steps {
-                rtNpmPublish (
-                    tool: "NPM_TOOL", // Tool name from Jenkins configuration
-                    path: "npm-example",
-                    deployerId: "NPM_DEPLOYER"
-                )
+                dir('npm-example'){
+                    rtNpmInstall (tool: "NPM_TOOL", resolverId: "NPM_RESOLVER")
+                    rtNpmPublish (tool: "node13.13", deployerId: "NPM_DEPLOYER")
+                }
             }
         }
 
