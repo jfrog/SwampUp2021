@@ -113,7 +113,7 @@ pipelines:
           affinityGroup: swampupgrp
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/front/
-          dockerImageName: ${serverName}.jfrog.io/docker/frontapp
+          dockerImageName: ${serverName}.jfrog.io/su-114-docker-virtual/frontapp
           dockerImageTag: ${appVersion}-${res_source_code_frontapp_commitSha}
           dockerOptions: --build-arg SERVER_NAME=${serverName}
           inputResources:
@@ -136,7 +136,7 @@ pipelines:
         type: DockerPush
         configuration:
           affinityGroup: swampupgrp
-          targetRepository: docker
+          targetRepository: su-114-docker-virtual
           autoPublishBuildInfo: true
           inputSteps:
             - name: build_docker_frontapp
@@ -159,7 +159,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           affinityGroup: swampupgrp
-          targetRepository: docker-prod-local
+          targetRepository: su-114-docker-prod-local
           includeDependencies: false
           status: "DOCKER_SCAN_OK"
           comment: "Xray scan passed succesfully"

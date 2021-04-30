@@ -34,7 +34,7 @@ resources:
     type: FileSpec
     configuration:
       sourceArtifactory: artifactory
-      pattern: app-npm-rc-local/front/-/front-0.1.0.tgz
+      pattern: su-114-npm-prod-local/front/-/front-0.1.0.tgz
       flat: true
 
   - name: build_info_docker_frontapp

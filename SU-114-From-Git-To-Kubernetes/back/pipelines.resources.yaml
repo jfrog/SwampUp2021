@@ -34,7 +34,7 @@ resources:
     type: FileSpec
     configuration:
       sourceArtifactory: artifactory
-      pattern: 'app-gradle-rc-local/*/webservice-*.war'
+      pattern: 'su-114-gradle-prod-local/*/webservice-*.war'
       target: war/webservice.war
       flat: true
 

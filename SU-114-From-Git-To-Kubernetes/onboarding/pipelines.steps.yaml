@@ -1,0 +1,35 @@
+resources:
+  - name: source_code_on_boarding_application
+    type: GitRepo
+    configuration:
+      files:
+        include: ^onboarding\/.+
+      gitProvider: github
+      path: talitz/SwampUp2021
+
+pipelines:
+  - name: suv_114_on_boarding environment
+    steps:
+      - name: create_repositories
+        type: Bash
+        configuration:
+          inputResources:
+            - name: source_code_on_boarding_application
+          integrations:
+            - name: artifactory
+        execution:
+          onStart:
+            - echo 'Applying repository configuration'
+            - jfrog rt curl -XPATCH /api/system/configuration -T ./repo-conf-template.yaml
+
+#  - name: upload_apache_tomcat
+#      type: Bash
+#      configuration:
+#        inputResources:
+#          - name: source_code_on_boarding_application
+#        integrations:
+#          - name: artifactory
+#      execution:
+#        onStart:
+#          - echo 'Applying repository configuration'
+#          - jfrog rt curl -XPATCH /api/system/configuration -T ./repo-conf-template.yaml

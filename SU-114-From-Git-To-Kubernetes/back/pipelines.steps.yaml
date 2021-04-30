@@ -43,7 +43,7 @@ pipelines:
       - name: promote_build_info_gradle_back_app
         type: PromoteBuild
         configuration:
-          targetRepository: app-gradle-rc-local
+          targetRepository: su-114-gradle-prod-local
           includeDependencies: false
           status: SANDBOX_OK
           comment: Unit testing and Xray scan passed succesfully
@@ -74,7 +74,7 @@ pipelines:
           affinityGroup: swampup
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/back/
-          dockerImageName: ${serverName}.jfrog.io/docker/backapp
+          dockerImageName: ${serverName}.jfrog.io/su-114-docker-virtual/backapp
           dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_application_commitSha}
           dockerOptions: --build-arg SERVER_NAME=${serverName} --build-arg DOCKER_FRAMEWORK_VERSION=${dockerFrameworkVersion}
           inputResources:
@@ -98,7 +98,7 @@ pipelines:
         type: DockerPush
         configuration:
           affinityGroup: swampup
-          targetRepository: docker
+          targetRepository: su-114-docker-virtual
           autoPublishBuildInfo: true
           inputSteps:
             - name: build_docker_backapp
@@ -121,7 +121,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           affinityGroup: swampup
-          targetRepository: docker-prod
+          targetRepository: su-114-docker-prod-local
           includeDependencies: false
           status: "DOCKER_SCAN_OK"
           comment: "Xray scan passed succesfully"

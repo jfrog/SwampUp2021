@@ -11,7 +11,7 @@ resources:
     type: FileSpec
     configuration:
       sourceArtifactory: artifactory
-      pattern:  generic-local/apache-tomcat-8.0.32.tar.gz
+      pattern:  su-114-generic-local/apache-tomcat-8.0.32.tar.gz
       target:   target/apache-tomcat-8.0.32.tar.gz
       flat:     true
 
