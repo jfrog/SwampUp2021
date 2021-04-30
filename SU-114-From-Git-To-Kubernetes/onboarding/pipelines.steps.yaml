@@ -20,7 +20,7 @@ pipelines:
         execution:
           onStart:
             - echo 'Applying repository configuration'
-            - jfrog rt curl -XPATCH /api/system/configuration -T ./repo-conf-template.yaml
+            - jfrog rt curl -XPATCH /api/system/configuration -T repo-conf-template.yaml
 
 #  - name: upload_apache_tomcat
 #      type: Bash
