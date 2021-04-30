@@ -20,7 +20,9 @@ pipelines:
         execution:
           onStart:
             - echo 'Applying repository configuration'
-            - cd ${res_source_code_on_boarding_application_resourcePath}/SU-114-From-Git-To-Kubernetes/onboarding/ & ls -la
+            - cd ${res_source_code_on_boarding_application_resourcePath}/SU-114-From-Git-To-Kubernetes/onboarding/
+            - ls -la
+            - pwd
             - jfrog rt curl -XPATCH /api/system/configuration -T repo-conf-template.yaml
 
 #  - name: upload_apache_tomcat
