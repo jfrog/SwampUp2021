@@ -8,7 +8,7 @@ resources:
       path: talitz/SwampUp2021
 
 pipelines:
-  - name: suv_114_on_boarding environment
+  - name: suv_114_on_boarding_environment
     steps:
       - name: create_repositories
         type: Bash
