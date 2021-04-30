@@ -51,7 +51,7 @@ pipelines:
           affinityGroup: together
           environmentVariables:
             inputNpmBuildStepName: build_npm_frontend
-          repositoryName: npm
+          repositoryName: su-114-npm-virtual
           inputSteps:
             - name: npm_package_frontend
           integrations:
