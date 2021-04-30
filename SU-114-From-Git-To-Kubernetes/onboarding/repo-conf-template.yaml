@@ -103,3 +103,11 @@ virtualRepositories:
         - su-114-helm-remote
       description: "helm virtual"
       defaultDeploymentRepo: su-114-helm-dev-local
+  su-114-npm-virtual:
+    type: npm
+    repositories:
+      - su-114-npm-dev-local
+      - su-114-npm-prod-local
+      - su-114-npm-remote
+    description: "npm virtual"
+    defaultDeploymentRepo: su-114-npm-dev-local
