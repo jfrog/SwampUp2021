@@ -5,7 +5,7 @@ resources:
     configuration:
       files:
         include: ^front\/.+
-      gitProvider: talitz_github
+      gitProvider: github
       path: talitz/SwampUp2021
 
   - name: FrontAppBuildInfo

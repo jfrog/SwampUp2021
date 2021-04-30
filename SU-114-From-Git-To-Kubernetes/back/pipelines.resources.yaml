@@ -5,7 +5,7 @@ resources:
     configuration:
       files:
         include: ^back\/.+
-      gitProvider: talitz_github
+      gitProvider: github
       path: talitz/SwampUp2021
 
   - name: back_app_build_info
