@@ -23,18 +23,17 @@ pipelines:
             - cd ${res_source_code_on_boarding_application_resourcePath}/SU-114-From-Git-To-Kubernetes/onboarding/
             - ls -la
             - jfrog rt curl -XPATCH /api/system/configuration -T repo-conf-template.yaml
-
-  - name: upload_apache_tomcat
-      type: Bash
-      configuration:
-        inputResources:
-          - name: source_code_on_boarding_application
-        integrations:
-          - name: artifactory
-        inputSteps:s
-          - name: create_repositories
-      execution:
-        onStart:
-          - echo 'Downloading tomcat and uploading to Artifactory'
-          - curl https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.32/bin/apache-tomcat-8.0.32.tar.gz --output apache-tomcat-8.0.32.tar.gz
-          - jfrog rt upload "apache-tomcat-8.0.32.tar.gz" su-114-generic-local
+      - name: upload_apache_tomcat
+          type: Bash
+          configuration:
+            inputResources:
+              - name: source_code_on_boarding_application
+            integrations:
+              - name: artifactory
+            inputSteps:s
+              - name: create_repositories
+          execution:
+            onStart:
+              - echo 'Downloading tomcat and uploading to Artifactory'
+              - curl https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.32/bin/apache-tomcat-8.0.32.tar.gz --output apache-tomcat-8.0.32.tar.gz
+              - jfrog rt upload "apache-tomcat-8.0.32.tar.gz" su-114-generic-local
