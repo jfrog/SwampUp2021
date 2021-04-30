@@ -3,7 +3,7 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          serverName: soleng
+          serverName: swampup203
     steps:
       - name: build_docker_framework
         type: DockerBuild

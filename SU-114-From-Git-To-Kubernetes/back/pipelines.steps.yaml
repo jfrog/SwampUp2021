@@ -65,7 +65,7 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          serverName: soleng
+          serverName: swampup203
           dockerFrameworkVersion: 6 #should be the latest successful docker framework build, not hardcoded
     steps:
       - name: build_docker_backapp

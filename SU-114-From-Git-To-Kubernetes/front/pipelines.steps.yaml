@@ -6,7 +6,7 @@ pipelines:
         configuration:
           npmArgs: '--no-progress --no-audit'
           affinityGroup: together
-          repositoryName: npm
+          repositoryName: su-114-npm-virtual
           sourceLocation: SU-114-From-Git-To-Kubernetes/front/
           integrations:
             - name: artifactory
@@ -80,7 +80,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           affinityGroup: together
-          targetRepository: app-npm-rc-local
+          targetRepository: su-114-npm-prod-local
           includeDependencies: false
           status: SANDBOX_OK
           comment: Unit testing and Xray scan passed succesfully
@@ -105,7 +105,7 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          serverName: soleng
+          serverName: swampup203
     steps:
       - name: build_docker_frontapp
         type: DockerBuild
