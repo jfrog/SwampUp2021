@@ -30,7 +30,7 @@ pipelines:
             - name: source_code_on_boarding_application
           integrations:
             - name: artifactory
-          inputSteps:s
+          inputSteps:
             - name: create_repositories
         execution:
           onStart:
