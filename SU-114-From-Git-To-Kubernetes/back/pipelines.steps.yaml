@@ -66,7 +66,7 @@ pipelines:
       environmentVariables:
         readOnly:
           serverName: swampup203
-          dockerFrameworkVersion: 6 #should be the latest successful docker framework build, not hardcoded - SHOULD BE FIXED
+          dockerFrameworkVersion: ${res_docker_framework_build_info_promoted_myversion}
     steps:
       - name: build_docker_backapp
         type: DockerBuild

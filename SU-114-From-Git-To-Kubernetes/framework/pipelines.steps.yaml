@@ -65,5 +65,6 @@ pipelines:
             - name: docker_framework_build_info_promoted
         execution:
           onSuccess:
-            - jfrog rt cp app-docker-dev-local/jfrog-docker-framework/${res_docker_Framework_BuildInfo_buildNumber}/* app-docker-release-local/jfrog-docker-framework/latest --flat=true
+            - write_output docker_framework_build_info_promoted myversion=${run_number}
+            #- jfrog rt cp app-docker-dev-local/jfrog-docker-framework/${res_docker_Framework_BuildInfo_buildNumber}/* app-docker-release-local/jfrog-docker-framework/latest --flat=true
       
