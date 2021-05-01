@@ -114,7 +114,7 @@ pipelines:
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/front/
           dockerImageName: ${serverName}.jfrog.io/su-114-docker-virtual/frontapp
-          dockerImageTag: ${appVersion}-${res_source_code_frontapp_commitSha}
+          dockerImageTag: ${res_build_info_frontapp_promoted_staging_myversion}-${res_source_code_frontapp_commitSha}
           dockerOptions: --build-arg SERVER_NAME=${serverName}
           inputResources:
             - name: source_code_frontapp
@@ -125,12 +125,12 @@ pipelines:
             - name: docker
         execution:
           onStart:
-            - add_pipeline_variables appVersion="${res_build_info_frontapp_promoted_staging_myversion}"
+            #- add_pipeline_variables appVersion="${res_build_info_frontapp_promoted_staging_myversion}"
             - cp ${res_frontapp_exec_resourcePath}/front* ${res_source_code_frontapp_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
             - cd ${res_source_code_frontapp_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
             - tar xvf front*.tgz
             - ls -l ${res_source_code_frontapp_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
-            - add_pipeline_variables myDockerTag="${appVersion}-${res_source_code_frontapp_commitSha}"
+            #- add_pipeline_variables myDockerTag="${appVersion}-${res_source_code_frontapp_commitSha}"
 
       - name: publish_docker_frontapp
         type: DockerPush
