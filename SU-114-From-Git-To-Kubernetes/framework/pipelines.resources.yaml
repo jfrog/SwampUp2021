@@ -1,12 +1,4 @@
 resources:
-  - name: source_dockerfile_framework
-    type: GitRepo
-    configuration:
-      files:
-        include: ^framework\/.+
-      path: talitz/SwampUp2021
-      gitProvider: github
-
   - name: framework_generic_fileSpec
     type: FileSpec
     configuration:

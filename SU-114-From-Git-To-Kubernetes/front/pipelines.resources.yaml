@@ -1,14 +1,6 @@
 resources:
 #Build NPM Application
-  - name: source_code_frontapp
-    type: GitRepo
-    configuration:
-      files:
-        include: ^front\/.+
-      gitProvider: github
-      path: talitz/SwampUp2021
-
-  - name: FrontAppBuildInfo
+  - name: build_info_frontapp
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory
