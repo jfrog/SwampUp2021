@@ -102,10 +102,6 @@ pipelines:
             - jfrog rt sp --build=${res_build_info_frontapp_buildName}/${res_build_info_frontapp_buildNumber} su-114-npm-prod-local/ "app.version=${appVersion}"
 
   - name: suv_114_frontapp_docker_pipeline
-    configuration:
-      environmentVariables:
-        readOnly:
-          serverName: swampup203
     steps:
       - name: build_docker_frontapp
         type: DockerBuild
@@ -113,9 +109,9 @@ pipelines:
           affinityGroup: swampupgrp
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/front/
-          dockerImageName: ${serverName}.jfrog.io/su-114-docker-virtual/frontapp
+          dockerImageName: ${int_server_name_value}.jfrog.io/su-114-docker-virtual/frontapp
           dockerImageTag: ${res_build_info_frontapp_promoted_staging_myversion}-${res_source_code_commitSha}
-          dockerOptions: --build-arg SERVER_NAME=${serverName}
+          dockerOptions: --build-arg SERVER_NAME=${int_server_name_value}
           inputResources:
             - name: source_code
             - name: build_info_frontapp_promoted_staging
@@ -123,6 +119,7 @@ pipelines:
           integrations:
             - name: artifactory
             - name: docker
+            - name: server_name
         execution:
           onStart:
             - cp ${res_frontapp_exec_resourcePath}/front* ${res_source_code_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
