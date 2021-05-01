@@ -1,12 +1,3 @@
-resources:
-  - name: source_code_on_boarding_application
-    type: GitRepo
-    configuration:
-      files:
-        include: ^onboarding\/.+
-      gitProvider: github
-      path: talitz/SwampUp2021
-
 pipelines:
   - name: suv_114_on_boarding_environment
     steps:
@@ -14,20 +5,20 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: source_code_on_boarding_application
+            - name: source_code
           integrations:
             - name: artifactory
         execution:
           onStart:
             - echo 'Applying repository configuration'
-            - cd ${res_source_code_on_boarding_application_resourcePath}/SU-114-From-Git-To-Kubernetes/onboarding/
+            - cd ${res_source_code_resourcePath}/SU-114-From-Git-To-Kubernetes/onboarding/
             - ls -la
             - jfrog rt curl -XPATCH /api/system/configuration -T repo-conf-template.yaml
       - name: upload_apache_tomcat
         type: Bash
         configuration:
           inputResources:
-            - name: source_code_on_boarding_application
+            - name: source_code
           integrations:
             - name: artifactory
           inputSteps:
