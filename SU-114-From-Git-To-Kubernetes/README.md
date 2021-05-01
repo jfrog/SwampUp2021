@@ -27,7 +27,7 @@ git add .
 git push
 ```
 - Create the following Integrations (Administration Panel -> Pipelines -> Integrations -> Add an Integration):
-    - "github" integration (type: "GitHub") with personal access token from your github account:</br>
+    - "github" integration (type: "GitHub") with [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) from your github account:</br>
     ![alt text](https://i.ibb.co/qkGd65z/Screen-Shot-2021-05-01-at-13-55-15.png) </br>
     - "artifactory" integration (type: "Artifactory"):</br>
     ![alt text](https://i.ibb.co/5nDV957/Screen-Shot-2021-05-01-at-13-54-51.png) </br>
