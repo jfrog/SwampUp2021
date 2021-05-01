@@ -4,6 +4,7 @@
 <p align="center">
   <img src="https://i.ibb.co/xq9xX6R/Screen-Shot-2021-05-01-at-14-22-19.png" />
 </p>
+
 #### <ins>Who should attend:</ins> Developers, Development Managers, and DevOps Engineers who are currently using JFrog Artifactory and Docker, Current Docker users who are considering using JFrog Artifactory. A good understanding of Docker containers and CI servers for cloud-native pipelines is required. 
 
 #### <ins>Prerequisites</ins>: Knowledgeable with Git and Docker (git and docker clients installed including having a GitHub account). Basic understanding of DevOps concepts (familiarity with JFrog Artifactory).
