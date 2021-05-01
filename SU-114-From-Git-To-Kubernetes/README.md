@@ -8,21 +8,15 @@
 
 ### <ins>Prerequisites</ins>: basic knowledge of working with Git (git client installed and GitHub account), curl installed on their laptop. Basic understanding of Docker and DevOps concepts.
 
-#### <ins>Lab #1 - Onboarding to Labs Environment</ins>
+### <ins>Lab #1 - Onboarding to Labs Environment</ins>
 
 - Login to your SaaS Enterprise+ environment and make sure you are able to connect with your credentials.
 - Fork this ([https://github.com/jfrog/SwampUp2021](https://github.com/jfrog/SwampUp2021)) repository to your GitHub Account (Top right - Click on "Fork"):
 ![alt text](https://i.ibb.co/dr7btgf/Screen-Shot-2021-05-01-at-13-26-24.png)
 - Run ```git clone https://github.com/<YOUR_GITHUB_USERNAME>/SwampUp2021.git``` against your forked repository.
 - Run ```cd SwampUp2021/SU-114-From-Git-To-Kubernetes``` which is our class's folder with all the relevant code.
-- Open the file "back/src/pipelines.resources" and change the configuration.path in the following snippet:
-```
-  - name: source_code
-    type: GitRepo
-    configuration:
-      gitProvider: github
-      path: <CHANGE_THIS_TO_YOUR_GITHUB_USERNAME>/SwampUp2021
-```
+- Open the file "back/src/pipelines.resources" and change the configuration.path in the following snippet:</br>
+![alt text](https://i.ibb.co/wyrLVNK/Screen-Shot-2021-05-01-at-14-28-11.png)</br>
 - Commit the changes to your forked repository:
  ```
 git commit -m "updated my repo path in the source code resource"
@@ -47,12 +41,12 @@ git push
 ![alt text](https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png)</br>
 <b>* For any issues, please assist the instructor and T.A's!</b>
 
-#### <ins>Lab #2 - Understanding the Environment</ins>
+### <ins>Lab #2 - Understanding the Environment</ins>
 
 - Run all Pipelines.
 - Understand the connection between all Pipelines based on the list view.
 
-#### <ins>Lab #3 - Adding Security</ins>
+### <ins>Lab #3 - Adding Security</ins>
 
 - Configure Watch & Policy.
 - Understand Xray results.
