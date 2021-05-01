@@ -98,8 +98,8 @@ pipelines:
             - echo ${res_FrontAppBuildInfo_buildNumber} 
             - echo ${appVersion}
           onSuccess:
-            - jfrog rt sp --build=${res_FrontAppBuildInfo_buildName}/${res_FrontAppBuildInfo_buildNumber} app-npm-rc-local/ "app.version=${appVersion}"
             - write_output build_info_frontapp_promoted_staging myversion=${appVersion}
+            - jfrog rt sp --build=${res_FrontAppBuildInfo_buildName}/${res_FrontAppBuildInfo_buildNumber} app-npm-rc-local/ "app.version=${appVersion}"
 
   - name: suv_114_frontapp_docker_pipeline
     configuration:
