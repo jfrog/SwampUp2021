@@ -1,5 +1,4 @@
 resources:
-#Build NPM Application
   - name: build_info_frontapp
     type: BuildInfo
     configuration:
@@ -21,7 +20,6 @@ resources:
       buildName: suv_114_frontapp_npm_pipeline
       buildNumber: '${run_number}'
 
-#Dockerize NPM
   - name: frontapp_exec
     type: FileSpec
     configuration:

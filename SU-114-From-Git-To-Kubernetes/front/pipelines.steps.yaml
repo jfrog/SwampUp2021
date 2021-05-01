@@ -99,7 +99,7 @@ pipelines:
             - echo ${appVersion}
           onSuccess:
             - write_output build_info_frontapp_promoted_staging myversion=${appVersion}
-            - jfrog rt sp --build=${res_build_info_frontapp_buildName}/${res_build_info_frontapp_buildNumber} app-npm-rc-local/ "app.version=${appVersion}"
+            - jfrog rt sp --build=${res_build_info_frontapp_buildName}/${res_build_info_frontapp_buildNumber} su-114-npm-prod-local/ "app.version=${appVersion}"
 
   - name: suv_114_frontapp_docker_pipeline
     configuration:
@@ -125,12 +125,10 @@ pipelines:
             - name: docker
         execution:
           onStart:
-            #- add_pipeline_variables appVersion="${res_build_info_frontapp_promoted_staging_myversion}"
             - cp ${res_frontapp_exec_resourcePath}/front* ${res_source_code_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
             - cd ${res_source_code_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
             - tar xvf front*.tgz
             - ls -l ${res_source_code_resourcePath}/SU-114-From-Git-To-Kubernetes/front/
-            #- add_pipeline_variables myDockerTag="${appVersion}-${res_source_code_commitSha}"
 
       - name: publish_docker_frontapp
         type: DockerPush
@@ -174,8 +172,6 @@ pipelines:
           outputResources:
             - name: build_info_docker_frontapp_promoted_staging
         execution:
-          #onStart:
-            #- jfrog rt cp --build=${res_build_info_docker_frontapp_buildName}/${res_build_info_docker_frontapp_buildNumber} app-docker-dev-local/ app-docker-rc-local/
           onSuccess:
             - jfrog rt sp --build=${res_build_info_docker_frontapp_buildName}/${res_build_info_docker_frontapp_buildNumber} app-docker-rc-local/**/manifest.json "docker.tag=${myDockerTag}"
             - write_output build_info_docker_frontapp_promoted_staging "frontregistry=\"${ArtIP}/docker\""
