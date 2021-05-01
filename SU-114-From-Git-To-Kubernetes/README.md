@@ -26,14 +26,14 @@ git commit -m "updated my repo path in the source code resource"
 git add .
 git push
 ```
-- Create 4 integrations (Administration Panel -> Pipelines -> Integrations -> Add an Integration):
-    - "github" integration with personal access token from your github account:</br>
+- Create the following Integrations (Administration Panel -> Pipelines -> Integrations -> Add an Integration):
+    - "github" integration (type: "GitHub") with personal access token from your github account:</br>
     ![alt text](https://i.ibb.co/qkGd65z/Screen-Shot-2021-05-01-at-13-55-15.png) </br>
-    - "artifactory integration":</br>
+    - "artifactory" integration (type: "Artifactory"):</br>
     ![alt text](https://i.ibb.co/5nDV957/Screen-Shot-2021-05-01-at-13-54-51.png) </br>
-    - "docker integration":</br>
+    - "docker integration" (type: "Docker"):</br>
     ![alt text](https://i.ibb.co/TqdyPSC/Screen-Shot-2021-05-01-at-13-55-05.png) </br>
-    - "generic integration":</br>
+    - "generic integration" (type: "Generic"):</br>
     ![alt text](https://i.ibb.co/CzmrF3n/Screen-Shot-2021-05-01-at-13-55-26.png) </br>
 - Create a Pipeline Source based on the forked repository, with the following Pipeline Config Filter: "SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml":
 ![alt text](![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png))
