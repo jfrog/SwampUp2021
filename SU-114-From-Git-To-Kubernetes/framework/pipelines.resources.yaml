@@ -1,17 +1,9 @@
 resources:
-  - name: source_dockerfile_framework
-    type: GitRepo
-    configuration:
-      files:
-        include: ^framework\/.+
-      path: talitz/SwampUp2021
-      gitProvider: github
-
   - name: framework_generic_fileSpec
     type: FileSpec
     configuration:
       sourceArtifactory: artifactory
-      pattern:  generic-local/apache-tomcat-8.0.32.tar.gz
+      pattern:  su-114-generic-local/apache-tomcat-8.0.32.tar.gz
       target:   target/apache-tomcat-8.0.32.tar.gz
       flat:     true
 

@@ -9,18 +9,18 @@ pipelines:
           configFileLocation: .  
           configFileName: gradle-art-config  
           inputResources:
-            - name: source_code_back_application
+            - name: source_code
           outputResources:
             - name: back_app_build_info            
           integrations:
             - name: artifactory
         execution:
           onSuccess:
-            - echo ${res_source_code_back_application_isGitTag}
-            - appVersion=`if [[ ${res_source_code_back_application_isGitTag} == "True" ]]; then echo ${res_source_code_back_application_gitTagName}; else echo ${res_source_code_back_application_commitSha}; fi`
+            - echo ${res_source_code_isGitTag}
+            - appVersion=`if [[ ${res_source_code_isGitTag} == "True" ]]; then echo ${res_source_code_gitTagName}; else echo ${res_source_code_commitSha}; fi`
             - echo $appVersion
             - add_pipeline_variables appVersion="${appVersion}"
-            - add_pipeline_variables subPath="${res_source_code_back_application_branchName}/${appVersion}"      
+            - add_pipeline_variables subPath="${res_source_code_branchName}/${appVersion}"      
 
       - name: publish_backend_buildinfo
         type: PublishBuildInfo
@@ -43,7 +43,7 @@ pipelines:
       - name: promote_build_info_gradle_back_app
         type: PromoteBuild
         configuration:
-          targetRepository: app-gradle-rc-local
+          targetRepository: su-114-gradle-prod-local
           includeDependencies: false
           status: SANDBOX_OK
           comment: Unit testing and Xray scan passed succesfully
@@ -58,15 +58,15 @@ pipelines:
         execution:
           onSuccess:
             - write_output back_app_build_info_promoted_staging myversion=${appVersion}
-            - jfrog rt sp --build=${res_back_app_build_info_buildName}/${res_back_app_build_info_buildNumber} app-gradle-rc-local/ "app.version=${appVersion}"
+            - jfrog rt sp --build=${res_back_app_build_info_buildName}/${res_back_app_build_info_buildNumber} su-114-gradle-prod-local/ "app.version=${appVersion}"
 
 
   - name: suv_114_backapp_docker_pipeline
     configuration:
       environmentVariables:
         readOnly:
-          serverName: soleng
-          dockerFrameworkVersion: 6 #should be the latest successful docker framework build, not hardcoded
+          serverName: swampup203
+          dockerFrameworkVersion: ${res_docker_framework_build_info_promoted_myversion}
     steps:
       - name: build_docker_backapp
         type: DockerBuild
@@ -74,11 +74,11 @@ pipelines:
           affinityGroup: swampup
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/back/
-          dockerImageName: ${serverName}.jfrog.io/docker/backapp
-          dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_back_application_commitSha}
+          dockerImageName: ${serverName}.jfrog.io/su-114-docker-virtual/backapp
+          dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_commitSha}
           dockerOptions: --build-arg SERVER_NAME=${serverName} --build-arg DOCKER_FRAMEWORK_VERSION=${dockerFrameworkVersion}
           inputResources:
-            - name: source_code_back_application
+            - name: source_code
             - name: back_app_build_info_promoted_staging
             - name: docker_framework_build_info_promoted
             - name: back_app_war_executable
@@ -87,18 +87,16 @@ pipelines:
             - name: docker
         execution:
           onStart:
-            - 'export ArtIP=$(echo ${int_artifactory_url}|awk -F ''/'' ''{print $3}'')'
-            - echo ${res_build_info_back_app_promoted_staging_myversion}
             - add_pipeline_variables appVersion="${res_build_info_back_app_promoted_staging_myversion}"
             - add_pipeline_variables triggerBuildInfoName="${res_build_info_back_app_promoted_staging_buildName}"
             - add_pipeline_variables triggerBuildInfoNumber="${res_build_info_back_app_promoted_staging_buildNumber}"
-            - add_pipeline_variables myDockerTag="${appVersion}-${res_source_code_back_application_commitSha}"
+            - add_pipeline_variables myDockerTag="${appVersion}-${res_source_code_commitSha}"
 
       - name: publish_docker_backapp
         type: DockerPush
         configuration:
           affinityGroup: swampup
-          targetRepository: docker
+          targetRepository: su-114-docker-virtual
           autoPublishBuildInfo: true
           inputSteps:
             - name: build_docker_backapp
@@ -121,7 +119,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           affinityGroup: swampup
-          targetRepository: docker-prod
+          targetRepository: su-114-docker-prod-local
           includeDependencies: false
           status: "DOCKER_SCAN_OK"
           comment: "Xray scan passed succesfully"
@@ -136,13 +134,8 @@ pipelines:
           outputResources:
             - name: build_info_docker_back_app_promoted_staging
         execution:
-          onStart:
-            - 'export ArtIP=$(echo ${int_artifactory_url}|awk -F ''/'' ''{print $3}'')'
-            - echo ${res_build_info_docker_back_app_buildName}
-            - echo ${res_build_info_docker_back_app_buildNumber}
-            - jfrog rt cp --build=${res_build_info_docker_back_app_buildName}/${res_build_info_docker_back_app_buildNumber} app-docker-dev-local/ app-docker-rc-local/
           onSuccess:
-            - jfrog rt sp --build=${res_build_info_docker_back_app_buildName}/${res_build_info_docker_back_app_buildNumber} app-docker-rc-local/**/manifest.json "docker.tag=${myDockerTag}"
             - write_output build_info_docker_back_app_promoted_staging "backregistry=\"${ArtIP}/app-docker-virtual\""
             - write_output build_info_docker_back_app_promoted_staging "backimage=\"backapp\""
             - write_output build_info_docker_back_app_promoted_staging "backtag=${myDockerTag}"
+            - jfrog rt sp --build=${res_build_info_docker_back_app_buildName}/${res_build_info_docker_back_app_buildNumber} su-114-docker-prod-local/**/manifest.json "docker.tag=${myDockerTag}"
