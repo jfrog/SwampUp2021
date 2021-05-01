@@ -8,9 +8,10 @@
 #### Lab #1 - Onboarding to Labs Environment
 
 - Login to your SaaS E+ Environment, make sure you are able to connect.
-- Fork this (https://github.com/jfrog/SwampUp2021) repository to your GitHub Account.
+- Fork this (https://github.com/jfrog/SwampUp2021) repository to your GitHub Account (Top right - Click on "Fork"):
+![alt text](https://i.ibb.co/dr7btgf/Screen-Shot-2021-05-01-at-13-26-24.png)
 - Run ```git clone https://github.com/<YOUR_GITHUB_USERNAME>/SwampUp2021.git``` against your forked repository.
-- Run ```cd SU-114-From-Git-To-Kubernetes``` which is our class's folder with all the relevant code.
+- Run ```cd SwampUp2021/SU-114-From-Git-To-Kubernetes``` which is our class's folder with all the relevant code.
 - Open the file "back/src/pipelines.resources" and change the configuration.path in the following snippet:
 ```
   - name: source_code
