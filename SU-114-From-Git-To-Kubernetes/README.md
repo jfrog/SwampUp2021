@@ -1,14 +1,14 @@
 # From Git to Kubernetes: Cloud Native DevOps (Advanced)
 
 ### In this training session, you’ll learn best-practices when using the JFrog Platform to store and manage your Docker images and Kubernetes deployments from beginning to end, while also setting up a continuous build, test and deploy pipeline. We’ll cover best practices for managing and creating Docker registries and Helm repositories, testing and promotion of Docker containers, and taking your containers all the way to production using the JFrog Platform and Kubernetes together. While the use cases discussed will cover and utilize the entire JFrog Platform, the majority of the hands-on training will focus on JFrog Artifactory and CI tools working together.
-### <b>Who should attend:</b> Developers, Development Managers, and DevOps Engineers who are currently using JFrog Artifactory and Docker, Current Docker users who are considering using JFrog Artifactory. A good understanding of Docker containers and CI servers for cloud-native pipelines is required. 
+### Who should attend: Developers, Development Managers, and DevOps Engineers who are currently using JFrog Artifactory and Docker, Current Docker users who are considering using JFrog Artifactory. A good understanding of Docker containers and CI servers for cloud-native pipelines is required. 
 
-### <u>Prerequisites:</u> basic knowledge of working with Git (git client installed and GitHub account), curl installed on their laptop. Basic understanding of Docker and DevOps concepts.
+### Prerequisites: basic knowledge of working with Git (git client installed and GitHub account), curl installed on their laptop. Basic understanding of Docker and DevOps concepts.
 
 #### Lab #1 - Onboarding to Labs Environment
 
-- Login to your SaaS E+ Environment, make sure you are able to connect.
-- Fork this (https://github.com/jfrog/SwampUp2021) repository to your GitHub Account (Top right - Click on "Fork"):
+- Login to your SaaS Enterprise+ environment and make sure you are able to connect with your credentials.
+- Fork this ([https://github.com/jfrog/SwampUp2021](https://github.com/jfrog/SwampUp2021)) repository to your GitHub Account (Top right - Click on "Fork"):
 ![alt text](https://i.ibb.co/dr7btgf/Screen-Shot-2021-05-01-at-13-26-24.png)
 - Run ```git clone https://github.com/<YOUR_GITHUB_USERNAME>/SwampUp2021.git``` against your forked repository.
 - Run ```cd SwampUp2021/SU-114-From-Git-To-Kubernetes``` which is our class's folder with all the relevant code.
