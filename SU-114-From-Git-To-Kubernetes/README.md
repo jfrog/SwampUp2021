@@ -9,21 +9,34 @@
 
 - Login to your SaaS E+ Environment, make sure you are able to connect.
 - Fork this (https://github.com/jfrog/SwampUp2021) repository to your GitHub Account.
-- Run ׳git clone https://github.com/<YOUR_GITHUB_USERNAME>/SwampUp2021.git׳ against your forked repository.
-- Run ׳cd SU-114-From-Git-To-Kubernetes׳.
+- Run ```git clone https://github.com/<YOUR_GITHUB_USERNAME>/SwampUp2021.git``` against your forked repository.
+- Run ```cd SU-114-From-Git-To-Kubernetes``` which is our class's folder with all the relevant code.
 - Open the file "back/src/pipelines.resources" and change the configuration.path in the following snippet:
+```
   - name: source_code
     type: GitRepo
     configuration:
       gitProvider: github
       path: <CHANGE_THIS_TO_YOUR_GITHUB_USERNAME>/SwampUp2021
-- Commit the changes to your forked repository (git commit -> git add -> git push).
-- Create 3 integrations:
-    - "github" integration with personal access token from your github account.
-    - "artifactory integration".
-    - "docker integration".
-    - "generic integration"
-- Create a Pipeline Source based on the forked repository, with the following Pipeline Config Filter: "SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml".
+```
+- Commit the changes to your forked repository:
+ ```
+git commit -m "updated my repo path in the source code resource"
+git add .
+git push
+```
+- Create 4 integrations (Administration Panel -> Pipelines -> Integrations -> Add an Integration):
+    - "github" integration with personal access token from your github account:
+    ![alt text](https://i.ibb.co/qkGd65z/Screen-Shot-2021-05-01-at-13-55-15.png)
+    - "artifactory integration":
+    ![alt text](https://i.ibb.co/5nDV957/Screen-Shot-2021-05-01-at-13-54-51.png)
+    - "docker integration":
+    ![alt text](https://i.ibb.co/TqdyPSC/Screen-Shot-2021-05-01-at-13-55-05.png)
+    - "generic integration":
+    ![alt text](https://i.ibb.co/CzmrF3n/Screen-Shot-2021-05-01-at-13-55-26.png)
+- Create a Pipeline Source based on the forked repository, with the following Pipeline Config Filter: "SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml":
+![alt text](![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png))
+
 - Make sure all pipelines were loaded under "My Pipelines".
 
 * For any issues, please assist the instructor and T.A's!
