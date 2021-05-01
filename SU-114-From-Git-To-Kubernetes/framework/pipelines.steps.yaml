@@ -1,9 +1,5 @@
 pipelines:
   - name: suv_114_docker_framework_pipeline
-    configuration:
-      environmentVariables:
-        readOnly:
-          serverName: swampup203
     steps:
       - name: build_docker_framework
         type: DockerBuild
@@ -11,12 +7,13 @@ pipelines:
           affinityGroup: fmkGroup
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/framework/
           dockerFileName: Dockerfile
-          dockerImageName: ${serverName}.jfrog.io/su-114-docker-virtual/jfrog-docker-framework
+          dockerImageName: ${int_server_name_value}.jfrog.io/su-114-docker-virtual/jfrog-docker-framework
           dockerImageTag: ${run_number}
-          dockerOptions: --build-arg SERVER_NAME=${serverName}
+          dockerOptions: --build-arg SERVER_NAME=${int_server_name_value}
           integrations:        
             - name: artifactory
             - name: docker
+            - name: server_name
           inputResources:
             - name: source_code
             - name: framework_generic_fileSpec
