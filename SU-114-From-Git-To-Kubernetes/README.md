@@ -19,8 +19,8 @@
 ![alt text](https://i.ibb.co/wyrLVNK/Screen-Shot-2021-05-01-at-14-28-11.png)</br>
 - Commit the changes to your forked repository:
  ```
-git commit -m "updated my repo path in the source code resource"
 git add .
+git commit -m "updated my repo path in the source code resource"
 git push
 ```
 - Create the following Integrations (Administration Panel -> Pipelines -> Integrations -> Add an Integration):
