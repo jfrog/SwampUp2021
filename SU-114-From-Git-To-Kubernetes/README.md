@@ -4,11 +4,11 @@
 </p>
 
 ### In this training session, you’ll learn best-practices when using the JFrog Platform to store and manage your Docker images and Kubernetes deployments from beginning to end, while also setting up a continuous build, test and deploy pipeline. We’ll cover best practices for managing and creating Docker registries and Helm repositories, testing and promotion of Docker containers, and taking your containers all the way to production using the JFrog Platform and Kubernetes together. While the use cases discussed will cover and utilize the entire JFrog Platform, the majority of the hands-on training will focus on JFrog Artifactory and CI tools working together.
-### Who should attend: Developers, Development Managers, and DevOps Engineers who are currently using JFrog Artifactory and Docker, Current Docker users who are considering using JFrog Artifactory. A good understanding of Docker containers and CI servers for cloud-native pipelines is required. 
+### <ins>Who should attend:</ins> Developers, Development Managers, and DevOps Engineers who are currently using JFrog Artifactory and Docker, Current Docker users who are considering using JFrog Artifactory. A good understanding of Docker containers and CI servers for cloud-native pipelines is required. 
 
-### Prerequisites: basic knowledge of working with Git (git client installed and GitHub account), curl installed on their laptop. Basic understanding of Docker and DevOps concepts.
+### <ins>Prerequisites</ins>: basic knowledge of working with Git (git client installed and GitHub account), curl installed on their laptop. Basic understanding of Docker and DevOps concepts.
 
-#### Lab #1 - Onboarding to Labs Environment
+#### <ins>Lab #1 - Onboarding to Labs Environment</ins>
 
 - Login to your SaaS Enterprise+ environment and make sure you are able to connect with your credentials.
 - Fork this ([https://github.com/jfrog/SwampUp2021](https://github.com/jfrog/SwampUp2021)) repository to your GitHub Account (Top right - Click on "Fork"):
@@ -47,13 +47,12 @@ git push
 ![alt text](https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png)</br>
 <b>* For any issues, please assist the instructor and T.A's!</b>
 
-#### Lab #1 - Understanding the Environment
+#### <ins>Lab #2 - Understanding the Environment</ins>
 
 - Run all Pipelines.
 - Understand the connection between all Pipelines based on the list view.
 
-#### Lab #2 - Adding Security
+#### <ins>Lab #3 - Adding Security</ins>
 
-- Index all builds.
 - Configure Watch & Policy.
 - Understand Xray results.
