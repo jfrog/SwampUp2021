@@ -35,12 +35,14 @@ git push
     ![alt text](https://i.ibb.co/TqdyPSC/Screen-Shot-2021-05-01-at-13-55-05.png) </br>
     - "generic integration" (type: "Generic"), where the value equals to your SaaS server name (for example, for swampup203.jfrog.io the server name is swampup203): </br>
     ![alt text](https://i.ibb.co/CzmrF3n/Screen-Shot-2021-05-01-at-13-55-26.png) </br>
-- Create a Pipeline Source based on the forked repository, with the following Pipeline Config Filter: ```SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml``` and branch ```main```:</br>
-![alt text](![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png))</br>
+- Create a Pipeline Source based on the forked repository, with the following Pipeline Config File Filter: ```SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml``` and branch ```main```:</br>
+![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png)</br>
 
 - Make sure all pipelines were loaded under "My Pipelines".
 
-* For any issues, please assist the instructor and T.A's!
+- Run the "suv_114_on_boarding_environment" to populate all repositories for our demo.</br>
+![alt text](https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png)</br>
+<b>* For any issues, please assist the instructor and T.A's!</b>
 
 #### Lab #1 - Understanding the Environment
 
