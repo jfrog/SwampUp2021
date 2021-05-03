@@ -1,14 +1,5 @@
 resources:
-#Build NPM Application
-  - name: source_code_frontapp
-    type: GitRepo
-    configuration:
-      files:
-        include: ^front\/.+
-      gitProvider: talitz_github
-      path: talitz/SwampUp2021
-
-  - name: FrontAppBuildInfo
+  - name: build_info_frontapp
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory
@@ -29,12 +20,11 @@ resources:
       buildName: suv_114_frontapp_npm_pipeline
       buildNumber: '${run_number}'
 
-#Dockerize NPM
   - name: frontapp_exec
     type: FileSpec
     configuration:
       sourceArtifactory: artifactory
-      pattern: app-npm-rc-local/front/-/front-0.1.0.tgz
+      pattern: su-114-npm-prod-local/front/-/front-0.1.0.tgz
       flat: true
 
   - name: build_info_docker_frontapp
