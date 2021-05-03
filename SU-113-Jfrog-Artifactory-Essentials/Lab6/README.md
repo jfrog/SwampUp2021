@@ -11,8 +11,8 @@
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/CLI-Config-name.png" alt="CLI Config" style="height: 100px; width:100px;"/>
   
   * Jfrog instance name : The SERVER_NAME is the first part of the URL given to you for your environment: https://<SERVER_NAME>.jfrog.io. You can also get this information from the docker login command from Lab2.
-    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/docker-commands-display.png" alt="ServerName" style="height: 100px; width:100px;"/>
-    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/ServerName.png" alt="ServerName" style="height: 100px; width:100px;"/>
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/docker-command-display.png" alt="ServerName" style="height: 100px; width:100px;"/>
+    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/Server-Name.png" alt="ServerName" style="height: 100px; width:100px;"/>
   
   * Jfrog instance username : username for accessing your jfrog platform instance with deployment privileges 
   
@@ -29,7 +29,7 @@
 - Once the above information is entered, the script dynamically modifies the Dockerfile to point to your SERVER_NAME and  VIRTUAL_REPO_NAME to point to your docker virtual repository ("swampup-docker")
 
 - Finally, You should see that CLI builds the docker image and pushes to artifactory
-  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-success.png" alt="Build success" style="height: 100px; width:100px;"/>
+  <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/buildsuccess.png" alt="Build success" style="height: 100px; width:100px;"/>
 
 ## Step 2 - View the Build information in Artifactory
 
