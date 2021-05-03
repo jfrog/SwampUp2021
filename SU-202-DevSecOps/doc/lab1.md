@@ -13,7 +13,17 @@
 - Promote the Docker image to a production grade repository
 - Download the Docker image
 
+## Share the environment
+
+```bash
+printf "Artifactory: ${ARTIFACTORY_URL}\nGradle repo: ${GRADLE_REPO_DEV}\nDocker Repo: ${DOCKER_REGISTRY_DEV}\n" 
+```
+
 ## Build the gradle project
+
+```bash
+printf "Building ${PROJECT_VERSION_LAB1}\nwith struts ${STRUTS_VERSION_UNSAFE} (unsafe)\n" 
+```
 
 ```bash
 gradle clean artifactoryPublish \
@@ -32,6 +42,10 @@ docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REG
 ```
 
 ## Build Docker image
+
+```bash
+printf "Building ${IMAGE_ABSOLUTE_NAME_DEV_LAB1}\nwith base image ${BASE_IMAGE_UNSAFE} (unsafe)\n" 
+```
 
 ```bash
 docker build -t "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" --build-arg "BASE_IMAGE=${BASE_IMAGE_UNSAFE}" .

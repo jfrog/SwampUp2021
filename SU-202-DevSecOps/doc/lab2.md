@@ -31,6 +31,12 @@ Create **devsecops-docker-repo-watch** watch:
 
 ## Apply on existing content
 
+## Visit the Artifact
+
+Artifactory => Artifacts => devsecops-docker-prod-local/swampup/devsecops/0.0.9/manifest.json 
+
+Xray message is shown: "Xray has a policy blocking this artifact for download."
+
 ## Download image
 
 Remove local images:

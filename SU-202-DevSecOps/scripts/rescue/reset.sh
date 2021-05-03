@@ -36,6 +36,8 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -X DELETE "${XRAY_URL}/api/v2/watches/devsecops-docker-build-watch"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -X DELETE "${XRAY_URL}/api/v2/watches/devsecops-legacy-watch"
+curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
+     -X DELETE "${XRAY_URL}/api/v2/watches/devsecops-sample-watch"
 
 echo "INFO - deleting policies"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
@@ -50,6 +52,9 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
      -X DELETE "${XRAY_URL}/api/v2/policies/raise-violation-on-high-severity"
+curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
+     -H 'Content-Type: application/json' \
+     -X DELETE "${XRAY_URL}/api/v2/policies/devsecops-sample-policy"
 
 echo "INFO - Collect indexing configuration"
 INDEXED_REPOS=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
