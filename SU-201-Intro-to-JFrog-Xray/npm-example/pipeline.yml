@@ -28,6 +28,8 @@ pipelines:
           repositoryName: npm
           integrations:
             - name: Artifactory
+          inputResources:
+            - name: SwamupGitRepo
       - name: publish_npm_app
         type: NpmPublish
         configuration:
