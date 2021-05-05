@@ -31,15 +31,8 @@ It will create local, remote and virtual repositories.<br/> e.g. <br/> NPM - su2
 
 ### Step 3 - Create a personal access token in GitHub
 
-- Login to your Github account
-- In the upper-right corner of any page, click your profile photo, then click Settings.
-- In the left sidebar, click Developer settings.
-- In the left sidebar, click Personal access tokens.
-- Click Generate new token.
-- Give your token a descriptive name.
-- Select the scopes, or permissions, you'd like to grant this token. To use your token to access repositories from the command line, select repo.
-- Click Generate token.
-- Click to copy the token to your clipboard. For security reasons, after you navigate off the page, you will not be able to see the token again.
+Please follow steps from https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token 
+NOTE: if you already have GitHub account then start from Step 2 else create GitHub account first and then follow above steps.
 
 ### Step 4 - Integrate GitHub with JFrog Pipeline
 
@@ -50,6 +43,9 @@ It will create local, remote and virtual repositories.<br/> e.g. <br/> NPM - su2
 - Enter GitHub API Token in **Token** (Generated in Step 3)
 - Click **Test Connection** 
 - Click **Create**
+
+![github_pipeline](https://user-images.githubusercontent.com/7561138/117182982-dd500380-ad8b-11eb-919d-9b051158bd1a.gif)
+
 
 ### Step 5 - Integrate Artifactory with JFrog Pipeline
 
@@ -62,3 +58,6 @@ It will create local, remote and virtual repositories.<br/> e.g. <br/> NPM - su2
 - Click on **Get API Key** which will fill **API Key** 
 - Click **Test Connection** 
 - Click **Create**
+
+![artifactory_pipeline](https://user-images.githubusercontent.com/7561138/117183054-f658b480-ad8b-11eb-9e9a-c07e3a415cbd.gif)
+
