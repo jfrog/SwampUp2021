@@ -38,10 +38,7 @@ pipeline {
 
         stage ('Publish build info') {
             steps {
-                rtPublishBuildInfo (
-                    captureEnv: true,
-                    serverId: "swampup113"
-                )
+                rtPublishBuildInfo (serverId: "swampup113")
             }
         }
 
