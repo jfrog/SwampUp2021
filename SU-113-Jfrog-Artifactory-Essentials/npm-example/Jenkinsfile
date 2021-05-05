@@ -43,7 +43,9 @@ pipeline {
         }
 
         stage ('Test') {
-             // Some testing here
+            steps {
+                echo "Test the application"
+            }
         }
 
         stage ('Promote') {
