@@ -32,7 +32,7 @@ Look for JFrog
 
 ## Plugin configuration
 
-Preferences => Other Settings => JFrog Xray Configuration
+Preferences => Other Settings => JFrog Global Configuration
 
 - URL
 https://<JFROG_PLATFORM_URL>/xray

@@ -8,30 +8,61 @@ Walk through Xray features
 
 Show the Security & Compliance menu entry.
 
-## User section
-
-- Watch violations: where you can check all violations per watch
-- Reports: where you can create and access reports
-
 ## Administration section
 
-Allow Xray configuration, in particular:
-- what will be scanned
-- creation of policies and watches
+This is where to configure Xray.
 
-## Browse to vulnerable Artifact
+### Settings => Indexed Resources
 
-Artifactory => Artifacts => demo-docker-dev-local => swampup => devsecops => 0.0.9 => manifest.json
+All resources (repositories, builds and release bundles) that will be indexed by Xray
 
-## Open Xray Tab
+### Watches & Policies
 
-## Open Descendants
+where you can create, modify or delete watches, policies and ignore rules.
+
+- Policies > block-download-on-high-severity > Edit Rule
+show criteria and actions
+
+- Watches > devsecops-docker-repo-watch
+show manageable resources
+show manage policies  
+  
+- Watches > devsecops-docker-repo-watch > Edit repositories
+show how you can add repositories and apply patterns
+
+## User section
+
+### Watch violations
+
+This is where you can consult the outcome of your watches.
+
+- show the list of watches
+
+- drill down on *devsecops-docker-repo-watch*
+show violations
+show filters (min severity, type)
+
+### Reports
+
+where you can create and access reports
+  
+## Search vulnerable Artifact
+
+Artifactory > Packages > swampup
+
+you can get the list of versions for this docker image
+
+> 0.0.9
+
+> Xray Data > descendants
 
 This is actually a representation of the component graph described earlier during the presentation
 
-## Open Security tab
+> Xray Data > Security
 
-### Click on first item on first page (Busybox arp applet arp_main()...)
+This is where all the vulnerabilities are listed
+
+>> Click on first item (Busybox arp applet arp_main()...)
 
 => Show issue detail (all fields)
 description, severity, source, creation date, CVE detail, references, infected component
@@ -39,7 +70,7 @@ description, severity, source, creation date, CVE detail, references, infected c
 => Show component graph
 component in a docker layer in a docker image
 
-### Click on 3.1:busybox:1.22.1-r15 in the component graph
+>> Click on 3.1:busybox:1.22.1-r15 in the component graph
 
 => check violations related to a given component
 
@@ -109,8 +140,9 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
     }"
 ```
 
+An error is expected for this last call as we do not have this repo indexed by Xray
 
 ## Conclusion
 
-We have seen in details the main features of Xray.
+We have seen in the UI how to access and interact with Xray features.
 We have seen as well how to interact with the REST API, allowing us to automate our processes.

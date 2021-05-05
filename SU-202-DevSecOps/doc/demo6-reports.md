@@ -1,4 +1,4 @@
-# Demo 5 - Reports
+# Demo 6 - Reports
 
 ## Context
 
@@ -37,7 +37,7 @@ or even better have the Dev team to auto generate this report, once per sprint f
 
 ### Export
 
-export previous report to PDF
+export previous report to PDF and open it
 => check vulnerable component = always the same
 => check highest Fix Version = 2.5.26
 
