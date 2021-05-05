@@ -51,11 +51,13 @@ JFrog CLI is a clean and convenient way to interact with Artifactory.
 jfrog config add "${CLI_INSTANCE_ID}" --artifactory-url="${ARTIFACTORY_URL}" --user="${ARTIFACTORY_LOGIN}" --apikey="${ARTIFACTORY_API_KEY}" --interactive=false
 ```
 
-## 
+## Check configuration
 
+```bash
 jfrog rt ping
+```
 
-if unseccful redirect to build
+if you are not getting an OK, please rebuild your image (this might be a typo in your build variables).
 
 ## Create repositories
 
