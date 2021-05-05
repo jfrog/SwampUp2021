@@ -31,7 +31,7 @@ It will create local, remote and virtual repositories.<br/> e.g. <br/> NPM - su2
 
 ### Step 3 - Create a personal access token in GitHub
 
-Please follow steps from https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token 
+Please follow steps from https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token <br/>
 NOTE: if you already have GitHub account then start from Step 2 else create GitHub account first and then follow above steps.
 
 ### Step 4 - Integrate GitHub with JFrog Pipeline
