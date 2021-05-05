@@ -1,4 +1,4 @@
-# Lab3 - Impact analysis, create reports
+# Lab3 - Impact Analysis, Notifications Create Reports and Debug logs 
 
 ## Prerequisites
 A SAAS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
@@ -11,8 +11,20 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 
 <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/1.png" alt="Impact Analysis" style="height: 100px; width:100px;"/>
 
-### Part 2 - Create Reports
+### Part 2 - Notifications
+
+- With Xray you can easily set up actions determines the automatic response to a detected Policy violation. You can define one or more action within each Policy Rule for example we can create a [" mail server"](https://www.jfrog.com/confluence/display/JFROG/General+System+Settings#GeneralSystemSettings-MailServerConfiguration) to send a email for every violation like the following screenshot:
+<img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/3.png" alt="Create Reports" style="height: 100px; width:100px;"/>
+
+### Part 3 - Create Reports
 
 - Xray reports provide you the ability to collect and view information on the Xray scanning of your packages and artifacts. 
 - To collect a report click on the Security and compliance tab and the reports tab 
 <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/2.gif" alt="Create Reports" style="height: 100px; width:100px;"/>
+
+### Part 4 - Debug logs
+
+- Xray reports provide you the ability to collect and view information on the Xray scanning of your packages and artifacts. 
+- To collect a report click on the Security and compliance tab and the reports tab 
+<img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/2.gif" alt="Create Reports" style="height: 100px; width:100px;"/>
+
