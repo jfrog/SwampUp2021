@@ -41,5 +41,31 @@ pipeline {
                 rtPublishBuildInfo (serverId: "swampup113")
             }
         }
+
+        stage ('Promote') {
+            steps {
+               rtPromote (
+                   // Mandatory parameter
+
+                   buildName: env.JOB_NAME,
+                   buildNumber: env.BUILD_NUMBER,
+                   // Artifactory server ID from Jenkins configuration, or from configuration in the pipeline script
+                   serverId: 'swampup113',
+                   // Name of target repository in Artifactory
+                   targetRepo: 'swampup-npm-prod-local',
+
+                   // Optional parameters
+
+                   // Comment and Status to be displayed in the Build History tab in Artifactory
+                   comment: 'this is the promotion comment',
+                   status: 'Released',
+                   // Specifies the source repository for build artifacts.
+                   includeDependencies: true,
+                   // Indicates whether to fail the promotion process in case of failing to move or copy one of the files. False by default
+                   failFast: true,
+               )
+            }
+        }
+
     }
 }
