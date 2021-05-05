@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-       stage ('Exec npm install and publish') {
+       stage ('Execute npm install and publish') {
             steps {
                 dir('SU-113-Jfrog-Artifactory-Essentials/npm-example/hello-world'){
                     sh 'sed -i "s/0.0.3/0.0.$BUILD_NUMBER/g" package.json'
@@ -39,6 +39,12 @@ pipeline {
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (serverId: "swampup113")
+            }
+        }
+
+        stage ('Test') {
+            steps {
+
             }
         }
 
