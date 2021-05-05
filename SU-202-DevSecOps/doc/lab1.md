@@ -13,6 +13,9 @@
 - Promote the Docker image to a production grade repository
 - Download the Docker image
 
+struts library and alpine base image have several CVEs.
+A critical vulnerability is present on both allowing remote code execution.
+
 ## Share the environment
 
 ```bash
