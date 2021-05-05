@@ -23,6 +23,11 @@ pipeline {
                 rtServer ( id: "swampup113",url: SERVER_URL,credentialsId: "swampup113_cred")
                 rtNpmResolver (id: "NPM_RESOLVER",serverId: "swampup113",repo: "swampup-npm-remote")
                 rtNpmDeployer (id: "NPM_DEPLOYER",serverId: "swampup113",repo: "swampup-npm-dev-local")
+                rtBuildInfo (
+                    captureEnv: true,
+                   buildName: env.JOB_NAME,
+                   buildNumber: env.BUILD_NUMBER
+                )
             }
         }
 
