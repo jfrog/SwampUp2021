@@ -8,7 +8,7 @@
 - Select Package Type **NPM** or **MAVEN** and click **Next**
 - Enter repository name **su201** and click **Create**
 
-https://user-images.githubusercontent.com/7561138/117176035-50557c00-ad84-11eb-95f5-3130b4d3c1fd.mp4
+![create_repos](https://user-images.githubusercontent.com/7561138/117176709-0620ca80-ad85-11eb-8b93-07f0230824e2.gif)
 
 
 It will create local, remote and virtual repositories.<br/> e.g. <br/> NPM - su201-npm-local , su201-npm-remote, su201-npm <br/> MAVEN - su201-libs-release-local, su201-libs-snapshot-local, su201-maven-jcenter, su201-libs-release, su201-libs-snapshot
@@ -20,8 +20,9 @@ It will create local, remote and virtual repositories.<br/> e.g. <br/> NPM - su2
 - Scroll down and locate **Default Deployment Repository**
 - From dropdown, select local repository that created in Step 1. (Artifacts create by CI will be store under this local repository)
 
+![set_deployment_repo](https://user-images.githubusercontent.com/7561138/117176727-0b7e1500-ad85-11eb-966b-3d30a03d4ce3.gif)
 
-https://user-images.githubusercontent.com/7561138/117176084-5b101100-ad84-11eb-9785-503a7df8bcb8.mp4
+
 
 
 
