@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-       stage ('Execute npm install and publish') {
+        stage ('Execute npm install and publish') {
             steps {
                 dir('SU-113-Jfrog-Artifactory-Essentials/npm-example/hello-world'){
                     sh 'sed -i "s/0.0.3/0.0.$BUILD_NUMBER/g" package.json'
@@ -46,7 +46,6 @@ pipeline {
         stage ('Test') {
             steps {
                 echo "Test the application"
-                updateProperty ("qa.functional-test=pass")
             }
         }
 
@@ -64,6 +63,10 @@ pipeline {
                )
             }
         }
+
+    }
+}
+
 def updateProperty (property) {
     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: swampup113_cred, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
             def curlString = "curl -u " + env.USERNAME + ":" + env.PASSWORD + " " + "-X PUT " + SERVER_URL
@@ -71,5 +74,4 @@ def updateProperty (property) {
             println "Curl String is " + updatePropStr
             sh updatePropStr
      }
-    }
 }
