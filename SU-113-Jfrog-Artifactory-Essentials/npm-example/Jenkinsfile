@@ -46,6 +46,7 @@ pipeline {
         stage ('Test') {
             steps {
                 echo "Test the application"
+                updateProperty ("qa.functional-test=pass")
             }
         }
 
@@ -63,6 +64,12 @@ pipeline {
                )
             }
         }
-
+def updateProperty (property) {
+    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: swampup113_cred, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+            def curlString = "curl -u " + env.USERNAME + ":" + env.PASSWORD + " " + "-X PUT " + SERVER_URL
+            def updatePropStr = curlString +  "/api/storage/${SOURCE_REPO}/docker-app/${env.BUILD_NUMBER}?properties=${property}"
+            println "Curl String is " + updatePropStr
+            sh updatePropStr
+     }
     }
 }
