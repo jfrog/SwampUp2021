@@ -20,7 +20,6 @@ pipeline {
 
         stage ('Artifactory configuration') {
             steps {
-                rtBuildInfo(captureEnv:true,buildName: env.JOB_NAME,buildNumber: env.BUILD_NUMBER)
                 rtServer ( id: "swampup113",url: SERVER_URL,credentialsId: "swampup113_cred")
                 rtNpmResolver (id: "NPM_RESOLVER",serverId: "swampup113",repo: "swampup-npm-remote")
                 rtNpmDeployer (id: "NPM_DEPLOYER",serverId: "swampup113",repo: "swampup-npm-dev-local")
@@ -31,7 +30,6 @@ pipeline {
        stage ('Execute npm install and publish') {
             steps {
                 dir('SU-113-Jfrog-Artifactory-Essentials/npm-example/hello-world'){
-                    rtBuildInfo(captureEnv:true,buildName: env.JOB_NAME,buildNumber: env.BUILD_NUMBER)
                     sh 'sed -i "s/0.0.3/0.0.$BUILD_NUMBER/g" package.json'
                     rtNpmInstall (tool: "NPM_TOOL", resolverId: "NPM_RESOLVER")
                     rtNpmPublish (tool: "NPM_TOOL", deployerId: "NPM_DEPLOYER")
@@ -41,7 +39,6 @@ pipeline {
 
         stage ('Publish build info') {
             steps {
-                rtBuildInfo(captureEnv:true,buildName: env.JOB_NAME,buildNumber: env.BUILD_NUMBER)
                 rtPublishBuildInfo (serverId: "swampup113")
             }
         }
@@ -55,23 +52,14 @@ pipeline {
         stage ('Promote') {
             steps {
                rtPromote (
-                   // Mandatory parameter
-
                    buildName: env.JOB_NAME,
                    buildNumber: env.BUILD_NUMBER,
-                   // Artifactory server ID from Jenkins configuration, or from configuration in the pipeline script
                    serverId: 'swampup113',
                    // Name of target repository in Artifactory
                    targetRepo: 'swampup-npm-prod-local',
-
-                   // Optional parameters
-
-                   // Comment and Status to be displayed in the Build History tab in Artifactory
                    comment: 'this is the promotion comment',
                    status: 'Released',
-                   // Specifies the source repository for build artifacts.
                    includeDependencies: true,
-                   // Indicates whether to fail the promotion process in case of failing to move or copy one of the files. False by default
                    failFast: true,
                )
             }
