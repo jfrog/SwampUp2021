@@ -59,7 +59,6 @@ pipeline {
                    targetRepo: 'swampup-npm-prod-local',
                    comment: 'this is the promotion comment',
                    status: 'Released',
-                   includeDependencies: true,
                    failFast: true,
                )
             }
