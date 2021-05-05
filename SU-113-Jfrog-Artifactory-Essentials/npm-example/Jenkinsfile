@@ -43,9 +43,7 @@ pipeline {
         }
 
         stage ('Test') {
-            steps {
-
-            }
+             // Some testing here
         }
 
         stage ('Promote') {
