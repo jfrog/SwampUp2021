@@ -22,7 +22,6 @@ ENV PROJECT_VERSION_LAB1="0.0.9" \
     DOCKER_REPO_DEV="devsecops-docker-dev" \
     DOCKER_REPO_PROD="devsecops-docker-prod" \
     CLI_GRADLE_BUILD_NAME='devsecops-gradle' \
-    CLI_GRADLE_LEGACY_BUILD_NAME='devsecops-legacy-gradle' \
     CLI_DOCKER_BUILD_NAME='devsecops-docker' \
     JFROG_CLI_OFFER_CONFIG=false \
     ARTIFACTORY_URL="https://${ARTIFACTORY_HOSTNAME}/artifactory" \
@@ -61,9 +60,11 @@ RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.
 RUN curl -fL https://getcli.jfrog.io | sh
 
 # add sources
-ADD src src
 ADD build.gradle .
 ADD settings.gradle .
+ADD src src
 ADD docker/Dockerfile .
+
 # add scripts
+ADD lab-runner/template-create-repo.json .
 ADD scripts scripts

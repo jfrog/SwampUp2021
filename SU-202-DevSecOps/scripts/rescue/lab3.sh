@@ -12,7 +12,7 @@ echo "INFO - Collect indexing configuration"
 INDEXED_BUILDS=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                   -H 'Content-Type: application/json' \
                   -X GET "${XRAY_URL}/api/v1/binMgr/default/builds" \
-                  | jq -r '.indexed_builds + ["devsecops-gradle-legacy","devsecops-docker","devsecops-gradle"]')
+                  | jq -r '.indexed_builds + ["devsecops-docker","devsecops-gradle"]')
 
 echo "INFO - Updating indexing configuration"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \

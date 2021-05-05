@@ -1,4 +1,4 @@
-# Demo 4 - License compliance
+# Demo 5 - License compliance
 
 ## Context
 
@@ -24,7 +24,7 @@ Update **devsecops-docker-build-watch** watch:
 
 ## Check violations on devsecops-gradle build
 
-Drill down on the culprit (javassist) and look for its Xray data
+Click on the component (javassist) and look for its Xray data
 => several licenses are bound to the component
 
 There is some Apache which is fine according to our legal department

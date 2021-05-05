@@ -27,6 +27,10 @@ jfrog rt gradle-config --server-id-resolve="${CLI_INSTANCE_ID}" --repo-resolve="
 ## Build the gradle project
 
 ```bash
+printf "Building ${PROJECT_VERSION_LAB3}\nwith struts ${STRUTS_VERSION_UNSAFE} (unsafe)\n" 
+```
+
+```bash
 jfrog rt gradle clean artifactoryPublish \
             -b build.gradle \
             --build-name "${CLI_GRADLE_BUILD_NAME}" \
@@ -66,6 +70,10 @@ docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REG
 ## Build Docker image
 
 ```bash
+printf "Building ${IMAGE_ABSOLUTE_NAME_DEV_LAB3}\nwith base image ${BASE_IMAGE_UNSAFE} (unsafe)\n" 
+```
+
+```bash
 docker build -t "${IMAGE_ABSOLUTE_NAME_DEV_LAB3}" --build-arg "BASE_IMAGE=${BASE_IMAGE_UNSAFE}" .
 ```
 
@@ -92,6 +100,9 @@ jfrog rt build-scan --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" 
 ```bash
 jfrog rt build-scan --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 1
 ```
+
+3 is the return code when a violation is found, it is a non success return code, you can fail your build based on that.
+This is taken care of transparently when using one native Artifactory plugin for your CI server.
 
 ## Conclusion
 

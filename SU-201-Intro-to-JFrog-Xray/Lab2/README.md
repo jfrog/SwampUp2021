@@ -16,13 +16,13 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 4. [Visual Studio](https://www.jfrog.com/confluence/display/JFROG/JFrog+Visual+Studio+Extension) - scanning your NuGet project dependencies
 
 - Here is an example from Visual Studio code
-<img src="/SU-201 Intro to DevSecOps with JFrog Xray/Lab2/images/1.gif" alt="Visual Studio Code" style="height: 100px; width:100px;"/>
+<img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/1.gif" alt="Visual Studio Code" style="height: 100px; width:100px;"/>
 
 ### Part 2 - JFrog Pipelines integrtaion
 
 - JFrog Pipelines provide us the avility to add a step that will triggers [JFrog Xray](https://www.jfrog.com/confluence/display/JFROG/JFrog+Xray) scan for security vulnerabilities and license compliance if there was a watch created that covers the selected build,
 -
-<img src="/SU-201 Intro to DevSecOps with JFrog Xray/Lab2/images/2.png" alt=" JFrog Pipelines integrtaion" style="height: 100px; width:100px;"/>
+<img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/2.png" alt=" JFrog Pipelines integrtaion" style="height: 100px; width:100px;"/>
 
 ### Part 3 - REST API
 
@@ -34,7 +34,7 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 
 - To get tge Xray [server version](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetVersion) use the following commnad:
 
--  <img src="/SU-201 Intro to DevSecOps with JFrog Xray/Lab2/images/3.png" alt="Xray REST API" style="height: 100px; width:100px;"/>
+-  <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/3.png" alt="Xray REST API" style="height: 100px; width:100px;"/>
 
 ### Part 4 - JFrog CLI
 
