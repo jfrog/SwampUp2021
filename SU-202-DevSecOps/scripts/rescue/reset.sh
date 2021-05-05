@@ -24,10 +24,6 @@ curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
      -X POST "${ARTIFACTORY_URL}/api/build/delete" \
      -d "{\"buildName\":\"${CLI_DOCKER_BUILD_NAME}\",\"deleteAll\":\"true\"}"
-curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
-     -H 'Content-Type: application/json' \
-     -X POST "${ARTIFACTORY_URL}/api/build/delete" \
-     -d "{\"buildName\":\"${CLI_GRADLE_LEGACY_BUILD_NAME}\",\"deleteAll\":\"true\"}"
 
 echo "INFO - deleting watches"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
@@ -51,7 +47,7 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -X DELETE "${XRAY_URL}/api/v2/policies/raise-violation-on-gpl"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
-     -X DELETE "${XRAY_URL}/api/v2/policies/raise-violation-on-high-severity"
+     -X DELETE "${XRAY_URL}/api/v2/policies/raise-violation-on-medium-severity"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
      -X DELETE "${XRAY_URL}/api/v2/policies/devsecops-sample-policy"
@@ -66,7 +62,7 @@ INDEXED_REPOS=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
 INDEXED_BUILDS=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                   -H 'Content-Type: application/json' \
                   -X GET "${XRAY_URL}/api/v1/binMgr/default/builds" \
-                  | jq 'del(.indexed_builds[] | select(. == "devsecops-gradle-legacy" or . == "devsecops-gradle" or . == "devsecops-docker"))' \
+                  | jq 'del(.indexed_builds[] | select(. == "devsecops-gradle" or . == "devsecops-docker"))' \
                   | jq -r '.indexed_builds')
 
 echo "INFO - resetting indexing configuration"

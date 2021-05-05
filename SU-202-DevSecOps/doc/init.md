@@ -23,9 +23,16 @@ Generate an Artifactory [API Key](https://www.jfrog.com/confluence/display/JFROG
 cd SU-202-DevSecOps
 ```
 
-Build the Docker lab runner image, replacing the variables according to your setup:
+- Set variables to build your image
 ```bash
-docker build --build-arg ARTIFACTORY_HOSTNAME="my-instance.jfrog.io" --build-arg ARTIFACTORY_LOGIN="foo@bar.com" --build-arg ARTIFACTORY_API_KEY="MY_API_KEY" -t swampup:runner . --no-cache 
+ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
+ARTIFACTORY_LOGIN="foo@bar.com"
+ARTIFACTORY_API_KEY="MY_API_KEY"
+```
+
+- Build the Docker lab runner image, replacing the variables according to your setup:
+```bash
+docker build -f lab-runner/Dockerfile --build-arg ARTIFACTORY_HOSTNAME="${ARTIFACTORY_HOSTNAME}" --build-arg ARTIFACTORY_LOGIN="${ARTIFACTORY_LOGIN}" --build-arg ARTIFACTORY_API_KEY="${ARTIFACTORY_API_KEY}" -t swampup:runner . --no-cache 
 ```
 
 ## Start the lab runner
@@ -44,6 +51,12 @@ JFrog CLI is a clean and convenient way to interact with Artifactory.
 jfrog config add "${CLI_INSTANCE_ID}" --artifactory-url="${ARTIFACTORY_URL}" --user="${ARTIFACTORY_LOGIN}" --apikey="${ARTIFACTORY_API_KEY}" --interactive=false
 ```
 
+## 
+
+jfrog rt ping
+
+if unseccful redirect to build
+
 ## Create repositories
 
 For each package type (docker, gradle) and maturity (dev, prod), we'll create:
@@ -52,15 +65,15 @@ For each package type (docker, gradle) and maturity (dev, prod), we'll create:
 - a virtual repository
 
 ```bash
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-docker-dev-local;repo-type=local;tech=docker" --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-docker-prod-local;repo-type=local;tech=docker" --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-docker-remote;repo-type=remote;tech=docker;url=https://registry-1.docker.io/" --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-docker-dev;repo-type=virtual;tech=docker;repositories=devsecops-docker-remote,devsecops-docker-dev-local;default=devsecops-docker-dev-local" --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-docker-prod;repo-type=virtual;tech=docker;repositories=devsecops-docker-remote,devsecops-docker-prod-local;default=devsecops-docker-prod-local" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-docker-dev-local;repo-type=local;tech=docker" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-docker-prod-local;repo-type=local;tech=docker" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-docker-remote;repo-type=remote;tech=docker;url=https://registry-1.docker.io/" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-docker-dev;repo-type=virtual;tech=docker;repositories=devsecops-docker-remote,devsecops-docker-dev-local;default=devsecops-docker-dev-local" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-docker-prod;repo-type=virtual;tech=docker;repositories=devsecops-docker-remote,devsecops-docker-prod-local;default=devsecops-docker-prod-local" --server-id="${CLI_INSTANCE_ID}"
 
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-gradle-dev-local;repo-type=local;tech=gradle" --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-gradle-prod-local;repo-type=local;tech=gradle" --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-gradle-remote;repo-type=remote;tech=gradle;url=https://jcenter.bintray.com" --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-gradle-dev;repo-type=virtual;tech=gradle;repositories=devsecops-gradle-remote,devsecops-gradle-dev-local;default=devsecops-gradle-dev-local" --server-id="${CLI_INSTANCE_ID}"
-jfrog rt repo-create scripts/template-create-repo.json --vars "repo-name=devsecops-gradle-prod;repo-type=virtual;tech=gradle;repositories=devsecops-gradle-remote,devsecops-gradle-prod-local;default=devsecops-gradle-prod-local" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-gradle-dev-local;repo-type=local;tech=gradle" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-gradle-prod-local;repo-type=local;tech=gradle" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-gradle-remote;repo-type=remote;tech=gradle;url=https://jcenter.bintray.com" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-gradle-dev;repo-type=virtual;tech=gradle;repositories=devsecops-gradle-remote,devsecops-gradle-dev-local;default=devsecops-gradle-dev-local" --server-id="${CLI_INSTANCE_ID}"
+jfrog rt repo-create template-create-repo.json --vars "repo-name=devsecops-gradle-prod;repo-type=virtual;tech=gradle;repositories=devsecops-gradle-remote,devsecops-gradle-prod-local;default=devsecops-gradle-prod-local" --server-id="${CLI_INSTANCE_ID}"
 ```

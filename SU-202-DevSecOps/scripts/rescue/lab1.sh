@@ -7,7 +7,7 @@ echo "INFO - build Gradle project"
 (cd ../.. ; gradle clean artifactoryPublish \
     -PprojectVersion="${PROJECT_VERSION_LAB1}" \
     -PartifactoryUrl="${ARTIFACTORY_URL}" \
-    -PartifactoryGradleRepo=${GRADLE_REPO_DEV} \
+    -PartifactoryGradleRepo="${GRADLE_REPO_DEV}" \
     -PartifactoryUser="${ARTIFACTORY_LOGIN}" \
     -PartifactoryApiKey="${ARTIFACTORY_API_KEY}" \
     -PstrutsVersion="${STRUTS_VERSION_UNSAFE}")
@@ -28,7 +28,8 @@ curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
      -d "{\"targetRepo\":\"${DOCKER_REPO_PROD}-local\",\"dockerRepository\":\"${IMAGE_NAME}\"}"
 
 echo "INFO - Remove docker image"
-docker rmi ${BASE_IMAGE_UNSAFE}
+docker rmi "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" 2>/dev/null
+docker rmi "${BASE_IMAGE_UNSAFE}" 2>/dev/null
 
 echo "INFO - Check local docker image"
 docker images | grep "${DOCKER_REPO_PROD}"

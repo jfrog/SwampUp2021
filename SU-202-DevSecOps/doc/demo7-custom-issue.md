@@ -1,4 +1,4 @@
-# Demo 6 - Custom Issue
+# Demo 7 - Custom Issue
 
 ## Context
 
@@ -10,7 +10,7 @@
 
 ## Indexing
 
-Expedite the indexing process on devsecops-gradle-prod-local using the Index Now feature.
+Check indexing on devsecops-gradle-prod-local is complete (use Index now if not).
 
 ## Create custom issue on jar containing Struts dependency
 
@@ -22,7 +22,7 @@ Expedite the indexing process on devsecops-gradle-prod-local using the Index Now
 * Title: Struts Based Component
 * Description: Let's ged rid of struts
 * Severity: High
-* Specific Version: 1.0.0
+* Specific Version: Current Version
 
 ## Check impact
 

@@ -70,7 +70,8 @@ curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
 
 Remove local images:
 ```bash
-docker rmi ${BASE_IMAGE_UNSAFE}
+docker rmi "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" 2>/dev/null
+docker rmi "${BASE_IMAGE_UNSAFE}" 2>/dev/null
 ```
 
 Check local docker image:

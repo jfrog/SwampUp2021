@@ -37,6 +37,12 @@ Artifactory => Artifacts => devsecops-docker-prod-local/swampup/devsecops/0.0.9/
 
 Xray message is shown: "Xray has a policy blocking this artifact for download."
 
+## Log into Docker registry
+
+```bash
+docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REGISTRY_PROD}"
+```
+
 ## Download image
 
 Remove local images:
