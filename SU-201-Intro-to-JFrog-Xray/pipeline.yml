@@ -1,0 +1,78 @@
+resources:
+  - name: git_repo 
+    type: GitRepo
+    configuration:
+      # SCM integration where the repository is located
+      gitProvider: GitHub
+      # Repository path, including org name/repo name
+      path: jfrog/SwampUp2021
+      branches:
+        # Specifies which branches will trigger dependent steps
+        include: main
+
+  - name: npm_build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory
+  
+  - name: mvn_build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory
+
+pipelines:
+  - name: npm_example_pipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+           my_env_var: '1.0.$run_number'
+    steps:
+      - name: npm_build_step
+        type: NpmBuild
+        configuration:
+          repositoryName: su201-npm      # required, npm repository name on artifacctory
+          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
+          integrations:
+            - name:  Artifactory  # required 
+          inputResources:
+            - name: git_repo   # required
+
+        # execution:
+        #   onStart:
+        #     - sed -ie 's/1.0.0/1.0.$run_number/g' package.json
+
+      - name: npm_publish_step
+        type: NpmPublish
+        configuration:
+          # for payloadType npm:
+          repositoryName: su201-npm        # required, npm repository name on artifactory
+          autoPublishBuildInfo: true       # optional
+          forceXrayScan: false
+          integrations:
+            - name: Artifactory      # required
+          inputSteps:
+            - name: npm_build_step      # required
+          outputResources:
+            - name: npm_build_info   
+  
+  - name: mvn_example_pipeline
+    steps:
+      - name: mvn_build_step
+        type: MvnBuild
+        configuration:
+          deployerSnapshotRepo: su201-libs-snapshot
+          deployerReleaseRepo:  su201-libs-release
+          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/maven-example/
+          inputResources:
+            - name: git_repo
+          integrations:
+            - name: Artifactory
+      
+      - name: publish_build
+        type: PublishBuildInfo
+        configuration:
+          forceXrayScan: false
+          inputSteps:
+            - name: mvn_build_step
+          outputResources:
+            - name: mvn_build_info

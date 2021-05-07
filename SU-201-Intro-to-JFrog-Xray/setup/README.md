@@ -11,7 +11,11 @@
 ![create_repos](https://user-images.githubusercontent.com/7561138/117177841-4f254e80-ad86-11eb-8184-20ffbe5c7af9.gif)
 
 
-It will create local, remote and virtual repositories.<br/> e.g. <br/> NPM - su201-npm-local , su201-npm-remote, su201-npm <br/> MAVEN - su201-libs-release-local, su201-libs-snapshot-local, su201-maven-jcenter, su201-libs-release, su201-libs-snapshot
+It will create local, remote and virtual repositories.<br/> 
+e.g. <br/> 
+**NPM** - su201-npm-local , su201-npm-remote, su201-npm <br/> 
+**MAVEN** - su201-libs-release-local, su201-libs-snapshot-local, su201-maven-jcenter, su201-libs-release, su201-libs-snapshot<br/> 
+**NOTE: Please use same name as above to be consistent throughout the class.** <br/> 
 
 ### Step 2 - Configure Virtual Repository
 
