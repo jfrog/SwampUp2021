@@ -1,0 +1,6 @@
+{
+    "indexed_builds": [
+        "npm_example_pipeline",
+        "mvn_example_pipeline"
+    ]
+}

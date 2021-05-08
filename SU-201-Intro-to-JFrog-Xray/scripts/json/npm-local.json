@@ -1,0 +1,6 @@
+{
+    "key": "su201-npm-local",
+    "rclass": "local",
+    "packageType": "npm",
+    "description": "The local NPM repository"
+}

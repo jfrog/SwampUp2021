@@ -1,0 +1,6 @@
+{
+    "key": "su201-maven-jcenter",
+    "rclass": "remote",
+    "url": "https://jcenter.bintray.com",
+    "packageType": "maven"
+}
