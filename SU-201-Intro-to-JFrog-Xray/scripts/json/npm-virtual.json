@@ -1,0 +1,7 @@
+{
+    "key" : "su201-npm",
+    "rclass" : "virtual",
+    "packageType" : "npm",
+    "repositories" : "su201-npm-local,su201-npm-remote",
+    "defaultDeploymentRepo" : "su201-npm-local"
+}

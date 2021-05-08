@@ -1,0 +1,6 @@
+{
+    "key": "su201-npm-remote",
+    "rclass": "remote",
+    "url": "https://registry.npmjs.org",
+    "packageType": "npm"
+}

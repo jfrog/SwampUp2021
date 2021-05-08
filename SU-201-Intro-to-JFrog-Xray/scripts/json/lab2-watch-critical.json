@@ -1,0 +1,38 @@
+{
+    "general_data": {
+        "name": "swampup_secops_watch",
+        "description": "This is a watch created for SecOps team",
+        "active": true
+    },
+    "project_resources": {
+        "resources": [
+            {
+                "type": "repository",
+                "bin_mgr_id": "default",
+                "name": "su201-libs-release-local"
+            },
+            {
+                "type": "repository",
+                "bin_mgr_id": "default",
+                "name": "su201-npm-local"
+            },
+            {
+                "type": "build",
+                "bin_mgr_id": "default",
+                "name": "mvn_example_pipeline"
+            },
+            {
+                "type": "build",
+                "bin_mgr_id": "default",
+                "name": "npm_example_pipeline"
+            }
+        ]
+    },
+    "assigned_policies": [
+        {
+            "name": "sec_critical_policy",
+            "type": "security"
+        }
+    ],
+   "watch_recipients":[]
+}

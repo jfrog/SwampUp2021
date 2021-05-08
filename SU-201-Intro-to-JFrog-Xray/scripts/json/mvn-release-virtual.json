@@ -1,0 +1,7 @@
+{
+    "key" : "su201-libs-release",
+    "rclass" : "virtual",
+    "packageType" : "maven",
+    "repositories" : "su201-libs-release-local,su201-maven-jcenter",
+    "defaultDeploymentRepo" : "su201-libs-release-local"
+}

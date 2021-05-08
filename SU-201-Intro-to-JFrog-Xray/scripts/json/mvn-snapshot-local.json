@@ -1,0 +1,6 @@
+{
+    "key": "su201-libs-snapshot-local",
+    "rclass": "local",
+    "packageType": "maven",
+    "description": "The local MAVEN repository"
+}
