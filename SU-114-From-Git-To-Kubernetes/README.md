@@ -62,4 +62,5 @@ Complete/answer the following tasks/questions:
 - Create a Release Bundle with the promoted docker images for the backend and frontend applications.
 - Distribute the Release Bundle to the edge.
 - Login to your edge node, make sure it was successfully distributed and available to download from the edge.
+
 Bonus: index your Release Bundle with Xray, and view the results under 'Xray' tab in distribution.
