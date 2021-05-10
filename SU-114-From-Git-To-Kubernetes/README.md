@@ -45,13 +45,17 @@ git push
 
 #### <ins>Lab #2 - Understanding the Environment</ins>
 
-- Run all Pipelines.
-- Understand the connection between all Pipelines based on the list view.
+Complete/answer the following tasks/questions:
+- Run all pipelines until your environment is GREEN.
+- Understand the relationship between the different pipelines - in what ways a pipeline can be triggered?
+- How many repositories were created for the backend application?
+- How many repositories were created for the frontend application?
 
 #### <ins>Lab #3 - Adding Security</ins>
 
-- Configure Watch & Policy.
-- Understand Xray results.
+- Add one Security and one License Policies: [Creating a Policy](https://www.jfrog.com/confluence/display/JFROG/Creating+Xray+Policies+and+Rules#CreatingXrayPoliciesandRules-CreatingaPolicy)
+- Add a watch per application (one watch for the backend; one watch for the frontend) and assign the policies you have created to these watches: [Configure Xray Watches](https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches)
+- Explore the violations that were NOW created.
 
 #### <ins>Lab #4 - Creating a Release Bundle & Distributing to Edge</ins>
 
