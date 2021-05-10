@@ -66,9 +66,9 @@ NOTE: if you already have GitHub account then start from Step 2 else create GitH
 
 - Navigate to **SwampUp2021/SU-201-Intro-to-JFrog-Xray/pipelines.yml** in your IDE 
 - Change line 8, **path: jfrog/SwampUp2021** to **path: {{your_git_user}}/SwampUp2021** save and commit to your remote main
---- git add SU-201-Intro-to-JFrog-Xray/pipelines.yml
---- git commit -m "rename path value in pipeline.yml"
---- git push -u origin main
+  - git add SU-201-Intro-to-JFrog-Xray/pipelines.yml
+  - git commit -m "rename path value in pipeline.yml"
+  - git push -u origin main
 - In the left sidebar, click **Administration** > **Pipelines** > **Pipeline Sources**
 - Click **Add Pipeline Source**
 - Select **From YAML** 
@@ -78,3 +78,5 @@ NOTE: if you already have GitHub account then start from Step 2 else create GitH
 - Keep **pipelines.yml** as it is for "Pipeline Config File Filter" 
 - Click **Create Source**
 - Latest Status will be **Syncying** and later it will change to **Success | Error**  
+
+![add_pipeline_source](https://user-images.githubusercontent.com/7561138/117591177-094eea00-b0e8-11eb-9c50-7b3266dc30c6.gif)
