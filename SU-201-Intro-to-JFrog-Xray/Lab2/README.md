@@ -9,7 +9,7 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
    <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/1.png" alt="Create a watch" style="height: 100px; width:100px;"/>
    
 -  Add the repositories to by clicking on the add repositories plus button and add the policy that we just created by clicking on the Manage policies button 
-   <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/6.png" alt="mame the repo" style="height: 100px; width:100px;"/>
+   <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/2.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
 
 ### Step 2 - Show violations
