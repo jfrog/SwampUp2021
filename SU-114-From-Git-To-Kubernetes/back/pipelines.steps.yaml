@@ -149,7 +149,6 @@ pipelines:
             - name: source_code
           inputSteps:
             - name: promoting_docker_build_info_backapp
-          autoPublishBuildInfo: true
           outputResources:
             - name: spring_helm_chart_back_app_resource
           chartPath: SU-114-From-Git-To-Kubernetes/back/chart

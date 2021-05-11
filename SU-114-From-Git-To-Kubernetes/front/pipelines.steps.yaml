@@ -180,7 +180,6 @@ pipelines:
         configuration:
           helmVersion: 3
           lint: true
-          autoPublishBuildInfo: true
           inputResources:
             - name: source_code
           inputSteps:
