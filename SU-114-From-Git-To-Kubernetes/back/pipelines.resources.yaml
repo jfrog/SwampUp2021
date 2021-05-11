@@ -43,13 +43,6 @@ resources:
       buildName: suv_114_backapp_docker_pipeline
       buildNumber: '${run_number}'
 
-  - name: build_info_docker_back_app_scanned
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: artifactory
-      buildName: suv_114_backapp_docker_pipeline
-      buildNumber: '${run_number}'
-
   - name: build_info_docker_back_app_promoted_staging
     type: BuildInfo
     configuration:
