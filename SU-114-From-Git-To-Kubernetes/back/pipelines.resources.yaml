@@ -58,9 +58,9 @@ resources:
       buildNumber: '${run_number}'
 
   - name: spring_helm_chart_back_app_resource
-      type: HelmChart
-      configuration:
-        sourceArtifactory: artifactory
-        repository: su-114-helm-virtual
-        chart: spring_helm_chart_back_app_chart
-        version: 1.0.'${run_number}'
+    type: HelmChart
+    configuration:
+      sourceArtifactory: artifactory
+      repository: su-114-helm-virtual
+      chart: spring_helm_chart_back_app_chart
+      version: 1.0.'${run_number}'
