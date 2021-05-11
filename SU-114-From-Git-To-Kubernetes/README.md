@@ -48,15 +48,18 @@ git push
 
 Complete/answer the following tasks/questions:
 - Run all pipelines until your environment is GREEN:
-![alt text](https://i.ibb.co/bP4tRcY/Screen-Shot-2021-05-11-at-14-34-34.png)</br>
+![alt text](https://i.ibb.co/bP4tRcY/Screen-Shot-2021-05-11-at-14-34-34.png)
 - Understand the relationship between the different pipelines - in what ways a pipeline can be triggered?
 - How many repositories were created for the backend application?
 - How many repositories were created for the frontend application?
 
 #### <ins>Lab #3 - Adding Security</ins>
 
-- Add one Security and one License Policies: [Creating a Policy](https://www.jfrog.com/confluence/display/JFROG/Creating+Xray+Policies+and+Rules#CreatingXrayPoliciesandRules-CreatingaPolicy)
-- Add a watch per application (one watch for the backend; one watch for the frontend) and assign the policies you have created to these watches: [Configure Xray Watches](https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches)
+- Index all builds from Xray's Administration Panel (Xray -> Settings -> Builds):
+![alt text](https://i.ibb.co/T4cLCsp/Screen-Shot-2021-05-11-at-15-21-48.png)
+- View the security issues and license discovered by Xray for every individual build.
+- Add one Security and one License Policies: [Creating a Policy](https://www.jfrog.com/confluence/display/JFROG/Creating+Xray+Policies+and+Rules#CreatingXrayPoliciesandRules-CreatingaPolicy).
+- Add a watch per application (one watch for the backend; one watch for the frontend) and assign the policies you have created to these watches: [Configure Xray Watches](https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches).
 - Explore the violations that were NOW created.
 
 #### <ins>Lab #4 - Creating a Release Bundle & Distributing to Edge</ins>
@@ -70,4 +73,7 @@ Complete/answer the following tasks/questions:
 - Download the release bundle from the edge.
 - This application is now ready to be deployed to any k8s cluster of your choice :-)
 
-Bonus: [Index your Release Bundle with Xray](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-XrayScanningofReleaseBundlesxraydata), and view the results under 'Xray' tab in Distribution.
+# Extras!
+#1 Bonus: [Index your Release Bundle with Xray](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-XrayScanningofReleaseBundlesxraydata), and view the results under 'Xray' tab in Distribution.
+#2 Bonus: Extend the pipeline with adding a quality gate after publishing the helm chart - what types of quality gate can you use?
+
