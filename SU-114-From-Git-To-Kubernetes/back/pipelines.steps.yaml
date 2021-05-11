@@ -139,3 +139,17 @@ pipelines:
             - write_output build_info_docker_back_app_promoted_staging "backimage=\"backapp\""
             - write_output build_info_docker_back_app_promoted_staging "backtag=${myDockerTag}"
             - jfrog rt sp --build=${res_build_info_docker_back_app_buildName}/${res_build_info_docker_back_app_buildNumber} su-114-docker-prod-local/**/manifest.json "docker.tag=${myDockerTag}"
+
+      - name: publish_helm_chart
+        type: HelmPublish
+        configuration:
+          helmVersion: 3
+          lint: true
+          inputResources:
+            - name: source_code
+          inputSteps:
+            - name: promoting_docker_build_info_backapp
+          autoPublishBuildInfo: true
+          outputResources:
+            - name: spring_helm_chart_back_app_resource
+          chartPath: SU-114-From-Git-To-Kubernetes/back/chart

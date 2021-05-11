@@ -56,3 +56,11 @@ resources:
       sourceArtifactory: artifactory
       buildName: suv_114_back_app_docker
       buildNumber: '${run_number}'
+
+  - name: spring_helm_chart_back_app_resource
+      type: HelmChart
+      configuration:
+        sourceArtifactory: artifactory
+        repository: su-114-helm-virtual
+        chart: spring_helm_chart_back_app_chart
+        version: 1.0.'${run_number}'

@@ -5,12 +5,19 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: talyi.jfrog.io/su-114-docker-virtual/backapp
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "1.0"
 
-imagePullSecrets: []
+imageCredentials:
+  name: registry-pull-secret
+  registry: talyi.jfrog.io
+  username: admin
+  password: notarealpassword
+
+imagePullSecrets:
+  - name: registry-pull-secret
 nameOverride: ""
 fullnameOverride: ""
 
@@ -37,7 +44,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 80
 
 ingress:
