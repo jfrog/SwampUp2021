@@ -57,6 +57,20 @@ resources:
       buildName: suv_114_back_app_docker
       buildNumber: '${run_number}'
 
+  - name: build_info_helm_chart_back_app
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory
+      buildName: suv_114_back_app_docker
+      buildNumber: '${run_number}'
+
+  - name: build_info_helm_chart_back_app_promoted
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory
+      buildName: suv_114_back_app_docker
+      buildNumber: '${run_number}'
+
   - name: spring_helm_chart_back_app_resource
     type: HelmChart
     configuration:

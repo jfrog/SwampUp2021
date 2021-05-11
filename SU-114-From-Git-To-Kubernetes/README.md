@@ -37,7 +37,7 @@ git push
 - Create a Pipeline Source based on the forked repository, with the following Pipeline Config File Filter: ```SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml``` and branch ```main```:</br>
 ![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png)
 
-- Make sure all pipelines were loaded under "My Pipelines":cd 
+- Make sure all pipelines were loaded under "My Pipelines": 
 ![alt text](https://i.ibb.co/mqMSDpd/Screen-Shot-2021-05-11-at-13-32-51.png)
 
 - Run the "suv_114_on_boarding_environment" to populate all repositories for our demo.</br>
@@ -47,7 +47,8 @@ git push
 #### <ins>Lab #2 - Understanding the Environment</ins>
 
 Complete/answer the following tasks/questions:
-- Run all pipelines until your environment is GREEN.
+- Run all pipelines until your environment is GREEN:
+![alt text](https://i.ibb.co/bP4tRcY/Screen-Shot-2021-05-11-at-14-34-34.png)</br>
 - Understand the relationship between the different pipelines - in what ways a pipeline can be triggered?
 - How many repositories were created for the backend application?
 - How many repositories were created for the frontend application?
