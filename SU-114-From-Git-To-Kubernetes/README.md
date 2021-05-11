@@ -37,7 +37,8 @@ git push
 - Create a Pipeline Source based on the forked repository, with the following Pipeline Config File Filter: ```SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml``` and branch ```main```:</br>
 ![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png)
 
-- Make sure all pipelines were loaded under "My Pipelines".
+- Make sure all pipelines were loaded under "My Pipelines":cd 
+![alt text](https://i.ibb.co/mqMSDpd/Screen-Shot-2021-05-11-at-13-32-51.png)
 
 - Run the "suv_114_on_boarding_environment" to populate all repositories for our demo.</br>
 ![alt text](https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png)</br>
@@ -59,8 +60,13 @@ Complete/answer the following tasks/questions:
 
 #### <ins>Lab #4 - Creating a Release Bundle & Distributing to Edge</ins>
 
-- Create a Release Bundle with the promoted docker images for the backend and frontend applications.
-- Distribute the Release Bundle to the edge.
-- Login to your edge node, make sure it was successfully distributed and available to download from the edge.
+- From Distribution UI, [Creating a Release Bundle](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-CreatingaNewReleaseBundle) that contains:
+    - The promoted docker images for the backend and front end applications.
+    - The helm charts for both applications.
+- Sign the release bundle.
+- [Distribute the Release Bundle](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-DistributingaReleaseBundle) to the edge.
+- Login to your edge node, and view the release bundle that was just distributed.
+- Download the release bundle from the edge.
+- This application is now ready to be deployed to any k8s cluster of your choice :-)
 
-Bonus: index your Release Bundle with Xray, and view the results under 'Xray' tab in distribution.
+Bonus: [Index your Release Bundle with Xray](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-XrayScanningofReleaseBundlesxraydata), and view the results under 'Xray' tab in Distribution.

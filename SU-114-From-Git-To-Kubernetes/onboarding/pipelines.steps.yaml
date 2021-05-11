@@ -11,6 +11,9 @@ pipelines:
         execution:
           onStart:
             - echo 'Applying repository configuration'
+            - ls -la
+            - ls ${res_source_code_resourcePath}
+            - ls ${res_source_code_resourcePath}/SU-114-From-Git-To-Kubernetes
             - cd ${res_source_code_resourcePath}/SU-114-From-Git-To-Kubernetes/onboarding/
             - ls -la
             - jfrog rt curl -XPATCH /api/system/configuration -T repo-conf-template.yaml
