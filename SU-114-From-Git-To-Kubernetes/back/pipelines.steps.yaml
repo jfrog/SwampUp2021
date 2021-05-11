@@ -146,7 +146,6 @@ pipelines:
           helmVersion: 3
           lint: true
           affinityGroup: swampup
-          autoPublishBuildInfo: true
           inputResources:
             - name: source_code
           inputSteps:
