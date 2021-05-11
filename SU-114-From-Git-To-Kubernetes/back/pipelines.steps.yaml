@@ -152,35 +152,5 @@ pipelines:
           inputSteps:
             - name: promoting_docker_build_info_backapp
           outputResources:
-            - name: build_info_helm_chart_back_app
             - name: spring_helm_chart_back_app_resource
           chartPath: SU-114-From-Git-To-Kubernetes/back/chart
-
-      - name: xray_scan_helm_chart_back_app
-        type: XrayScan
-        configuration:
-          affinityGroup: swampup
-          failOnScan: true
-          inputSteps:
-            - name: publish_helm_chart
-          inputResources:
-            - name: build_info_helm_chart_back_app
-
-      - name: promoting_helm_chart_build_info
-        type: PromoteBuild
-        configuration:
-          affinityGroup: swampup
-          targetRepository: su-114-helm-prod-local
-          includeDependencies: false
-          status: "HELM_CHART_SCAN_OK"
-          comment: "Xray scan passed succesfully"
-          copy: "True"
-          integrations:
-            - name: artifactory
-          inputResources:
-            - name: build_info_helm_chart_back_app
-              trigger: true
-          inputSteps:
-            - name: xray_scan_helm_chart_back_app
-          outputResources:
-            - name: build_info_helm_chart_back_app_promoted
