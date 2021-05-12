@@ -1,5 +1,5 @@
 # Lab6 - Leverage CLI to publish build to Artifactory
-
+docker run -it ubuntu
 ## Step 1 - Run the build.sh script
 - Navigate to Lab6 on the forked project on your local box.
   ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab6```
