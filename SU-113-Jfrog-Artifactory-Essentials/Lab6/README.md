@@ -1,8 +1,14 @@
 # Lab6 - Leverage CLI to publish build to Artifactory
 
+##Prerequisite
+- ```docker build -t ubuntu-git-curl-image .```
+- ```docker run -it ubuntu-git-curl-image bash```
+- ```git clone https://github.com/jfrog/SwampUp2021.git```
+
+
 ## Step 1 - Run the build.sh script
 - Navigate to Lab6 on the forked project on your local box.
-  ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab6```
+  ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab6/CI-Integration```
   
 - Execute the ./build.sh script. Ensure you have the right permission to execute this on your local box
 - You will be prompted to enter some important details. We will discuss each one of these during the class and while implementing this lab 
