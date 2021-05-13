@@ -4,10 +4,12 @@
 - Create a docker image with Ubuntu, curl,git and docker installed. 
   - ```docker build -t swampup113-lab6-image:latest .```
   - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock swampup113-lab6-image:latest```
+ 
+- Once the above container is up and running, Please execute the below steps inside this docker container.
   - ```git clone https://github.com/jfrog/SwampUp2021.git```
   - ```docker login ${SERVER_NAME}.jfrog.io```
   
-- Once the above container is up and running, Please execute the below steps inside this docker container.
+- All the below steps (Step 1 to Step 4 needs to be executed inside this container )
 
 ## Step 1 - Run the build.sh script
 - Navigate to Lab6/CI-Integration on the forked project on your container.
