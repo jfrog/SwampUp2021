@@ -1,12 +1,15 @@
 # Lab4 - Working with Artifactory as your docker registry
 
 ## Prerequisite
-- Create a docker image with Alpine, curl,git, VI and docker installed and run the docker image
-    - ```docker build -t swampup113-lab-image:latest .```
-    - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock swampup113-lab-image:latest```
-    
-- Once the above container is up and running, Please execute the below steps inside this docker container.
-    - ```git clone https://github.com/jfrog/SwampUp2021.git```
+- Required - Docker container to execute this lab
+    - Navigate to  ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials```
+
+    - Create a docker image with Alpine, curl,git, VI and docker installed and run the docker image
+        - ```docker build -t swampup113-lab-image:latest .```
+        - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock swampup113-lab-image:latest```
+        
+    - Once the above container is up and running, Please execute the below steps inside this docker container.
+        - ```git clone https://github.com/jfrog/SwampUp2021.git```
 
 ## Step1 - Navigate to Lab4 inside the container
 - Navigate to Lab4 on the container
