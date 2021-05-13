@@ -1,8 +1,7 @@
 # Lab6 - Leverage CLI to publish build to Artifactory
 
 ## Prerequisite
-- Leverage the same container from Lab4. Ensure it is up and running. If th container has exited pleas re-run the below command
-  - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock swampup113-lab-image:latest```
+- Leverage the same container from Lab4. Ensure it is up and running. If the container has stopped, please refer Lab4 to run the container again.
   
 - All the below steps (Step 1 to Step 4 needs to be executed inside this container )
 
