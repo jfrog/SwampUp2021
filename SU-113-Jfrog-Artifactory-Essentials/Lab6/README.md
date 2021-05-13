@@ -9,10 +9,10 @@
   
 
 ## Step 1 - Run the build.sh script
-- Navigate to Lab6 on the forked project on your local box.
+- Navigate to Lab6/CI-Integration on the forked project on your container.
   ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab6/CI-Integration```
   
-- Execute the ./build.sh script. Ensure you have the right permission to execute this on your local box
+- Execute the ./build.sh script. 
 - You will be prompted to enter some important details. We will discuss each one of these during the class and while implementing this lab 
 * Detail about each input
   * Configuration name for CLI : The name used to reference your instance using Jfrog CLI on your local machine. e.g - "JPD" is the name which I am giving to access my Jfrog platform
