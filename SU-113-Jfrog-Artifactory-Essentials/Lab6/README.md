@@ -1,11 +1,10 @@
 # Lab6 - Leverage CLI to publish build to Artifactory
 
-##Prerequisite
-- ```git clone https://github.com/jfrog/SwampUp2021.git```
-- ```docker build -t ubuntu-git-curl-image .```
-- ```docker run -it ubuntu-git-curl-image bash```
-- ```git clone https://github.com/jfrog/SwampUp2021.git```
-- ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock ubuntu-git-curl-image```
+## Prerequisite
+- Pull the Lab6 Sample docker image which you need for configuring CLI. This image contains ubuntu base image, with curl,git and docker installed
+  - ```docker pull docker.artifactory-unified.soleng-us.jfrog.team/swampup113-lab6-image:latest```
+  - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock docker.artifactory-unified.soleng-us.jfrog.team/swampup113-lab6-image:latest```
+  - ```git clone https://github.com/jfrog/SwampUp2021.git```
 
 ## Step 1 - Run the build.sh script
 - Navigate to Lab6 on the forked project on your local box.
