@@ -11,7 +11,7 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 
 <img src="/SU-201-Intro-to-JFrog-Xray/Lab4/images/1.png" alt="Impact Analysis" style="height: 100px; width:100px;"/>
 
-### Part 3 - Create Reports
+### Part 2 - Create Reports
 
 - Xray reports provide you the ability to collect and view information on the Xray scanning of your packages and artifacts. 
 - To collect a report click on the Security and compliance tab and the reports tab 
