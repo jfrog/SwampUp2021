@@ -1,13 +1,8 @@
 # Lab6 - Leverage CLI to publish build to Artifactory
 
 ## Prerequisite
-- Create a docker image with Ubuntu, curl,git and docker installed and run the docker image
-  - ```docker build -t swampup113-lab6-image:latest .```
-  - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock swampup113-lab6-image:latest```
- 
-- Once the above container is up and running, Please execute the below steps inside this docker container.
-  - ```git clone https://github.com/jfrog/SwampUp2021.git```
-  - ```docker login ${SERVER_NAME}.jfrog.io```
+- Leverage the same container from Lab4. Ensure it is up and running. If th container has exited pleas re-run the below command
+  - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock swampup113-lab-image:latest```
   
 - All the below steps (Step 1 to Step 4 needs to be executed inside this container )
 
