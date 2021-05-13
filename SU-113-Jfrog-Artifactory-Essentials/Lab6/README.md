@@ -5,7 +5,7 @@
 - ```docker build -t ubuntu-git-curl-image .```
 - ```docker run -it ubuntu-git-curl-image bash```
 - ```git clone https://github.com/jfrog/SwampUp2021.git```
-```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock ubuntu-git-curl-image```
+- ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock ubuntu-git-curl-image```
 
 ## Step 1 - Run the build.sh script
 - Navigate to Lab6 on the forked project on your local box.
