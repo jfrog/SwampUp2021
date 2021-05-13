@@ -1,7 +1,11 @@
-FROM ubuntu:latest
-RUN apt-get -y update
-RUN apt-get -y install git
-RUN apt-get -y install curl
-RUN apt-get -y install docker.io
+FROM alpine:latest
+RUN apk update
+RUN apk add --no-cache
+RUN apk add vim
+RUN apk add git
+RUN apk add curl
+#RUN apk add docker.io
+RUN apk add bash
+RUN apk add --no-cache docker-cli
 
 WORKDIR /root
