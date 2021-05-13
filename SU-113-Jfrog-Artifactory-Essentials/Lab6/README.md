@@ -1,7 +1,7 @@
 # Lab6 - Leverage CLI to publish build to Artifactory
 
 ## Prerequisite
-- Create a docker image with Ubuntu, curl,git and docker installed. 
+- Create a docker image with Ubuntu, curl,git and docker installed and run the docker image
   - ```docker build -t swampup113-lab6-image:latest .```
   - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock swampup113-lab6-image:latest```
  
