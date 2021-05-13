@@ -1,11 +1,3 @@
-FROM alpine:latest
-RUN apk update
-RUN apk add --no-cache
-RUN apk add vim
-RUN apk add git
-RUN apk add curl
-#RUN apk add docker.io
-RUN apk add bash
-RUN apk add --no-cache docker-cli
+FROM SERVER_NAME.jfrog.io/VIRTUAL_REPO_NAME/ubuntu:18.04
 
-WORKDIR /root
+CMD printf "\nCONGRATULATIONS!!!\n\nYou have just set up your first Docker build with CLI on your new JFrog Platform!\n\n"
