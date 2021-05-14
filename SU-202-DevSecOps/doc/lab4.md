@@ -16,7 +16,7 @@
 - Promote the Docker image to a production grade repository
 - Download the Docker image 
 
-## Check watch results from build #1
+## Check devsecops-docker-build-watch watch violations dashboard 
 
 ## Configure Gradle build
 
@@ -32,15 +32,14 @@ printf "Building ${PROJECT_VERSION_LAB4}\nwith struts ${STRUTS_VERSION_SAFE} (sa
 
 ```bash
 jfrog rt gradle clean artifactoryPublish \
-            -b build.gradle \
-            --build-name "${CLI_GRADLE_BUILD_NAME}" \
-            --build-number 2 \
             -PprojectVersion="${PROJECT_VERSION_LAB4}" \
             -PartifactoryUrl="${ARTIFACTORY_URL}" \
             -PartifactoryGradleRepo="${GRADLE_REPO_DEV}" \
             -PartifactoryUser="${ARTIFACTORY_LOGIN}" \
             -PartifactoryApiKey="${ARTIFACTORY_API_KEY}" \
-            -PstrutsVersion="${STRUTS_VERSION_SAFE}"
+            -PstrutsVersion="${STRUTS_VERSION_SAFE}" \
+            --build-name "${CLI_GRADLE_BUILD_NAME}" \
+            --build-number 2
 ```
 
 ## Publish Gradle Build info
@@ -68,7 +67,7 @@ printf "Building ${IMAGE_ABSOLUTE_NAME_DEV_LAB4}\nwith base image ${BASE_IMAGE_S
 ```
 
 ```bash
-docker build -t "${IMAGE_ABSOLUTE_NAME_DEV_LAB4}" --build-arg "BASE_IMAGE=${BASE_IMAGE_SAFE}" .
+docker build -t "${IMAGE_ABSOLUTE_NAME_DEV_LAB4}" --build-arg "BASE_IMAGE=${BASE_IMAGE_SAFE}" . --no-cache
 ```
 
 ## Push Docker image to Artifactory

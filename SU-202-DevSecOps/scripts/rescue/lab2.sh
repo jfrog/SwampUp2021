@@ -1,11 +1,5 @@
 #!/usr/bin/env sh
 
-#######################
-# internal properties #
-#######################
-
-readonly XRAY_URL="https://${ARTIFACTORY_HOSTNAME}/xray"
-
 #################
 # build process #
 #################

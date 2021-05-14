@@ -15,7 +15,7 @@ Create **raise-violation-on-gpl** license policy:
 - trigger a violation on **GPL** license discovered
 - no action
 
-## Create Xray watch
+## Update Xray watch
 
 Update **devsecops-docker-build-watch** watch:
 - add **raise-violation-on-gpl** as policy

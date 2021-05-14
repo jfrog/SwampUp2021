@@ -14,15 +14,18 @@
 - Scan your build
 - [Try to] Promote / Download the Docker image
 
+## Index resources
+
+- index build by pattern:
+```bash
+devsecops-**
+```
+
 ## Configure Gradle build
 
 ```bash
 jfrog rt gradle-config --server-id-resolve="${CLI_INSTANCE_ID}" --repo-resolve="${GRADLE_REPO_DEV}" --server-id-deploy="${CLI_INSTANCE_ID}" --repo-deploy="${GRADLE_REPO_DEV}" --use-wrapper=false --uses-plugin=true --deploy-ivy-desc=false
 ```
-
-## Index resources
-
-- index **devsecops-**** build
 
 ## Build the gradle project
 
@@ -32,15 +35,14 @@ printf "Building ${PROJECT_VERSION_LAB3}\nwith struts ${STRUTS_VERSION_UNSAFE} (
 
 ```bash
 jfrog rt gradle clean artifactoryPublish \
-            -b build.gradle \
-            --build-name "${CLI_GRADLE_BUILD_NAME}" \
-            --build-number 1 \
             -PprojectVersion="${PROJECT_VERSION_LAB3}" \
             -PartifactoryUrl="${ARTIFACTORY_URL}" \
             -PartifactoryGradleRepo="${GRADLE_REPO_DEV}" \
             -PartifactoryUser="${ARTIFACTORY_LOGIN}" \
             -PartifactoryApiKey="${ARTIFACTORY_API_KEY}" \
-            -PstrutsVersion="${STRUTS_VERSION_UNSAFE}"
+            -PstrutsVersion="${STRUTS_VERSION_UNSAFE}" \
+            --build-name "${CLI_GRADLE_BUILD_NAME}" \
+            --build-number 1
 ```
 
 ## Publish Gradle Build info
@@ -51,16 +53,34 @@ jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME
 
 ## Create Xray policy
 
-Create **fail-build-on-high-severity** security policy:
+Create security policy:
+```bash
+fail-build-on-high-severity
+```
+with rule
+```bash
+fail-build-on-high-severity-rule
+```
+
 - trigger a violation on **high severity** security issue discovered
 - **Fail Build** as action
 
 ## Create Xray watch
 
-Create **devsecops-docker-build-watch** watch:
-- add **devsecops-\*/*** build (pattern) as resource
-- add **fail-build-on-high-severity** as policy
+Create watch:
+```bash
+devsecops-docker-build-watch
+```
 
+- add a build pattern as resource
+```bash
+devsecops-*/*
+```
+- add policy
+```bash
+fail-build-on-high-severity
+```
+  
 ## Log into Docker registry
 
 ```bash
