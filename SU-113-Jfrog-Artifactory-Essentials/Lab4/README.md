@@ -14,7 +14,7 @@
 
 ## Step1 - Navigate to Lab4 inside the container
 - Navigate to Lab4 on the container
-  ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab4```
+  ```cd ~/SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab4```
 
 
 ## Step2 - Update the dockerfile  

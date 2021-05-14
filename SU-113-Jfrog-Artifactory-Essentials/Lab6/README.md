@@ -7,7 +7,7 @@
 
 ## Step 1 - Run the build.sh script
 - Navigate to Lab6 on the forked project on your container.
-  ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab6```
+  ```cd ~/SwampUp2021/SU-113-Jfrog-Artifactory-Essentials/Lab6```
   
 - Execute the ./build.sh script. 
 - You will be prompted to enter some important details. We will discuss each one of these during the class and while implementing this lab 
