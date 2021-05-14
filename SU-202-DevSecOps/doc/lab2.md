@@ -19,15 +19,33 @@
 
 ## Create Xray policy
 
-Create **block-download-on-high-severity** security policy:
+Create security policy:
+```bash
+block-download-on-high-severity
+```
+with rule
+```bash
+block-download-on-high-severity-rule
+```
+
 - trigger a violation on **high severity** security issue discovered
 - **Block Download** and **Block Unscanned** Artifacts as actions
 
 ## Create Xray watch
 
-Create **devsecops-docker-repo-watch** watch:
-- add **devsecops-docker-prod-local** repository as resource
-- add **block-download-on-high-severity** as policy
+Create watch:
+```bash
+devsecops-docker-repo-watch
+```
+
+- add a repository as resource:
+```bash
+devsecops-docker-prod-local
+```
+- add policy:
+```bash
+block-download-on-high-severity
+```
 
 ## Apply on existing content
 
