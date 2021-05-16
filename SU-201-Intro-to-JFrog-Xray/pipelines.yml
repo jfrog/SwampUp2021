@@ -37,23 +37,28 @@ pipelines:
           inputResources:
             - name: git_repo   # required
 
-        # execution:
-        #   onStart:
-        #     - sed -ie 's/1.0.0/1.0.$run_number/g' package.json
-
       - name: npm_publish_step
         type: NpmPublish
         configuration:
           # for payloadType npm:
           repositoryName: su201-npm        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
-          forceXrayScan: true
           integrations:
             - name: Artifactory      # required
           inputSteps:
             - name: npm_build_step      # required
           outputResources:
             - name: npm_build_info   
+        
+      - name: npm_build_scan
+        type: XrayScan
+        configuration:
+          failOnScan: false                      # default true
+          inputResources:
+            - name: npm_build_info           # required
+              trigger: true
+          outputResources:
+            - name: npm_build_info          # optional
   
   - name: mvn_example_pipeline
     steps:
@@ -76,3 +81,13 @@ pipelines:
             - name: mvn_build_step
           outputResources:
             - name: mvn_build_info
+
+      - name: mvn_build_scan
+        type: XrayScan
+        configuration:
+          failOnScan: false                      # default true
+          inputResources:
+            - name: mvn_build_info           # required
+              trigger: true
+          outputResources:
+            - name: mvn_build_info          # optional
