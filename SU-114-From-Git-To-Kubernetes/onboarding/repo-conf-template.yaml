@@ -59,6 +59,7 @@ remoteRepositories:
       xray:
         enabled: true
       enableTokenAuthentication: true
+      blockPushingSchema1: false
   su-114-gradle-remote:
       type: gradle
       url: https://jcenter.bintray.com

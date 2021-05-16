@@ -187,3 +187,4 @@ pipelines:
           outputResources:
             - name: spring_helm_chart_front_app_resource
           chartPath: SU-114-From-Git-To-Kubernetes/front/chart
+          flags: --app-version=${build_docker_frontapp_dockerImageTag} --version 1.0.${run_number}
