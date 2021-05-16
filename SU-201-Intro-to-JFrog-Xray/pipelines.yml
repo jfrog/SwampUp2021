@@ -44,16 +44,6 @@ pipelines:
             - name: build_info      # required
           outputResources:
             - name: build_info   
-        
-      - name: npm_build_scan
-        type: XrayScan
-        configuration:
-          failOnScan: false                      # default true
-          inputResources:
-            - name: build_info           # required
-              trigger: true
-          outputResources:
-            - name: build_info          # optional
   
   - name: mvn_example_pipeline
     steps:
@@ -71,16 +61,15 @@ pipelines:
       - name: publish_build
         type: PublishBuildInfo
         configuration:
-          forceXrayScan: false
           inputSteps:
             - name: build_info
           outputResources:
             - name: build_info
 
-      - name: mvn_build_scan
+      - name: build_scan
         type: XrayScan
         configuration:
-          failOnScan: false                      # default true
+          failOnScan: false           # default true
           inputResources:
             - name: build_info           # required
               trigger: true
