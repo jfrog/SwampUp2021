@@ -42,6 +42,8 @@ git push
 
 - Run the "suv_114_on_boarding_environment" to populate all repositories for our demo.</br>
 ![alt text](https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png)</br>
+The following repositories should be created (Go to "Artifactory" -> "Artifacts"):
+![alt text](https://i.ibb.co/qY4YK77/Screen-Shot-2021-05-16-at-19-48-58.png)</br>
 <b>* For any issues, please assist the instructor and T.A's!</b>
 
 #### <ins>Lab #2 - Understanding the Environment</ins>
@@ -62,8 +64,9 @@ Complete/answer the following tasks/questions:
 - Add a watch per application (one watch for the backend; one watch for the frontend) and assign the policies you have created to these watches: [Configure Xray Watches](https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches).
 - Explore the violations that were NOW created.
 
-#### <ins>Lab #4 - Creating a Release Bundle & Distributing to Edge</ins>
+# Extras - Do it yourself!
 
+#1 Bonus - Creating a Release Bundle & Distributing to Edge</br>
 - From Distribution UI, [Creating a Release Bundle](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-CreatingaNewReleaseBundle) that contains:
     - The promoted docker images for the backend and front end applications.
     - The helm charts for both applications.
@@ -72,8 +75,5 @@ Complete/answer the following tasks/questions:
 - Login to your edge node, and view the release bundle that was just distributed.
 - Download the release bundle from the edge.
 - This application is now ready to be deployed to any k8s cluster of your choice :-)
-
-# Extras!
-#1 Bonus: [Index your Release Bundle with Xray](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-XrayScanningofReleaseBundlesxraydata), and view the results under 'Xray' tab in Distribution.
-#2 Bonus: Extend the pipeline with adding a quality gate after publishing the helm chart - what types of quality gate can you use?
-
+#2 Bonus: [Index your Release Bundle with Xray](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-XrayScanningofReleaseBundlesxraydata), and view the results under 'Xray' tab in Distribution.</br>
+#3 Bonus: Implement helm chart promotion: extend the pipelines with adding a quality gate after publishing the helm chart - what types of quality gate can you use?</br>
