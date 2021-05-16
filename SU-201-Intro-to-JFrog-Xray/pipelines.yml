@@ -10,12 +10,7 @@ resources:
         # Specifies which branches will trigger dependent steps
         include: main
 
-  - name: npm_build_info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: Artifactory
-  
-  - name: mvn_build_info
+  - name: build_info
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
@@ -46,19 +41,19 @@ pipelines:
           integrations:
             - name: Artifactory      # required
           inputSteps:
-            - name: npm_build_step      # required
+            - name: build_info      # required
           outputResources:
-            - name: npm_build_info   
+            - name: build_info   
         
       - name: npm_build_scan
         type: XrayScan
         configuration:
           failOnScan: false                      # default true
           inputResources:
-            - name: npm_build_info           # required
+            - name: build_info           # required
               trigger: true
           outputResources:
-            - name: npm_build_info          # optional
+            - name: build_info          # optional
   
   - name: mvn_example_pipeline
     steps:
@@ -78,16 +73,16 @@ pipelines:
         configuration:
           forceXrayScan: false
           inputSteps:
-            - name: mvn_build_step
+            - name: build_info
           outputResources:
-            - name: mvn_build_info
+            - name: build_info
 
       - name: mvn_build_scan
         type: XrayScan
         configuration:
           failOnScan: false                      # default true
           inputResources:
-            - name: mvn_build_info           # required
+            - name: build_info           # required
               trigger: true
           outputResources:
-            - name: mvn_build_info          # optional
+            - name: build_info          # optional
