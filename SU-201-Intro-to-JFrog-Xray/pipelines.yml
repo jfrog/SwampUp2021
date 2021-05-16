@@ -14,6 +14,8 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
+      buildName:  'npm_example_pipeline'
+      buildNumber: $run_number
   
   - name: mvn_build_info
     type: BuildInfo
@@ -32,11 +34,23 @@ pipelines:
         configuration:
           repositoryName: su201-npm      # required, npm repository name on artifacctory
           sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
-          autoPublishBuildInfo: true
           integrations:
             - name:  Artifactory  # required 
           inputResources:
             - name: git_repo   # required
+
+      - name: npm_publish_step
+        type: NpmPublish
+        configuration:
+          # for payloadType npm:
+          repositoryName: su201-npm        # required, npm repository name on artifactory
+          autoPublishBuildInfo: true       # optional
+          integrations:
+            - name: Artifactory      # required
+          inputSteps:
+            - name: npm_build_step      # required
+          outputResources:
+            - name: npm_build_info   # optional
   
   - name: mvn_example_pipeline
     steps:
@@ -47,9 +61,16 @@ pipelines:
           deployerReleaseRepo:  su201-libs-release
           sourceLocation: ./SU-201-Intro-to-JFrog-Xray/maven-example/
           mvnCommand: clean install -ntp
-          autoPublishBuildInfo: true
           inputResources:
             - name: git_repo
           integrations:
             - name: Artifactory
-    
+      
+      - name: publish_build
+        type: PublishBuildInfo
+        configuration:
+          forceXrayScan: true
+          inputSteps:
+            - name: mvn_build_step
+          outputResources:
+            - name: mvn_build_info
