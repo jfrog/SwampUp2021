@@ -66,7 +66,7 @@ pipelines:
       environmentVariables:
         readOnly:
           dockerFrameworkVersion: ${res_docker_framework_build_info_promoted_myversion}
-          dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_commitSha}
+          dockerImageTagVersion: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_commitSha}
     steps:
       - name: build_docker_backapp
         type: DockerBuild
@@ -75,7 +75,7 @@ pipelines:
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/back/
           dockerImageName: ${int_server_name_value}.jfrog.io/su-114-docker-virtual/backapp
-          dockerImageTag: ${dockerImageTag}
+          dockerImageTag: ${dockerImageTagVersion}
           dockerOptions: --build-arg SERVER_NAME=${int_server_name_value} --build-arg DOCKER_FRAMEWORK_VERSION=${dockerFrameworkVersion}
           inputResources:
             - name: source_code
@@ -154,4 +154,4 @@ pipelines:
           outputResources:
             - name: spring_helm_chart_back_app_resource
           chartPath: SU-114-From-Git-To-Kubernetes/back/chart
-          flags: --set=appVersion=${dockerImageTag}
+          flags: --set=appVersion=${dockerImageTagVersion}
