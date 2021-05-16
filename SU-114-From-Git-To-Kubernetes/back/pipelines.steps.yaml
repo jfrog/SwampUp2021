@@ -154,4 +154,4 @@ pipelines:
           outputResources:
             - name: spring_helm_chart_back_app_resource
           chartPath: SU-114-From-Git-To-Kubernetes/back/chart
-          flags: --set=appVersion=${dockerImageTagVersion}
+          flags: --set appVersion=${build_docker_backapp_dockerImageTag}
