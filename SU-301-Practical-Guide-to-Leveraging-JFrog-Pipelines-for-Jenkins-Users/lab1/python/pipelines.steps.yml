@@ -1,0 +1,69 @@
+pipelines:
+  - name: lab1_webapp_python
+    configuration:
+      environmentVariables:
+        readOnly:
+          dockerRepo: swampup301.jfrog.io/urs-docker
+          pythonRepo: urs-python
+          genericRepo: urs-generic
+          genericPromotionRepo: urs-generic-release-local
+    steps:
+      - name: lab1_build_webapp_python
+        type: Bash
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/default/${pipeline_name}/${run_number}/lab1_build_webapp_python?branch=${res_lab1_src_code_webapp_python_branchName}"
+            JFROG_CLI_LOG_LEVEL: DEBUG
+          affinityGroup: python
+          runtime:
+            type: image
+            image:
+              custom:
+                registry: artifactory_eu
+                name: ${dockerRepo}/python-jfrog
+                tag: 3.9.5-slim-buster
+                ## remove the longest string matching "*/" starting from the left
+                sourceRepository: ${dockerRepo##*/}
+          inputResources:
+            - name: lab1_src_code_webapp_python
+          outputResources:
+            - name: lab1_bi_webapp_python
+          integrations:
+            - name: artifactory_eu
+        execution:
+          onStart:
+            - jfrog --version 
+            - cd ${res_lab1_src_code_webapp_python_resourcePath}/src/python && ls -l
+            - git branch
+            - jfrog config add --url=${int_artifactory_eu_url%/artifactory} --user="${int_artifactory_eu_user}" --apikey=${int_artifactory_eu_apikey} --interactive=false  art1 && jfrog config show
+            - jfrog rt pip-config --repo-resolve ${pythonRepo} --server-id-resolve art1
+          onExecute:
+            - jfrog rt pip-install -r requirements.txt --no-cache-dir  --build-name=${res_lab1_bi_webapp_python_buildName} --build-number=${run_number} --module=python_deps
+            - tar -czvf webapp_python.tar.gz *.yaml *.txt *.py
+            - jfrog rt upload webapp_python.tar.gz ${genericRepo} --build-name ${res_lab1_bi_webapp_python_buildName} --build-number ${run_number}
+            - jfrog rt bce ${res_lab1_bi_webapp_python_buildName} ${run_number}
+            - jfrog rt bp  ${res_lab1_bi_webapp_python_buildName} ${run_number}
+          
+      - name: lab1_scan_webapp_python
+        type: XrayScan
+        configuration:
+          failOnScan: false
+          inputResources:
+            - name: lab1_bi_webapp_python
+              trigger: true
+
+      - name: lab1_promote_bi_webapp_python
+        type: PromoteBuild
+        configuration:
+          targetRepository: ${genericPromotionRepo}
+          includeDependencies: false
+          status: XRAY_SCAN_OK
+          comment: build passed Xray Scan
+          copy: false
+          inputSteps:
+            - name: lab1_scan_webapp_python
+          inputResources:
+            - name: lab1_bi_webapp_python
+          outputResources:
+            - name: lab1_bi_webapp_python_promoted
+

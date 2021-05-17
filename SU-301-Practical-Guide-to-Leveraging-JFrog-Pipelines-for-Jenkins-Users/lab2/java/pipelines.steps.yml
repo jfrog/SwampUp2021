@@ -1,0 +1,152 @@
+pipelines:
+  - name: lab2_backapp_mvn
+    configuration:
+      environmentVariables:
+        readOnly:
+          virtualRepo: urs-mvn
+    steps:
+      - name: lab2_build_backapp_mvn
+        type: MvnBuild
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_backapp_mvn_branchName}"
+            JFROG_CLI_LOG_LEVEL: DEBUG
+          mvnCommand: clean package
+          sourceLocation: src/java
+          resolverSnapshotRepo: urs-mvn
+          resolverReleaseRepo: urs-mvn
+          deployerSnapshotRepo: urs-mvn
+          deployerReleaseRepo: urs-mvn
+          forceXrayScan: false
+          autoPublishBuildInfo: true
+          inputResources:
+            - name: lab2_src_code_backapp_mvn
+          outputResources:
+            - name: lab2_bi_backapp_mvn
+          integrations:
+            - name: artifactory_eu
+        execution:
+          onStart:
+            - ls -l ${res_lab2_src_code_backapp_mvn_resourcePath}/src
+            - jfrog rt c show
+          onFailure:
+            - echo "Not cool"
+          onSuccess:
+            - echo "Yahoo"
+            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/src/java/pom.xml`
+            - echo $runVarAppVersion
+
+      - name: lab2_scan_backapp_mvn
+        type: XrayScan
+        configuration:
+          failOnScan: false
+          inputResources:
+            - name: lab2_bi_backapp_mvn
+              trigger: true
+
+      - name: lab2_promote_bi_backapp_mvn_promoted
+        type: PromoteBuild
+        configuration:
+          targetRepository: urs-mvn-rc-local
+          includeDependencies: false
+          status: SANDBOX_OK
+          comment: Unit testing and Xray scan passed succesfully
+          copy: false
+          inputResources:
+            - name: lab2_bi_backapp_mvn
+              trigger: true
+          inputSteps:
+            - name: lab2_scan_backapp_mvn
+          outputResources:
+            - name: lab2_bi_backapp_mvn_promoted
+            - name: lab2_pb_backapp_mvn
+        execution:  
+          onSuccess:
+            - write_output lab2_pb_backapp_mvn appVersion=${runVarAppVersion}
+
+  - name: lab2_backapp_mvn_docker
+    steps:
+      # need this step to export the appVersion for the Filespec Resource
+      - name: lab2_export_variables
+        type: Bash
+        configuration:
+          inputResources:
+            - name: lab2_pb_backapp_mvn
+        execution:
+          onExecute:
+            - add_run_variables runVarAppVersion=${res_lab2_pb_backapp_mvn_appVersion}
+
+      - name: lab2_build_backapp_mvn_docker
+        type: DockerBuild
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_backapp_mvn_branchName}"
+            JFROG_CLI_LOG_LEVEL: INFO
+          affinityGroup: together
+          dockerFileName: Dockerfile
+          dockerFileLocation: lab2/java/
+          dockerImageName: swampup301.jfrog.io/urs-docker/backapp-mvn-docker
+          dockerImageTag: ${runVarAppVersion}
+          inputSteps:
+            - name: lab2_export_variables
+          inputResources:
+            - name: lab2_src_dockerfile_backapp_mvn
+            - name: lab2_fs_backapp_mvn
+          integrations:
+            - name: artifactory_eu
+            - name: artifactory_docker
+        execution:
+          onStart:
+            - 'ls -la ${res_lab2_fs_backapp_mvn_resourcePath}'
+            - 'echo ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}'
+            - 'ls -la  ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}'
+            - >-
+              cp
+              ${res_lab2_fs_backapp_mvn_resourcePath}/multi-module-application-${runVarAppVersion}.jar
+              ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}/lab2/java/multi-module-application.jar
+
+      - name: lab2_publish_backapp_mvn_docker
+        type: DockerPush
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/lab2_bi_backapp_mvn_docker/${run_number}/setup_env?branch=${runBranchName}"
+            JFROG_CLI_LOG_LEVEL: INFO
+          affinityGroup: together
+          targetRepository: urs-docker-dev-local
+          autoPublishBuildInfo: true
+          inputSteps:
+            - name: lab2_build_backapp_mvn_docker
+          integrations:
+            - name: artifactory_eu
+          outputResources:
+            - name: lab2_bi_backapp_mvn_docker
+        execution:
+          onSuccess:
+            - >-
+              jfrog rt sp
+              --build=${res_lab2_bi_backapp_mvn_docker_buildName}/${run_number}
+              urs-docker-dev-local/backapp-mvn-docker/${runVarAppVersion}/
+              "app.version=${runVarAppVersion};app.commit.sha=${runVarAppCommitSHA};dockerfile.commit.sha=${runVarGitCommit};project.name=uranus"
+
+      - name: lab2_scan_backapp_mvn_docker
+        type: XrayScan
+        configuration:
+          failOnScan: false
+          inputResources:
+            - name: lab2_bi_backapp_mvn_docker
+              trigger: true
+
+      - name: lab2_promote_bi_backapp_mvn_docker
+        type: PromoteBuild
+        configuration:
+          targetRepository: urs-docker-rc-local
+          includeDependencies: false
+          status: SCAN_OK
+          comment: Xray scan OK
+          copy: false
+          inputSteps:
+            - name: lab2_scan_backapp_mvn_docker
+          inputResources:
+            - name: lab2_bi_backapp_mvn_docker
+          outputResources:
+            - name: lab2_bi_backapp_mvn_docker_promoted

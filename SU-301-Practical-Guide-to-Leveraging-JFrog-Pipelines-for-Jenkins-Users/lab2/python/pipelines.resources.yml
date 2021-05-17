@@ -1,0 +1,61 @@
+resources:
+  - name: lab2_src_code_webapp_python
+    type: GitRepo
+    configuration:
+      gitProvider: my_github
+      path: cyan21/su301
+      branches:
+        include: main
+      files:
+        include: lab2/python/.+
+
+  - name: lab2_bi_webapp_python
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: webapp_python
+      buildNumber: '${run_number}'
+
+  - name: lab2_bi_webapp_python_promoted
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: webapp_python
+      buildNumber: '${run_number}'
+
+  - name: lab2_pb_webapp_python
+    type: PropertyBag
+    configuration:
+      appVersion: X.X.X
+
+  - name: lab2_src_dockerfile_webapp_python
+    type: GitRepo
+    configuration:
+      gitProvider: my_github
+      path: cyan21/su301
+      branches:
+        include: main
+      files:
+        include: lab2/python/Dockerfile
+
+  - name: lab2_fs_webapp_python
+    type: FileSpec
+    configuration:
+      sourceArtifactory: artifactory_eu
+      pattern: "urs-generic/*.tar.gz"
+      props: "vcs.revision=${runVarAppVersion}"
+      flat: true
+      
+  - name: lab2_bi_webapp_python_docker
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: lab2_webapp_python_docker
+      buildNumber: ${run_number}
+
+  - name: lab2_bi_webapp_python_docker_promoted
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: lab2_webapp_python_docker
+      buildNumber: ${run_number}

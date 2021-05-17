@@ -1,0 +1,12 @@
+resources:
+  - name: wh_jenkins
+    type: IncomingWebhook
+    configuration:
+      webhookName: trigger_vm_deployment
+      
+  - name: vm_group
+    type: VmCluster
+    configuration:
+      sshKey: bastion
+      targets:
+        - swampup-f901152981a5f19e.elb.eu-west-1.amazonaws.com

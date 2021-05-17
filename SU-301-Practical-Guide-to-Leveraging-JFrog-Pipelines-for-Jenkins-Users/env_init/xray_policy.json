@@ -1,0 +1,23 @@
+{
+    "name": "global_security",
+    "description": "This is a security policy",
+    "type": "security",
+    "rules": [
+        {
+            "name": "important",
+            "criteria": {
+                "min_severity": "medium"
+            },
+            "actions": {
+                "block_download": {
+                    "active": false,
+                    "unscanned": false
+                },
+                "fail_build": true,
+                "notify_deployer": true,
+                "notify_watch_recipients": true
+            },
+            "priority": 1
+        }
+    ]
+}

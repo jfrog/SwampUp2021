@@ -1,0 +1,117 @@
+template: true
+valuesFilePath: values.yml  
+
+resources:
+
+  - name: {{ .Values.K8sResources.gitRepoHelm.name }}
+    type: GitRepo
+    configuration:
+      gitProvider: {{ .Values.K8sResources.gitRepoHelm.gitProvider }}
+      path: {{ .Values.K8sResources.gitRepoHelm.path }}
+      branches:
+        include: {{ .Values.K8sResources.gitRepoHelm.branches.include }}
+      files:
+        include: {{ .Values.K8sResources.gitRepoHelm.files.include }}
+      
+  - name: {{ .Values.K8sResources.buildInfo.resourceName }}
+    type: BuildInfo 
+    configuration:
+      sourceArtifactory: {{ .Values.K8s.integration.artifactory }}
+      buildName: {{ .Values.K8sResources.buildInfo.name }}
+      buildNumber: ${run_number} 
+
+  # - name: {{ .Values.K8sResources.buildInfoPromoted.resourceName }}
+  #   type: BuildInfo 
+  #   configuration:
+  #     sourceArtifactory: {{ .Values.K8s.integration.artifactory }}
+  #     buildName: {{ .Values.K8sResources.buildInfo.name }}
+  #     buildNumber: ${run_number} 
+
+  - name: {{ .Values.K8sResources.chart.name }}
+    type: HelmChart
+    configuration:
+      sourceArtifactory: {{ .Values.K8s.integration.artifactory }}
+      repository: {{ .Values.K8s.chart.repo }}
+      chart: {{ .Values.K8s.chart.name }}
+      version: {{ .Values.K8s.chart.version }}
+
+  - name: {{ .Values.K8sResources.incomingWebhook.resourceName }}
+    type: IncomingWebhook
+    configuration:
+      webhookName: {{ .Values.K8sResources.incomingWebhook.integrationName }}
+
+pipelines:
+  - name: {{ .Values.K8s.pipelineNameCreate }}
+    steps:      
+      - name: {{ .Values.K8sSteps.publishHelm.name }}
+        type: HelmPublish
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_{{ .Values.K8s.integration.artifactory }}_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_{{ .Values.K8sResources.gitRepoHelm.name }}_branchName}"
+          helmVersion: 3
+          chartPath: {{ .Values.K8sSteps.publishHelm.path }}
+          lint: {{ .Values.K8sSteps.publishHelm.lint }}
+          autoPublishBuildInfo: {{ .Values.K8sSteps.publishHelm.autoPublishBuildInfo }}
+          inputResources:
+            - name: {{ .Values.K8sResources.gitRepoHelm.name }}
+          integrations:
+            - name: {{ .Values.K8s.integration.artifactory }}
+          outputResources:
+            - name: {{ .Values.K8sResources.chart.name }}
+            - name: {{ .Values.K8sResources.buildInfo.resourceName }}
+
+  - name: {{ .Values.K8s.pipelineName }}
+    steps:  
+      - name: {{ .Values.K8sSteps.deployHelm.name }}
+        type: HelmDeploy
+        configuration:
+          environmentVariables:
+            JFROG_CLI_LOG_LEVEL: DEBUG
+          helmVersion: 3
+          integrations:
+            - name: {{ .Values.K8s.integration.k8s }}
+          inputResources:
+            - name: {{ .Values.K8sResources.chart.name }}
+            - name: {{ .Values.K8sResources.incomingWebhook.resourceName }}
+          releaseName: my-web-app
+          flags: "--debug --install --namespace {{ .Values.K8s.namespace }} --cleanup-on-fail --set image.repository=${varRunImageName} --set image.tag=${varRunImageTag} "
+          valueFilePaths:
+            - values.yaml
+        execution:
+          onStart:
+            - echo "$res_{{ .Values.K8sResources.incomingWebhook.resourceName }}_payload" | jq "."
+            - varRunImageName=`echo "$res_{{ .Values.K8sResources.incomingWebhook.resourceName }}_payload" | jq '.image_name'`
+            - varRunImageTag=`echo "$res_{{ .Values.K8sResources.incomingWebhook.resourceName }}_payload" | jq '.image_tag'`
+            - echo $varRunImageName
+            - echo $varRunImageTag
+
+      - name: {{ .Values.K8sSteps.testApp.name }}
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: {{ .Values.K8sSteps.deployHelm.name }}
+        execution:
+          onExecute:
+            - echo running tests !!!
+          onSuccess:
+            - echo tests OK !!!
+          onFailure:
+            - echo tests KO !!!
+          onComplete:
+            - echo stop deployment
+
+      # - name: {{ .Values.K8sSteps.promoteHelm.name }}
+      #   type: PromoteBuild
+      #   configuration:
+      #     targetRepository: {{ .Values.K8s.chart.repoPromotion1 }}
+      #     includeDependencies: {{ .Values.K8sSteps.promoteHelm.includeDependencies }}
+      #     status: {{ .Values.K8sSteps.promoteHelm.status }}
+      #     comment: {{ .Values.K8sSteps.promoteHelm.comment }}
+      #     copy: {{ .Values.K8sSteps.promoteHelm.copy }}
+      #     inputResources:
+      #       - name: {{ .Values.K8sResources.buildInfo.resourceName }}
+      #         trigger: true
+      #     inputSteps:
+      #       - name: {{ .Values.K8sSteps.testApp.name }}
+      #     outputResources:
+      #       - name: {{ .Values.K8sResources.buildInfoPromoted.resourceName }}

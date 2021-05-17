@@ -1,0 +1,59 @@
+pipelines:
+  - name: lab1_backapp_mvn
+    configuration:
+      environmentVariables:
+        readOnly:
+          virtualRepo: urs-mvn
+    steps:
+      - name: lab1_build_backapp_mvn
+        type: MvnBuild
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab1_src_code_backapp_mvn_branchName}"
+            JFROG_CLI_LOG_LEVEL: DEBUG
+          mvnCommand: clean package
+          sourceLocation: src/java
+          resolverSnapshotRepo: urs-mvn
+          resolverReleaseRepo: urs-mvn
+          deployerSnapshotRepo: urs-mvn
+          deployerReleaseRepo: urs-mvn
+          forceXrayScan: false
+          autoPublishBuildInfo: true
+          inputResources:
+            - name: lab1_src_code_backapp_mvn
+          outputResources:
+            - name: lab1_bi_backapp_mvn
+          integrations:
+            - name: artifactory_eu
+        execution:
+          onStart:
+            - ls -l ${res_lab1_src_code_backapp_mvn_resourcePath}/src
+            - jfrog rt c show
+          onFailure:
+            - echo "Not cool"
+          onSuccess:
+            - echo "Yahoo"
+
+      - name: lab1_scan_backapp_mvn
+        type: XrayScan
+        configuration:
+          failOnScan: false
+          inputResources:
+            - name: lab1_bi_backapp_mvn
+              trigger: true
+
+      - name: lab1_promote_bi_backapp_mvn
+        type: PromoteBuild
+        configuration:
+          targetRepository: urs-mvn-rc-local
+          includeDependencies: false
+          status: SANDBOX_OK
+          comment: Unit testing and Xray scan passed succesfully
+          copy: false
+          inputResources:
+            - name: lab1_bi_backapp_mvn
+              trigger: true
+          inputSteps:
+            - name: lab1_scan_backapp_mvn
+          outputResources:
+            - name: lab1_bi_backapp_mvn_promoted

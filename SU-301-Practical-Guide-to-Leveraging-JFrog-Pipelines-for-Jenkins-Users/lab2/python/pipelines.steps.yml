@@ -1,0 +1,167 @@
+pipelines:
+  - name: lab2_webapp_python
+    configuration:
+      environmentVariables:
+        readOnly:
+          dockerRepo: swampup301.jfrog.io/urs-docker
+          pythonRepo: urs-python
+          genericRepo: urs-generic
+          genericPromotionRepo: urs-generic-release-local
+    steps:
+      - name: lab2_build_webapp_python
+        type: Bash
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/default/${pipeline_name}/${run_number}/lab2_build_webapp_python?branch=${res_lab2_src_code_webapp_python_branchName}"
+            JFROG_CLI_LOG_LEVEL: DEBUG
+          affinityGroup: python
+          runtime:
+            type: image
+            image:
+              custom:
+                registry: artifactory_eu
+                name: ${dockerRepo}/python-jfrog
+                tag: 3.9.5-slim-buster
+                ## remove the longest string matching "*/" starting from the left
+                sourceRepository: ${dockerRepo##*/}
+          inputResources:
+            - name: lab2_src_code_webapp_python
+          outputResources:
+            - name: lab2_bi_webapp_python
+          integrations:
+            - name: artifactory_eu
+        execution:
+          onStart:
+            - jfrog --version 
+            - cd ${res_lab2_src_code_webapp_python_resourcePath}/src/python && ls -l
+            - git branch
+            - jfrog config add --url=${int_artifactory_eu_url%/artifactory} --user="${int_artifactory_eu_user}" --apikey=${int_artifactory_eu_apikey} --interactive=false  art1 && jfrog config show
+            - jfrog rt pip-config --repo-resolve ${pythonRepo} --server-id-resolve art1
+          onExecute:
+            - jfrog rt pip-install -r requirements.txt --no-cache-dir  --build-name=${res_lab2_bi_webapp_python_buildName} --build-number=${run_number} --module=python_deps
+            - tar -czvf webapp_python.tar.gz *.yaml *.txt *.py
+            - jfrog rt upload webapp_python.tar.gz ${genericRepo} --build-name ${res_lab2_bi_webapp_python_buildName} --build-number ${run_number}
+            - jfrog rt bce ${res_lab2_bi_webapp_python_buildName} ${run_number}
+            - jfrog rt bp  ${res_lab2_bi_webapp_python_buildName} ${run_number}
+          onSuccess:
+            - | 
+              if [ ${res_lab2_src_code_webapp_python_isGitTag} == 'True' ]; then 
+                add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_gitTagName}
+              else
+                add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_commitSha}
+              fi
+            - echo ${runVarAppVersion}
+
+      - name: lab2_scan_webapp_python
+        type: XrayScan
+        configuration:
+          failOnScan: false
+          inputResources:
+            - name: lab2_bi_webapp_python
+              trigger: true
+
+      - name: lab2_promote_bi_webapp_python
+        type: PromoteBuild
+        configuration:
+          targetRepository: ${genericPromotionRepo}
+          includeDependencies: false
+          status: XRAY_SCAN_OK
+          comment: build passed Xray Scan
+          copy: false
+          inputSteps:
+            - name: lab2_scan_webapp_python
+          inputResources:
+            - name: lab2_bi_webapp_python
+          outputResources:
+            - name: lab2_bi_webapp_python_promoted
+            - name: lab2_pb_webapp_python
+        execution:  
+          onSuccess:
+            - write_output lab2_pb_webapp_python appVersion=${runVarAppVersion}
+
+  - name: lab2_webapp_python_docker
+    configuration:
+      environmentVariables:
+        readOnly:
+          dockerRepo: swampup301.jfrog.io/urs-docker
+
+    steps:
+      # need this step to export the appVersion for the Filespec Resource
+      - name: lab2_export_variables
+        type: Bash
+        configuration:
+          inputResources:
+            - name: lab2_pb_webapp_python
+        execution:
+          onExecute:
+            - add_run_variables runVarAppVersion=${res_lab2_pb_webapp_python_appVersion}
+
+      - name: lab2_build_webapp_python_docker
+        type: DockerBuild
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_webapp_python_branchName}"
+            JFROG_CLI_LOG_LEVEL: INFO
+          affinityGroup: together
+          dockerFileName: Dockerfile
+          dockerFileLocation: lab2/python/
+          dockerImageName: ${dockerRepo}/webapp-python-docker
+          dockerImageTag: ${runVarAppVersion}
+          inputSteps:
+              - name: lab2_export_variables
+          inputResources:
+            - name: lab2_src_dockerfile_webapp_python
+            - name: lab2_fs_webapp_python
+            - name: lab2_pb_webapp_python
+          integrations:
+            - name: artifactory_eu
+            - name: artifactory_docker
+        execution:
+          onStart:
+            - 'ls -la ${res_lab2_fs_webapp_python_resourcePath}'
+            - 'echo ${res_lab2_src_dockerfile_webapp_python_resourcePath}'
+            - 'ls -la  ${res_lab2_src_dockerfile_webapp_python_resourcePath}'
+            - >-
+              cp
+              ${res_lab2_fs_webapp_python_resourcePath}/webapp_python.tar.gz
+              ${res_lab2_src_dockerfile_webapp_python_resourcePath}/lab2/python/
+            - ls -l  ${res_lab2_src_dockerfile_webapp_python_resourcePath}/lab2/python/
+
+      - name: lab2_publish_webapp_python_docker
+        type: DockerPush
+        configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/lab2_bi_webapp_python_docker/${run_number}/setup_env?branch=${runBranchName}"
+            JFROG_CLI_LOG_LEVEL: INFO
+          affinityGroup: together
+          targetRepository: urs-docker-dev-local
+          autoPublishBuildInfo: true
+          inputSteps:
+            - name: lab2_build_webapp_python_docker
+          integrations:
+            - name: artifactory_eu
+          outputResources:
+            - name: lab2_bi_webapp_python_docker
+
+      - name: lab2_scan_webapp_python_docker
+        type: XrayScan
+        configuration:
+          failOnScan: false
+          inputResources:
+            - name: lab2_bi_webapp_python_docker
+              trigger: true
+
+      - name: lab2_promote_bi_webapp_python_docker
+        type: PromoteBuild
+        configuration:
+          targetRepository: urs-docker-rc-local
+          includeDependencies: false
+          status: SCAN_OK
+          comment: Xray scan OK
+          copy: false
+          inputSteps:
+            - name: lab2_scan_webapp_python_docker
+          inputResources:
+            - name: lab2_bi_webapp_python_docker
+          outputResources:
+            - name: lab2_bi_webapp_python_docker_promoted

@@ -1,0 +1,24 @@
+resources:
+  - name: lab1_src_code_webapp_python
+    type: GitRepo
+    configuration:
+      gitProvider: my_github
+      path: cyan21/su301
+      branches:
+        include: main
+      files:
+        include: lab1/python/.+
+
+  - name: lab1_bi_webapp_python
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: webapp_python
+      buildNumber: '${run_number}'
+
+  - name: lab1_bi_webapp_python_promoted
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: webapp_python
+      buildNumber: '${run_number}'
