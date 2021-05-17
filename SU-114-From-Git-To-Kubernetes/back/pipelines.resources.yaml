@@ -5,6 +5,8 @@ resources:
     configuration:
       gitProvider: github
       path: talitz/SwampUp2021
+      branches:
+        include: main
 
   - name: back_app_build_info
     type: BuildInfo
