@@ -70,7 +70,7 @@ pipelines:
       - name: publish_build
         type: PublishBuildInfo
         configuration:
-          forceXrayScan: true
+          forceXrayScan: false
           inputSteps:
             - name: mvn_build_step
           outputResources:
