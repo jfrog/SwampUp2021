@@ -19,6 +19,6 @@ resources:
   - name: lab1_bi_webapp_python_promoted
     type: BuildInfo
     configuration:
-      sourceArtifactory: artifactory_eu
+      sourceArtifactory: artifactory_brexit
       buildName: webapp_python
       buildNumber: '${run_number}'

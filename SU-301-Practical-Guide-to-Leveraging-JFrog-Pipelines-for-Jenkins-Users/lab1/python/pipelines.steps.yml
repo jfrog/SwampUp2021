@@ -19,18 +19,17 @@ pipelines:
             type: image
             image:
               custom:
-                registry: artifactory_eu
                 name: ${dockerRepo}/python-jfrog
                 tag: 3.9.5-slim-buster
                 ## remove the longest string matching "*/" starting from the left
                 sourceRepository: ${dockerRepo##*/}
           inputResources:
-            - name: lab1_src_code_webapp_python
+            - name: lab10_src_code_webapp_python
           outputResources:
             - name: lab1_bi_webapp_python
           integrations:
             - name: artifactory_eu
-        execution:
+          execution:
           onStart:
             - jfrog --version 
             - cd ${res_lab1_src_code_webapp_python_resourcePath}/src/python && ls -l
@@ -49,7 +48,7 @@ pipelines:
         configuration:
           failOnScan: false
           inputResources:
-            - name: lab1_bi_webapp_python
+            - name: lab1_bi_webapp_anaconda
               trigger: true
 
       - name: lab1_promote_bi_webapp_python
