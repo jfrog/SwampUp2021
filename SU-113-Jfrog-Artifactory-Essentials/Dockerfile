@@ -10,5 +10,5 @@ RUN apk add --no-cache docker-cli
 
 ENV JFROG_CLI_HOME=/opt/jfrog
 RUN mkdir /opt/jfrog
-RUN curl -fL https://getcli.jfrog.io | sh &&  chmod 755 jfrog &&  mv jfrog /usr/local/bin/
+RUN curl -fL https://getcli.jfrog.io | sh
 WORKDIR /opt/jfrog
