@@ -21,7 +21,8 @@ sed -ie "s/SERVER_NAME/$instancename/g" Dockerfile
 sed -ie "s/VIRTUAL_REPO_NAME/$docker_virtual_repository_name/g" Dockerfile
 
 echo -n
-chmod +x jfrog
+##chmod +x jfrog
+
 jfrog config add $CLIName --artifactory-url https://$instancename.jfrog.io/artifactory --user $username --password $password --interactive=false
 jfrog config use $CLIName
 
