@@ -19,6 +19,6 @@ resources:
   - name: lab1_bi_backapp_mvn_promoted
     type: BuildInfo
     configuration:
-      sourceArtifactory: artifactory_eu
+      sourceArtifactory: artifactory_brexit
       buildName: backapp_mvn
       buildNumber: ${run_number}
