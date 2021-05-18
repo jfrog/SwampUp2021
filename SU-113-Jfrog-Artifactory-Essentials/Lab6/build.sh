@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-##curl -fL https://getcli.jfrog.io | sh
+curl -fL https://getcli.jfrog.io | sh
 echo -n "Configuration name for CLI : "
 read -r CLIName
 
