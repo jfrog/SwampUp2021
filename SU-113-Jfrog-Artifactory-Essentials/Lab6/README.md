@@ -21,7 +21,7 @@
   
   * Jfrog instance username : username for accessing your jfrog platform instance with deployment privileges 
   
-  * Jfrog instance username : password for accessing your jfrog platform instance
+  * Jfrog instance password : password for accessing your jfrog platform instance
   
   * Docker Virtual Repository name : Please provide this as "swampup-docker". This is the name of the virtual repository which you created in Step3 of Lab2
   
