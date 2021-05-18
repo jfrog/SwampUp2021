@@ -53,7 +53,7 @@ pipelines:
       - name: publish_build
         type: PublishBuildInfo
         configuration:
-          forceXrayScan: false
+          forceXrayScan: true
           inputSteps:
             - name: npm_publish_step
           outputResources:
