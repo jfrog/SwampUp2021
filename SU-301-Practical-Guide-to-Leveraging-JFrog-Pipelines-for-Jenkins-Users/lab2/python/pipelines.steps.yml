@@ -19,7 +19,6 @@ pipelines:
             type: image
             image:
               custom:
-                registry: artifactory_eu
                 name: ${dockerRepo}/python-jfrog
                 tag: 3.9.5-slim-buster
                 ## remove the longest string matching "*/" starting from the left
@@ -48,7 +47,7 @@ pipelines:
               if [ ${res_lab2_src_code_webapp_python_isGitTag} == 'True' ]; then 
                 add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_gitTagName}
               else
-                add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_commitSha}
+                add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_commitSha2048}
               fi
             - echo ${runVarAppVersion}
 
@@ -102,9 +101,8 @@ pipelines:
           environmentVariables:
             JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_webapp_python_branchName}"
             JFROG_CLI_LOG_LEVEL: INFO
-          affinityGroup: together
           dockerFileName: Dockerfile
-          dockerFileLocation: lab2/python/
+          dockerFileLocation: lab3/python/
           dockerImageName: ${dockerRepo}/webapp-python-docker
           dockerImageTag: ${runVarAppVersion}
           inputSteps:
@@ -124,7 +122,7 @@ pipelines:
             - >-
               cp
               ${res_lab2_fs_webapp_python_resourcePath}/webapp_python.tar.gz
-              ${res_lab2_src_dockerfile_webapp_python_resourcePath}/lab2/python/
+              ${res_lab2_src_dockerfile_webapp_python_resourcePath}/lab1/python/
             - ls -l  ${res_lab2_src_dockerfile_webapp_python_resourcePath}/lab2/python/
 
       - name: lab2_publish_webapp_python_docker

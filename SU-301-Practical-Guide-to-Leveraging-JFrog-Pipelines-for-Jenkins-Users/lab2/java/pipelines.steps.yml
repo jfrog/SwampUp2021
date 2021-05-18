@@ -13,10 +13,10 @@ pipelines:
             JFROG_CLI_LOG_LEVEL: DEBUG
           mvnCommand: clean package
           sourceLocation: src/java
-          resolverSnapshotRepo: urs-mvn
-          resolverReleaseRepo: urs-mvn
-          deployerSnapshotRepo: urs-mvn
-          deployerReleaseRepo: urs-mvn
+          resolverSnapshotRepo: ${virtualRepo}
+          resolverReleaseRepo: ${virtualRepo}
+          deployerSnapshotRepo: ${virtualRepo}
+          deployerReleaseRepo: ${virtualRepo}
           forceXrayScan: false
           autoPublishBuildInfo: true
           inputResources:
@@ -33,7 +33,7 @@ pipelines:
             - echo "Not cool"
           onSuccess:
             - echo "Yahoo"
-            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/src/java/pom.xml`
+            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/src/java/pomme.xml`
             - echo $runVarAppVersion
 
       - name: lab2_scan_backapp_mvn
@@ -84,7 +84,7 @@ pipelines:
             JFROG_CLI_LOG_LEVEL: INFO
           affinityGroup: together
           dockerFileName: Dockerfile
-          dockerFileLocation: lab2/java/
+          dockerFileLocation: lab3/java/
           dockerImageName: swampup301.jfrog.io/urs-docker/backapp-mvn-docker
           dockerImageTag: ${runVarAppVersion}
           inputSteps:
@@ -94,7 +94,6 @@ pipelines:
             - name: lab2_fs_backapp_mvn
           integrations:
             - name: artifactory_eu
-            - name: artifactory_docker
         execution:
           onStart:
             - 'ls -la ${res_lab2_fs_backapp_mvn_resourcePath}'
@@ -103,7 +102,7 @@ pipelines:
             - >-
               cp
               ${res_lab2_fs_backapp_mvn_resourcePath}/multi-module-application-${runVarAppVersion}.jar
-              ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}/lab2/java/multi-module-application.jar
+              ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}/lab1/java/multi-module-application.jar
 
       - name: lab2_publish_backapp_mvn_docker
         type: DockerPush
@@ -111,7 +110,6 @@ pipelines:
           environmentVariables:
             JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/lab2_bi_backapp_mvn_docker/${run_number}/setup_env?branch=${runBranchName}"
             JFROG_CLI_LOG_LEVEL: INFO
-          affinityGroup: together
           targetRepository: urs-docker-dev-local
           autoPublishBuildInfo: true
           inputSteps:
