@@ -73,7 +73,7 @@ e.g. <br/>
 - For **SCM Provider Integration**, Select **GitHub** from drop down  (based on Step 3 github integration name will appear here)
 - For **Repository Full Name**, Select **{{your_git_user}}/SwampUp2021** 
 - For **Branch**, Select **main**  
-- For **Pipeline Config File Filter**, Keep **pipelines.yml** as it is 
+- For **Pipeline Config File Filter**, update default value with **SU-201-Intro-to-JFrog-Xray/pipelines.yml**
 - Click **Create Source**
 - Latest Status will be **Syncying** and later it will change to **Success | Error**  
 
