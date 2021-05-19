@@ -23,10 +23,11 @@ pipeline {
                 rtServer ( id: "swampup113",url: SERVER_URL,credentialsId: "swampup113_cred")
                 rtNpmResolver (id: "NPM_RESOLVER",serverId: "swampup113",repo: "swampup-npm-remote")
                 rtNpmDeployer (id: "NPM_DEPLOYER",serverId: "swampup113",repo: "swampup-npm-dev-local")
+
             }
         }
 
-       stage ('Exec npm install and publish') {
+        stage ('Execute npm install and publish') {
             steps {
                 dir('SU-113-Jfrog-Artifactory-Essentials/npm-example/hello-world'){
                     sh 'sed -i "s/0.0.3/0.0.$BUILD_NUMBER/g" package.json'
@@ -41,5 +42,27 @@ pipeline {
                 rtPublishBuildInfo (serverId: "swampup113")
             }
         }
+
+        stage ('Test') {
+            steps {
+                echo "Test the application"
+            }
+        }
+
+        stage ('Promote') {
+            steps {
+               rtPromote (
+                   buildName: env.JOB_NAME,
+                   buildNumber: env.BUILD_NUMBER,
+                   serverId: 'swampup113',
+                   // Name of target repository in Artifactory
+                   targetRepo: 'swampup-npm-prod-local',
+                   comment: 'this is the promotion comment',
+                   status: 'Released',
+                   failFast: true,
+               )
+            }
+        }
+
     }
 }

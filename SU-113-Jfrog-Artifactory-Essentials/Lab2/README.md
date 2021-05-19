@@ -26,9 +26,9 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 -  Add a remote repository to cache docker images from docker hub or any other external registries
    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/remote-repo.png" alt="Remote repo" style="height: 100px; width:100px;"/>
    
--  Add a new Remote Repository with the Docker package type and name the repository as "swampup-docker-remote" and keep the rest of the default settings.
+-  Add a new Remote Repository with the Docker package type and name the repository as "swampup-docker-remote" and uncheck "Block pulling of image manifest v2 schema1".
    <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/docker-remote.png" alt="mame the repo" style="height: 100px; width:100px;"/>
-
+   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab2/images/block-pull.png" alt="unblock" style="height: 100px; width:100px;"/>
 ### Step3 - Virtual  Repository - Docker
 
 -  Add a Virtual repository to work with a single URL from your docker client. Click on the Virtual tab on the Repositories page

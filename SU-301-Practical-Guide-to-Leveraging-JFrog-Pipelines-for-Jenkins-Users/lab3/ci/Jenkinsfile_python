@@ -1,0 +1,161 @@
+pipeline {
+    agent {
+        kubernetes {
+            yaml """\
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              labels:
+                some-label: some-label-value
+            spec:
+              containers:
+              - name: python
+                image: python:rc-alpine3.13
+                command:
+                - cat
+                tty: true
+              - name: docker
+                image: docker:latest
+                command:
+                - cat
+                tty: true
+                volumeMounts:
+                - name: docker-sock
+                  mountPath: /var/run/docker.sock
+              volumes:
+                - name: docker-sock
+                  hostPath:
+                    path: /var/run/docker.sock
+            """.stripIndent()
+        }
+    }
+
+    environment {
+        ARTY_CREDS=credentials('jenkins')
+        ART_ID="artifactory-eu"
+        JAVA_HOME = '/usr/lib/jvm/java-1.8-openjdk/'
+        MAVEN_HOME = '/usr/share/maven'
+    }
+
+    parameters {
+        string(name: 'JPD_URL', defaultValue: 'swampup301.jfrog.io', description: '')
+        string(name: 'PYTHON_REPO', defaultValue: 'urs-mvn', description: '')
+        string(name: 'DOCKER_REPO', defaultValue: 'urs-docker', description: '')
+        string(name: 'WEBHOOK_PASS', defaultValue: 'yourpass', description: '')
+        string(name: 'WEBHOOK_URL', defaultValue: 'https://swampup301-pipelines-api.jfrog.io/v1/projectIntegrations/57/hook', description: '')
+        booleanParam(name: 'FAIL_BUILD', defaultValue: false, description: 'Xray scan')
+    }
+    
+    stages {
+/*
+        stage ('Python Build') {
+            steps {
+                container('maven') {
+
+                    git branch: 'main', url: "https://github.com/cyan21/su301.git"
+
+                    rtServer (
+                        id: env.ART_ID,
+                        url: "https://${params.JPD_URL}/artifactory",
+                        credentialsId: 'jenkins'
+                    )
+
+                    rtPipResolver (
+                        id: 'ART_RESOLVER',
+                        serverId: env.ART_ID,
+                        repo: params.PYTHON_REPO
+                    )
+                        
+                    rtBuildInfo (
+                        captureEnv: true,
+                        excludeEnvPatterns: ['*private*', 'internal-*', 'ADM*'], 
+                        buildName: 'jenkins-python',
+                        buildNumber: env.BUILD_NUMBER
+                    )
+                                                
+                    rtPublishBuildInfo (
+                        serverId: env.ART_ID
+                        buildName: 'jenkins-python',
+                        buildNumber: env.BUILD_NUMBER
+                    )
+                }
+            }
+        }
+*/ 
+        stage ('Docker Build & Push') {
+            steps {
+                container('docker') {
+
+                    rtServer (
+                        id: env.ART_ID,
+                        url: "https://${params.JPD_URL}/artifactory",
+                        credentialsId: 'jenkins'
+                    )
+
+                    rtBuildInfo (
+                        captureEnv: true,
+                        excludeEnvPatterns: ['*private*', 'internal-*', 'ADM*'],
+                        buildName: 'jenkins-python-docker',
+                        buildNumber: env.BUILD_NUMBER
+                    )
+                    
+                    rtDownload (
+                        serverId: env.ART_ID,
+                        spec: '''{
+                              "files": [
+                                {
+                                  "pattern": "${MVN_REPO}/com/example/multi-module-application/1.4.1/multi-module-application-1.4.1.jar",
+                                  "target": "multi-module-application.jar",
+                                  "flat": "true"
+                                  
+                                }
+                              ]
+                        }''',
+                        module: 'webapp',
+                        buildName: 'jenkins-python-docker',
+                        buildNumber: env.BUILD_NUMBER
+                    )
+                    
+                    sh '''
+                        apk add curl openjdk11
+                        curl -O https://raw.githubusercontent.com/cyan21/su301/main/lab2/java/Dockerfile
+                        docker login -u ${ARTY_CREDS_USR} -p ${ARTY_CREDS_PSW} ${JPD_URL}
+                        ls -l 
+                        docker build -t ${JPD_URL}/${DOCKER_REPO}/jenkins-python-webapp:2.0.0 .
+                        docker images
+                    '''
+                
+                    rtDockerPush(
+                        serverId: env.ART_ID,
+                        image: "${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-javapp:2.0.0",
+                        targetRepo: 'urs-docker-dev-local',
+                        properties: 'project-name=uranus;status=stable',
+                        // If the build name and build number are not set here, the current job name and number will be used:
+                        buildName: 'jenkins-python-docker',
+                        buildNumber: env.BUILD_NUMBER
+                    )
+ 
+                    rtPublishBuildInfo (
+                        serverId: env.ART_ID,
+                        buildName: 'jenkins-python-docker',
+                        buildNumber: env.BUILD_NUMBER
+                    )
+                }
+            } // end steps
+        } // end stage
+           
+        stage('Call to JFrog Pipelines') {
+            steps {
+                sh '''
+                    curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST -H "authorization: ${WEBHOOK_PASS}"  ${WEBHOOK_URL}  --data-binary @- <<DATA
+{
+  "image_name": "${JPD_URL}/${DOCKER_REPO}/jenkins-python-webapp",
+  "image_tag": "2.0.0"
+}
+DATA
+                 '''
+            } // end steps
+        } // end stage 
+        
+    }
+}

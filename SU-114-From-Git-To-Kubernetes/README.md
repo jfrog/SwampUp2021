@@ -37,18 +37,43 @@ git push
 - Create a Pipeline Source based on the forked repository, with the following Pipeline Config File Filter: ```SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml``` and branch ```main```:</br>
 ![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png)
 
-- Make sure all pipelines were loaded under "My Pipelines".
+- Make sure all pipelines were loaded under "My Pipelines": 
+![alt text](https://i.ibb.co/mqMSDpd/Screen-Shot-2021-05-11-at-13-32-51.png)
 
 - Run the "suv_114_on_boarding_environment" to populate all repositories for our demo.</br>
 ![alt text](https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png)</br>
+The following repositories should be created (Go to "Artifactory" -> "Artifacts"):
+![alt text](https://i.ibb.co/qY4YK77/Screen-Shot-2021-05-16-at-19-48-58.png)</br>
 <b>* For any issues, please assist the instructor and T.A's!</b>
 
 #### <ins>Lab #2 - Understanding the Environment</ins>
 
-- Run all Pipelines.
-- Understand the connection between all Pipelines based on the list view.
+Complete/answer the following tasks/questions:
+- Run all pipelines until your environment is GREEN:
+![alt text](https://i.ibb.co/bP4tRcY/Screen-Shot-2021-05-11-at-14-34-34.png)
+- Understand the relationship between the different pipelines - in what ways a pipeline can be triggered?
+- How many repositories were created for the backend application?
+- How many repositories were created for the frontend application?
 
 #### <ins>Lab #3 - Adding Security</ins>
 
-- Configure Watch & Policy.
-- Understand Xray results.
+- Index all builds from Xray's Administration Panel (Xray -> Settings -> Builds):
+![alt text](https://i.ibb.co/T4cLCsp/Screen-Shot-2021-05-11-at-15-21-48.png)
+- View the security issues and license discovered by Xray for every individual build.
+- Add one Security and one License Policies: [Creating a Policy](https://www.jfrog.com/confluence/display/JFROG/Creating+Xray+Policies+and+Rules#CreatingXrayPoliciesandRules-CreatingaPolicy).
+- Add a watch per application (one watch for the backend; one watch for the frontend) and assign the policies you have created to these watches: [Configure Xray Watches](https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches).
+- Explore the violations that were NOW created.
+
+# Extras - Do it yourself!
+
+#1 Bonus - Creating a Release Bundle & Distributing to Edge</br>
+- From Distribution UI, [Creating a Release Bundle](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-CreatingaNewReleaseBundle) that contains:
+    - The promoted docker images for the backend and front end applications.
+    - The helm charts for both applications.
+- Sign the release bundle.
+- [Distribute the Release Bundle](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-DistributingaReleaseBundle) to the edge.
+- Login to your edge node, and view the release bundle that was just distributed.
+- Download the release bundle from the edge.
+- This application is now ready to be deployed to any k8s cluster of your choice :-)
+#2 Bonus: [Index your Release Bundle with Xray](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-XrayScanningofReleaseBundlesxraydata), and view the results under 'Xray' tab in Distribution.</br>
+#3 Bonus: Implement helm chart promotion: extend the pipelines with adding a quality gate after publishing the helm chart - what types of quality gate can you use?</br>

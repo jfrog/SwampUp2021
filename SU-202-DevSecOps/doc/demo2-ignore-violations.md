@@ -2,117 +2,83 @@
 
 ## Context
 
-- A gradle project has been handed over to your team
-- You still want to benefit from Xray features (fail build), but you don't have much time to fix all the security issues 
+- Maintenance of a Docker image has been handed over to your team
+- You want to start using Xray but need to clear your copy first 
+- low severity vulnerabilities are fine according to our security team
 
 ## Objective
 
 - Show how to ignore violations to clean the current status
 
-## Configure Gradle build
-
-```bash
-jfrog rt gradle-config --server-id-resolve="${CLI_INSTANCE_ID}" --repo-resolve="${GRADLE_REPO_DEV}" --server-id-deploy="${CLI_INSTANCE_ID}" --repo-deploy="${GRADLE_REPO_DEV}" --use-wrapper=false --uses-plugin=true --deploy-ivy-desc=false
-```
-
-## Index resources
-
-- index **devsecops-legacy-gradle** build
-
-## Build the gradle project
-
-```bash
-jfrog rt gradle clean artifactoryPublish \
-            -b build.gradle \
-            --build-name "${CLI_GRADLE_LEGACY_BUILD_NAME}" \
-            --build-number 1 \
-            -PprojectVersion="${PROJECT_VERSION_DEMO1}" \
-            -PartifactoryUrl="${ARTIFACTORY_URL}" \
-            -PartifactoryGradleRepo="${GRADLE_REPO_DEV}" \
-            -PartifactoryUser="${ARTIFACTORY_LOGIN}" \
-            -PartifactoryApiKey="${ARTIFACTORY_API_KEY}" \
-            -PstrutsVersion="${STRUTS_VERSION_UNSAFE}"
-```
-
-## Publish Gradle Build info
-
-```bash
-jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_LEGACY_BUILD_NAME}" 1
-```
-
 ## Create Xray policy
 
-Create **raise-violation-on-high-severity** security policy:
-- trigger a violation on **high severity** security issue discovered
+Create security policy:
+```bash
+raise-violation-on-medium-severity
+```
+with rule
+```bash
+raise-violation-on-medium-severity-rule
+```
+
+- trigger a violation on **medium severity** security issue discovered
 - no action
 
 ## Create Xray watch
 
-Create **devsecops-legacy-watch** watch:
-- add **devsecops-legacy-\*/*** build (pattern) as resource
-- add **raise-violation-on-high-severity** as policy
-
-## Scan Gradle Build
-
+Create watch:
 ```bash
-jfrog rt build-scan --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_LEGACY_BUILD_NAME}" 1
+devsecops-legacy-watch
 ```
 
-No violation found but this is expected.
+- add a repository as resource:
+```bash
+devsecops-docker-prod-local
+```
+- add a filter on name:
+```bash
+ubuntu:20.04
+```
+- add policy:
+```bash
+raise-violation-on-medium-severity
+```
+
+## Log into Docker registry
+
+```bash
+docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REGISTRY_PROD}"
+```
+
+## push image to Artifactory
+
+```bash
+docker pull ubuntu:20.04
+docker tag ubuntu:20.04 ${DOCKER_REGISTRY_PROD}/ubuntu:20.04
+docker push ${DOCKER_REGISTRY_PROD}/ubuntu:20.04
+```
 
 ## Go to devsecops-legacy-watch violation tab
 
 Ignore violations:
-- Any Vulnerability / Current Version FreeMarker 2.3.23 / Any Build / Current Watch
-  Comment => Currently implementing a solution based on a safer template engine
-  Expiration => One month from now as it should be delivered by end of current sprint
 
-- Any Vulnerability / Current Version Struts 2.5.12 / Any Build / Current Watch
-Comment => Struts is not a concern as we have a process preventing exploits of its vulnerabilities 
+> Systemd 242...
+- Any Vulnerability / Current components / Version 20.04 / Current Watch
+  Comment => Security team currently evaluating the impact
 
+Add an expiration date onto this rule
 
 ## Go to list of Ignore Rules
 
-- Show the content of each rule
-- Show expiration time of freemarker rule
+- Show the content of the rule
+- Show expiration time on rule
 
-## Build the gradle project another time
+## Go to devsecops-legacy-watch violation tab
 
-```bash
-jfrog rt gradle clean artifactoryPublish \
-            -b build.gradle \
-            --build-name "${CLI_GRADLE_LEGACY_BUILD_NAME}" \
-            --build-number 2 \
-            -PprojectVersion="${PROJECT_VERSION_DEMO1}" \
-            -PartifactoryUrl="${ARTIFACTORY_URL}" \
-            -PartifactoryGradleRepo="${GRADLE_REPO_DEV}" \
-            -PartifactoryUser="${ARTIFACTORY_LOGIN}" \
-            -PartifactoryApiKey="${ARTIFACTORY_API_KEY}" \
-            -PstrutsVersion="${STRUTS_VERSION_UNSAFE}"
-```
-
-## Publish Gradle Build info
-
-```bash
-jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_LEGACY_BUILD_NAME}" 2
-```
-
-## Scan Gradle Build
-
-```bash
-jfrog rt build-scan --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_LEGACY_BUILD_NAME}" 2
-```
-
-## Go to build page
-
-=> Open devsecops-legacy-gradle #2
-=> Force Scan on build #1 if result is not yet published
-=> show empty violations tab 
+=> It is expected to be empty
 => Show Ignored violations
 
 ## Conclusion
 
-Image can be built successfully after ignoring legacy violations.
-You can apply the same procedure to get rid of any violations and start from a clean sheet.
-From this point onward, you'll be able to take advantage of the fail build feature to check for any new vulnerability that could arise.
-
+You can now start monitoring violations being added to this docker image.
+You'll have to revisit your temporary ignore rules when those get expired.

@@ -1,0 +1,56 @@
+{
+    "general_data": {
+        "name": "uranus",
+        "description": "This is a new watch created using API V2",
+        "active": true
+    },
+    "project_resources": {
+        "resources": [
+            {
+                "bin_mgr_id": "dummy",
+                "type": "build",
+                "name": "backapp_mvn"
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "name": "urs-mvn-dev-local",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "name": "urs-mvn-rc-local",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "name": "urs-mvn-prod-local",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            }
+        ]
+    },
+    "assigned_policies": [
+        {
+            "name": "global_security",
+            "type": "security"
+        }
+    ],
+    "watch_recipients":["yannc@jfrog.com"]
+}

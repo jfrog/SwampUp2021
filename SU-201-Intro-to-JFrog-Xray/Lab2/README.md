@@ -1,49 +1,22 @@
-# Lab2 - IDE Integration, JFrog Pipelines, REST API and JFrog CLI example
+# Lab2 - Create Watch and show violation
 
 ## Prerequisites
 A SAAS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
-JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli/)
 
-### Part 1 - IDE Integration
+### Step 1 - Create a Watch
 
-- As we discuss on our session Xray is able to find vulnerabilities that discovered in production systems at runtime also through integration to CI systems like [Jenkins CI](https://www.jfrog.com/confluence/display/JFROG/Jenkins+Artifactory+Plug-in) and [TeamCity](https://www.jfrog.com/confluence/display/JFROG/TeamCity+Artifactory+Plug-in) at build time. 
+-  Click om the Watch tab and create a new watch name “Swampup-watch”  
+   <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/1.png" alt="Create a watch" style="height: 100px; width:100px;"/>
+   
+-  Add the repositories to by clicking on the add repositories plus button and add the policy that we just created by clicking on the Manage policies button 
+   <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/2.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
-- The IDE integration completes the CI/CD process, by bringing Xray's issue discovery one step earlier, to development time.
-- Current support includes:
-1. [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=JFrog.jfrog-vscode-extension) - scanning your Maven, Python, Go and npm project dependencies
-2. [IntelliJ IDEA, WebStorm and GoLand](https://www.jfrog.com/confluence/display/JFROG/JFrog+IntelliJ+IDEA+Plugin) - scanning your Maven, Gradle, Go and npm project dependencies
-3. [Eclipse](https://www.jfrog.com/confluence/display/JFROG/JFrog+Eclipse+IDE+Plugin) - scanning your Maven, Gradle and npm project dependencies
-4. [Visual Studio](https://www.jfrog.com/confluence/display/JFROG/JFrog+Visual+Studio+Extension) - scanning your NuGet project dependencies
 
-- Here is an example from Visual Studio code
-<img src="/SU-201 Intro to DevSecOps with JFrog Xray/Lab2/images/1.gif" alt="Visual Studio Code" style="height: 100px; width:100px;"/>
+### Step 2 - Show violations
 
-### Part 2 - JFrog Pipelines integrtaion
+- The Violations tab in a Watch is the central location for viewing the detected violations based on the policies and rules you have predefined on the Watch. You can view the list of the violations, search for violations according to filters, set ignore rules and edit the Watch in the Settings tab.
+- In the Application module, under Security & Compliance, click Watch Violations then select the watch Swampup-watch and click the Violations tab to view the violations.
+   <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/3.gif" alt="mame the repo" style="height: 100px; width:100px;"/>
+- Click on a specific watch from the main Watch module page to examine all of its defined violations. You can filter the watch violations using the search mechanism, according to text, created date, type, severity and CVE ID. To examine the details of a violation, click the violation from the list to display the Violation Details popup. 
 
-- JFrog Pipelines provide us the avility to add a step that will triggers [JFrog Xray](https://www.jfrog.com/confluence/display/JFROG/JFrog+Xray) scan for security vulnerabilities and license compliance if there was a watch created that covers the selected build,
--
-<img src="/SU-201 Intro to DevSecOps with JFrog Xray/Lab2/images/2.png" alt=" JFrog Pipelines integrtaion" style="height: 100px; width:100px;"/>
-
-### Part 3 - REST API
-
-- Xray REST API endpoints can be invoked in any of the standard ways to invoke a RESTful API. In this example we will use a simple cURL command example:
-
-- The Platform REST URL is constructed of: 
-
-\<JFrog URL>\/\<Service Context>api/\<API-Version>
-
-- To get tge Xray [server version](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetVersion) use the following commnad:
-
--  <img src="/SU-201 Intro to DevSecOps with JFrog Xray/Lab2/images/3.png" alt="Xray REST API" style="height: 100px; width:100px;"/>
-
-### Part 4 - JFrog CLI
-
--  After downloading and installing the JFrog CLI you may want to run the [JFrog Platform Configuration connand](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI#JFrogCLI-JFrogPlatformConfiguration)  
-
--  When used with JFrog Xray, JFrog CLI uses the following syntax:
-
-$ jfrog xr command-name arguments options
-
-- To run the version curl via JFrog CLI we will use the following command
-
-$  jfrog xr curl -XGET /api/v1/system/version
+  <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/4.gif" alt="New rule" style="height: 100px; width:100px;"/>

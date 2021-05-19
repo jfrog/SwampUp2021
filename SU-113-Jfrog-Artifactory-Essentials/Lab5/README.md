@@ -2,7 +2,9 @@
 
 ## Prerequisites
 
-The Docker repositories and image created in the previous labs.
+- The Docker repositories and image created in the previous labs.
+
+- Leverage the same container from Lab4. Ensure it is up and running. If the container has stopped, please refer Lab4 to run the container again.
 
 ## Browsing
 
@@ -50,4 +52,4 @@ The Docker repositories and image created in the previous labs.
 
 - Use cURL or any other HTTP client to search for the artifact that you've modified. The SERVER_NAME is the first part of the URL given to you for your environment: ```https://<SERVER_NAME>.jfrog.io.```. Update the username/password for your instance 
 
-  `curl -u${user}:${password} -X GET "https://<SERVER_NAME>/artifactory/api/search/prop?uat-test=passed"`
+  `curl -u${user}:${password} -X GET "https://<SERVER_NAME>.jfrog.io/artifactory/api/search/prop?uat-test=passed"`

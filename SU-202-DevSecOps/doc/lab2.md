@@ -19,17 +19,47 @@
 
 ## Create Xray policy
 
-Create **block-download-on-high-severity** security policy:
+Create security policy:
+```bash
+block-download-on-high-severity
+```
+with rule
+```bash
+block-download-on-high-severity-rule
+```
+
 - trigger a violation on **high severity** security issue discovered
 - **Block Download** and **Block Unscanned** Artifacts as actions
 
 ## Create Xray watch
 
-Create **devsecops-docker-repo-watch** watch:
-- add **devsecops-docker-prod-local** repository as resource
-- add **block-download-on-high-severity** as policy
+Create watch:
+```bash
+devsecops-docker-repo-watch
+```
+
+- add a repository as resource:
+```bash
+devsecops-docker-prod-local
+```
+- add policy:
+```bash
+block-download-on-high-severity
+```
 
 ## Apply on existing content
+
+## Visit the Artifact
+
+Artifactory => Artifacts => devsecops-docker-prod-local/swampup/devsecops/0.0.9/manifest.json 
+
+Xray message is shown: "Xray has a policy blocking this artifact for download."
+
+## Log into Docker registry
+
+```bash
+docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REGISTRY_PROD}"
+```
 
 ## Download image
 

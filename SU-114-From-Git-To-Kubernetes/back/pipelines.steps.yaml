@@ -66,6 +66,7 @@ pipelines:
       environmentVariables:
         readOnly:
           dockerFrameworkVersion: ${res_docker_framework_build_info_promoted_myversion}
+          dockerImageTagVersion: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_commitSha}
     steps:
       - name: build_docker_backapp
         type: DockerBuild
@@ -74,7 +75,7 @@ pipelines:
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/back/
           dockerImageName: ${int_server_name_value}.jfrog.io/su-114-docker-virtual/backapp
-          dockerImageTag: ${res_back_app_build_info_promoted_staging_myversion}-${res_source_code_commitSha}
+          dockerImageTag: ${dockerImageTagVersion}
           dockerOptions: --build-arg SERVER_NAME=${int_server_name_value} --build-arg DOCKER_FRAMEWORK_VERSION=${dockerFrameworkVersion}
           inputResources:
             - name: source_code
@@ -139,3 +140,18 @@ pipelines:
             - write_output build_info_docker_back_app_promoted_staging "backimage=\"backapp\""
             - write_output build_info_docker_back_app_promoted_staging "backtag=${myDockerTag}"
             - jfrog rt sp --build=${res_build_info_docker_back_app_buildName}/${res_build_info_docker_back_app_buildNumber} su-114-docker-prod-local/**/manifest.json "docker.tag=${myDockerTag}"
+
+      - name: publish_helm_chart
+        type: HelmPublish
+        configuration:
+          helmVersion: 3
+          lint: true
+          affinityGroup: swampup
+          inputResources:
+            - name: source_code
+          inputSteps:
+            - name: promoting_docker_build_info_backapp
+          outputResources:
+            - name: spring_helm_chart_back_app_resource
+          chartPath: SU-114-From-Git-To-Kubernetes/back/chart
+          flags: --app-version=${build_docker_backapp_dockerImageTag} --version 1.0.${run_number}

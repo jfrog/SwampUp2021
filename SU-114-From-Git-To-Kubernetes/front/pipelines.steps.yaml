@@ -174,3 +174,17 @@ pipelines:
             - write_output build_info_docker_frontapp_promoted_staging "frontregistry=\"${ArtIP}/docker\""
             - write_output build_info_docker_frontapp_promoted_staging "frontimage=\"frontapp\""
             - write_output build_info_docker_frontapp_promoted_staging "fronttag=${myDockerTag}"
+
+      - name: publish_helm_chart
+        type: HelmPublish
+        configuration:
+          helmVersion: 3
+          lint: true
+          inputResources:
+            - name: source_code
+          inputSteps:
+            - name: promote_docker_build_info_frontapp
+          outputResources:
+            - name: spring_helm_chart_front_app_resource
+          chartPath: SU-114-From-Git-To-Kubernetes/front/chart
+          flags: --app-version=${build_docker_frontapp_dockerImageTag} --version 1.0.${run_number}
