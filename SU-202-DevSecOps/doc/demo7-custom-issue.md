@@ -26,7 +26,7 @@ Check indexing on devsecops-gradle-prod-local is complete (use Index now if not)
 
 ## Check impact
 
-- Browse devsecops-docker build #2
+- Browse devsecops-docker build #1
 - Go To Xray tab
 - Click on "Struts Based Component" violation and see description
 

@@ -16,9 +16,42 @@
 
 ## Index resources
 
-- index build by pattern:
+- index build by name:
 ```bash
-devsecops-**
+devsecops-gradle
+devsecops-docker
+```
+
+## Create Xray policy
+
+Create security policy:
+```bash
+fail-build-on-high-severity
+```
+with rule
+```bash
+fail-build-on-high-severity-rule
+```
+
+- trigger a violation on **high severity** security issue discovered
+- **Fail Build** as action
+
+## Create Xray watch
+
+Create watch:
+```bash
+devsecops-docker-build-watch
+```
+
+- add builds as resource
+```bash
+devsecops-gradle
+devsecops-docker
+```
+
+- add policy
+```bash
+fail-build-on-high-severity
 ```
 
 ## Configure Gradle build
@@ -51,36 +84,6 @@ jfrog rt gradle clean artifactoryPublish \
 jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" 1
 ```
 
-## Create Xray policy
-
-Create security policy:
-```bash
-fail-build-on-high-severity
-```
-with rule
-```bash
-fail-build-on-high-severity-rule
-```
-
-- trigger a violation on **high severity** security issue discovered
-- **Fail Build** as action
-
-## Create Xray watch
-
-Create watch:
-```bash
-devsecops-docker-build-watch
-```
-
-- add a build pattern as resource
-```bash
-devsecops-*/*
-```
-- add policy
-```bash
-fail-build-on-high-severity
-```
-  
 ## Log into Docker registry
 
 ```bash

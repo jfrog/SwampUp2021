@@ -21,7 +21,7 @@
 - name: devsecops-prod-swampup-high
 - Scope: repository devsecops-docker-prod-local
 - impacted artifact: docker://swampup/devsecops:*
-- severity: critical
+- severity: Critical
 
 => let's make this actionable
 
