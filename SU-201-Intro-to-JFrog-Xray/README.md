@@ -2,9 +2,9 @@
 
 ### Prerequisites 
 
-- Fork jfrog/SwampUp2021 github repository
-- Generate a Github personnal access token with the following permissions <br/>
-NOTE: if you already have GitHub access token then skip this step else create GitHub account first and then follow above steps.
+- Fork [jfrog/SwampUp2021](https://github.com/jfrog/SwampUp2021) github repository
+- Generate a Github personnal [access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following [permissions](https://www.jfrog.com/confluence/display/JFROG/GitHub+Integration) <br/>
+**NOTE**: if you already have GitHub access token then skip this step else create GitHub account first and then follow above steps.
 - git clone the forked repo on your workstation
 
 ### Step 1 - Create Repositories in JFrog Artifactory
