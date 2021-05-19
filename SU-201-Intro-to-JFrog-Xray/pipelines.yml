@@ -52,6 +52,13 @@ pipelines:
             - name: npm_build_step      # required
           outputResources:
             - name: npm_build_info   # optional
+
+      - name: xrayScanStep
+        type: XrayScan
+        configuration:
+          inputResources:
+            - name: npm_build_info
+            
   
   - name: mvn_example_pipeline
     steps:

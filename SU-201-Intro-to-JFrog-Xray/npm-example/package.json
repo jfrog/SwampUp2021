@@ -1,6 +1,6 @@
 {
   "name": "npm-example",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Node.js sample project",
   "main": "index.js",
   "scripts": {
