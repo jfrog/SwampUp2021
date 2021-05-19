@@ -5,7 +5,7 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 
 ### Step1 - Add the repositories to indexing resources
 
-- Login to your saas instance <XXXXX>.jfrog.io with  your admin credentials
+- Login to your saas instance **instance_name**.jfrog.io with  your admin credentials
 
 - Navigate to the Administration Module go to Xray Security and Compliance and click on settings then indexed resources now add the repositories that you would like to index.
  
