@@ -1,0 +1,17 @@
+pipelines:
+  - name: vm_deployment
+
+    steps:
+      - name: deploy_to_vm
+        type: Bash
+        configuration:
+          inputResources:
+            - name: vm_group
+            - name: wh_jenkins
+        execution:
+          onStart:
+            - echo onStart
+            - echo "$res_wh_jenkins_payload" | jq '.' > payload.json
+            - cat payload.json
+          onExecute:
+            - ssh -i ~/.ssh/vm_group ec2-user@${res_vm_group_targets_0} "uname -a &&./test.sh"
