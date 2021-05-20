@@ -16,10 +16,17 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 - Navigate to the **Administration** Module, expand the **Xray** menu at the bottom and click on the **Watches & Policies** menu item.
   <img src="/SU-201-Intro-to-JFrog-Xray/Lab1/images/1.png" alt="Watches & Policies tab" style="height: 100px; width:100px;"/>
   
-- Click on the **Create a Policy** or **New Policy** (if you already have one). Let's create our first policy **Security** Policy with Rules
+- Click on the **Create a Policy** or **New Policy** (if you already have one) and Let's create our first **Security** policy with **sec_policy** name
+
+- Click on **New Rule** to add rule to **sec_policy**
+
+- Click on the **New Policy**. Let's create our second **License** policy with **lic_policy** name
+
+- Click on **New Rule** to add rule to **lic_policy** 
+
+You may have noticed that Fields under **Criteria** are different for License Policy and for Security Policy.  
 
 
-- Click on the **New Policy**. Let's create our second policy **License** Policy with Rules
 
 
 
