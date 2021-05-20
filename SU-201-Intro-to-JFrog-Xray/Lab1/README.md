@@ -10,6 +10,10 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 - Navigate to the Administration Module go to Xray Security and Compliance and click on settings then indexed resources now add the repositories that you would like to index.
  
  <img src="/SU-201-Intro-to-JFrog-Xray/Lab1/images/8.gif" alt="Watches & Policies tab" style="height: 100px; width:100px;"/>
+ 
+- Add build resources to get indexed
+![1-2](https://user-images.githubusercontent.com/7561138/118909879-804e6480-b8d8-11eb-926c-aff16a71608c.gif)
+
 
 ### Step2 - Create a policy 
 
