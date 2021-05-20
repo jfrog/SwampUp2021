@@ -9,8 +9,8 @@
 
 ### Step 1 - Create Repositories in JFrog Artifactory
 
-- Login to your saas instance **instance_name**.jfrog.io with  your admin credentials
-- Nevigate to Welcome, **user** from top right
+- Login to your saas instance **{{instance_name}}**.jfrog.io with  your admin credentials
+- Nevigate to Welcome, **{{user}}** from top right
 - Click on dropdown and select **Quick Setup**
 - Select Package Type **NPM** or **MAVEN** and click **Next**
 - Enter repository name **su201** and click **Create**
