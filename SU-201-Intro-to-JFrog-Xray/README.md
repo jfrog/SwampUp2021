@@ -6,6 +6,12 @@
 - Generate a Github personnal [access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following [permissions](https://www.jfrog.com/confluence/display/JFROG/GitHub+Integration) <br/>
 **NOTE**: if you already have GitHub access token then skip this step else create GitHub account first and then follow above steps.
 - git clone the forked repo on your workstation
+- Please complete Step 3 and Step 5 from below.
+
+=====================================================================================================
+**NOTE: Step 1,2 and 4 has been configured in your environment already. So please skip those steps.**
+=====================================================================================================
+
 
 ### Step 1 - Create Repositories in JFrog Artifactory
 
