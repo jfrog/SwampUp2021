@@ -1,0 +1,25 @@
+pipelines:
+  - name: test_deployment
+    steps:
+      - name: deploy_webapp
+        type: deployment/Webapp
+        configuration:
+          dryRun: true
+          container: 
+            repo: swampup301.jfrog.io/awesome-app
+            tag: 1.3.0
+          # webApp: 
+          #   path: myrepo/awesome-app.3.0.0.jar
+          #   technology: wildfly
+          ansible:
+            role: wildfly
+            inventory: uat
+          inputResources:
+            # - name: my_cron
+            - name: vm_group1
+            - name: wh_jenkins1
+          integrations:
+            - name: artifactory_eu
+        execution:
+          onStart:
+            - jfrog rt c show && jfrog --version
