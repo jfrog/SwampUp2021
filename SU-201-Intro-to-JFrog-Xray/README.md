@@ -6,11 +6,17 @@
 - Generate a Github personnal [access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following [permissions](https://www.jfrog.com/confluence/display/JFROG/GitHub+Integration) <br/>
 **NOTE**: if you already have GitHub access token then skip this step else create GitHub account first and then follow above steps.
 - git clone the forked repo on your workstation
-- Please complete Step 3 and Step 5 from below.
+- Please complete **Step 3** and **Step 5** from below.
+- We will be using IDE as part of our labs so please download one of IDE if you do not have one install on your workstation,
+  - [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=JFrog.jfrog-vscode-extension) or 
+  - [IntelliJ IDEA, WebStorm and GoLand](https://www.jetbrains.com/idea/download/#section=mac) or 
+  - [Eclipse](https://www.eclipse.org/downloads/) or 
+  - [Visual Studio](https://visualstudio.microsoft.com/)
 
-=====================================================================================================
-**NOTE: Step 1,2 and 4 has been configured in your environment already. So please skip those steps.**
-=====================================================================================================
+
+*******************************************************************************************************
+**NOTE: Step 1, 2 and 4 have been configured in your environment already. So please skip those steps.**
+*******************************************************************************************************
 
 
 ### Step 1 - Create Repositories in JFrog Artifactory
@@ -46,7 +52,7 @@ e.g. <br/>
 - Click **Add an Integration** from top right corner
 - Add integration Name "**GitHub**" (Please use **GitHub (Same name)** as it is being used in pipelines.yml file)
 - Select **GitHub** from **Integration Type** dropdown
-- Enter GitHub API Token in **Token** (Use access token from Prerequisites)
+- Enter GitHub API Token in **Access Token** (Use Github personnal access token that we created in Prerequisites)
 - Click **Test Connection** to make sure connection has been established successfully. 
 - Click **Create**
 
