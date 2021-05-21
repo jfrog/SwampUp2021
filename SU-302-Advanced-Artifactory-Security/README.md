@@ -38,12 +38,16 @@ git push
 ![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png)
 
 - Make sure all pipelines were loaded under "My Pipelines": 
-![alt text](https://i.ibb.co/mqMSDpd/Screen-Shot-2021-05-11-at-13-32-51.png)
+![alt text](https://i.ibb.co/DMtK5Ht/Screen-Shot-2021-05-20-at-11-57-26-PM.png)
 
-- Run the "suv_114_on_boarding_environment" to populate all repositories for our demo.</br>
-![alt text](https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png)</br>
+
+- Run the "suv_302_on_boarding_environment" to populate all repositories for our demo.</br>
+![alt text](https://i.ibb.co/pQZhgDQ/Screen-Shot-2021-05-20-at-11-58-20-PM.png)</br>
+
+
 The following repositories should be created (Go to "Artifactory" -> "Artifacts"):
-![alt text](https://i.ibb.co/qY4YK77/Screen-Shot-2021-05-16-at-19-48-58.png)</br>
+![alt text](https://i.ibb.co/268SV4p/Screen-Shot-2021-05-20-at-11-59-28-PM.png)</br>
+
 <b>* For any issues, please assist the instructor and T.A's!</b>
 
 #### <ins>Lab #2 - Understanding the Environment</ins>
@@ -58,7 +62,7 @@ Complete/answer the following tasks/questions:
 #### <ins>Lab #3 - Adding Security</ins>
 
 - Index all builds from Xray's Administration Panel (Xray -> Settings -> Builds):
-![alt text](https://i.ibb.co/T4cLCsp/Screen-Shot-2021-05-11-at-15-21-48.png)
+![alt text](http://g.recordit.co/Rm2t6Ym2LJ.gif)
 - View the security issues and license discovered by Xray for every individual build.
 - Add one Security and one License Policies: [Creating a Policy](https://www.jfrog.com/confluence/display/JFROG/Creating+Xray+Policies+and+Rules#CreatingXrayPoliciesandRules-CreatingaPolicy).
 - Add a watch per application (one watch for the backend; one watch for the frontend) and assign the policies you have created to these watches: [Configure Xray Watches](https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches).
