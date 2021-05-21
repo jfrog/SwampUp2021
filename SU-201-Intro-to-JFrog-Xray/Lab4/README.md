@@ -15,8 +15,7 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 
 ### Part 2 - Create Reports
 
-- Xray reports provide you the ability to collect and view information on the Xray scanning of your packages and artifacts. 
-- To collect a report click on the Security and compliance tab and the reports tab 
-    <img src="/SU-201-Intro-to-JFrog-Xray/Lab4/images/2.gif" alt="Create Reports" style="height: 100px; width:100px;"/>
+- JFrog Xray **Reports** provide you the ability to collect and view information on the Xray scanning of your packages and artifacts. 
+- To collect a report click on the **Security & Compliance** tab and the reports tab 
 
-
+    ![reports](https://user-images.githubusercontent.com/7561138/119203311-97f82b00-ba47-11eb-8ac5-2a6597dc8174.gif)
