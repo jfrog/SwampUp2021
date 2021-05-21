@@ -54,7 +54,7 @@ The following repositories should be created (Go to "Artifactory" -> "Artifacts"
 
 Complete/answer the following tasks/questions:
 - Run all pipelines until your environment is GREEN:
-![alt text](https://i.ibb.co/268SV4p/Screen-Shot-2021-05-20-at-11-59-28-PM.png)
+![alt text](http://g.recordit.co/xaZV0g6i21.gif)
 
 - Understand the relationship between the different pipelines - in what ways a pipeline can be triggered?
 - How many repositories were created for the backend application?
@@ -63,7 +63,7 @@ Complete/answer the following tasks/questions:
 #### <ins>Lab #3 - Adding Security</ins>
 
 - Index all builds from Xray's Administration Panel (Xray -> Settings -> Builds):
-![alt text](http://g.recordit.co/Rm2t6Ym2LJ.gif)
+![alt text](http://g.recordit.co/6V3mjmz2bz.gif)
 - View the security issues and license discovered by Xray for every individual build.
 - Add one Security and one License Policies: [Creating a Policy](https://www.jfrog.com/confluence/display/JFROG/Creating+Xray+Policies+and+Rules#CreatingXrayPoliciesandRules-CreatingaPolicy).
 - Add a watch per application (one watch for the backend; one watch for the frontend) and assign the policies you have created to these watches: [Configure Xray Watches](https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches).
