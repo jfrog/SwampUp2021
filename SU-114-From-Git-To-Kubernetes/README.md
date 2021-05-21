@@ -26,7 +26,12 @@ git commit -m "updated my repo path in the source code resource"
 git push
 ```
 - Create the following Integrations (Administration Panel -> Pipelines -> Integrations -> Add an Integration):
-    - "github" integration (type: "GitHub") with [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) from your github account:</br>
+    - "github" integration (type: "GitHub") with [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token):
+      - Go to GitHub and create a [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) from your github account with at least these [required permissions](https://www.jfrog.com/confluence/display/JFROG/GitHub+Enterprise+Integration):
+        - repo (all)
+        - admin:repo_hook (read, write)
+        - admin:public_key (read, write)
+      - Copy the key from github and paste into Artifactory as per below:<br>
     ![alt text](https://i.ibb.co/qkGd65z/Screen-Shot-2021-05-01-at-13-55-15.png)
     - "artifactory" integration (type: "Artifactory"):</br>
     ![alt text](https://i.ibb.co/5nDV957/Screen-Shot-2021-05-01-at-13-54-51.png)
