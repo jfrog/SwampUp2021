@@ -1,6 +1,6 @@
 # SU-302  Advanced JFrog Artifactory Security practices
 <p align="center">
-  <img src="https://imgur.com/aOBLvW1" />
+  <img src="https://i.ibb.co/SKMtcs8/Screen-Shot-2021-05-20-at-10-49-17-PM.png" />
 </p>
 
 ### In this training session, you’ll learn about the levels of security built into Artifactory and how to leverage them for your setup, as well as extend them with user plugins to provide a custom ACL and permission model. We will get hands-on experience with access tokens, establishing the circle of trust on federated instances and clusters, etc.
