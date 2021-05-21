@@ -7,7 +7,7 @@
 **NOTE**: if you already have GitHub access token then skip this step else create GitHub account first and then follow above steps.
 - git clone the forked repo on your workstation
 - Please complete **Step 3** and **Step 5** from below.
-- We will be using IDE as part of our labs so please download one of IDE if you do not have one install on your workstation,
+- We will be using IDE as part of our labs so please download and install one of the IDE if you do not have one install on your workstation,
   - [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=JFrog.jfrog-vscode-extension) or 
   - [IntelliJ IDEA, WebStorm and GoLand](https://www.jetbrains.com/idea/download/#section=mac) or 
   - [Eclipse](https://www.eclipse.org/downloads/) or 
