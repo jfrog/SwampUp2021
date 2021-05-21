@@ -16,7 +16,7 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 4. [Visual Studio](https://www.jfrog.com/confluence/display/JFROG/JFrog+Visual+Studio+Extension) - scanning your NuGet project dependencies
 
 - Here is an example from Visual Studio code
-<img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/1.gif" alt="Visual Studio Code" style="height: 100px; width:100px;"/>
+    <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/1.gif" alt="Visual Studio Code" style="height: 100px; width:100px;"/>
 
 ### Part 2 - JFrog Pipelines integrtaion
 
@@ -24,17 +24,22 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 -
 <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/2.png" alt=" JFrog Pipelines integrtaion" style="height: 100px; width:100px;"/>
 
+
+*******************************************************************************************************
+**NOTE: Part 3 and 4 are optional**
+*******************************************************************************************************
+
 ### Part 3 - REST API
 
 - Xray REST API endpoints can be invoked in any of the standard ways to invoke a RESTful API. In this example we will use a simple cURL command example:
 
 - The Platform REST URL is constructed of: 
 
-\<JFrog URL>\/\<Service Context>api/\<API-Version>
+    \<JFrog URL>\/\<Service Context>api/\<API-Version>
 
 - To get tge Xray [server version](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetVersion) use the following commnad:
 
--  <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/3.png" alt="Xray REST API" style="height: 100px; width:100px;"/>
+    <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/3.png" alt="Xray REST API" style="height: 100px; width:100px;"/>
 
 ### Part 4 - JFrog CLI
 
@@ -42,8 +47,12 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 
 -  When used with JFrog Xray, JFrog CLI uses the following syntax:
 
-$ jfrog xr command-name arguments options
+    ```
+    $ jfrog xr command-name arguments options
+    ```
 
 - To run the version curl via JFrog CLI we will use the following command
 
-$  jfrog xr curl -XGET /api/v1/system/version
+    ```
+    $ jfrog xr curl -XGET /api/v1/system/version
+    ```
