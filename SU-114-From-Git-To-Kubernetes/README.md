@@ -17,7 +17,7 @@
 ![alt text](https://i.ibb.co/dr7btgf/Screen-Shot-2021-05-01-at-13-26-24.png)
 - Run ```git clone https://github.com/<YOUR_GITHUB_USERNAME>/SwampUp2021.git``` against your forked repository.
 - Run ```cd SwampUp2021/SU-114-From-Git-To-Kubernetes``` which is our class's folder with all the relevant code.
-- Open the file "back/pipelines.resources" and change the configuration.path in the following snippet based on your github username:</br>
+- Open the file "back/pipelines.resources.yaml" and change the configuration.path in the following snippet based on your github username:</br>
 ![alt text](https://i.ibb.co/wyrLVNK/Screen-Shot-2021-05-01-at-14-28-11.png)</br>
 - Commit the changes to your forked repository:
  ```
