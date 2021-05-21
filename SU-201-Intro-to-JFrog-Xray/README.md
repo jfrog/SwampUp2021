@@ -2,7 +2,7 @@
 
 ### Prerequisites 
 
-- Fork [jfrog/SwampUp2021](https://github.com/jfrog/SwampUp2021) github repository
+- Fork [jfrog/SwampUp2021](https://github.com/jfrog/SwampUp2021) github repository. All content related to "SU-201-Introduction to DevSecOps with JFrog Xray" is under "**SU-201-Intro-to-JFrog-Xray/**".
 - Generate a Github personnal [access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following [permissions](https://www.jfrog.com/confluence/display/JFROG/GitHub+Integration) <br/>
 **NOTE**: if you already have GitHub access token then skip this step else create GitHub account first and then follow above steps.
 - git clone the forked repo on your workstation
