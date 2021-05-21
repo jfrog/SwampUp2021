@@ -27,6 +27,7 @@ You will need to:
             * Use Artifactory JMX MBeans (with JConsole) as described here:
               https://www.jfrog.com/confluence/display/JFROG/Artifactory+JMX+MBeans
             * Based on this option:
+            
             ![JMX DB Connections](images/i1.png?raw=true "JMX DB Connections")
               
     * Troubleshooting
