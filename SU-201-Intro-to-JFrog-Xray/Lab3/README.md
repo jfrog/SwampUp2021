@@ -10,10 +10,10 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 
 - The IDE integration completes the CI/CD process, by bringing Xray's issue discovery one step earlier, to development time.
 - Current support includes:
-1. [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=JFrog.jfrog-vscode-extension) - scanning your Maven, Python, Go and npm project dependencies
-2. [IntelliJ IDEA, WebStorm and GoLand](https://www.jfrog.com/confluence/display/JFROG/JFrog+IntelliJ+IDEA+Plugin) - scanning your Maven, Gradle, Go and npm project dependencies
-3. [Eclipse](https://www.jfrog.com/confluence/display/JFROG/JFrog+Eclipse+IDE+Plugin) - scanning your Maven, Gradle and npm project dependencies
-4. [Visual Studio](https://www.jfrog.com/confluence/display/JFROG/JFrog+Visual+Studio+Extension) - scanning your NuGet project dependencies
+    1. [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=JFrog.jfrog-vscode-extension) - scanning your Maven, Python, Go and npm project dependencies
+    2. [IntelliJ IDEA, WebStorm and GoLand](https://www.jfrog.com/confluence/display/JFROG/JFrog+IntelliJ+IDEA+Plugin) - scanning your Maven, Gradle, Go and npm project dependencies
+    3. [Eclipse](https://www.jfrog.com/confluence/display/JFROG/JFrog+Eclipse+IDE+Plugin) - scanning your Maven, Gradle and npm project dependencies
+    4. [Visual Studio](https://www.jfrog.com/confluence/display/JFROG/JFrog+Visual+Studio+Extension) - scanning your NuGet project dependencies
 
 - Here is an example from Visual Studio code
     <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/1.gif" alt="Visual Studio Code" style="height: 100px; width:100px;"/>
@@ -21,8 +21,8 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 ### Part 2 - JFrog Pipelines integrtaion
 
 - JFrog Pipelines provide us the avility to add a step that will triggers [JFrog Xray](https://www.jfrog.com/confluence/display/JFROG/JFrog+Xray) scan for security vulnerabilities and license compliance if there was a watch created that covers the selected build,
--
-<img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/2.png" alt=" JFrog Pipelines integrtaion" style="height: 100px; width:100px;"/>
+
+    <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/2.png" alt=" JFrog Pipelines integrtaion" style="height: 100px; width:100px;"/>
 
 
 *******************************************************************************************************
@@ -35,7 +35,9 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 
 - The Platform REST URL is constructed of: 
 
+    ```
     \<JFrog URL>\/\<Service Context>api/\<API-Version>
+    ```
 
 - To get tge Xray [server version](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetVersion) use the following commnad:
 
