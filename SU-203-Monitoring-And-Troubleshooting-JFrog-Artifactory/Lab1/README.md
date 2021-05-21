@@ -1,7 +1,5 @@
 # Lab 1 - Monitoring
 
-## Data Collections Points
-
 * **Q**: What is your JFrog Artifactory uptime?
 
 <details>
