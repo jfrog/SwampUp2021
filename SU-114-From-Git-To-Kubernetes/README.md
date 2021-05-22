@@ -48,7 +48,7 @@ The following repositories should be created (Go to "Artifactory" -> "Artifacts"
 
 Complete/answer the following tasks/questions:
 - Run all pipelines until your environment is GREEN:</br>
-<img src="https://i.ibb.co/bP4tRcY/Screen-Shot-2021-05-11-at-14-34-34.png" width="35%" height="35%"></br>
+<img src="https://i.ibb.co/bP4tRcY/Screen-Shot-2021-05-11-at-14-34-34.png" width="45%" height="45%"></br>
 - Understand the relationship between the different pipelines - in what ways a pipeline can be triggered?
 - How many repositories were created for the backend application?
 - How many repositories were created for the frontend application?
