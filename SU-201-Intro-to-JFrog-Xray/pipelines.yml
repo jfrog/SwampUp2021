@@ -49,7 +49,7 @@ pipelines:
           # for payloadType npm:
           repositoryName: su201-npm        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
-          forceXrayScan: false              # optional 
+          forceXrayScan: true              # optional 
           failOnScan: false                 # default true
           integrations:
             - name: Artifactory            # required
@@ -75,7 +75,7 @@ pipelines:
       - name: publish_build
         type: PublishBuildInfo
         configuration:
-          forceXrayScan: false              # optional  
+          forceXrayScan: true              # optional  
           failOnScan: false                 # default true
           inputSteps:
             - name: mvn_build_step
