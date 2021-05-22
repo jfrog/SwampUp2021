@@ -7,6 +7,8 @@
 - Clone the Git repo
   - ```mkdir Swampup2021```
   - ```git clone https://github.com/jfrog/SwampUp2021.git```
+  - Navigate to "SU-113-Jfrog-Artifactory-Essentials"
+    ```cd ~/SwampUp2021/SU-113-Jfrog-Artifactory-Essentials```
 
 OR
 
@@ -17,6 +19,8 @@ OR
   - Clone the forked repository
     -- ```git clone <your git repo path>```  
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab4/images/git-clone.png" alt="git clone" style="height: 100px; width:100px;"/>
+  - Navigate to "SU-113-Jfrog-Artifactory-Essentials"
+    ```cd ~/SwampUp2021/SU-113-Jfrog-Artifactory-Essentials```
 
 
 ## Navigating Through the Platform
