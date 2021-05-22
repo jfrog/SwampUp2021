@@ -8,7 +8,7 @@ pipelines:
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/framework/
           dockerFileName: Dockerfile
           dockerImageName: ${int_server_name_value}.jfrog.io/su-114-docker-virtual/jfrog-docker-framework
-          dockerImageTag: ${run_number}
+          dockerImageTag: 1.0.${run_number}
           dockerOptions: --build-arg SERVER_NAME=${int_server_name_value}
           integrations:        
             - name: artifactory
@@ -58,6 +58,5 @@ pipelines:
             - name: docker_framework_build_info_promoted
         execution:
           onSuccess:
-            - write_output docker_framework_build_info_promoted myversion=${run_number}
-            - jfrog rt sp --build=${res_docker_framework_build_info_buildName}/${res_docker_framework_build_info_buildNumber} su-114-npm-prod-local/ "app.version=${appVersion}"
+            - write_output docker_framework_build_info_promoted version=1.0.${run_number}
       
