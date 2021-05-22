@@ -60,7 +60,7 @@ pipelines:
         configuration:
           failOnScan: true                      
           inputResources:
-            - name: buildInfoResource     # required
+            - name: npm_build_info     # required
 
   
   - name: mvn_example_pipeline
