@@ -24,6 +24,11 @@ resources:
       buildName:  'mvn_example_pipeline'
       buildNumber: $run_number
 
+  - name: build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory
+
 pipelines:
   - name: npm_example_pipeline
     configuration:
@@ -60,7 +65,10 @@ pipelines:
         configuration:
           failOnScan: true                      
           inputResources:
-            - name: npm_build_step     # required
+            - name: npm_build_info     # required
+          outputResources:
+            - name: build_info
+
   
   - name: mvn_example_pipeline
     steps:
