@@ -48,7 +48,7 @@ pipelines:
           repositoryName: su201-npm        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
           forceXrayScan: false             # optional 
-          failOnScan: false                # default true
+          failOnScan: true                # default true
           integrations:
             - name: Artifactory            # required
           inputSteps:
