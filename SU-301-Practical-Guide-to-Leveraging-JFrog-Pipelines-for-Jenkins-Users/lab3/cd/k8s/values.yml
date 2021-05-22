@@ -1,0 +1,43 @@
+K8s:
+  pipelineNameCreate: lab3_k8s_create_helm_chart
+  pipelineName: lab3_k8s_deployment
+  chart: 
+    repo: urs-helm
+    name: webapp
+    version: 0.1.0
+  integration:
+    artifactory: artifactory_eu
+    k8s: yann_k8s
+  namespace: build-plane
+
+K8sResources:
+  gitRepoHelm:
+    name: lab3_src_code_helm
+    gitProvider: my_github
+    path: cyan21/su301
+    branches:
+      include: main
+    files:
+      include: lab3/cd/k8s/.*.yml
+  chart:
+    name: lab3_hc
+  buildInfo:
+    resourceName: lab3_bi_chart
+    name: k8s_helm_chart
+  incomingWebhook:
+    resourceName: lab3_incoming_webhook
+    integrationName: trigger_chart_deployment
+
+K8sSteps:
+  publishHelm:
+    name: lab3_publish_helm_chart
+    path: lab3/cd/k8s/helm_chart/
+    lint: true
+    autoPublishBuildInfo: true
+  deployHelm:
+    name: lab3_deploy_helm_chart
+  testApp:
+    name: lab3_test_app
+
+
+

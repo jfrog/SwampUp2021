@@ -1,0 +1,121 @@
+localRepositories:   
+  urs-mvn-dev-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  urs-mvn-rc-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  urs-mvn-prod-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  urs-docker-dev-local:
+    type: docker
+    dockerApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  urs-docker-rc-local:
+    type: docker
+    dockerApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  urs-docker-release-local:
+    type: docker
+    dockerApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  urs-helm-dev-local:
+    type: helm
+    repoLayout: simple-default 
+    xray:   
+      enabled: false
+  urs-helm-release-local:
+    type: helm
+    repoLayout: simple-default 
+    xray:   
+      enabled: false
+  urs-generic-dev-local:
+    type: generic
+    repoLayout: simple-default 
+    xray:   
+      enabled: false
+  urs-generic-release-local:
+    type: generic
+    repoLayout: simple-default 
+    xray:   
+      enabled: false
+  urs-python-dev-local:
+    type: pypi
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+remoteRepositories: 
+  urs-jcenter-remote:
+    type: maven
+    repoLayout: maven-2-default 
+    url: https://jcenter.bintray.com 
+    xray:   
+      enabled: true
+  urs-dockerhub-remote:
+    type: docker 
+    url: https://registry-1.docker.io/
+    dockerApiVersion: V2
+    repoLayout: simple-default 
+    enableTokenAuthentication: true
+    xray:   
+      enabled: true
+  urs-pypi-remote:
+    type: pypi 
+    url: https://files.pythonhosted.org 
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+virtualRepositories: 
+  urs-mvn:
+    type: maven
+    repoLayout: maven-2-default
+    repositories:
+      - urs-jcenter-remote
+      - urs-mvn-dev-local
+      - urs-mvn-rc-local
+      - urs-mvn-prod-local
+    defaultDeploymentRepo: urs-mvn-dev-local
+  urs-docker:
+    type: docker
+    dockerApiVersion: V2
+    repoLayout: simple-default 
+    repositories:   
+      - urs-docker-dev-local
+      - urs-docker-rc-local
+      - urs-docker-release-local
+      - urs-dockerhub-remote
+    defaultDeploymentRepo: urs-docker-dev-local
+  urs-helm:
+    type: helm
+    repoLayout: simple-default 
+    repositories:   
+      - urs-helm-dev-local
+      - urs-helm-release-local
+    defaultDeploymentRepo: urs-helm-dev-local
+  urs-generic:
+    type: generic
+    repoLayout: simple-default 
+    repositories:   
+      - urs-generic-dev-local
+      - urs-generic-release-local
+    defaultDeploymentRepo: urs-generic-dev-local
+  urs-python:
+    type: pypi
+    repoLayout: simple-default 
+    repositories:   
+      - urs-python-dev-local
+      - urs-pypi-remote
+    defaultDeploymentRepo: urs-python-dev-local

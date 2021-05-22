@@ -2,7 +2,9 @@
 
 ## Prerequisites
 
-The Docker repositories and image created in the previous labs.
+- The Docker repositories and image created in the previous labs.
+
+- Leverage the same container from Lab4. Ensure it is up and running. If the container has stopped, please refer Lab4 to run the container again.
 
 ## Browsing
 

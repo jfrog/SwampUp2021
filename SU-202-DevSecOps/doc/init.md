@@ -4,8 +4,13 @@ Reminder: if you're lost, please contact the crew!
 
 ## Source code
 
-- git clone / download the source code
-  https://github.com/jfrog/SwampUp2021
+- Open Github repository jfrog/SwampUp2021 in a browser
+- Navigate to SU-202-DevSecOps/doc folder
+- Open init.md
+
+```bash
+https://github.com/jfrog/SwampUp2021/blob/main/SU-202-DevSecOps/doc/init.md
+```
 
 ## Requirements
 
@@ -18,16 +23,20 @@ Generate an Artifactory [API Key](https://www.jfrog.com/confluence/display/JFROG
 
 ## Configure runner environment
 
-- Open a terminal and navigate to the current session's root folder:
-```bash
-cd SU-202-DevSecOps
-```
+- Open a terminal
 
 - Set variables to build your image
 ```bash
 ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
 ARTIFACTORY_LOGIN="foo@bar.com"
 ARTIFACTORY_API_KEY="MY_API_KEY"
+```
+
+- On Windows OS, please use
+```bash
+set ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
+set ARTIFACTORY_LOGIN="foo@bar.com"
+set ARTIFACTORY_API_KEY="MY_API_KEY"
 ```
 
 ## Start the lab runner

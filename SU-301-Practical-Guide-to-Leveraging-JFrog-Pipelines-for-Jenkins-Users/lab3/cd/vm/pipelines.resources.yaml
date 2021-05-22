@@ -1,0 +1,17 @@
+resources:
+
+  - name: my_cron
+    type: CronTrigger
+    configuration:
+      interval: 0 23 * * *
+
+  - name: vm_group1
+    type: VmCluster
+    configuration:
+      sshKey: bastion
+      targets:
+        - swampup-f901152981a5f19e.elb.eu-west-1.amazonaws.com
+  - name: wh_jenkins1
+    type: IncomingWebhook
+    configuration:
+      webhookName: trigger_vm_deployment

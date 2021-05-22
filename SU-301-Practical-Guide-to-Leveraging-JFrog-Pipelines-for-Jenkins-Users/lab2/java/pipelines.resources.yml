@@ -1,0 +1,60 @@
+resources:
+  - name: lab2_src_code_backapp_mvn
+    type: GitRepo
+    configuration:
+      gitProvider: my_github
+      path: cyan21/su301
+      branches:
+        include: main
+      files:
+        include: lab2/java/.+
+
+  - name: lab2_bi_backapp_mvn
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: lab2_backapp_mvn
+      buildNumber: ${run_number}
+    
+  - name: lab2_bi_backapp_mvn_promoted
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: lab2_backapp_mvn
+      buildNumber: ${run_number}
+
+  - name: lab2_pb_backapp_mvn
+    type: PropertyBag
+    configuration:
+      appVersion: X.X.X
+
+  - name: lab2_src_dockerfile_backapp_mvn
+    type: GitRepo
+    configuration:
+      gitProvider: my_github
+      path: cyan21/su301
+      branches:
+        include: main
+      files:
+        include: lab2/java/.+
+
+  - name: lab2_fs_backapp_mvn
+    type: FileSpec
+    configuration:
+      sourceArtifactory: artifactory_eu
+      pattern: "urs-mvn/**/multi-module-application-${runVarAppVersion}.jar"
+      flat: true
+      
+  - name: lab2_bi_backapp_mvn_docker
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: lab2_backapp_mvn_docker
+      buildNumber: ${run_number}
+
+  - name: lab2_bi_backapp_mvn_docker_promoted
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artifactory_eu
+      buildName: lab2_backapp_mvn_docker
+      buildNumber: ${run_number}

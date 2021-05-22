@@ -20,6 +20,7 @@ pipeline {
 
         stage ('Artifactory configuration') {
             steps {
+                rtBuildInfo (captureEnv: true)
                 rtServer ( id: "swampup113",url: SERVER_URL,credentialsId: "swampup113_cred")
                 rtNpmResolver (id: "NPM_RESOLVER",serverId: "swampup113",repo: "swampup-npm-remote")
                 rtNpmDeployer (id: "NPM_DEPLOYER",serverId: "swampup113",repo: "swampup-npm-dev-local")

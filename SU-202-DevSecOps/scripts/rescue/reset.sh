@@ -16,11 +16,11 @@ jfrog rt repo-delete "${GRADLE_REPO_DEV}" --quiet --server-id="${CLI_INSTANCE_ID
 jfrog rt repo-delete "${GRADLE_REPO_PROD}" --quiet --server-id="${CLI_INSTANCE_ID}"
 
 echo "INFO - deleting builds"
-curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
+curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
      -X POST "${ARTIFACTORY_URL}/api/build/delete" \
      -d "{\"buildName\":\"${CLI_GRADLE_BUILD_NAME}\",\"deleteAll\":\"true\"}"
-curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
+curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
      -X POST "${ARTIFACTORY_URL}/api/build/delete" \
      -d "{\"buildName\":\"${CLI_DOCKER_BUILD_NAME}\",\"deleteAll\":\"true\"}"

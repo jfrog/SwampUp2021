@@ -12,15 +12,43 @@
 
 ## Create Xray policy
 
-Create **raise-violation-on-medium-severity** security policy:
+Create security policy:
+```bash
+raise-violation-on-medium-severity
+```
+with rule
+```bash
+raise-violation-on-medium-severity-rule
+```
+
 - trigger a violation on **medium severity** security issue discovered
 - no action
 
 ## Create Xray watch
 
-Create **devsecops-legacy-watch** watch:
-- add **devsecops-docker-prod-local** repository as resource
-- add **raise-violation-on-medium-severity** as policy
+Create watch:
+```bash
+devsecops-legacy-watch
+```
+
+- add a repository as resource:
+```bash
+devsecops-docker-prod-local
+```
+- add a filter on name:
+```bash
+ubuntu:20.04
+```
+- add policy:
+```bash
+raise-violation-on-medium-severity
+```
+
+## Log into Docker registry
+
+```bash
+docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REGISTRY_PROD}"
+```
 
 ## push image to Artifactory
 
@@ -34,18 +62,16 @@ docker push ${DOCKER_REGISTRY_PROD}/ubuntu:20.04
 
 Ignore violations:
 
-> A flaw was found in nettle...
-- Any Vulnerability / Current components / Version 20.04 / Current Watch
-  Comment => We are not using any signing protocol
-
 > Systemd 242...
 - Any Vulnerability / Current components / Version 20.04 / Current Watch
   Comment => Security team currently evaluating the impact
 
+Add an expiration date onto this rule
+
 ## Go to list of Ignore Rules
 
-- Show the content of each rule
-- Show expiration time on second rule
+- Show the content of the rule
+- Show expiration time on rule
 
 ## Go to devsecops-legacy-watch violation tab
 
