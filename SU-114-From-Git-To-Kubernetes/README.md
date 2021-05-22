@@ -64,7 +64,7 @@ Complete/answer the following tasks/questions:
 
 # Extras - Do it yourself!
 
-#1 Bonus - Creating a Release Bundle & Distributing to Edge</br>
+##1 Bonus - Creating a Release Bundle & Distributing to Edge</br>
 - From Distribution UI, [Creating a Release Bundle](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-CreatingaNewReleaseBundle) that contains:
     - The promoted docker images for the backend and front end applications.
     - The helm charts for both applications.
@@ -72,6 +72,6 @@ Complete/answer the following tasks/questions:
 - [Distribute the Release Bundle](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-DistributingaReleaseBundle) to the edge.
 - Login to your edge node, and view the release bundle that was just distributed.
 - Download the release bundle from the edge.
-- This application is now ready to be deployed to any k8s cluster of your choice :-)
-#2 Bonus: [Index your Release Bundle with Xray](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-XrayScanningofReleaseBundlesxraydata), and view the results under 'Xray' tab in Distribution.</br>
-#3 Bonus: Implement helm chart promotion: extend the pipelines with adding a quality gate after publishing the helm chart - what types of quality gate can you use?</br>
+- This application is now ready to be deployed to any k8s cluster of your choice :-)</br>
+##2 Bonus: [Index your Release Bundle with Xray](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-XrayScanningofReleaseBundlesxraydata), and view the results under 'Xray' tab in Distribution.</br>
+##3 Bonus: Implement helm chart promotion: extend the pipelines with adding a quality gate after publishing the helm chart - what types of quality gate can you use?</br>
