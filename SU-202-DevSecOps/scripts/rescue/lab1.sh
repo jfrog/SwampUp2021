@@ -22,7 +22,7 @@ echo "INFO - Push Docker image ${IMAGE_ABSOLUTE_NAME_DEV_LAB1}"
 docker push "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}"
 
 echo "INFO - Promote Docker image to ${DOCKER_REPO_PROD}"
-curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
+curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
      -X POST "${ARTIFACTORY_URL}/api/docker/${DOCKER_REPO_DEV}-local/v2/promote" \
      -d "{\"targetRepo\":\"${DOCKER_REPO_PROD}-local\",\"dockerRepository\":\"${IMAGE_NAME}\"}"
