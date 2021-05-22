@@ -16,6 +16,7 @@ resources:
       sourceArtifactory: Artifactory
       buildName:  'npm_example_pipeline'
       buildNumber: $run_number
+      externalCI: Artifactory
   
   - name: mvn_build_info
     type: BuildInfo
@@ -23,6 +24,7 @@ resources:
       sourceArtifactory: Artifactory
       buildName:  'mvn_example_pipeline'
       buildNumber: $run_number
+      externalCI: Artifactory
 
 pipelines:
   - name: npm_example_pipeline
@@ -47,8 +49,8 @@ pipelines:
           # for payloadType npm:
           repositoryName: su201-npm        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
-          forceXrayScan: true             # optional 
-          failOnScan: true                # default true
+          forceXrayScan: false              # optional 
+          failOnScan: false                 # default true
           integrations:
             - name: Artifactory            # required
           inputSteps:
@@ -73,8 +75,8 @@ pipelines:
       - name: publish_build
         type: PublishBuildInfo
         configuration:
-          forceXrayScan: true              # optional  
-          failOnScan: true                # default true
+          forceXrayScan: false              # optional  
+          failOnScan: false                 # default true
           inputSteps:
             - name: mvn_build_step
           outputResources:
