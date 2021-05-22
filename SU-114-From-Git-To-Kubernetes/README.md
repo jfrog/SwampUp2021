@@ -10,7 +10,7 @@
 
 #### <ins>Prerequisites</ins>: Knowledgeable with Git and Docker (git and docker clients installed including having a GitHub account). Basic understanding of DevOps concepts (familiarity with JFrog Artifactory).
 
-#### <ins>Lab #1 - Onboarding to Labs Environment</ins>
+### <ins>Lab #1 - Onboarding to Labs Environment</ins>
 
 - Login to your SaaS Enterprise+ environment and make sure you are able to connect with your credentials.
 - Fork this ([https://github.com/jfrog/SwampUp2021](https://github.com/jfrog/SwampUp2021)) repository to your GitHub Account (Top right - Click on "Fork"):
@@ -44,7 +44,7 @@ The following repositories should be created (Go to "Artifactory" -> "Artifacts"
 <img src="https://i.ibb.co/qY4YK77/Screen-Shot-2021-05-16-at-19-48-58.png" width="25%" height="25%"></br>
 <b>* For any issues, please assist the instructor and T.A's!</b>
 
-#### <ins>Lab #2 - Understanding the Environment</ins>
+### <ins>Lab #2 - Understanding the Environment</ins>
 
 Complete/answer the following tasks/questions:
 - Run all pipelines until your environment is GREEN:</br>
@@ -53,7 +53,7 @@ Complete/answer the following tasks/questions:
 - How many repositories were created for the backend application?
 - How many repositories were created for the frontend application?
 
-#### <ins>Lab #3 - Adding Security</ins>
+### <ins>Lab #3 - Adding Security</ins>
 
 - Index all builds from Xray's Administration Panel (Xray -> Settings -> Builds):</br>
 <img src="https://i.ibb.co/T4cLCsp/Screen-Shot-2021-05-11-at-15-21-48.png" width="55%" height="55%"></br>
@@ -62,7 +62,7 @@ Complete/answer the following tasks/questions:
 - Add a watch per application (one watch for the backend; one watch for the frontend) and assign the policies you have created to these watches: [Configure Xray Watches](https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches).
 - Explore the violations that were NOW created.
 
-# Extras - Do it yourself!
+### Extras - Do it yourself!
 
 ##### 1 Bonus - Creating a Release Bundle & Distributing to Edge</br>
 - From Distribution UI, [Creating a Release Bundle](https://www.jfrog.com/confluence/display/JFROG/Distributing+Release+Bundles#DistributingReleaseBundles-CreatingaNewReleaseBundle) that contains:
