@@ -38,9 +38,8 @@ git push
 <img src="https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png" width="40%" height="40%"></br>
 - Make sure all pipelines were loaded under "My Pipelines": 
 ![alt text](https://i.ibb.co/mqMSDpd/Screen-Shot-2021-05-11-at-13-32-51.png)
-
 - Run the "suv_114_on_boarding_environment" to populate all repositories for our demo.</br>
-![alt text](https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png)</br>
+<img src="https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png" width="40%" height="40%"></br>
 The following repositories should be created (Go to "Artifactory" -> "Artifacts"):
 ![alt text](https://i.ibb.co/qY4YK77/Screen-Shot-2021-05-16-at-19-48-58.png)</br>
 <b>* For any issues, please assist the instructor and T.A's!</b>
