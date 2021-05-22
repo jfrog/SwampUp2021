@@ -30,7 +30,7 @@ git push
     ![alt text](https://i.ibb.co/qkGd65z/Screen-Shot-2021-05-01-at-13-55-15.png)
     - "artifactory" integration (type: "Artifactory"):</br>
     ![alt text](https://i.ibb.co/5nDV957/Screen-Shot-2021-05-01-at-13-54-51.png)
-    - "docker integration" (type: "Docker"):</br>
+    - "docker integration" (type: "Docker", used for accessing Artifactory as a Docker Registry):</br>
     ![alt text](https://i.ibb.co/TqdyPSC/Screen-Shot-2021-05-01-at-13-55-05.png)
     - "generic integration" (type: "Generic"), where the value equals to your SaaS server name (for example, for swampup203.jfrog.io the server name is swampup203): </br>
     ![alt text](https://i.ibb.co/CzmrF3n/Screen-Shot-2021-05-01-at-13-55-26.png)
