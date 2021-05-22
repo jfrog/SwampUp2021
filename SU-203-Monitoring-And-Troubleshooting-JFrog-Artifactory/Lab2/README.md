@@ -24,8 +24,7 @@ You will need to:
               [http-nio-8081-exec-9765] Timeout: Pool empty. Unable to fetch a connection in 120 seconds, none available[size:98; busy:98; idle:0; lastwait:120000]
               ```
         * Option 2 - JMX
-            * Use Artifactory JMX MBeans (with JConsole) as described here:
-              https://www.jfrog.com/confluence/display/JFROG/Artifactory+JMX+MBeans
+            * Use Artifactory JMX MBeans (with JConsole) as described [here](https://www.jfrog.com/confluence/display/JFROG/Artifactory+JMX+MBeans)
             * Based on this option:
             
             ![JMX DB Connections](images/i1.png?raw=true "JMX DB Connections")
