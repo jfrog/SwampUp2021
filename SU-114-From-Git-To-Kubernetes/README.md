@@ -29,11 +29,11 @@ git push
     - "github" integration (type: "GitHub") with [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) from your github account:</br>
     <img src="https://i.ibb.co/qkGd65z/Screen-Shot-2021-05-01-at-13-55-15.png" width="30%" height="30%"></br>
     - "artifactory" integration (type: "Artifactory"):</br>
-    <img src="https://i.ibb.co/5nDV957/Screen-Shot-2021-05-01-at-13-54-51.png" width="30%" height="30%"></br>
+    <img src="https://i.ibb.co/5nDV957/Screen-Shot-2021-05-01-at-13-54-51.png" width="40%" height="40%"></br>
     - "docker integration" (type: "Docker", used for accessing Artifactory as a Docker Registry):</br>
     <img src="https://i.ibb.co/TqdyPSC/Screen-Shot-2021-05-01-at-13-55-05.png" width="30%" height="30%"></br>
     - "generic integration" (type: "Generic"), where the value equals to your SaaS server name (for example, for swampup203.jfrog.io the server name is swampup203): </br>
-    <img src="https://i.ibb.co/CzmrF3n/Screen-Shot-2021-05-01-at-13-55-26.png" width="30%" height="30%"></br>
+    <img src="https://i.ibb.co/CzmrF3n/Screen-Shot-2021-05-01-at-13-55-26.png" width="50%" height="50%"></br>
 - Create a Pipeline Source based on the forked repository, with the following Pipeline Config File Filter: ```SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml``` and branch ```main```:</br>
 ![alt text](https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png)
 
