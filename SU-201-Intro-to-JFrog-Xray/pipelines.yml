@@ -41,13 +41,6 @@ pipelines:
           inputResources:
             - name: git_repo   # required
 
-      - name: scan
-        type: XrayScan
-        configuration:
-          failOnScan: true                      
-          inputResources:
-            - name: npm_build_info     # required
-
       - name: npm_publish_step
         type: NpmPublish
         configuration:
@@ -61,6 +54,13 @@ pipelines:
             - name: npm_build_step      # required
           outputResources:
             - name: npm_build_info   # optional
+
+      - name: xray_scan
+        type: XrayScan
+        configuration:
+          failOnScan: true                      
+          inputResources:
+            - name: npm_publish_step     # required
   
   - name: mvn_example_pipeline
     steps:
