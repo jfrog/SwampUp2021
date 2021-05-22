@@ -35,7 +35,7 @@ git push
     - "generic integration" (type: "Generic"), where the value equals to your SaaS server name (for example, for swampup203.jfrog.io the server name is swampup203): </br>
     <img src="https://i.ibb.co/CzmrF3n/Screen-Shot-2021-05-01-at-13-55-26.png" width="50%" height="50%"></br>
 - Create a Pipeline Source based on the forked repository, with the following Pipeline Config File Filter: ```SU-114-From-Git-To-Kubernetes/(.*)pipelines(.*).yaml``` and branch ```main```:</br>
-<img src="https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png" width="40%" height="40%"></br>
+<img src="https://i.ibb.co/BrMcgw7/Screen-Shot-2021-05-01-at-13-55-40.png" width="40%" height="40%">
 - Make sure all pipelines were loaded under "My Pipelines":</br> 
 ![alt text](https://i.ibb.co/mqMSDpd/Screen-Shot-2021-05-11-at-13-32-51.png)</br>
 - Run the "suv_114_on_boarding_environment" to populate all repositories for our demo.</br>
