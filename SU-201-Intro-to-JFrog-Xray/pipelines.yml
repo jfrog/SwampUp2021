@@ -43,8 +43,7 @@ pipelines:
         type: XrayScan
         configuration:
           #inherits from bash
-          failOnScan: true    
-          forceXrayScan: true                  
+          failOnScan: true                      
           inputResources:
             - name: git_repo          # required
               trigger: false
@@ -57,6 +56,7 @@ pipelines:
           # for payloadType npm:
           repositoryName: su201-npm        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
+          forceXrayScan: true
           integrations:
             - name: Artifactory      # required
           inputSteps:
