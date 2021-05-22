@@ -21,6 +21,8 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
+      buildName:  'mvn_example_pipeline'
+      buildNumber: $run_number
 
 pipelines:
   - name: npm_example_pipeline
@@ -42,12 +44,9 @@ pipelines:
       - name: scan
         type: XrayScan
         configuration:
-          #inherits from bash
           failOnScan: true                      
           inputResources:
-            - name: npm_build_info          # required
-          outputResources:
-            - name: npm_build_info     # optional
+            - name: npm_build_info     # required
 
       - name: npm_publish_step
         type: NpmPublish
