@@ -46,7 +46,6 @@ pipelines:
           failOnScan: true                      
           inputResources:
             - name: git_repo          # required
-              trigger: false
           outputResources:
             - name: npm_build_info     # optional
 
