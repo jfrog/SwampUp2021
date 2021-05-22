@@ -60,7 +60,7 @@ pipelines:
         configuration:
           failOnScan: true                      
           inputResources:
-            - name: npm_publish_step     # required
+            - name: npm_build_step     # required
   
   - name: mvn_example_pipeline
     steps:
