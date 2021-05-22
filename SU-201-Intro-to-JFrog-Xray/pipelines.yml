@@ -46,8 +46,6 @@ pipelines:
           failOnScan: true                      
           inputResources:
             - name: git_repo          # required
-          outputResources:
-            - name: npm_build_info     # optional
 
       - name: npm_publish_step
         type: NpmPublish
