@@ -39,14 +39,24 @@ pipelines:
           inputResources:
             - name: git_repo   # required
 
+      - name: scan
+        type: XrayScan
+        configuration:
+          #inherits from bash
+          failOnScan: true    
+          forceXrayScan: true                  
+          inputResources:
+            - name: git_repo          # required
+              trigger: false
+          outputResources:
+            - name: npm_build_info     # optional
+
       - name: npm_publish_step
         type: NpmPublish
         configuration:
           # for payloadType npm:
           repositoryName: su201-npm        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
-          forceXrayScan: true
-          failOnScan: true
           integrations:
             - name: Artifactory      # required
           inputSteps:
@@ -72,7 +82,6 @@ pipelines:
         type: PublishBuildInfo
         configuration:
           forceXrayScan: true
-          failOnScan: true
           inputSteps:
             - name: mvn_build_step
           outputResources:
