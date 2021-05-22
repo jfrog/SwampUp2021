@@ -58,7 +58,7 @@ pipelines:
       - name: xray_scan
         type: XrayScan
         configuration:
-          failOnScan: true                      
+          failOnScan: false                      
           inputResources:
             - name: npm_build_info     # required
 
