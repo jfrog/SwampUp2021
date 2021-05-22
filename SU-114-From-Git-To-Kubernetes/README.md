@@ -25,7 +25,7 @@ git add .
 git commit -m "updated my repo path in the source code resource"
 git push
 ```
-- Create the following Integrations (Administration Panel -> Pipelines -> Integrations -> Add an Integration):
+- Create the following Integrations (Administration Panel -> Pipelines -> Integrations -> Add an Integration), while using your SaaS instance values:
     - "github" integration (type: "GitHub") with [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) from your github account:</br>
     ![alt text](https://i.ibb.co/qkGd65z/Screen-Shot-2021-05-01-at-13-55-15.png)
     - "artifactory" integration (type: "Artifactory"):</br>
