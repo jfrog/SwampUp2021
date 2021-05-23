@@ -32,12 +32,13 @@ Ping the environment using the ping API call
 
 References: [System Health Ping](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-SystemHealthPing)
 
+<img src="../images/configure-cli-screenshot.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
 ##### 2.2 JFrog CLI
 
-	2.2.1 Download the JFrog CLI
+2.2.1 Download the JFrog CLI
 
-	References: [INSTALL JFROG CLI](https://jfrog.com/getcli/)**, **[JFrog CLI](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI)
+References: [INSTALL JFROG CLI](https://jfrog.com/getcli/)**, **[JFrog CLI](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI)
 
 
 ##### 	2.2.2  Add and configure your SaaS instance with the JFrog CLI \
