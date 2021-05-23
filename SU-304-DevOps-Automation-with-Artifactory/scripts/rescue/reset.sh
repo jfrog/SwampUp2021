@@ -27,13 +27,13 @@ curl -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}" \
 
 echo "INFO - deleting watches"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
-     -X DELETE "${XRAY_URL}/api/v2/watches/alpha-docker-repo-watch"
+     -X DELETE "${XRAY_URL}/api/v2/watches/devsecops-docker-repo-watch"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
-     -X DELETE "${XRAY_URL}/api/v2/watches/alpha-docker-build-watch"
+     -X DELETE "${XRAY_URL}/api/v2/watches/devsecops-docker-build-watch"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
-     -X DELETE "${XRAY_URL}/api/v2/watches/alpha-legacy-watch"
+     -X DELETE "${XRAY_URL}/api/v2/watches/devsecops-legacy-watch"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
-     -X DELETE "${XRAY_URL}/api/v2/watches/alpha-sample-watch"
+     -X DELETE "${XRAY_URL}/api/v2/watches/devsecops-sample-watch"
 
 echo "INFO - deleting policies"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
@@ -50,19 +50,19 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -X DELETE "${XRAY_URL}/api/v2/policies/raise-violation-on-medium-severity"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
      -H 'Content-Type: application/json' \
-     -X DELETE "${XRAY_URL}/api/v2/policies/alpha-sample-policy"
+     -X DELETE "${XRAY_URL}/api/v2/policies/devsecops-sample-policy"
 
 echo "INFO - Collect indexing configuration"
 INDEXED_REPOS=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                   -H 'Content-Type: application/json' \
                   -X GET "${XRAY_URL}/api/v1/binMgr/default/repos" \
-                  | jq 'del(.indexed_repos[] | select(.name == "alpha-docker-prod-local" or .name == "alpha-gradle-prod-local"))' \
+                  | jq 'del(.indexed_repos[] | select(.name == "devsecops-docker-prod-local" or .name == "devsecops-gradle-prod-local"))' \
                   | jq -r '.indexed_repos')
 
 INDEXED_BUILDS=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                   -H 'Content-Type: application/json' \
                   -X GET "${XRAY_URL}/api/v1/binMgr/default/builds" \
-                  | jq 'del(.indexed_builds[] | select(. == "alpha-gradle" or . == "alpha-docker"))' \
+                  | jq 'del(.indexed_builds[] | select(. == "devsecops-gradle" or . == "devsecops-docker"))' \
                   | jq -r '.indexed_builds')
 
 echo "INFO - resetting indexing configuration"
@@ -86,22 +86,22 @@ echo "INFO - removing reports"
 REPORT_ID_LICENSE=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                       -H 'Content-Type: application/json' \
                       -X POST "${XRAY_URL}/api/v1/reports?page_num=1&num_of_rows=1" \
-                      -d "{\"filters\": {\"name\":\"alpha-prod-swampup-licenses\"}}" \
+                      -d "{\"filters\": {\"name\":\"devsecops-prod-swampup-licenses\"}}" \
                     | jq -r '.reports[0].id')
 REPORT_ID_FIX=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                       -H 'Content-Type: application/json' \
                       -X POST "${XRAY_URL}/api/v1/reports?page_num=1&num_of_rows=1" \
-                      -d "{\"filters\": {\"name\":\"alpha-prod-swampup-high-with-fix\"}}" \
+                      -d "{\"filters\": {\"name\":\"devsecops-prod-swampup-high-with-fix\"}}" \
                     | jq -r '.reports[0].id')
 REPORT_ID_HIGH=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                       -H 'Content-Type: application/json' \
                       -X POST "${XRAY_URL}/api/v1/reports?page_num=1&num_of_rows=1" \
-                      -d "{\"filters\": {\"name\":\"alpha-prod-swampup-high\"}}" \
+                      -d "{\"filters\": {\"name\":\"devsecops-prod-swampup-high\"}}" \
                     | jq -r '.reports[0].id')
 REPORT_ID=$(curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
                       -H 'Content-Type: application/json' \
                       -X POST "${XRAY_URL}/api/v1/reports?page_num=1&num_of_rows=1" \
-                      -d "{\"filters\": {\"name\":\"alpha-prod-swampup\"}}" \
+                      -d "{\"filters\": {\"name\":\"devsecops-prod-swampup\"}}" \
                     | jq -r '.reports[0].id')
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" -X DELETE "${XRAY_URL}/api/v1/reports/${REPORT_ID_LICENSE}"
 curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" -X DELETE "${XRAY_URL}/api/v1/reports/${REPORT_ID_FIX}"
