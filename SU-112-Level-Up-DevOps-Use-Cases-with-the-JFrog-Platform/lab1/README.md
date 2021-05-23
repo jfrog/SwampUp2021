@@ -20,7 +20,7 @@ Onboard a new project/team to the platform by creating the required set of resou
 
 Login to your saas instance .jfrog.io with your admin credentials
 
-<img src="../images/login.png" width="40%" height="40%" alt="alt_text" title="image_tooltip">
+<img src="../images/login.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
 
 #### Step2: Get familiarity with the JFrog automation tools
