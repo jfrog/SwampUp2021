@@ -48,6 +48,8 @@ jfrog rt build-collect-env "${CLI_GRADLE_BUILD_NAME}" 1
 ```bash
 jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" 1
 ```
+Recording here - 
+ ![gradel build info](https://i.imgur.com/2DqU9Ck.gif)
 
 ## Log into Docker registry
 
@@ -81,8 +83,8 @@ jfrog rt build-collect-env "${CLI_DOCKER_BUILD_NAME}" 1
 ```bash
 jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 1
 ```
-- TODO Place screenshot for bill of materials 
-
+- Recording Docker build, publish and viewing bill of materials 
+ ![Dcoker Publish](https://i.imgur.com/7TFWRQb.gif)
 ## Conclusion
 
 Successfully, we are able to complete CI Integration 
@@ -169,7 +171,9 @@ jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME
 jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 2 "${DOCKER_REPO_PROD}-local" 
 ```
 
-- TODO Place screenshot for diff between builds 
+- Recording for Optional section with Diff between builds towarsds the end 
+
+![Diff between builds](https://i.imgur.com/pal0TRy.gif)
 
 ## Conclusion
 
