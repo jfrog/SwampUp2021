@@ -1,0 +1,30 @@
+{
+   "files":[
+      {
+         "aql":{
+            "items.find":{
+               "$and":[
+                  {
+                     "$or":[
+                        {
+                           "repo":{
+                              "$eq":"su307-maven-local"
+                           }
+                        }
+                     ]
+                  },
+                  {
+                     "$or":[
+                        {
+                           "name":{
+                              "$match":"*spring*"
+                           }
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   ]
+}
