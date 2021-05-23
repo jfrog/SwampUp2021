@@ -5,7 +5,7 @@ resources:
       gitProvider: my_github
       path: cyan21/su301
       branches:
-        include: main
+        include: {{ gitBranch }}
       files:
         include: lab1/python/.+
 
@@ -13,12 +13,12 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: webapp_python
-      buildNumber: '${run_number}'
+      buildName: {{ gitBranch }}_webapp_python
+      buildNumber: ${run_number}
 
   - name: lab1_bi_webapp_python_promoted
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_brexit
-      buildName: webapp_python
-      buildNumber: '${run_number}'
+      buildName: {{ gitBranch }}_webapp_python
+      buildNumber: ${run_number}
