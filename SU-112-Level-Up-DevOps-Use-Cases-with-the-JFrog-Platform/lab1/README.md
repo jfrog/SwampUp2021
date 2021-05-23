@@ -31,7 +31,8 @@ Login to your saas instance .jfrog.io with your admin credentials
 Ping the environment using the ping API call
 
 References: [System Health Ping](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-SystemHealthPing)
-<img src="../images/system-ping.png" width="30%" height="30%" alt="alt_text" title="image_tooltip">
+
+<img src="../images/system-ping.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
 ##### 2.2 JFrog CLI
 
