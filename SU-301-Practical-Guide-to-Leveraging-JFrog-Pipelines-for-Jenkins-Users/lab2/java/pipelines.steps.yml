@@ -9,6 +9,7 @@ pipelines:
         type: MvnBuild
         configuration:
           environmentVariables:
+            JFROG_CLI_BUILD_NAME:
             JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_backapp_mvn_branchName}"
             JFROG_CLI_LOG_LEVEL: DEBUG
           mvnCommand: clean package
@@ -27,14 +28,17 @@ pipelines:
             - name: artifactory_eu
         execution:
           onStart:
-            - ls -l ${res_lab2_src_code_backapp_mvn_resourcePath}/src
+            - ls -l ${res_lab2_src_code_backapp_mvn_resourcePath}/${trainingPath}/src
             - jfrog rt c show
           onFailure:
             - echo "Not cool"
           onSuccess:
             - echo "Yahoo"
-            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/src/java/pomme.xml`
+            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/${trainingPath}/src/java/pomme.xml`
             - echo $runVarAppVersion
+            - echo $step_url
+            - echo $pipelines_api_url
+
 
       - name: lab2_scan_backapp_mvn
         type: XrayScan
@@ -84,7 +88,7 @@ pipelines:
             JFROG_CLI_LOG_LEVEL: INFO
           affinityGroup: together
           dockerFileName: Dockerfile
-          dockerFileLocation: lab3/java/
+          dockerFileLocation: ${trainingPath}/lab2/java/
           dockerImageName: swampup301.jfrog.io/urs-docker/backapp-mvn-docker
           dockerImageTag: ${runVarAppVersion}
           inputSteps:
@@ -98,11 +102,11 @@ pipelines:
           onStart:
             - 'ls -la ${res_lab2_fs_backapp_mvn_resourcePath}'
             - 'echo ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}'
-            - 'ls -la  ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}'
+            - 'ls -la  ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}/${trainingPath}/lab2'
             - >-
               cp
               ${res_lab2_fs_backapp_mvn_resourcePath}/multi-module-application-${runVarAppVersion}.jar
-              ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}/lab1/java/multi-module-application.jar
+              ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}/${trainingPath}/lab2/java/multi-module-application.jar
 
       - name: lab2_publish_backapp_mvn_docker
         type: DockerPush
