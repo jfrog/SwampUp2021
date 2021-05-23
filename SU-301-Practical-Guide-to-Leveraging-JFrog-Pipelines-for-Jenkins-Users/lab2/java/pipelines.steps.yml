@@ -14,7 +14,7 @@ pipelines:
             JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_backapp_mvn_branchName}"
             JFROG_CLI_LOG_LEVEL: DEBUG
           mvnCommand: clean package
-          sourceLocation: src/java
+          sourceLocation: ${trainingPath}/src/java
           resolverSnapshotRepo: ${virtualRepo}
           resolverReleaseRepo: ${virtualRepo}
           deployerSnapshotRepo: ${virtualRepo}
