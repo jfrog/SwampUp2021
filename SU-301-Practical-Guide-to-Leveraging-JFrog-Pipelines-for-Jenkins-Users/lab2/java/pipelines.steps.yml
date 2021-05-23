@@ -70,6 +70,10 @@ pipelines:
             - write_output lab2_pb_backapp_mvn appVersion=${runVarAppVersion}
 
   - name: lab2_backapp_mvn_docker
+    configuration:
+      environmentVariables:
+        readOnly:
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
     steps:
       # need this step to export the appVersion for the Filespec Resource
       - name: lab2_export_variables
