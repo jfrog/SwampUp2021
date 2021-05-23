@@ -5,7 +5,7 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 
 ### Step 1 - Create a Watch
 
--  Click om the Watch tab and create a new watch name “Swampup-watch”  
+-  Click om the Watch tab and create a new watch name “swampup-watch”  
    <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/1.png" alt="Create a watch" style="height: 100px; width:100px;"/>
    
 -  Add the repositories to by clicking on the **Add Repositories** plus button and add the policy that we just created by clicking on the **Manage Policies** button 
@@ -25,3 +25,5 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 - Click on a specific watch from the main Watch module page to examine all of its defined violations. You can filter the watch violations using the search mechanism, according to text, created date, type, severity and CVE ID. To examine the details of a violation, click the violation from the list to display the Violation Details popup. 
 
   <img src="/SU-201-Intro-to-JFrog-Xray/Lab2/images/4.gif" alt="New rule" style="height: 100px; width:100px;"/>
+
+- For **Ignore Violation**, Navigate to **Application** > **Security & Compliance** > **Watch Violation**. Open watch **"swampup-watch"** that we created in STEP 1. 
