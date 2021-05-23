@@ -49,9 +49,11 @@ pipelines:
               if [ ${res_lab2_src_code_webapp_python_isGitTag} == 'True' ]; then 
                 add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_gitTagName}
               else
-                add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_commitSha256}
+                add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_commitSha}
               fi
             - echo ${runVarAppVersion}
+            - echo $pipelines_api_url
+            - echo $step_url
 
       - name: lab2_scan_webapp_python
         type: XrayScan
