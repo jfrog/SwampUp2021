@@ -7,27 +7,35 @@ Reminder: if you're lost, please contact the crew!
 
 - Open Github repository https://github.com/jfrog/SwampUp2021 in a browser
 - Navigate to SU-304-DevOps-Automation-with-Artifactory/doc folder
-- Open init.md
+- Open Lab1.md
 
 ```bash
-https://github.com/jfrog/SwampUp2021/blob/main/SU-304-DevOps-Automation-with-Artifactory/doc/init.md
+https://github.com/jfrog/SwampUp2021/blob/main/SU-304-DevOps-Automation-with-Artifactory/doc/Lab1.md
 ```
 
 ## Requirements
 
-- JFrog Platform instance
-- Docker
-
+- JFrog Platform instance (Provided by JFrog before the training)
+- Docker (installation links below)
+CentOS/Redhat [CentOS Installation](https://docs.docker.com/engine/install/centos/)
+Ubuntu [Ubuntu Installation](https://docs.docker.com/engine/install/ubuntu/)
+Windows [Windows Installation](https://docs.docker.com/docker-for-windows/install/)
+MacOS [MacOS Installation](https://docs.docker.com/docker-for-mac/install/)
 
 ## API Key
 
 Generate an Artifactory [API Key](https://www.jfrog.com/confluence/display/JFROG/User+Profile#UserProfile-APIKey)
+- Follow the recording below 
+
+![geenrate API key](https://i.imgur.com/ElFGv6b.gif)
 
 ## Configure runner environment
 
 - Open a terminal
 
-- Set variables to build your image
+- Set variables to build your image (see instaruction for Windows OS vs. Linux OS below) 
+
+- On Linux OS, please use
 ```bash
 ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
 ARTIFACTORY_LOGIN="foo@bar.com"
@@ -40,8 +48,11 @@ set ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
 set ARTIFACTORY_LOGIN="foo@bar.com"
 set ARTIFACTORY_API_KEY="MY_API_KEY"
 ```
+Follow recording here - 
+![setting environemnt variables](https://i.imgur.com/BastCGE.gif)
 
 ## Start the lab runner
+- Ensure Docker is running on your system and run the following command 
 
 ```bash
 docker run --name swampup202-runner --rm --env  ARTIFACTORY_HOSTNAME="${ARTIFACTORY_HOSTNAME}" --env ARTIFACTORY_LOGIN="${ARTIFACTORY_LOGIN}" --env ARTIFACTORY_API_KEY="${ARTIFACTORY_API_KEY}" -it -v "/var/run/docker.sock:/var/run/docker.sock" swampup202.jfrog.io/swampup/swampup202-runner
@@ -54,5 +65,20 @@ From this point onward, every command will be run from within the container.
 ```bash
 jfrog rt ping
 ```
+Recording here - 
+
+![setting environemnt variables](https://i.imgur.com/DHIbKfk.gif)
 
 if you are not getting an OK response, please check your environment variables, there might be a typo, and run the container again.
+
+## Entrypoint.sh 
+- The entrypoint.sh located in the /usr/local directory of this docker container has completed the inital setup. Explore the JFrog CLI docuemntation on configuring Artifactory, creating repositories to learn more
+Adding Artifactory to JFrogCLI [JFrogCLI- Adding and Editiong Configured Server](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI#JFrogCLI-AddingandEditingConfiguredServers)
+Creating Repositories [JFrogCLI- Creating/Updating Repositories](https://www.jfrog.com/confluence/display/CLI/CLI+for+JFrog+Artifactory#CLIforJFrogArtifactory-Creating/UpdatingRepositories)
+
+Recording here - 
+![JFrog CLI](https://i.imgur.com/vomYtQS.gif)
+
+## Conclusion 
+- We have completed initial setup and deployed all the required repositories using JFrogCLI 
+- Using JfrogCLI ping command, we verified our test system is able to communicate with Artifactory

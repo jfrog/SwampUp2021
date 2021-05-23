@@ -14,19 +14,26 @@
 ### Log into Docker registry
 
 ```bash
-docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${ARTIFACTORY_HOSTNAME}/devsecops-docker-remote"
+docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REGISTRY_DEV}"
 ```
 
 ### Download Docker image from Artifactory's reository 
 
 ```bash
-docker pull "${ARTIFACTORY_HOSTNAME}/devsecops-docker-remote/nginx:latest"
+docker pull "${DOCKER_REGISTRY_DEV}/nginx:latest"
 ```
 
 ### Check remote repository's cache 
 - UI Login and check the status of the Docker cache 
-  ![view cache](https://i.imgur.com/YJ2OwuA.gif)
+  ![view cache](https://i.imgur.com/9JplyOJ.gif)
 
+### Conclusion 
+- Successfully completed Dev Environemnt integration with Artifactory
+- All Docker dependencies resolved/utilized by your Dev team is redirected to Artifactory
+- Your Security and Development leads can keep track of dependencies your organization is utilizing 
 
+## Bonus Section
+- Think how you can control the sources your organization can rely on? Try to add another remote repository pointing to quay.io and cache a docker dependency 
+- Utilizing the permmison target API/ JFrogCLI calls, control who can cache new dependencies (Cache/deploy privilege) and who can download exisitng cached images (Read privilege) 
 
 
