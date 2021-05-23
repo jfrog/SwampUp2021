@@ -19,7 +19,7 @@ echo "INFO - login = ${ARTIFACTORY_LOGIN}"
 #######################
 readonly ARTIFACTORY_URL="https://${ARTIFACTORY_HOSTNAME}/artifactory"
 
-readonly DOCKER_REPO_DEV=alpha-docker-dev
+readonly DOCKER_REPO_DEV=devsecops-docker-dev
 
 readonly DOCKER_REGISTRY_DEV="${ARTIFACTORY_HOSTNAME}/${DOCKER_REPO_DEV}"
 
