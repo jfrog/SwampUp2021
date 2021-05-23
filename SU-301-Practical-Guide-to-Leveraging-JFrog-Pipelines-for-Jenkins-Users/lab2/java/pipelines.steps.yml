@@ -4,6 +4,7 @@ pipelines:
       environmentVariables:
         readOnly:
           virtualRepo: urs-mvn
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
     steps:
       - name: lab2_build_backapp_mvn
         type: MvnBuild
