@@ -174,6 +174,7 @@ jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME
 - Recording for Optional section with Diff between builds towarsds the end 
 
 ![Diff between builds](https://i.imgur.com/pal0TRy.gif)
+<img src="/images/Lab3-optional.gif?raw=true" width="200px">
 
 ## Conclusion
 
