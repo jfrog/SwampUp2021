@@ -102,6 +102,10 @@ pipelines:
             - jfrog rt sp --build=${res_build_info_frontapp_buildName}/${res_build_info_frontapp_buildNumber} su-114-npm-prod-local/ "app.version=${appVersion}"
 
   - name: suv_114_frontapp_docker_pipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          dockerImageTagVersion: 1.0.${run_number}-${res_source_code_commitSha}
     steps:
       - name: build_docker_frontapp
         type: DockerBuild
@@ -110,7 +114,7 @@ pipelines:
           dockerFileName: Dockerfile
           dockerFileLocation: SU-114-From-Git-To-Kubernetes/front/
           dockerImageName: ${int_server_name_value}.jfrog.io/su-114-docker-virtual/frontapp
-          dockerImageTag: ${res_build_info_frontapp_promoted_staging_myversion}-${res_source_code_commitSha}
+          dockerImageTag: ${dockerImageTagVersion}
           dockerOptions: --build-arg SERVER_NAME=${int_server_name_value}
           inputResources:
             - name: source_code
@@ -170,10 +174,10 @@ pipelines:
             - name: build_info_docker_frontapp_promoted_staging
         execution:
           onSuccess:
-            - jfrog rt sp --build=${res_build_info_docker_frontapp_buildName}/${res_build_info_docker_frontapp_buildNumber} app-docker-rc-local/**/manifest.json "docker.tag=${myDockerTag}"
+            - jfrog rt sp --build=${res_build_info_docker_frontapp_buildName}/${res_build_info_docker_frontapp_buildNumber} app-docker-rc-local/**/manifest.json "docker.tag=${dockerImageTagVersion}"
             - write_output build_info_docker_frontapp_promoted_staging "frontregistry=\"${ArtIP}/docker\""
             - write_output build_info_docker_frontapp_promoted_staging "frontimage=\"frontapp\""
-            - write_output build_info_docker_frontapp_promoted_staging "fronttag=${myDockerTag}"
+            - write_output build_info_docker_frontapp_promoted_staging "fronttag=${dockerImageTagVersion}"
 
       - name: publish_helm_chart
         type: HelmPublish
