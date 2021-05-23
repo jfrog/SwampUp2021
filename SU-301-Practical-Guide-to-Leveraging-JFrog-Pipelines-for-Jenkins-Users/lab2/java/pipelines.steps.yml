@@ -35,7 +35,7 @@ pipelines:
             - echo "Not cool"
           onSuccess:
             - echo "Yahoo"
-            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/${trainingPath}/src/java/pomme.xml`
+            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/${trainingPath}/src/java/pom.xml`
             - echo $runVarAppVersion
             - echo $step_url
             - echo $pipelines_api_url
