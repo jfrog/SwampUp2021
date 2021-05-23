@@ -77,6 +77,7 @@ Adding Artifactory to JFrogCLI [JFrogCLI- Adding and Editiong Configured Server]
 Creating Repositories [JFrogCLI- Creating/Updating Repositories](https://www.jfrog.com/confluence/display/CLI/CLI+for+JFrog+Artifactory#CLIforJFrogArtifactory-Creating/UpdatingRepositories)
 
 Recording here - 
+
 ![JFrog CLI](https://i.imgur.com/vomYtQS.gif)
 
 ## Conclusion 
