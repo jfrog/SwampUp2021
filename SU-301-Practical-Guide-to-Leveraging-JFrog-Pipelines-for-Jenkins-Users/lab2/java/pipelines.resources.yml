@@ -3,24 +3,27 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: my_github
-      path: cyan21/su301
+      path: cyan21/SwampUp2021
       branches:
-        include: main
+        include: {{ gitBranch }}
       files:
-        include: lab2/java/.+
+        include: ${trainingPath}/lab2/java/.+
+      buildOn:
+        pullRequestCreate: true
+        pullRequestClose: true
 
   - name: lab2_bi_backapp_mvn
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: lab2_backapp_mvn
+      buildName: {{ gitBranch }}__backapp_mvn
       buildNumber: ${run_number}
     
   - name: lab2_bi_backapp_mvn_promoted
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: lab2_backapp_mvn
+      buildName: {{ gitBranch }}__backapp_mvn
       buildNumber: ${run_number}
 
   - name: lab2_pb_backapp_mvn
@@ -32,11 +35,14 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: my_github
-      path: cyan21/su301
+      path: cyan21/SwampUp2021
       branches:
-        include: main
+        include: {{ gitBranch }}
       files:
-        include: lab2/java/.+
+        include: ${trainingPath}/lab2/java/.+
+      buildOn:
+        pullRequestCreate: true
+        pullRequestClose: true
 
   - name: lab2_fs_backapp_mvn
     type: FileSpec
@@ -49,12 +55,12 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: lab2_backapp_mvn_docker
+      buildName: {{ gitBranch }}_backapp_mvn_docker
       buildNumber: ${run_number}
 
   - name: lab2_bi_backapp_mvn_docker_promoted
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: lab2_backapp_mvn_docker
+      buildName: {{ gitBranch }}__backapp_mvn_docker
       buildNumber: ${run_number}

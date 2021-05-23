@@ -3,25 +3,28 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: my_github
-      path: cyan21/su301
+      path: cyan21/SwampUp2021
       branches:
-        include: main
+        include: {{ gitBranch }}
       files:
-        include: lab2/python/.+
+        include: ${trainingPath}/lab2/python/.+
+      buildOn:
+        pullRequestCreate: true
+        pullRequestClose: true
 
   - name: lab2_bi_webapp_python
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: webapp_python
-      buildNumber: '${run_number}'
+      buildName: {{ gitBranch }}_webapp_python
+      buildNumber: ${run_number}
 
   - name: lab2_bi_webapp_python_promoted
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: webapp_python
-      buildNumber: '${run_number}'
+      buildName: {{ gitBranch }}_webapp_python
+      buildNumber: ${run_number}
 
   - name: lab2_pb_webapp_python
     type: PropertyBag
@@ -32,11 +35,14 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: my_github
-      path: cyan21/su301
+      path: cyan21/SwampUp2021
       branches:
-        include: main
+        include: {{ gitBranch }}
       files:
-        include: lab2/python/Dockerfile
+        include: ${trainingPath}/lab2/python/.+
+      buildOn:
+        pullRequestCreate: true
+        pullRequestClose: true
 
   - name: lab2_fs_webapp_python
     type: FileSpec
@@ -50,12 +56,12 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: lab2_webapp_python_docker
+      buildName: "{{ gitBranch }}_webapp_python_docker"
       buildNumber: ${run_number}
 
   - name: lab2_bi_webapp_python_docker_promoted
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: lab2_webapp_python_docker
+      buildName: "{{ gitBranch }}_webapp_python_docker"
       buildNumber: ${run_number}
