@@ -27,8 +27,8 @@ Create the following Pipelines integrations :
 * Artifactory and name it `artifactory_eu`
 
 Load the pipeline source of your choice :
-* java : `lab1\/java\/pipelines.*\.yml`
-* python : `lab1\/python\/pipelines.*\.yml`
+* java : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab1\/java\/pipelines.*\.yml`
+* python : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab1\/python\/pipelines.*\.yml`
 
 Run the pipeline ... and fix it :P
 
@@ -47,8 +47,8 @@ In `lab2/{java,python}/pipelines.resources.yml`, Update the git resource by usin
 ```
 
 Modify your pipeline source accordingly :
-* java : `lab2\/java\/pipelines.*\.yml`
-* python : `lab2\/python\/pipelines.*\.yml`
+* java : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab2\/java\/pipelines.*\.yml`
+* python : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab2\/python\/pipelines.*\.yml`
 
 Run the pipeline and fix it :P
 
@@ -80,7 +80,7 @@ Create the following Pipelines integrations :
 * K8S (with the provided Kubeconfig) and name it as you wish 
 * IncomingWebhook and name it as you wish 
 
-Modify your pipeline source accordingly : `lab3\/cd\/k8s\/.*\.yml`
+Modify your pipeline source accordingly : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab3\/cd\/k8s\/.*\.yml`
 
 Edit the `lab3/cd/k8s/values.yml`  with your own integration names
 
@@ -93,7 +93,7 @@ Create the following Pipelines integrations :
 * SSH key (with the provided key pair) and name it as you wish 
 * IncomingWebhook and name it as you wish 
 
-Modify your pipeline source accordingly : `lab3\/cd\/vm\/pipelines.*\.yml`
+Modify your pipeline source accordingly : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab3\/cd\/vm\/pipelines.*\.yml`
 
 Edit the `lab3/cd/vm/*.yml`  with your own integration names
 
