@@ -34,7 +34,7 @@ pipelines:
         execution:
           onStart:
             - jfrog --version 
-            - cd ${res_lab2_src_code_webapp_python_resourcePath}/src/python && ls -l
+            - cd ${res_lab2_src_code_webapp_python_resourcePath}/${trainingPath}/src/python && ls -l
             - git branch
             - jfrog config add --url=${int_artifactory_eu_url%/artifactory} --user="${int_artifactory_eu_user}" --apikey=${int_artifactory_eu_apikey} --interactive=false  art1 && jfrog config show
             - jfrog rt pip-config --repo-resolve ${pythonRepo} --server-id-resolve art1
@@ -49,7 +49,7 @@ pipelines:
               if [ ${res_lab2_src_code_webapp_python_isGitTag} == 'True' ]; then 
                 add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_gitTagName}
               else
-                add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_commitSha2048}
+                add_run_variables runVarAppVersion=${res_lab2_src_code_webapp_python_commitSha256}
               fi
             - echo ${runVarAppVersion}
 
