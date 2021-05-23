@@ -78,7 +78,8 @@ Creating Repositories [JFrogCLI- Creating/Updating Repositories](https://www.jfr
 
 Recording here - 
 
-![JFrog CLI](https://i.imgur.com/vomYtQS.gif)
+
+<img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab10in4.gif?raw=true" alt="JFrogCLI" style="height: 100px; width:100px;">
 
 ## Conclusion 
 - We have completed initial setup and deployed all the required repositories using JFrogCLI 
