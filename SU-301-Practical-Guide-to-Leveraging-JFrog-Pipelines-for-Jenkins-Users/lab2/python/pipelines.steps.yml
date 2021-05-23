@@ -14,7 +14,7 @@ pipelines:
         configuration:
           environmentVariables:
             JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_webapp_python"
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/default/${pipeline_name}/${run_number}/lab2_build_webapp_python?branch=${res_lab2_src_code_webapp_python_branchName}"
+            JFROG_CLI_BUILD_URL: "${step_url}${res_lab2_src_code_webapp_python_branchName}"
             JFROG_CLI_LOG_LEVEL: DEBUG
           affinityGroup: python
           runtime:
@@ -115,7 +115,6 @@ pipelines:
           inputResources:
             - name: lab2_src_dockerfile_webapp_python
             - name: lab2_fs_webapp_python
-            - name: lab2_pb_webapp_python
           integrations:
             - name: artifactory_eu
             - name: artifactory_docker
