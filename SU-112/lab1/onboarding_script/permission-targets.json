@@ -1,1 +1,0 @@
-{"name":"permission-target-example","repo":{"repositories":"acme-docker-dev-local,acme-docker-remote,acme-docker-virtual","include-patterns":"**","actions-users":{"testuser":"read,write,delete"}}}
