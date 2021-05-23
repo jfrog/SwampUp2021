@@ -3,11 +3,11 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: my_github
-      path: cyan21/su301
+      path: cyan21/SwampUp2021
       branches:
         include: {{ gitBranch }}
       files:
-        include: lab1/java/.+
+        include: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab1/java/.+
 
   - name: lab1_bi_backapp_mvn
     type: BuildInfo
@@ -19,6 +19,6 @@ resources:
   - name: lab1_bi_backapp_mvn_promoted
     type: BuildInfo
     configuration:
-      sourceArtifactory: artifactory_brexit
+      sourceArtifactory: artifactory_eu
       buildName: {{ gitBranch }}_backapp_mvn
       buildNumber: ${run_number}
