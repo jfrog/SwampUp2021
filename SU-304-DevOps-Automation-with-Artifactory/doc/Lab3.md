@@ -87,6 +87,10 @@ jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME
 
 Successfully, we are able to complete CI Integration 
 
+## End of Lab 3. Below section is completely optional
+
+
+
 # OPTIONAL (if you are ahead of others in the lab)
 ## Context
 
@@ -97,9 +101,7 @@ Successfully, we are able to complete CI Integration
 - Modify the dependecy versions
 - Build the Docker image in a CI like environment using JFrog CLI
 - Upload the build information to Artifactory
-- Upload the artifacts to Artifactory
 - Promote the Docker image to a production grade repository
-- Download the Docker image 
 
 ## Build the gradle project - build 2
 
@@ -172,5 +174,4 @@ jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME
 ## Conclusion
 
 - Build passed successfully
-- Image can be downloaded successfully
 - We can access the diff between the builds to see what has changed between the builds 
