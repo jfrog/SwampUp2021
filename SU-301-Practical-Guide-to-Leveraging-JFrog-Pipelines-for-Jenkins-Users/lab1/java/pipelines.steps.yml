@@ -4,6 +4,7 @@ pipelines:
       environmentVariables:
         readOnly:
           virtualRepo: urs-mvn
+          lab301Path: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
     steps:
       - name: lab1_build_backapp_mvn
         type: MvnBuild
@@ -27,7 +28,7 @@ pipelines:
             - name: artifactory_eu
         execution:
           onStart:
-            - ls -l ${res_lab1_src_code_backapp_mvn_resourcePath}/src
+            - ls -l ${res_lab1_src_code_backapp_mvn_resourcePath}/${lab301Path}/src
             - jfrog rt c show
           onFailure:
             - echo "Not cool"
