@@ -1,4 +1,4 @@
-# Lab2 - Create Release Bundle Using Release Bundle Generator CLI Plugin
+# Lab2 - Understanding CDN Funcionality with Artifactory
 
 ## Prerequisites
 
@@ -7,8 +7,8 @@
 - Clone the Git repo
   - ```mkdir Swampup2021```
   - ```git clone https://github.com/jfrog/SwampUp2021.git```
-  - Navigate to "Lab3" of "SU-307-Software-Distribution-Patterns"
-    ```cd ~/SwampUp2021/SU-307-Software-Distribution-Patterns/Lab3```
+  - Navigate to "Lab2" of "SU-307-Software-Distribution-Patterns"
+    ```cd ~/SwampUp2021/SU-307-Software-Distribution-Patterns/Lab2```
 
 - You can access curl
 
