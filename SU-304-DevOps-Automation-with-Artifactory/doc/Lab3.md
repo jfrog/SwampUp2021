@@ -49,7 +49,8 @@ jfrog rt build-collect-env "${CLI_GRADLE_BUILD_NAME}" 1
 jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" 1
 ```
 Recording here - 
- ![gradel build info](https://i.imgur.com/2DqU9Ck.gif)
+ 
+ <img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab3-1a.gif?raw=true" alt="gradel build info" style="height: 100px; width:100px;">
 
 ## Log into Docker registry
 
@@ -84,7 +85,8 @@ jfrog rt build-collect-env "${CLI_DOCKER_BUILD_NAME}" 1
 jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 1
 ```
 - Recording Docker build, publish and viewing bill of materials 
- ![Dcoker Publish](https://i.imgur.com/7TFWRQb.gif)
+ 
+ <img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab3-2.gif?raw=true" alt="Dcoker Publish" style="height: 100px; width:100px;">
 ## Conclusion
 
 Successfully, we are able to complete CI Integration 
@@ -173,9 +175,7 @@ jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME
 
 - Recording for Optional section with Diff between builds towarsds the end 
 
-![Diff between builds](https://i.imgur.com/pal0TRy.gif)
-
-<img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab3-optional.gif?raw=true" style="height: 100px; width:100px;">
+<img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab3-optional.gif?raw=true" alt="Diff between builds" style="height: 100px; width:100px;">
 
 ## Conclusion
 
