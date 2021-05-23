@@ -35,14 +35,15 @@ References: [System Health Ping](https://www.jfrog.com/confluence/display/JFROG/
 
 ##### 2.2 JFrog CLI
 
-	2.2.1 Download the JFrog CLI
+2.2.1 Download the JFrog CLI
 
-	References: [INSTALL JFROG CLI](https://jfrog.com/getcli/)**, **[JFrog CLI](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI)
+References: [INSTALL JFROG CLI](https://jfrog.com/getcli/)**, **[JFrog CLI](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI)
 
 
 ##### 	2.2.2  Add and configure your SaaS instance with the JFrog CLI \
-	References: [Adding and Editing Configured Servers](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI#JFrogCLI-JFrogPlatformConfiguration)
+References: [Adding and Editing Configured Servers](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI#JFrogCLI-JFrogPlatformConfiguration)
 
+<img src="../images/configure-cli-screenshot.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
 ##### 2.2.3 Verify Artifactory is accessible
 
@@ -65,24 +66,23 @@ References: [Verifying Artifactory is Accessible](https://www.jfrog.com/confluen
 
 ##### 3.1 Pre-script (optional)
 
-
-    Check which resources are already available in your environment before running the script that provisiones all resources (Repositories, Xray Policies and Watches and Permission Targets) for the new project.
-
-
-    [Get Repositories](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-GetRepositories) 
+Check which resources are already available in your environment before running the script that provisiones all resources (Repositories, Xray Policies and Watches and Permission Targets) for the new project.
 
 
-    [Get Permission Targets](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-GetPermissionTargets)
+   [Get Repositories](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-GetRepositories) 
 
 
-    [Get Watches](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetWatches)
+   [Get Permission Targets](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-GetPermissionTargets)
 
 
-    [Get Policies](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetPolicies.1)
+   [Get Watches](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetWatches)
+
+
+   [Get Policies](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetPolicies.1)
 
 
 ##### 
-    3.2 Run the onboarding.sh script
+3.2 Run the onboarding.sh script
 
 
 
