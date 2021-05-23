@@ -8,7 +8,10 @@ resources:
         include: {{ gitBranch }}
       files:
         include: ${trainingPath}/lab1/java/.+
-
+      buildOn:
+        pullRequestCreate: true
+        pullRequestClose: true
+        
   - name: lab1_bi_backapp_mvn
     type: BuildInfo
     configuration:
