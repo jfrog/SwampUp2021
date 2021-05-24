@@ -6,8 +6,8 @@ pipelines:
         configuration:
           dryRun: true
           container: 
-            repo: ${runVarImageTag}
-            tag: ${runVarImageName}
+            repo: ${runVarImageName}
+            tag: 2.0.0
           # webApp: 
           #   path: myrepo/awesome-app.3.0.0.jar
           #   technology: wildfly
@@ -23,7 +23,7 @@ pipelines:
         execution:
           onStart:
             - echo $(echo "$res_wh_jenkins1_payload" | jq '.image_name')
-            - add_run_variables runVarImageName=$(echo "$res_wh_jenkins1_payload" | jq '.image_name')
-            - add_run_variables runVarImageTag=$(echo "$res_wh_jenkins1_payload" | jq '.image_tag')
+            - add_run_variables runVarImageName=`echo "$res_wh_jenkins1_payload" | jq '.image_name'`
+#            - add_run_variables runVarImageTag=`echo "$res_wh_jenkins1_payload" | jq '.image_tag'`
 
 
