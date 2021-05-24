@@ -1,9 +1,9 @@
 resources:
 
-  - name: my_cron
-    type: CronTrigger
-    configuration:
-      interval: 0 23 * * *
+  # - name: my_cron
+  #   type: CronTrigger
+  #   configuration:
+  #     interval: 0 23 * * *
 
   - name: vm_group1
     type: VmCluster
