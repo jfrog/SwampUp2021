@@ -6,8 +6,8 @@ pipelines:
         configuration:
           dryRun: true
           container: 
-            repo: swampup301.jfrog.io/awesome-app
-            tag: 1.3.0
+            repo: ${runVarImageTag}
+            tag: ${runVarImageName}
           # webApp: 
           #   path: myrepo/awesome-app.3.0.0.jar
           #   technology: wildfly
@@ -22,4 +22,8 @@ pipelines:
             - name: artifactory_eu
         execution:
           onStart:
-            - jfrog rt c show && jfrog --version
+            - $(echo "$res_wh_jenkins1_payload" | jq '.image_name')
+            - add_run_variables runVarImageName=$(echo "$res_wh_jenkins1_payload" | jq '.image_name')
+            - add_run_variables runVarImageTag=$(echo "$res_wh_jenkins1_payload" | jq '.image_tag')
+
+
