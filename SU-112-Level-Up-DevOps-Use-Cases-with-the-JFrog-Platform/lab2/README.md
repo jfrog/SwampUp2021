@@ -28,7 +28,7 @@ Now that you’re familiar with your environment, login to your main JPD using y
  
  2.1.3 Click the Create Query. For simplicity, use the first option - Add Query. Give this query a name and for the Search Criteria choose Acme docker local repository. Click Next.
 
-<img src="../images/lab2.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
+<img src="../images/lab2-RB-create-query.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
  2.1.4 Additional Details - here you can the queried artifacts with properties and also change the repository path mapping. we’ll skip this option by clicking Next.
 
