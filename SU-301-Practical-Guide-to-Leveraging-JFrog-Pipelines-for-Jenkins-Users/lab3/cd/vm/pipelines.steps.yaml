@@ -23,6 +23,6 @@ pipelines:
         execution:
           onStart:
             - echo $(echo "$res_wh_jenkins1_payload" | jq '.image_name')
-            - add_run_variables runVarImageName=`echo "$res_wh_jenkins1_payload" | jq '.image_name'`
-            - add_run_variables runVarImageTag=`echo "$res_wh_jenkins1_payload" | jq '.image_tag'`
+            - add_run_variables runVarImageName=`echo "$res_wh_jenkins1_payload" | jq -r '.image_name'`
+            - add_run_variables runVarImageTag=`echo "$res_wh_jenkins1_payload" | jq -r '.image_tag'`
 

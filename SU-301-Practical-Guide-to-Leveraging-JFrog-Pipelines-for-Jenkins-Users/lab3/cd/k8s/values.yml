@@ -9,6 +9,7 @@ K8s:
     artifactory: artifactory_eu
     k8s: yann_k8s
   namespace: build-plane
+  releaseName: my-web-app
 
 K8sResources:
   gitRepoHelm:

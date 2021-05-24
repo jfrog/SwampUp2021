@@ -51,13 +51,18 @@ pipeline {
         string(name: 'WEBHOOK_PASS', defaultValue: 'Chaysinh21', description: '')
         string(name: 'WEBHOOK_URL', defaultValue: 'https://swampup301-pipelines-api.jfrog.io/v1/projectIntegrations/57/hook', description: '')
         
-        booleanParam(name: 'FAIL_BUILD', defaultValue: false, description: 'Xray scan')
-        
+        booleanParam(name: 'MVN_BUILD', defaultValue: false, description: 'Execute Maven build')
+        booleanParam(name: 'DOCKER_BUILD', defaultValue: false, description: 'Execute Docker build')        
     }
     
     stages {
 
         stage ('Maven Build') {
+            when {
+                expression {
+                    params.MVN_BUILD
+                }
+            }
             steps {
                 container('maven') {
                      
@@ -122,6 +127,11 @@ pipeline {
         }
 
         stage ('Docker Build & Push') {
+            when {
+                expression {
+                    params.DOCKER_BUILD
+                }
+            }
             steps {
                 container('docker') {
 
