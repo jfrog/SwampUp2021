@@ -5,9 +5,9 @@
     "start": "node helloworld"
   },
   "dependencies": {
-    "send": "^0.16.2",
     "http-server": "^0.6.1",
-    "jasmine-core": "^2.3.4"
+    "jasmine-core": "^2.3.4",
+    "send": "^0.16.2"
   },
   "devDependencies": {
     "debug": "^4.1.1",
