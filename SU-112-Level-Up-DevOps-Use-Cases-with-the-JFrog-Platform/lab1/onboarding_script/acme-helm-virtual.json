@@ -1,0 +1,1 @@
+{"key":"acme-helm-virtual","packageType":"helm","rclass":"virtual","repositories":"acme-helm-dev-local,acme-helm-remote"}
