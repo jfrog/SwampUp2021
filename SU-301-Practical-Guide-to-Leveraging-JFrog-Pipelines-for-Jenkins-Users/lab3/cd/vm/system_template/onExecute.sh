@@ -6,18 +6,17 @@ deployWebApp() {
     local dry_run=$(find_step_configuration_value "dryRun")
     local comment=$(find_step_configuration_value "comment")
 
-    local web_app=$(find_step_configuration_value "webApp")
+    # local web_app=$(find_step_configuration_value "webApp")
+    # local path=`echo $web_app | jq -r ".path"`
+    # local technology=`echo $web_app | jq -r ".technology"`
+
+    # local ansible_deploy=$(find_step_configuration_value "ansible")
+    # local role=`echo $ansible_deploy | jq -r ".role"`
+    # local inventory=`echo $ansible_deploy | jq -r ".inventory"`
+
     local container=$(find_step_configuration_value "container")
-    local ansible_deploy=$(find_step_configuration_value "ansible")
-
-    local role=`echo $ansible_deploy | jq -r ".role"`
-    local inventory=`echo $ansible_deploy | jq -r ".inventory"`
-
     local repo=`echo $container | jq -r ".repo"`
     local tag=`echo $container | jq -r ".tag"`
-
-    local path=`echo $web_app | jq -r ".path"`
-    local technology=`echo $web_app | jq -r ".technology"`
 
     local webhook_rsc_name=$(get_resource_name --type IncomingWebhook --operation IN)
     echo "Webhook name: $webhook_rsc_name"
@@ -41,33 +40,31 @@ deployWebApp() {
     echo "path: $path"
     echo "technology: $path"
 
-    if [ -n $webapp ]; then
-        deploy_mode="WebApp"
-    else 
-        
-    fi
+    # if [ -n $webapp ]; then
+    #     deploy_mode="WebApp"
+    # fi
 
     echo "Container info: $container"
     echo "repo: $repo"
     echo "tag: $tag"
 
-    if [  -z $deploy_mode ]; then
-        deploy_mode="Container"
-    else
-        success=false
-        echo "[ERROR] You can choose only 1 deployment type"
-    fi   
+    # if [  -z $deploy_mode ]; then
+    #     deploy_mode="Container"
+    # else
+    #     success=false
+    #     echo "[ERROR] You can choose only 1 deployment type"
+    # fi   
 
-    echo "Ansible info : $ansible_deploy"
-    echo "role : $role"
-    echo "inventory : $inventory"
+    # echo "Ansible info : $ansible_deploy"
+    # echo "role : $role"
+    # echo "inventory : $inventory"
 
-    if [  -z $deploy_mode ]; then
-        deploy_mode="Ansible"
-    else
-        success=false
-        echo "[ERROR] You can choose only 1 deployment type"
-    fi   
+    # if [  -z $deploy_mode ]; then
+    #     deploy_mode="Ansible"
+    # else
+    #     success=false
+    #     echo "[ERROR] You can choose only 1 deployment type"
+    # fi   
 
     if [ $success == "true" ]; then
 
@@ -75,11 +72,11 @@ deployWebApp() {
         
         for curr_ip in `echo $ips | jq -r '.[]'`; do
             echo ${curr_ip}
-            ssh -i ~/.ssh/${vm_rsc_name} ec2-user@${curr_ip} "./deploy.sh $deploy_mode"
-        fi
+            ssh -i ~/.ssh/${vm_rsc_name} ec2-user@${curr_ip} "./deploy.sh ${repo}:${tag}"
+        done
 
         echo "[INFO] Deployment done"
-    done
+    fi
 
 
     $success
