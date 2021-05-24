@@ -6,8 +6,8 @@ pipelines:
         configuration:
           dryRun: true
           container: 
-            repo: testesr
-            tag: 2.0.0
+            repo: ${runVarImageName}
+            tag: ${runVarImageTag}
           # webApp: 
           #   path: myrepo/awesome-app.3.0.0.jar
           #   technology: wildfly
