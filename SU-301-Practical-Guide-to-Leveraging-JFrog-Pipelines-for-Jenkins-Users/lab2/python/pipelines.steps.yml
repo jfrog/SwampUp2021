@@ -3,6 +3,7 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
           dockerRepo: swampup301.jfrog.io/urs-docker
           pythonRepo: urs-python
           genericRepo: urs-generic
@@ -12,7 +13,8 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/default/${pipeline_name}/${run_number}/lab2_build_webapp_python?branch=${res_lab2_src_code_webapp_python_branchName}"
+            JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_webapp_python"
+            JFROG_CLI_BUILD_URL: "${step_url}${res_lab2_src_code_webapp_python_branchName}"
             JFROG_CLI_LOG_LEVEL: DEBUG
           affinityGroup: python
           runtime:
@@ -32,7 +34,7 @@ pipelines:
         execution:
           onStart:
             - jfrog --version 
-            - cd ${res_lab2_src_code_webapp_python_resourcePath}/src/python && ls -l
+            - cd ${res_lab2_src_code_webapp_python_resourcePath}/${trainingPath}/src/python && ls -l
             - git branch
             - jfrog config add --url=${int_artifactory_eu_url%/artifactory} --user="${int_artifactory_eu_user}" --apikey=${int_artifactory_eu_apikey} --interactive=false  art1 && jfrog config show
             - jfrog rt pip-config --repo-resolve ${pythonRepo} --server-id-resolve art1
@@ -83,7 +85,7 @@ pipelines:
       environmentVariables:
         readOnly:
           dockerRepo: swampup301.jfrog.io/urs-docker
-
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
     steps:
       # need this step to export the appVersion for the Filespec Resource
       - name: lab2_export_variables
@@ -99,10 +101,11 @@ pipelines:
         type: DockerBuild
         configuration:
           environmentVariables:
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_webapp_python_branchName}"
+            JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_webapp_python_docker"
+            JFROG_CLI_BUILD_URL: "${step_url}${res_lab2_src_code_webapp_python_branchName}"
             JFROG_CLI_LOG_LEVEL: INFO
           dockerFileName: Dockerfile
-          dockerFileLocation: lab3/python/
+          dockerFileLocation: ${trainingPath}/lab3/python/
           dockerImageName: ${dockerRepo}/webapp-python-docker
           dockerImageTag: ${runVarAppVersion}
           inputSteps:
@@ -110,20 +113,19 @@ pipelines:
           inputResources:
             - name: lab2_src_dockerfile_webapp_python
             - name: lab2_fs_webapp_python
-            - name: lab2_pb_webapp_python
           integrations:
             - name: artifactory_eu
             - name: artifactory_docker
         execution:
           onStart:
-            - 'ls -la ${res_lab2_fs_webapp_python_resourcePath}'
-            - 'echo ${res_lab2_src_dockerfile_webapp_python_resourcePath}'
-            - 'ls -la  ${res_lab2_src_dockerfile_webapp_python_resourcePath}'
+            - ls -la ${res_lab2_fs_webapp_python_resourcePath}
+            - echo ${res_lab2_src_dockerfile_webapp_python_resourcePath}
+            - ls -la  ${res_lab2_src_dockerfile_webapp_python_resourcePath}/${trainingPath}
             - >-
               cp
               ${res_lab2_fs_webapp_python_resourcePath}/webapp_python.tar.gz
-              ${res_lab2_src_dockerfile_webapp_python_resourcePath}/lab1/python/
-            - ls -l  ${res_lab2_src_dockerfile_webapp_python_resourcePath}/lab2/python/
+              ${res_lab2_src_dockerfile_webapp_python_resourcePath}/${trainingPath}/lab1/python/
+            - ls -l  ${res_lab2_src_dockerfile_webapp_python_resourcePath}/${trainingPath}/lab2/python/
 
       - name: lab2_publish_webapp_python_docker
         type: DockerPush

@@ -1,0 +1,20 @@
+
+
+{
+    "indexed_repos": [
+        {
+            "name": "acme-docker-dev-local",
+            "type": "local",
+            "pkg_type": "Docker"
+        },
+        {
+            "name": "acme-docker-remote",
+            "type": "remote",
+            "pkg_type": "Docker"
+        }
+    ],
+    "non_indexed_repos": [
+        {
+        }
+    ]
+}

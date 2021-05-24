@@ -4,15 +4,17 @@ pipelines:
       environmentVariables:
         readOnly:
           virtualRepo: urs-mvn
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
     steps:
       - name: lab2_build_backapp_mvn
         type: MvnBuild
         configuration:
           environmentVariables:
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_backapp_mvn_branchName}"
+            JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_backapp_mvn"
+            JFROG_CLI_BUILD_URL: "${step_url}${res_lab2_src_code_backapp_mvn_branchName}"
             JFROG_CLI_LOG_LEVEL: DEBUG
           mvnCommand: clean package
-          sourceLocation: src/java
+          sourceLocation: ${trainingPath}/src/java
           resolverSnapshotRepo: ${virtualRepo}
           resolverReleaseRepo: ${virtualRepo}
           deployerSnapshotRepo: ${virtualRepo}
@@ -27,13 +29,13 @@ pipelines:
             - name: artifactory_eu
         execution:
           onStart:
-            - ls -l ${res_lab2_src_code_backapp_mvn_resourcePath}/src
+            - ls -l ${res_lab1_src_code_backapp_mvn_resourcePath}/${trainingPath}/src/java
             - jfrog rt c show
           onFailure:
             - echo "Not cool"
           onSuccess:
             - echo "Yahoo"
-            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/src/java/pomme.xml`
+            - add_run_variables runVarAppVersion=`sed -n "s/[[:space:]]*<version>\(.*\)<\/version>/\1/p" ${res_lab2_src_code_backapp_mvn_resourcePath}/${trainingPath}/src/java/pomme.xml`
             - echo $runVarAppVersion
 
       - name: lab2_scan_backapp_mvn
@@ -65,6 +67,10 @@ pipelines:
             - write_output lab2_pb_backapp_mvn appVersion=${runVarAppVersion}
 
   - name: lab2_backapp_mvn_docker
+    configuration:
+      environmentVariables:
+        readOnly:
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
     steps:
       # need this step to export the appVersion for the Filespec Resource
       - name: lab2_export_variables
@@ -80,11 +86,12 @@ pipelines:
         type: DockerBuild
         configuration:
           environmentVariables:
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab2_src_code_backapp_mvn_branchName}"
+            JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_backapp_mvn_docker"
+            JFROG_CLI_BUILD_URL: "${step_url}${res_lab2_src_code_backapp_mvn_branchName}"
             JFROG_CLI_LOG_LEVEL: INFO
           affinityGroup: together
           dockerFileName: Dockerfile
-          dockerFileLocation: lab3/java/
+          dockerFileLocation: ${trainingPath}/lab3/java/
           dockerImageName: swampup301.jfrog.io/urs-docker/backapp-mvn-docker
           dockerImageTag: ${runVarAppVersion}
           inputSteps:
@@ -96,13 +103,13 @@ pipelines:
             - name: artifactory_eu
         execution:
           onStart:
-            - 'ls -la ${res_lab2_fs_backapp_mvn_resourcePath}'
+            - 'ls -la ${res_lab2_fs_backapp_mvn_resourcePath}/${trainingPath}'
             - 'echo ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}'
             - 'ls -la  ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}'
             - >-
               cp
               ${res_lab2_fs_backapp_mvn_resourcePath}/multi-module-application-${runVarAppVersion}.jar
-              ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}/lab1/java/multi-module-application.jar
+              ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}/${trainingPath}/lab1/java/multi-module-application.jar
 
       - name: lab2_publish_backapp_mvn_docker
         type: DockerPush

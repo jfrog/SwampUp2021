@@ -3,6 +3,7 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
           dockerRepo: swampup301.jfrog.io/urs-docker
           pythonRepo: urs-python
           genericRepo: urs-generic
@@ -12,7 +13,8 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/default/${pipeline_name}/${run_number}/lab1_build_webapp_python?branch=${res_lab1_src_code_webapp_python_branchName}"
+            JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_webapp_python"
+            JFROG_CLI_BUILD_URL: "${step_url}${res_lab1_src_code_webapp_python_branchName}"
             JFROG_CLI_LOG_LEVEL: DEBUG
           affinityGroup: python
           runtime:
@@ -32,7 +34,7 @@ pipelines:
           execution:
           onStart:
             - jfrog --version 
-            - cd ${res_lab1_src_code_webapp_python_resourcePath}/src/python && ls -l
+            - cd ${res_lab1_src_code_webapp_python_resourcePath}/${trainingPath}/src/python && ls -l
             - git branch
             - jfrog config add --url=${int_artifactory_eu_url%/artifactory} --user="${int_artifactory_eu_user}" --apikey=${int_artifactory_eu_apikey} --interactive=false  art1 && jfrog config show
             - jfrog rt pip-config --repo-resolve ${pythonRepo} --server-id-resolve art1
