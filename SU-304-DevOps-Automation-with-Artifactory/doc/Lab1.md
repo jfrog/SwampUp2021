@@ -71,16 +71,8 @@ Recording here -
 
 if you are not getting an OK response, please check your environment variables, there might be a typo, and run the container again.
 
-## Entrypoint.sh 
-- The entrypoint.sh located in the /usr/local directory of this docker container has completed the inital setup. Explore the JFrog CLI docuemntation on configuring Artifactory, creating repositories to learn more
-Adding Artifactory to JFrogCLI [JFrogCLI- Adding and Editiong Configured Server](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI#JFrogCLI-AddingandEditingConfiguredServers)
-Creating Repositories [JFrogCLI- Creating/Updating Repositories](https://www.jfrog.com/confluence/display/CLI/CLI+for+JFrog+Artifactory#CLIforJFrogArtifactory-Creating/UpdatingRepositories)
 
-Recording here - 
-
-
-<img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab10in4.gif?raw=true" alt="JFrogCLI" style="height: 100px; width:100px;">
 
 ## Conclusion 
-- We have completed initial setup and deployed all the required repositories using JFrogCLI 
 - Using JfrogCLI ping command, we verified our test system is able to communicate with Artifactory
+- Our lab environement is ready for palying around with all capabilities that Artifactory has to offer
