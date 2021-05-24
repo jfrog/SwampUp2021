@@ -8,6 +8,7 @@
 
 Now that you’re familiar with your environment, login to your main JPD using your admin credentials and then navigate Distribution service in the Application panel.
 
+<img src="../images/lab2-distribution.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
 #### Step2: Manage Release Bundle Lifecycle (Create, Sign and Distribute)
 
