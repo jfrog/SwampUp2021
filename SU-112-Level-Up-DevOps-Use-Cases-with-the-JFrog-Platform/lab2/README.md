@@ -35,7 +35,7 @@ Now that you’re familiar with your environment, login to your main JPD using y
 
 
 
-        2.1.4 Additional Details - here you can the queried artifacts with properties and also change the repository path mapping. we’ll skip this option by clicking _Next_.
+ 2.1.4 Additional Details - here you can the queried artifacts with properties and also change the repository path mapping. we’ll skip this option by clicking Next.
 
 
     
@@ -47,7 +47,7 @@ Now that you’re familiar with your environment, login to your main JPD using y
 
 
 
-        2.1.5 Preview Artifacts - here is the list of all artifacts that answered this query wizard. Because the only search criteria we used is the repository name in this view we’re getting all artifacts in this repository.
+ 2.1.5 Preview Artifacts - here is the list of all artifacts that answered this query wizard. Because the only search criteria we used is the repository name in this view we’re getting all artifacts in this repository.
 
 
         
@@ -59,17 +59,17 @@ Now that you’re familiar with your environment, login to your main JPD using y
 
 
 
-        2.1.6 Repeat steps 2.1.3-2.15 but now query Acme helm repository.
+  2.1.6 Repeat steps 2.1.3-2.15 but now query Acme helm repository.
 
 2.2 Sign the created Release Bundle
 
 
-    2.2.1 Try and edit this Release Bundle. 
+   2.2.1 Try and edit this Release Bundle. 
 
 
 
-*   Click on your new release bundle, now you can see all its available versions and each version state. As you can see its state is _Ready_ and there is a lock next to it - this means it’s immutable and can’t be edited. 
-*   Let’s try anyway - click on the RB version then click the _Version Actions_ (right on the top) as you can see the Edit Version action is greyed out.
+*   Click on your new release bundle, now you can see all its available versions and each version state. As you can see its state is Ready and there is a lock next to it - this means it’s immutable and can’t be edited. 
+*   Let’s try anyway - click on the RB version then click the Version Actions (right on the top) as you can see the Edit Version action is greyed out.
 
 	
 
@@ -80,11 +80,11 @@ Now that you’re familiar with your environment, login to your main JPD using y
 
 
 
-    2.3 DIstribute the Release Bundle to the available Edge Node in your federation
+   2.3 Distribute the Release Bundle to the available Edge Node in your federation
 
 
 
-*   Click again on the _Version Actions_ and choose the _Distribute Version_
+*   Click again on the Version Actions and choose the Distribute Version
 *   Choose the Edge JPD and click _Distribute_
 
     
