@@ -48,6 +48,9 @@ jfrog rt build-collect-env "${CLI_GRADLE_BUILD_NAME}" 1
 ```bash
 jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_GRADLE_BUILD_NAME}" 1
 ```
+Recording here - 
+ 
+ <img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab3-1a.gif?raw=true" alt="gradel build info" style="height: 100px; width:100px;">
 
 ## Log into Docker registry
 
@@ -81,8 +84,9 @@ jfrog rt build-collect-env "${CLI_DOCKER_BUILD_NAME}" 1
 ```bash
 jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 1
 ```
-- TODO Place screenshot for bill of materials 
-
+- Recording Docker build, publish and viewing bill of materials 
+ 
+ <img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab3-2.gif?raw=true" alt="Dcoker Publish" style="height: 100px; width:100px;">
 ## Conclusion
 
 Successfully, we are able to complete CI Integration 
@@ -169,7 +173,9 @@ jfrog rt build-publish --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME
 jfrog rt build-promote --server-id="${CLI_INSTANCE_ID}" "${CLI_DOCKER_BUILD_NAME}" 2 "${DOCKER_REPO_PROD}-local" 
 ```
 
-- TODO Place screenshot for diff between builds 
+- Recording for Optional section with Diff between builds towarsds the end 
+
+<img src="/SU-304-DevOps-Automation-with-Artifactory/doc/images/Lab3-optional.gif?raw=true" alt="Diff between builds" style="height: 100px; width:100px;">
 
 ## Conclusion
 
