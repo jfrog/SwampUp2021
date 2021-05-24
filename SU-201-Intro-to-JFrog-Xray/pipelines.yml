@@ -5,7 +5,7 @@ resources:
       # SCM integration where the repository is located
       gitProvider: GitHub
       # Repository path, including org name/repo name
-      path: JFrog/SwampUp2021                     # Update with your "git_user"/SwampUp2021
+      path: MaharshiPatel/SwampUp2021                     # Update with your "git_user"/SwampUp2021
       branches:
         # Specifies which branches will trigger dependent steps
         include: main
