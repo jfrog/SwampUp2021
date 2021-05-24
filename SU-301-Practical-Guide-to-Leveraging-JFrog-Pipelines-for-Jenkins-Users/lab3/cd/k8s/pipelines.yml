@@ -42,6 +42,10 @@ resources:
 
 pipelines:
   - name: {{ .Values.K8s.pipelineNameCreate }}
+    configuration:
+      environmentVariables:
+        readOnly:
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
     steps:      
       - name: {{ .Values.K8sSteps.publishHelm.name }}
         type: HelmPublish
