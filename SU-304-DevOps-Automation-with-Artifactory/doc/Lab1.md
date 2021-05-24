@@ -37,9 +37,9 @@ Generate an Artifactory [API Key](https://www.jfrog.com/confluence/display/JFROG
 
 - On Linux OS, please use
 ```bash
-ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
-ARTIFACTORY_LOGIN="foo@bar.com"
-ARTIFACTORY_API_KEY="MY_API_KEY"
+export ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
+export ARTIFACTORY_LOGIN="foo@bar.com"
+export ARTIFACTORY_API_KEY="MY_API_KEY"
 ```
 
 - On Windows OS, please use
