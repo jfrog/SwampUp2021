@@ -6,27 +6,20 @@
 
 #### Step1: Login and navigate to JFrog Distribution
 
-Now that you’re familiar with your environment, login to your main JPD using your admin credentials and then navigate to Distribution service in the Application panel.
-
-
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image1.png "image_tooltip")
-
+Now that you’re familiar with your environment, login to your main JPD using your admin credentials and then navigate Distribution service in the Application panel.
 
 
 #### Step2: Manage Release Bundle Lifecycle (Create, Sign and Distribute)
 
 2.1 Create a new Release Bundle
 
-
  2.1.1 Click + New Release Bundle
  
  2.1.2 Give your Release Bundle a convenient name, version and description
  
  2.1.3 Click the Create Query. For simplicity, use the first option - Add Query. Give this query a name and for the Search Criteria choose Acme docker local repository. Click Next.
+ 
+<img src="../images/lab2-create-rb.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
 <img src="../images/lab2-RB-create-query.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
