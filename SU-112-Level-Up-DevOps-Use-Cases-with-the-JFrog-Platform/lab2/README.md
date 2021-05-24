@@ -22,16 +22,9 @@ Now that you’re familiar with your environment, login to your main JPD using y
 2.1 Create a new Release Bundle
 
 
-    2.1.1 Click _+ New Release Bundle _
-
-
-    2.1.2 Give your Release Bundle a convenient name, version and description
-
-
-    2.1.3 Click the _Create Query_. For simplicity, use the first option - _Add Query_. 
-
-
-        Give this query a name and for the Search Criteria choose Acme docker local repository. Click _Next._
+ 2.1.1 Click _+ New Release Bundle _
+ 2.1.2 Give your Release Bundle a convenient name, version and description
+ 2.1.3 Click the _Create Query_. For simplicity, use the first option - _Add Query_. Give this query a name and for the Search Criteria choose Acme docker local repository. Click _Next._
 
 <p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
