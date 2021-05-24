@@ -14,14 +14,14 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
     3. [Eclipse](https://www.jfrog.com/confluence/display/JFROG/JFrog+Eclipse+IDE+Plugin) - scanning your Maven, Gradle and npm project dependencies
     4. [Visual Studio](https://www.jfrog.com/confluence/display/JFROG/JFrog+Visual+Studio+Extension) - scanning your NuGet project dependencies
 
-- Please add below snippet into package.json under dependencies if you are using "npm-example" project
+- Please add below snippet into **npm-example/package.json** under dependencies if you are using "npm-example" project
 
     ```
     "mathjs": "6.6.5",
     "jquery": "2.2.4"
     ```
 
-- Please add below snippet into pom.xml under dependencies if you are using "maven-example" project
+- Please add below snippet into **maven-example/pom.xml** under dependencies if you are using "maven-example" project
 
     ```
     <dependency>
@@ -34,9 +34,20 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 - Here is an example from Visual Studio code
     <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/1.gif" alt="Visual Studio Code" style="height: 100px; width:100px;"/>
 
+- Save, commit these changes and push to remote main. 
+
 
 ### Part 2 - JFrog Pipelines integrtaion
 
+- Open to **SU-201-Intro-to-JFrog-Xray/pipelines.yml** in your IDE. 
+- Make sure that you have updated line 8 **path: JFrog/SwampUp2021** with **path: your_git_user"/SwampUp2021**
+- Save and commit this change to remote main
+- If you prefer to use npm project then, update line 53 **failOnScan: false** to **failOnScan: true** 
+- If you prefer to use maven project then, update line 79 **failOnScan: false** to **failOnScan: true**
+- If you would like to use both then feel free to update both line 53 & line 79
+- Save and commit this change to remote main
+
+You can also use XrayScan as a seperate step in your pipeline as below,
 - JFrog Pipelines provide us the avility to add a step that will triggers [JFrog Xray](https://www.jfrog.com/confluence/display/JFROG/JFrog+Xray) scan for security vulnerabilities and license compliance if there was a watch created that covers the selected build,
 
     <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/2.png" alt=" JFrog Pipelines integrtaion" style="height: 100px; width:100px;"/>
