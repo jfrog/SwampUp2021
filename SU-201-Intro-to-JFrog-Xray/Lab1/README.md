@@ -24,7 +24,7 @@ A SAAS Instance of JFrog. This will be provided as part of your enrollment to th
 ![2-1](https://user-images.githubusercontent.com/7561138/118908191-c6ee8f80-b8d5-11eb-9a72-b35d542332dc.gif)
 
 
-- Click on **New Rule** to add rule to **sec_policy**. Add one or many rules with **Criteria** and **Automatic Actions**. Click **Save** and Click **Create**.
+- Click on **New Rule** to add rule to **sec_policy**. Add one or many rules with **Criteria** and **Automatic Actions**. Click **Save** and Click **Create**. If you like, you select **Notify Deployer** option upder **Automatic Actions**. NOTE: We will enable these Automatic Actions as part of later Labs.  
 ![2-2](https://user-images.githubusercontent.com/7561138/118908208-cd7d0700-b8d5-11eb-8abe-f6247d0eed61.gif)
 
 
