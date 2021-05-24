@@ -1,19 +1,35 @@
 # Lab3 - IDE Integration, JFrog Pipelines, REST API and JFrog CLI example
 
 ## Prerequisites
-A SAAS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
-JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli/)
+A SAAS Instance of JFrog. This will be provided as part of your enrollment to the Training class. JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli/).
 
 ### Part 1 - IDE Integration
 
 - As we discuss on our session Xray is able to find vulnerabilities that discovered in production systems at runtime also through integration to CI systems like [Jenkins CI](https://www.jfrog.com/confluence/display/JFROG/Jenkins+Artifactory+Plug-in) and [TeamCity](https://www.jfrog.com/confluence/display/JFROG/TeamCity+Artifactory+Plug-in) at build time. 
 
-- The IDE integration completes the CI/CD process, by bringing Xray's issue discovery one step earlier, to development time.
-- Current support includes:
+- The IDE integration completes the CI/CD process, by bringing Xray's issue discovery one step earlier, to development time (shift left approach).
+- Lets download and configure JFrog plugin from Marketplace into your IDE. Current support includes:
     1. [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=JFrog.jfrog-vscode-extension) - scanning your Maven, Python, Go and npm project dependencies
     2. [IntelliJ IDEA, WebStorm and GoLand](https://www.jfrog.com/confluence/display/JFROG/JFrog+IntelliJ+IDEA+Plugin) - scanning your Maven, Gradle, Go and npm project dependencies
     3. [Eclipse](https://www.jfrog.com/confluence/display/JFROG/JFrog+Eclipse+IDE+Plugin) - scanning your Maven, Gradle and npm project dependencies
     4. [Visual Studio](https://www.jfrog.com/confluence/display/JFROG/JFrog+Visual+Studio+Extension) - scanning your NuGet project dependencies
+
+- Please add below snippet into package.json under dependencies if you are using "npm-example" project
+
+    ```
+    "mathjs": "6.6.5",
+    "jquery": "2.2.4"
+    ```
+
+- Please add below snippet into pom.xml under dependencies if you are using "maven-example" project
+
+    ```
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.9.5</version>
+    </dependency>
+    ```
 
 - Here is an example from Visual Studio code
     <img src="/SU-201-Intro-to-JFrog-Xray/Lab3/images/1.gif" alt="Visual Studio Code" style="height: 100px; width:100px;"/>
@@ -37,7 +53,7 @@ JFrog CLI installed that you can easily download [here](https://jfrog.com/getcli
 - The Platform REST URL is constructed of: 
 
     ```
-    \<JFrog URL>\/\<Service Context>api/\<API-Version>
+    <JFrog URL>\/\<Service Context>api/\<API-Version>
     ```
 
 - To get tge Xray [server version](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetVersion) use the following commnad:

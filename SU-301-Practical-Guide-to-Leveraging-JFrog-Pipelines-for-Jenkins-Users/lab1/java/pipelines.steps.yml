@@ -4,15 +4,17 @@ pipelines:
       environmentVariables:
         readOnly:
           virtualRepo: urs-mvn
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
     steps:
       - name: lab1_build_backapp_mvn
         type: MvnBuild
         configuration:
           environmentVariables:
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/${pipeline_name}/${run_number}/build_${pipeline_name}?branch=${res_lab1_src_code_backapp_mvn_branchName}"
+            JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_backapp_mvn"
+            JFROG_CLI_BUILD_URL: "${step_url}${res_lab1_src_code_backapp_mvn_branchName}"
             JFROG_CLI_LOG_LEVEL: DEBUG
           mvnCommand: clean package
-          sourceLocation: src/java
+          sourceLocation: ${trainingPath}/src/java
           resolverSnapshotRepo: ${virtualRepo}
           resolverReleaseRepo: ${virtualRepo}
           deployerSnapshotRepo: ${virtualRepo}
@@ -27,7 +29,7 @@ pipelines:
             - name: artifactory_eu
           execution:
           onStart:
-            - ls -l ${res_lab1_src_code_backapp_mvn_resourcePath}/src
+            - ls -l ${res_lab1_src_code_backapp_mvn_resourcePath}/${trainingPath}/src/java
             - jfrog rt c show
           onFailure:
             - echo "Not cool"

@@ -1,0 +1,6 @@
+{
+    "key": "su307-maven-local",
+    "rclass": "local",
+    "packageType": "maven",
+    "description": "The local MAVEN repository"
+}
