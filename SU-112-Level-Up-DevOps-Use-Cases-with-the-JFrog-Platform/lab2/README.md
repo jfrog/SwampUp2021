@@ -14,22 +14,22 @@ Now that you’re familiar with your environment, login to your main JPD using y
 
 2.1 Create a new Release Bundle
 
- 2.1.1 Click + New Release Bundle
+  2.1.1 Click + New Release Bundle
  
- 2.1.2 Give your Release Bundle a convenient name, version and description
+  2.1.2 Give your Release Bundle a convenient name, version and description
  
- 2.1.3 Click the Create Query. For simplicity, use the first option - Add Query. Give this query a name and for the Search Criteria choose Acme docker local repository. Click Next.
+  2.1.3 Click the Create Query. For simplicity, use the first option - Add Query. Give this query a name and for the Search Criteria choose Acme docker local repository. Click Next.
  
 <img src="../images/lab2-create-rb.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
 <img src="../images/lab2-RB-create-query.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
- 2.1.4 Additional Details - here you can the queried artifacts with properties and also change the repository path mapping. we’ll skip this option by clicking Next.
+  2.1.4 Additional Details - here you can the queried artifacts with properties and also change the repository path mapping. we’ll skip this option by clicking Next.
 
 <img src="../images/lab2-addtional-details.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
 
 
- 2.1.5 Preview Artifacts - here is the list of all artifacts that answered this query wizard. Because the only search criteria we used is the repository name in this view we’re getting all artifacts in this repository.
+  2.1.5 Preview Artifacts - here is the list of all artifacts that answered this query wizard. Because the only search criteria we used is the repository name in this view we’re getting all artifacts in this repository.
 
 
 <img src="../images/lab2-preview-artifacts.png" width="60%" height="60%" alt="alt_text" title="image_tooltip">
