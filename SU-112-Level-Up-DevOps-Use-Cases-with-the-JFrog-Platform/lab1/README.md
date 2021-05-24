@@ -95,3 +95,14 @@ Validate the script completed successfully by checking that all the resources fo
 
 
    [Get Policies](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-GetPolicies.1)
+
+
+
+#### Step4: Populate some content on your new repositories using the JFrog CLI
+
+For simplicity we’ll copy a docker image and a helm chart that are already available in our environment.
+
+
+```
+$ jfrog rt cp su112-docker-dev-local/nginx/ acme-docker-dev-local/nginx/
+$ jfrog rt cp su112-helm-local/nginx/ acme-helm-dev-local/nginx/
