@@ -59,12 +59,24 @@ The following repositories should be created (Go to "Artifactory" -> "Artifacts"
 
 <b>* For any issues, please assist the instructor and T.A's!</b>
 
-#### <ins>Lab #2 - Understanding the Environment</ins>
+#### <ins>Lab #2 - Start leverging project and protect your resources </ins>
 
-Complete/answer the following tasks/questions:
-- Run all pipelines until your environment is GREEN:
-![alt text](http://g.recordit.co/xaZV0g6i21.gif)
+- Create two users on artifactory (SuperFrog who work in RnD, and SpiderFrog who work in SRE team)
+![image](https://user-images.githubusercontent.com/8787649/119436199-b7ae7e00-bce9-11eb-8ee5-994b1045ddb2.png)
 
-- Understand the relationship between the different pipelines - in what ways a pipeline can be triggered?
-- How many repositories were created for the backend application?
-- How many repositories were created for the frontend application?
+- Time to create new projects. Let create one for RnD team first, and assign SuperFrog as project admins.
+![image](https://user-images.githubusercontent.com/8787649/119436336-fb08ec80-bce9-11eb-924f-a91d2405a1b5.png)
+
+- Assign all dev repositories to this project (RnD). 
+![image](https://user-images.githubusercontent.com/8787649/119436404-196ee800-bcea-11eb-9476-509f9f0ddb37.png)
+
+- Likewise, following the above steps to create a project for SRE team with all prod repositories assigned and add SpiderFrog as project admin.
+![image](https://user-images.githubusercontent.com/8787649/119436618-7d91ac00-bcea-11eb-97df-f01906dd0564.png)
+
+- Project admin can also go to identity and access tab to see who you want to add user into this project and assign specific role. For this specific lab, I have remove everyone under the member lists.
+![image](https://user-images.githubusercontent.com/8787649/119437581-6f448f80-bcec-11eb-937a-bf4ffb069e2f.png)
+
+- Now if you login as superfrog, you will only able to see your RnD project scope. 
+![image](https://user-images.githubusercontent.com/8787649/119437695-ad41b380-bcec-11eb-96d6-b1b3daf53ac5.png)
+
+Play around with SpiderFrog user as well! Let us know if there is any additional questions.
