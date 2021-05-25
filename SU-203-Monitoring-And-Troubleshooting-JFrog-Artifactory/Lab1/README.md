@@ -101,6 +101,3 @@
         * Artifactory
     
 </details>
-
-
-* **Q**: Log Analytics - Most downloaded artifacts (instructors env) - TBD
