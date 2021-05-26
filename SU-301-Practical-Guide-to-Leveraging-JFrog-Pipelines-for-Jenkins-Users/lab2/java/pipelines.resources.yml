@@ -16,14 +16,14 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: {{ gitBranch }}__backapp_mvn
+      buildName: {{ gitBranch }}_backapp_mvn
       buildNumber: ${run_number}
     
   - name: lab2_bi_backapp_mvn_promoted
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: {{ gitBranch }}__backapp_mvn
+      buildName: {{ gitBranch }}_backapp_mvn
       buildNumber: ${run_number}
 
   - name: lab2_pb_backapp_mvn
@@ -62,5 +62,5 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory_eu
-      buildName: {{ gitBranch }}__backapp_mvn_docker
+      buildName: {{ gitBranch }}_backapp_mvn_docker
       buildNumber: ${run_number}

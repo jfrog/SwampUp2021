@@ -71,6 +71,7 @@ pipelines:
       environmentVariables:
         readOnly:
           trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
+          dockerRepo: swampup301.jfrog.io/urs-docker
     steps:
       # need this step to export the appVersion for the Filespec Resource
       - name: lab2_export_variables
@@ -92,7 +93,7 @@ pipelines:
           affinityGroup: together
           dockerFileName: Dockerfile
           dockerFileLocation: ${trainingPath}/lab3/java/
-          dockerImageName: swampup301.jfrog.io/urs-docker/backapp-mvn-docker
+          dockerImageName: ${dockerRepo}/urs-docker/backapp-mvn-docker
           dockerImageTag: ${runVarAppVersion}
           inputSteps:
             - name: lab2_export_variables
@@ -114,9 +115,6 @@ pipelines:
       - name: lab2_publish_backapp_mvn_docker
         type: DockerPush
         configuration:
-          environmentVariables:
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/lab2_bi_backapp_mvn_docker/${run_number}/setup_env?branch=${runBranchName}"
-            JFROG_CLI_LOG_LEVEL: INFO
           targetRepository: urs-docker-dev-local
           autoPublishBuildInfo: true
           inputSteps:

@@ -130,9 +130,9 @@ pipelines:
       - name: lab2_publish_webapp_python_docker
         type: DockerPush
         configuration:
-          environmentVariables:
-            JFROG_CLI_BUILD_URL: "${int_artifactory_eu_url/%artifactory/ui}/pipelines/myPipelines/lab2_bi_webapp_python_docker/${run_number}/setup_env?branch=${runBranchName}"
-            JFROG_CLI_LOG_LEVEL: INFO
+          # environmentVariables:
+          #   JFROG_CLI_BUILD_URL: "${step_url}${res_lab2_src_code_webapp_python_branchName}"
+          #   JFROG_CLI_LOG_LEVEL: INFO
           affinityGroup: together
           targetRepository: urs-docker-dev-local
           autoPublishBuildInfo: true
