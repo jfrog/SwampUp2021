@@ -10,4 +10,8 @@ DevOps & Release Engineers who administer JFrog Artifactory instances and have p
 
 ## Prerequisites (for Labs)
 
-An instance of JFrog Artifactory. This will be provided as part of your enrollment to the training class.
+* An instance of JFrog Artifactory. This will be provided as part of your enrollment to the training class.
+* REST Client (Postman, curl or any other tool)
+* SSH Client
+    * ssh connect command example:
+    `ssh -i ~/.ssh/swampup2021 swampup2021@ARTIFACTORY_IP_ADDRESS` (swampup2021 - is the SSH Key for your instance, you should have it in your Mail Inbox)
