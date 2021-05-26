@@ -24,13 +24,35 @@ fi
 
 echo "$ADMIN_USER:$ADMIN_PASS"
 
+echo "============================"
+echo "$JPD_URL"
+echo "============================"
+
 # create repo
-echo "[ARTIFACTORY] creating repositories on Artifactory..."
-curl \
-     -XPATCH \
-     -u $ADMIN_USER:$ADMIN_PASS \
-     -H "Content-Type: application/yaml" -T artifactory_repo.yaml \
-$JPD_URL/artifactory/api/system/configuration 
+#echo "[ARTIFACTORY] creating repositories ..."
+# "curl \
+#      -XPATCH \
+#      -u $ADMIN_USER:$ADMIN_PASS \
+#      -H "Content-Type: application/yaml" -T artifactory_repo.yaml \
+# $JPD_URL/artifactory/api/system/configuration 
+
+# # create jenkins user
+# echo "[ARTIFACTORY] creating user ..."
+# curl \
+#      -XPUT \
+#      -u $ADMIN_USER:$ADMIN_PASS \
+#      -H "Content-Type: application/json" -T user.json \
+# $JPD_URL/artifactory/api/security/users/jenkins
+
+
+# # create permissions for jenkins user
+# echo "[ARTIFACTORY] creating permissions ..."
+# curl \
+#      -XPUT \
+#      -u $ADMIN_USER:$ADMIN_PASS \
+#      -H "Content-Type: application/json" -T permissions.json \
+# $JPD_URL/artifactory/api/v2/security/permissions/ci-urs
+
 
 # curl \
 #      -u $ADMIN_USER:$ADMIN_PASS \
@@ -50,21 +72,23 @@ $JPD_URL/artifactory/api/system/configuration
 #     -d "{\"names\":[\"`echo $BUILD_NAMES | sed 's/,/","/g'`\"]}" \
 
 
-# # create policy
-# echo -e "\n[XRAY] creating policy  ... !"
-# curl \
-#      -XPOST \
-#      -u $ADMIN_USER:$ADMIN_PASS \
-#      -H "Content-Type: application/json" \
-#      -d @xray_policy.json \
-# $JPD_URL/xray/api/v2/policies
+# create policy
+echo -e "\n[XRAY] creating policy  ... !"
+curl \
+     -XPOST \
+     -u $ADMIN_USER:$ADMIN_PASS \
+     -H "Content-Type: application/json" \
+     -d @xray_policy.json \
+$JPD_URL/xray/api/v2/policies
 
 
-# # create watch
-# echo -e "\n[XRAY] creating watch  ... !"
-# curl \
-#      -XPOST \
-#      -u $ADMIN_USER:$ADMIN_PASS \
-#      -H "Content-Type: application/json" \
-#      -d @xray_watch.json \
-# $JPD_URL/xray/api/v2/watches
+# create watch
+echo -e "\n[XRAY] creating watch  ... !"
+curl \
+     -XPOST \
+     -u $ADMIN_USER:$ADMIN_PASS \
+     -H "Content-Type: application/json" \
+     -d @xray_watch.json \
+$JPD_URL/xray/api/v2/watches
+
+

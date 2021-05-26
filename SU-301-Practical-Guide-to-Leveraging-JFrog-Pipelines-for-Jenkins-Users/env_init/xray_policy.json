@@ -6,7 +6,7 @@
         {
             "name": "important",
             "criteria": {
-                "min_severity": "medium"
+                "min_severity": "high"
             },
             "actions": {
                 "block_download": {
