@@ -22,8 +22,8 @@
 
 * **A**: Check `system.yaml` for logging level and `logback.xml`
     * Connect to JFrog Artifactory instance using SSH
-    * Navigate to: `$JFROG_HOME/<product>/var/etc/`
-    * Print\View `system.yaml`
+    * Navigate to: `/opt/jfrog/artifactory/var/etc/`
+    * Print\View `system.yaml` (if `system.yaml` doesn't exist you can always create one to override values or use `system.full-template.yaml`)
     * Look for this section:
     ```
   frontend:
@@ -31,8 +31,8 @@
         application:
             level: debug
   ```
-    * If you didn't find the section above, let's check the `logback.xml` file:
-        * Navigate to: `$JFROG_HOME/artifactory/var/etc/artifactory/logback.xml`
+    * If you didn't find the section above (because `system.yaml` is with default values on your instance, let's check the `logback.xml` file:
+        * Navigate to: `/opt/jfrog/artifactory/var/etc/artifactory/logback.xml`
         * Print\View `logback.xml`
         * Look for this section:
     ```
@@ -56,9 +56,12 @@
 ![Storage](images/q3.png?raw=true "Storage")
     
 * **A2**: Use of `Storage Info` REST API
-    * Invoke (with an admin user): `https://your_jfrog_artifactory_host:your_jfrog_artifactory_port/artifactory/api/storageinfo`
+    * Invoke (with an admin user): `{{your_jfrog_artifactory_protocol}}://{{your_jfrog_artifactory_host}}:{{your_jfrog_artifactory_port}}/artifactory/api/storageinfo`
         * You can use your favorite REST Client or this `curl` command:
-        `curl -uADMIN_USERNAME https://your_jfrog_artifactory_host:your_jfrog_artifactory_port/artifactory/api/storageinfo | json_pp`
+        `curl -uADMIN_USERNAME {{your_jfrog_artifactory_protocol}}://{{your_jfrog_artifactory_host}}:{{your_jfrog_artifactory_port}}/artifactory/api/storageinfo | json_pp`
+            * {{your_jfrog_artifactory_protocol}}: http OR https
+            * {{your_jfrog_artifactory_host}}: Your Artifactory instance's host name
+            * {{your_jfrog_artifactory_port}}: 80 for http, 443 for https
 
 ![Storage Info](images/q3_2.png?raw=true "Storage Info")
 
@@ -79,7 +82,7 @@
         * Switch to Properties tab
         * Add custom property: key=swampUp, value=2021
     * Connect to your JFrog Artifactory instance using SSH
-    * Navigate to: `$JFROG_HOME/artifactory/var/log/`
+    * Navigate to: `/opt/jfrog/artifactory/var/log/`
     * Start with finding the first log line represents the request for that artifact in: `router-request.log`
       ```
       router-request.log:{"BackendAddr":"localhost:8070","ClientAddr":"10.24.2.3:54800","DownstreamContentSize":379,"DownstreamStatus":200,"Duration":17780048,"RequestMethod":"GET","RequestPath":"/ui/api/v1/ui/artifactproperties?repoKey=docker-demo-prod-local\u0026path=abbrev%2F-%2Fabbrev-1.1.1.tgz","StartUTC":"2021-05-20T08:40:05.307589003Z","level":"info","msg":"","request_Uber-Trace-Id":"27d6c2004320ef8a:144b74101317f73d:27d6c2004320ef8a:0","request_User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36","time":"2021-05-20T08:40:05Z"}
