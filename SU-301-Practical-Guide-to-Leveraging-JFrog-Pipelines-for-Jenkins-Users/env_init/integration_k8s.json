@@ -29,7 +29,7 @@
         users:
           - name: eks_yann-swampup
             user:
-              token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjJrZ2ZRQjFPM3ljT2FxTW1fMWJsNFhfSjNSOGZGcEltNmV5c2xRRldXc1kifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJidWlsZC1wbGFuZSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJ5YW5uLXRvb2xpbmctdG9rZW4tcHFicTUiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoieWFubi10b29saW5nIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiMGYxMmRhZTEtNGRjYS00MTk4LWFlMjUtNDc1MzMyMTFiNjA0Iiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmJ1aWxkLXBsYW5lOnlhbm4tdG9vbGluZyJ9.TbTTXckFhApFOspPtooiCKIIpR-vHZrOsbTu8K1HYnZFNG05NUDF8elm37u4-PEwPrtbMl5WaFiSBaYMXgIafjjbeozFKLXHGtVMLhZIjmq-00DyOASaHD1RTNJCB11-3HlOYYxwSslXkgA51nBxIGTo0WNbMB2_FQPBNiiaZJK7OO78dyy-OIC1YBw81Peby6cquHOuTGAntR93gLhKTVCNdwv5DVQNQWHVKwsa9_BWg8_HvC39dHtlKjMg2yDCXMzKW_RBVZAukw1-WFRWzyjd_83ZdaQAyvhhH5sGMjaJQQHGRn6kIWRuMbWp_0gvlgQJOVM-8aFu_Vrvz6RwUQ
+              token: yoyo
         "
       }
     ]
