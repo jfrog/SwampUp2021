@@ -1,0 +1,59 @@
+{
+    "permissions": {
+      "allowAllPipelineSources": true
+    },
+    "id": 33,
+    "name": "bastion",
+    "projectId": 1,
+    "masterIntegrationId": 71,
+    "masterIntegrationType": "generic",
+    "masterIntegrationName": "sshKey",
+    "isInternal": false,
+    "formJSONValues": [
+      {
+        "label": "privateKey",
+        "value": "-----BEGIN OPENSSH PRIVATE KEY-----
+        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
+        -----END OPENSSH PRIVATE KEY-----"
+      },
+      {
+        "label": "publicKey",
+        "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEQGMqh+wbTz1POX2UGZjB4PbfjbgRboFUUbOvA/9x4W/OtEkNdrrV+0X53iiAyIGl8eUGI5dGeag9e3AnLcL7eseIu1J2IjPmrJB9BF/exhTUoAYhujlOK0RPkLTfVSt6Ccs23wNCYZYcuNrA4CBK4xGz0sYaEhbbpIdD2HvRvR/xAIoXHp/8HQXQQp8fizx8Zh7VQ0Ik97lsM8gsMmwv8JVFOjq9xklLKqdD3RVGEVhB/rmj8ZkqbamLSEh1iFLMKmLe0q+wDhA47iC81WqQYBU1KzX06JUuswEdWAv82Mm5d/xtmrY8eKtmyzWCskJojY/EjexBCI9zqV0+OsaysgOInsCYG0FkMbibpIcmIkcf32V2rJp/wtolv1M8NPYhH7SOi0cEQEjozEI1/DWeblyHz5f2FGdc3tQX9jNYo+upho3BVHn+rOZVg1bhPw2XolmQ1vB1I2QE+TyWlVIx4j/0VPbnnsi+nliOmma1peNlP68FAdj0Qmdbe1idGQ0= root@ubuntu-groovy"
+      }
+    ]
+  }
