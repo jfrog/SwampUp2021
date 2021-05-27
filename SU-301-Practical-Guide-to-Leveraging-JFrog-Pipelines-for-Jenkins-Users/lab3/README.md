@@ -6,26 +6,34 @@ Choose your deployment pipeline : **K8S** or **VM**
 
 > the K8S integration has already been provisionned
 
-1. In `lab3/cd/k8s/values.yml`, Update the git resource by using your own git repo :
+1. Create a branch called **k8s**
+```
+# on your java or python branch, run on of the following command
+git checkout -b k8s
+
+# push the branch
+git push -u origin k8s
+```
+
+2. In `lab3/cd/k8s/values.yml`, Update the following fields :
 ```
 K8sResources:
   gitRepoHelm:
     path: cyan21/SwampUp2021
+  ...
+  releaseName: my-web-app
 ```
 
 ### On JFrog Pipelines UI
 
-2. Create an **IncomingWebhook** integration and name it **trigger_chart_deployment** + Choose **Authorization** for the Authorization type
+3. Create an **IncomingWebhook** integration and name it **trigger_chart_deployment** + Choose **Authorization** for the Authorization type
 
-3. Modify your pipeline source by editing the  **Pipeline Config File Filter** : `lab3\/cd\/k8s\/.*\.yml`
+4. Add a new pipeline source
+* Single Branch
+* From Yaml 
+* Pipeline Config File Filter : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab3\/cd\/k8s\/.*\.yml`
 
-4. Update `K8sResources.incomingWebhook.integrationName` in `lab3/cd/k8s/values.yml` a:
-```
-K8sResources:
-...
-  incomingWebhook:
-    integrationName: trigger_chart_deployment
-```
+5. Run the pipeline called **lab3_k8s_create_helm_chart** to generate the helm chart
 
 Now, jump to the Jenkins section
 
@@ -35,11 +43,23 @@ Now, jump to the Jenkins section
 > the SSH Keys integration has already been provisionned
 
 
+1. Create a branch called **vm**
+```
+# on your java or python branch, run on of the following command
+git checkout -b vm
+
+# push the branch
+git push -u origin vm
+```
+
 ### On JFrog Pipelines UI
 
 1. Create an **IncomingWebhook** integration and name it **trigger_vm_deployment** + Choose **Authorization** for the Authorization type
 
-2. Modify your pipeline source by editing the  **Pipeline Config File Filter** : `lab3\/cd\/k8s\/.*\.yml`
+2. Add a new pipeline source
+* Single Branch
+* From Yaml 
+* Pipeline Config File Filter : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab3\/cd\/vm\/.*\.yml`
 
 
 ## On Jenkins
