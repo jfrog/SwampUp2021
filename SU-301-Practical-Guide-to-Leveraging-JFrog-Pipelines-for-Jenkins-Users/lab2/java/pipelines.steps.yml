@@ -29,7 +29,7 @@ pipelines:
             - name: artifactory_eu
         execution:
           onStart:
-            - ls -l ${res_lab1_src_code_backapp_mvn_resourcePath}/${trainingPath}/src/java
+            - ls -l ${res_lab2_src_code_backapp_mvn_resourcePath}/${trainingPath}/src/java
             - jfrog rt c show
           onFailure:
             - echo "Not cool"
@@ -104,9 +104,9 @@ pipelines:
             - name: artifactory_eu
         execution:
           onStart:
-            - 'ls -la ${res_lab2_fs_backapp_mvn_resourcePath}/${trainingPath}'
-            - 'echo ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}'
-            - 'ls -la  ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}'
+            - ls -la ${res_lab2_fs_backapp_mvn_resourcePath}/
+            - echo ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}
+            - ls -la  ${res_lab2_src_dockerfile_backapp_mvn_resourcePath}
             - >-
               cp
               ${res_lab2_fs_backapp_mvn_resourcePath}/multi-module-application-${runVarAppVersion}.jar
@@ -115,6 +115,7 @@ pipelines:
       - name: lab2_publish_backapp_mvn_docker
         type: DockerPush
         configuration:
+          affinityGroup: together
           targetRepository: urs-docker-dev-local
           autoPublishBuildInfo: true
           inputSteps:
