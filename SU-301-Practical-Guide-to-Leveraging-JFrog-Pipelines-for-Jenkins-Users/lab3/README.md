@@ -61,6 +61,14 @@ git push -u origin vm
 * From Yaml 
 * Pipeline Config File Filter : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab3\/cd\/vm\/.*\.yml`
 
+3. Fork this github repository `https://github.com/cyan21/JFrogPipeExtensions`
+
+### To load a JFrog Extension
+
+4. Create a github integration with your github token (same as for lab1) and choose a different name and  pick **Admin** for the usage
+
+5. Go to `Application tab > Extensions`and select `Extension Sources` tab, specify your github integration + Git repo + branch
+
 
 ## On Jenkins
 
