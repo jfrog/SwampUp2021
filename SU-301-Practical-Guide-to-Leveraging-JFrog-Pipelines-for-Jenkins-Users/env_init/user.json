@@ -1,7 +1,7 @@
 {
     "name": "jenkins",
     "email" : "yannc@jfrog.com",
-    "password": "Swampup2021",
+    "password": "guesswhatitis",
     "admin": false,
     "profileUpdatable": true,
     "disableUIAccess" : false,
