@@ -106,7 +106,7 @@ pipelines:
             JFROG_CLI_LOG_LEVEL: INFO
           affinityGroup: together
           dockerFileName: Dockerfile
-          dockerFileLocation: ${trainingPath}/lab2/python/
+          dockerFileLocation: src/lab3/python/
           dockerImageName: ${dockerRepo}/webapp-python-docker
           dockerImageTag: ${runVarAppVersion}
           inputSteps:
