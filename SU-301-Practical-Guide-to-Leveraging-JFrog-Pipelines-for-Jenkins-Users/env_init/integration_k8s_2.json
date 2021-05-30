@@ -1,0 +1,36 @@
+{
+    "permissions": {
+      "allowAllPipelineSources": true
+    },
+    "name": "eks_eu",
+    "projectId": 1,
+    "masterIntegrationId": 86,
+    "masterIntegrationType": "generic",
+    "masterIntegrationName": "kubernetesConfig",
+    "isInternal": false,
+    "formJSONValues": [
+      {
+        "label": "kubeconfig",
+        "value": "apiVersion: v1
+        clusters:
+          - cluster:
+              certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1ekNDQWMrZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1EUXhOekEyTVRNd01Wb1hEVE14TURReE5UQTJNVE13TVZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTFRSClZoYU9EeDEwNmpwcC9Rand0T1pGeGVxNjg0NC9YMTIyajR4cEJsWU8rTmwwM0Z1ZDZjUXFYWE9XVDRsUWh0TFkKcWJ1VkFpcDJXRy9tYUpacERJN3A0VE0yR0kxMzljMHMrZ2RqLzZ5bjNuaHVqYUJ6aW1iYVU3SFZjWVRJR0NrZwpVdm5qN2MwVytZUUZSck5TT3UweHREMWp2dUJWOGVjVFF6eFh2Q0tMcmlMUzdKMGNzY05iNTVlNWhYeGk2bmtVCllqdHhEVEM0QUJtRDFQajlsT0phclY4Uk9xdmVjZmZpSEFNNVMxZnBCbHZINTZJcUFGS2d4WEViaXE5Y0FBZEUKUVJEMFRXbmhXZ2FKZWxkUXlORXNZL2YvRDVnSXZSd21UMDJKTkpsZlJUSnlPVXViTHBSeGVZakU3NEVmejdydgp6QWFvRkxxcUpjczA1a250M3BrQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZJalJ6L3o2Y1NnMXc4ODBDeUxMVSszaksvUllNQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFBaFFDaHRIQ0lkRVU2ZkpONEJHOUh2Vm9XK3N0QWw3RHFsWDVCa20rZFp1VHA4eFFIZgpJRy9HazZwYzM1Zmxad0d1Y3FlOTFYVnJlZ0UwTmIvdXhlanlnN0hHWUd2bW0zdjNLREVMZE9tYjNkTU53MWNoClE3RXg2WlhwRnUyY3Q5OGhhcmhTSG1rZUJTc1Z2M3Z2MDlXR24yaHJWS0YrUGIvaEIvWGpBT3VQbmsxUVdZakYKQitGcW5RdDNGQUppQTV0OU9yS0lYbmZkRVBRK1FteHNuUVkyaWhOR1JGTzh0cUpvWlQzRGlGTDVqcUx4ZjQyTgpUWXZLM1grSktSdmJCVkRYR3JHQkRpZVpjYmd2K2lyeHZuck1HTE9nZWdBQzd3eXNZaGpSZXFkcjVPdTBPaDlpCjB3Wk1SVjk5d1RYUVZXT0pXUnlLU3EyVTVPYTJmbXhVd3JyYQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+              server: https://CEC597936EF20A491CCF32C119CEC0A5.gr7.eu-west-1.eks.amazonaws.com
+            name: eks_yann-swampup
+        contexts:
+          - context:
+              cluster: eks_yann-swampup
+              namespace: emea
+              user: eks_yann-swampup
+            name: eks_yann-swampup
+        current-context: eks_yann-swampup
+        kind: Config
+        preferences: {}
+        users:
+          - name: eks_yann-swampup
+            user:
+              token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjJrZ2ZRQjFPM3ljT2FxTW1fMWJsNFhfSjNSOGZGcEltNmV5c2xRRldXc1kifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJidWlsZC1wbGFuZSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJ5YW5uLXRvb2xpbmctdG9rZW4tcHFicTUiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoieWFubi10b29saW5nIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiMGYxMmRhZTEtNGRjYS00MTk4LWFlMjUtNDc1MzMyMTFiNjA0Iiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmJ1aWxkLXBsYW5lOnlhbm4tdG9vbGluZyJ9.TbTTXckFhApFOspPtooiCKIIpR-vHZrOsbTu8K1HYnZFNG05NUDF8elm37u4-PEwPrtbMl5WaFiSBaYMXgIafjjbeozFKLXHGtVMLhZIjmq-00DyOASaHD1RTNJCB11-3HlOYYxwSslXkgA51nBxIGTo0WNbMB2_FQPBNiiaZJK7OO78dyy-OIC1YBw81Peby6cquHOuTGAntR93gLhKTVCNdwv5DVQNQWHVKwsa9_BWg8_HvC39dHtlKjMg2yDCXMzKW_RBVZAukw1-WFRWzyjd_83ZdaQAyvhhH5sGMjaJQQHGRn6kIWRuMbWp_0gvlgQJOVM-8aFu_Vrvz6RwUQ
+        "
+      }
+    ]
+  }

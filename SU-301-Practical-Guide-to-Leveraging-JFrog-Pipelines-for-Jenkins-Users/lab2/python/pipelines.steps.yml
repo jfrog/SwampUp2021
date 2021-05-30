@@ -125,7 +125,7 @@ pipelines:
             - >-
               cp
               ${res_lab2_fs_webapp_python_resourcePath}/webapp_python.tar.gz
-              ${res_lab2_src_dockerfile_webapp_python_resourcePath}/${trainingPath}/lab1/python/
+              ${res_lab2_src_dockerfile_webapp_python_resourcePath}/${trainingPath}/src/python/
             - ls -l  ${res_lab2_src_dockerfile_webapp_python_resourcePath}/${trainingPath}/lab2/python/
 
       - name: lab2_publish_webapp_python_docker
