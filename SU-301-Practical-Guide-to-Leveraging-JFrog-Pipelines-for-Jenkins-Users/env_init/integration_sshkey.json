@@ -1,0 +1,24 @@
+{
+    "permissions": {
+      "allowAllPipelineSources": true
+    },
+    "id": 33,
+    "name": "bastion",
+    "projectId": 1,
+    "masterIntegrationId": 71,
+    "masterIntegrationType": "generic",
+    "masterIntegrationName": "sshKey",
+    "isInternal": false,
+    "formJSONValues": [
+      {
+        "label": "privateKey",
+        "value": "-----BEGIN OPENSSH PRIVATE KEY-----
+        
+        -----END OPENSSH PRIVATE KEY-----"
+      },
+      {
+        "label": "publicKey",
+        "value": "ssh-rsa A"
+      }
+    ]
+  }

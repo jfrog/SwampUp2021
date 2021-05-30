@@ -56,7 +56,7 @@
 
 - You can add properties to the docker image published. Below is a sample on how to add properties to the published docker image as part of the build
 
-```$./jfrog rt sp  --include-dirs=true "swampup-docker-dev-local/docker-example-build-image/1*" "unittest=passed"```
+```$jfrog rt sp  --include-dirs=true "swampup-docker-dev-local/docker-example-build-image/1*" "unittest=passed"```
 
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/properties-update.png" alt="properties" style="height: 100px; width:100px;"/>
 
@@ -68,7 +68,7 @@
 ## Step 4-  Promote the Build 
 
 - Promote the build and its associated build information to production. Below we are promoting our "Sample-docker-cli-build" to "swampup-docker-prod-local" repository
-```$ ./jfrog rt build-promote sample-docker-cli-build 1 swampup-docker-prod-local```
+```$ jfrog rt build-promote sample-docker-cli-build 1 swampup-docker-prod-local```
   
 - View the published module to validate the binary is now in swampup-docker-prod-local
   <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab6/images/build-promotion.png" alt="Build Number" style="height: 100px; width:100px;"/>

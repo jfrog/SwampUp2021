@@ -1,0 +1,20 @@
+{
+    "name": "ci-urs",
+    "repo": {
+       "repositories": ["urs-mvn-dev-local", "urs-mvn-rc-local", "urs-mvn-prod-local", "urs-docker-dev-local","urs-docker-rc-local","urs-docker-release-local","urs-helm-dev-local","urs-helm-release-local","urs-generic-dev-local","urs-generic-release-local","urs-python-dev-local","urs-jcenter-remote","urs-dockerhub-remote","urs-pypi-remote"],
+       "actions": {
+            "users" : {
+                "jenkins": ["read", "write", "annotate", "delete", "manage"]
+            }
+        }
+    },
+    "build": {
+        "include-patterns": ["*backapp*/*","*python*/*"],
+        "repositories": ["artifactory-build-info"],
+        "actions": {
+            "users" : {
+                "jenkins": ["read", "write", "annotate", "delete", "manage"]
+            }
+        }
+    }
+}

@@ -37,25 +37,31 @@ Generate an Artifactory [API Key](https://www.jfrog.com/confluence/display/JFROG
 
 - On Linux OS, please use
 ```bash
-ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
-ARTIFACTORY_LOGIN="foo@bar.com"
-ARTIFACTORY_API_KEY="MY_API_KEY"
+export ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
+export ARTIFACTORY_LOGIN="foo@bar.com"
+export ARTIFACTORY_API_KEY="MY_API_KEY"
 ```
 
 - On Windows OS, please use
 ```bash
-set ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
-set ARTIFACTORY_LOGIN="foo@bar.com"
-set ARTIFACTORY_API_KEY="MY_API_KEY"
+ARTIFACTORY_HOSTNAME="my-instance.jfrog.io"
+ARTIFACTORY_LOGIN="foo@bar.com"
+ARTIFACTORY_API_KEY="MY_API_KEY"
 ```
 Follow recording here - 
 ![setting environemnt variables](https://i.imgur.com/BastCGE.gif)
 
 ## Start the lab runner
 - Ensure Docker is running on your system and run the following command 
+For Linux 
 
 ```bash
 docker run --name swampup202-runner --rm --env  ARTIFACTORY_HOSTNAME="${ARTIFACTORY_HOSTNAME}" --env ARTIFACTORY_LOGIN="${ARTIFACTORY_LOGIN}" --env ARTIFACTORY_API_KEY="${ARTIFACTORY_API_KEY}" -it -v "/var/run/docker.sock:/var/run/docker.sock" swampup202.jfrog.io/swampup/swampup202-runner
+```
+For Windows 
+
+```bash
+docker run --name swampup202-runner --rm --env ARTIFACTORY_HOSTNAME="%ARTIFACTORY_HOSTNAME%" --env ARTIFACTORY_LOGIN="%ARTIFACTORY_LOGIN%" --env ARTIFACTORY_API_KEY="%ARTIFACTORY_API_KEY%" -it -v "/var/run/docker.sock:/var/run/docker.sock" swampup202.jfrog.io/swampup/swampup202-runner
 ```
 
 From this point onward, every command will be run from within the container.

@@ -73,7 +73,7 @@ pipelines:
           inputResources:
             - name: {{ .Values.K8sResources.chart.name }}
             - name: {{ .Values.K8sResources.incomingWebhook.resourceName }}
-          releaseName: my-web-app
+          releaseName: {{ .Values.K8s.releaseName }}
           flags: "--debug --install --namespace {{ .Values.K8s.namespace }} --cleanup-on-fail --set image.repository=${varRunImageName} --set image.tag=${varRunImageTag} "
           valueFilePaths:
             - values.yaml

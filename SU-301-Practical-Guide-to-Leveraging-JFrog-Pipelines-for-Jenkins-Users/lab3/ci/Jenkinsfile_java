@@ -38,22 +38,52 @@ pipeline {
     }
 
     parameters {
-        string(name: 'JPD_URL', defaultValue: 'swampup301.jfrog.io', description: '')
+        string(name: 'MY_GIT_URL', defaultValue: 'https://github.com/cyan21/Swampup2021.git', description: '')
+        string(name: 'MY_GIT_BRANCH', defaultValue: 'main', description: '')
+        string(name: 'TRAINING_PATH', defaultValue: 'SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users', description: '')
+        string(name: 'NEW_VERSION', defaultValue: '1.6.2', description: '')
+        string(name: 'NEW_MSG', defaultValue: 'Welcome to Swampup 2021', description: '')
+
+        string(name: 'JPD_URL', defaultValue: 'swampup301.jfrog.io', description: 'DO NOT ADD PROTOCOL')
         string(name: 'MVN_REPO', defaultValue: 'urs-mvn', description: '')
         string(name: 'DOCKER_REPO', defaultValue: 'urs-docker', description: '')
-        string(name: 'WEBHOOK_PASS', defaultValue: 'yourpass', description: '')
+        
+        string(name: 'WEBHOOK_PASS', defaultValue: 'Chaysinh21', description: '')
         string(name: 'WEBHOOK_URL', defaultValue: 'https://swampup301-pipelines-api.jfrog.io/v1/projectIntegrations/57/hook', description: '')
-        booleanParam(name: 'FAIL_BUILD', defaultValue: false, description: 'Xray scan')
+        
+        booleanParam(name: 'MVN_BUILD', defaultValue: false, description: 'Execute Maven build')
+        booleanParam(name: 'DOCKER_BUILD', defaultValue: false, description: 'Execute Docker build')        
     }
     
     stages {
-/*
+
         stage ('Maven Build') {
+            when {
+                expression {
+                    params.MVN_BUILD
+                }
+            }
             steps {
                 container('maven') {
+                     
+                    git branch: params.MY_GIT_BRANCH , url: params.MY_GIT_URL
 
-                    git branch: 'main', url: "https://github.com/cyan21/su301.git"
-
+                    
+                    dir (params.TRAINING_PATH) {
+                    
+                        sh """
+                            ls -l 
+                            sed -i "s|<version>1.4.1</version>|<version>${params.NEW_VERSION}</version>|" "src/java/pom.xml"
+                            sed -i "s|<version>1.4.1</version>|<version>${params.NEW_VERSION}</version>|" "src/java/application/pom.xml"
+                            sed -i "s|<version>1.4.1</version>|<version>${params.NEW_VERSION}</version>|" "src/java/library/pom.xml"
+                            
+                            cat src/java/pom.xml
+    
+                            echo "service.message=${params.NEW_MSG}" > src/java/application/src/main/resources/application.properties 
+                            cat src/java/application/src/main/resources/application.properties 
+                        """
+                    }
+                    
                     rtServer (
                         id: env.ART_ID,
                         url: "https://${params.JPD_URL}/artifactory",
@@ -83,20 +113,25 @@ pipeline {
                     )
                                         
                     rtMavenRun (
-                        pom: 'complete/pom.xml',
+                        pom: "${params.TRAINING_PATH}/src/java/pom.xml",
                         goals: 'clean package',
                         deployerId: "MAVEN_DEPLOYER",
                         resolverId: "MAVEN_RESOLVER"
                     )
-                    
+                  
                     rtPublishBuildInfo (
                         serverId: env.ART_ID
                     )
                 }
             }
         }
-*/ 
+
         stage ('Docker Build & Push') {
+            when {
+                expression {
+                    params.DOCKER_BUILD
+                }
+            }
             steps {
                 container('docker') {
 
@@ -115,33 +150,34 @@ pipeline {
                     
                     rtDownload (
                         serverId: env.ART_ID,
-                        spec: '''{
+                        spec: """{
                               "files": [
                                 {
-                                  "pattern": "${MVN_REPO}/com/example/multi-module-application/1.4.1/multi-module-application-1.4.1.jar",
-                                  "target": "multi-module-application.jar",
-                                  "flat": "true"
+                                  \"pattern": \"${params.MVN_REPO}/**/multi-module-application-${params.NEW_VERSION}.jar\",
+                                  \"target": \"multi-module-application.jar\",
+                                  \"flat\": \"true\"
                                   
                                 }
                               ]
-                        }''',
+                        }""",
+                        failNoOp: true,
                         module: 'webapp',
                         buildName: 'jenkins-mvn-docker',
                         buildNumber: env.BUILD_NUMBER
                     )
                     
-                    sh '''
+                    sh """
                         apk add curl openjdk11
-                        curl -O https://raw.githubusercontent.com/cyan21/su301/main/lab2/java/Dockerfile
-                        docker login -u ${ARTY_CREDS_USR} -p ${ARTY_CREDS_PSW} ${JPD_URL}
+                        curl -O https://raw.githubusercontent.com/jfrog/SwampUp2021/main/${params.TRAINING_PATH}/lab2/java/Dockerfile
+                        docker login -u ${ARTY_CREDS_USR} -p ${ARTY_CREDS_PSW} ${params.JPD_URL}
                         ls -l 
-                        docker build -t ${JPD_URL}/${DOCKER_REPO}/jenkins-javapp:2.0.0 .
+                        docker build -t ${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-javapp:${params.NEW_VERSION} .
                         docker images
-                    '''
+                    """
                 
                     rtDockerPush(
                         serverId: env.ART_ID,
-                        image: "${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-javapp:2.0.0",
+                        image: "${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-javapp:${params.NEW_VERSION}",
                         targetRepo: 'urs-docker-dev-local',
                         properties: 'project-name=uranus;status=stable',
                         // If the build name and build number are not set here, the current job name and number will be used:
@@ -157,17 +193,18 @@ pipeline {
                 }
             } // end steps
         } // end stage
+
            
         stage('Call to JFrog Pipelines') {
             steps {
-                sh '''
-                    curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST -H "authorization: ${WEBHOOK_PASS}"  ${WEBHOOK_URL}  --data-binary @- <<DATA
+                sh """
+                    curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST -H "authorization: ${params.WEBHOOK_PASS}"  ${params.WEBHOOK_URL}  --data-binary @- <<DATA
 {
-  "image_name": "${JPD_URL}/${DOCKER_REPO}/jenkins-javapp",
-  "image_tag": "2.0.0"
+  "image_name": "${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-javapp",
+  "image_tag": "${params.NEW_VERSION}"
 }
 DATA
-                 '''
+                 """
             } // end steps
         } // end stage 
         

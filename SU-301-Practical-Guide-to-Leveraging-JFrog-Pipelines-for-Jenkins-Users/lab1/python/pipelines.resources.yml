@@ -7,7 +7,7 @@ resources:
       branches:
         include: {{ gitBranch }}
       files:
-        include: ${trainingPath}/lab1/python/.+
+        include: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab1/python/.*
       buildOn:
         pullRequestCreate: true
         pullRequestClose: true

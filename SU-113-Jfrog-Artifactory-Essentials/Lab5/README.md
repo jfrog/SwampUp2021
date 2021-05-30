@@ -21,14 +21,14 @@
   - Click on the version(latest) to view more details about the docker image
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab5/images/docker-version.png" alt="docker-version" style="height: 100px; width:100px;"/>
     
-  - Navigate to the Docker layers tab to view the different docker layers on that docker image which we pushed as part of Lab5
+  - Navigate to the Docker layers tab to view the different docker layers on that docker image which we pushed as part of Lab4
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab5/images/docker-layers.png" alt="docker-layers" style="height: 100px; width:100px;"/>
 
 - Tree View    
   - Navigate to the Application module and click on 'Artifactory' -> 'Artifacts'.
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab5/images/artifacts-view.png" alt="artifact-view" style="height: 100px; width:100px;"/>
     
-  - The docker image which we pushed as part of Lab5 actually resides in "swampup-docker-dev-local" repository which is the default deployment repository.
+  - The docker image which we pushed as part of Lab4 actually resides in "swampup-docker-dev-local" repository which is the default deployment repository.
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab5/images/tree-view.png" alt="tree-view" style="height: 100px; width:100px;"/>
 
 

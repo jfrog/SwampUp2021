@@ -9,8 +9,12 @@
             {
                 "type": "repository",
                 "bin_mgr_id": "default",
-                "name": "acme-docker-dev-local"
-              
+                "name": "acme-docker-dev-local" 
+            },
+            {
+                "type": "repository",
+                "bin_mgr_id": "default",
+                "name": "acme-docker-remote-cache"
             }
         ]
     },

@@ -14,9 +14,10 @@
   - [Visual Studio](https://visualstudio.microsoft.com/)
 
 
-*******************************************************************************************************
-**NOTE: Step 1, 2 and 4 have been configured in your environment already. So please skip those steps.**
-*******************************************************************************************************
+*******************************************************************************************************************
+**NOTE: Step 1, 2 and 4 have been configured in some of your environment already. So please skip those steps if its configured.**
+**NOTE: If you donot see those steps configured then please go through all steps. or you can use SU-201-Intro-to-JFrog-Xray/scripts/setup.sh to populate repositories using JFROG CLI and skip Step 1 and 2.**
+*******************************************************************************************************************
 
 
 ### Step 1 - Create Repositories in JFrog Artifactory

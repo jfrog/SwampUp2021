@@ -8,11 +8,6 @@
         "resources": [
             {
                 "bin_mgr_id": "dummy",
-                "type": "build",
-                "name": "backapp_mvn"
-            },
-            {
-                "bin_mgr_id": "dummy",
                 "type": "repository",
                 "name": "urs-mvn-dev-local",
                 "filters": [
@@ -43,6 +38,86 @@
                         "value": ".*"
                     }
                 ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "name": "urs-docker-dev-local",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "name": "urs-docker-rc-local",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "name": "urs-docker-release-local",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "name": "urs-python-dev-local",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "repo_type": "remote",
+                "name": "urs-jcenter-remote",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "repo_type": "remote",
+                "name": "urs-dockerhub-remote",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
+            },
+            {
+                "bin_mgr_id": "dummy",
+                "type": "repository",
+                "repo_type": "remote",
+                "name": "urs-pypi-remote",
+                "filters": [
+                    {
+                        "type": "regex",
+                        "value": ".*"
+                    }
+                ]
             }
         ]
     },
@@ -52,5 +127,5 @@
             "type": "security"
         }
     ],
-    "watch_recipients":["yannc@jfrog.com"]
+    "watch_recipients":[]
 }

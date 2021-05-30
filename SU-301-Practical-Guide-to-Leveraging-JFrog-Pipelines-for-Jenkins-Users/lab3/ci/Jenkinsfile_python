@@ -10,12 +10,12 @@ pipeline {
             spec:
               containers:
               - name: python
-                image: python:rc-alpine3.13
+                image: python:3.9.5-alpine3.13
                 command:
                 - cat
                 tty: true
               - name: docker
-                image: docker:latest
+                image: docker:20.10.6-dind
                 command:
                 - cat
                 tty: true
@@ -31,65 +31,135 @@ pipeline {
     }
 
     environment {
-        ARTY_CREDS=credentials('jenkins')
+        ARTY_CREDS=credentials('jenkins_rt')
         ART_ID="artifactory-eu"
         JAVA_HOME = '/usr/lib/jvm/java-1.8-openjdk/'
         MAVEN_HOME = '/usr/share/maven'
     }
 
     parameters {
+        string(name: 'YOUR_NAME', defaultValue: 'james', description: 'will be injected in the config.yaml')
+
+        string(name: 'MY_GIT_URL', defaultValue: 'https://github.com/jfrog/Swampup2021.git', description: '')
+        string(name: 'MY_GIT_BRANCH', defaultValue: 'main', description: '')
+        string(name: 'TRAINING_PATH', defaultValue: 'SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users', description: '')
+        string(name: 'NEW_VERSION', defaultValue: '1.0.0', description: '')
+        string(name: 'NEW_MSG', defaultValue: 'Welcome to Swampup 2021', description: '')
+
         string(name: 'JPD_URL', defaultValue: 'swampup301.jfrog.io', description: '')
-        string(name: 'PYTHON_REPO', defaultValue: 'urs-mvn', description: '')
+        string(name: 'PYTHON_REPO', defaultValue: 'urs-python', description: '')
+        string(name: 'GENERIC_REPO', defaultValue: 'urs-generic', description: '')
         string(name: 'DOCKER_REPO', defaultValue: 'urs-docker', description: '')
+        
         string(name: 'WEBHOOK_PASS', defaultValue: 'yourpass', description: '')
         string(name: 'WEBHOOK_URL', defaultValue: 'https://swampup301-pipelines-api.jfrog.io/v1/projectIntegrations/57/hook', description: '')
-        booleanParam(name: 'FAIL_BUILD', defaultValue: false, description: 'Xray scan')
+
+        booleanParam(name: 'PYTHON_BUILD', defaultValue: true, description: 'Enable Python Build')
+        booleanParam(name: 'DOCKER_BUILD', defaultValue: true, description: 'Enable Docker Build')
     }
     
     stages {
-/*
         stage ('Python Build') {
+            when {
+                expression {
+                    params.PYTHON_BUILD
+                }
+            }
             steps {
-                container('maven') {
+                container('python') {
 
-                    git branch: 'main', url: "https://github.com/cyan21/su301.git"
+                    git branch: params.MY_GIT_BRANCH , url: params.MY_GIT_URL
 
-                    rtServer (
-                        id: env.ART_ID,
-                        url: "https://${params.JPD_URL}/artifactory",
-                        credentialsId: 'jenkins'
-                    )
+                    dir (params.TRAINING_PATH) {
+                    
+                        sh """
+                            ls -l 
+                            sed -i "s|yann|${params.YOUR_NAME}|" src/python/config.yaml
 
-                    rtPipResolver (
-                        id: 'ART_RESOLVER',
-                        serverId: env.ART_ID,
-                        repo: params.PYTHON_REPO
-                    )
+                            cat src/python/config.yaml
+                            cat src/python/requirements.txt
+                            
+                            apk add curl openjdk11
+
+                        """
+
+                        rtServer (
+                            id: env.ART_ID,
+                            url: "https://${params.JPD_URL}/artifactory",
+                            credentialsId: 'jenkins_rt'
+                        )
+                
+                        rtBuildInfo (
+                            captureEnv: true,
+                            excludeEnvPatterns: ['*private*', 'internal-*', 'ADM*'], 
+                            buildName: 'jenkins-python',
+                            buildNumber: env.BUILD_NUMBER
+                        )
+    
+                        rtPipResolver (
+                            id: 'ART_RESOLVER',
+                            serverId: env.ART_ID,
+                            repo: params.PYTHON_REPO
+                        )
+    
+                        rtPipInstall (
+                            resolverId: "ART_RESOLVER",
+                            args: "-r src/python/requirements.txt",
+                            module: 'dependencies',
+                            buildName: 'jenkins-python',
+                            buildNumber: env.BUILD_NUMBER
+
+                        )
+    
+                        sh """
+                            ls -l 
+                            pwd
+                            tar -czvf webapp-${params.NEW_VERSION}.tar.gz src/python/
+                            ls -l 
+
+                        """
                         
-                    rtBuildInfo (
-                        captureEnv: true,
-                        excludeEnvPatterns: ['*private*', 'internal-*', 'ADM*'], 
-                        buildName: 'jenkins-python',
-                        buildNumber: env.BUILD_NUMBER
-                    )
-                                                
-                    rtPublishBuildInfo (
-                        serverId: env.ART_ID
-                        buildName: 'jenkins-python',
-                        buildNumber: env.BUILD_NUMBER
-                    )
+                        rtUpload (
+                            serverId: env.ART_ID,
+                            spec: """{
+                                  \"files\": [
+                                    {
+                                      \"pattern\": \"webapp-${params.NEW_VERSION}.tar.gz\",
+                                      \"target\": \"${params.GENERIC_REPO}\",
+                                      \"flat\": \"true\"
+                                      
+                                    }
+                                  ]
+                            }""",
+                            module: 'webapp',
+                            buildName: 'jenkins-python',
+                            buildNumber: env.BUILD_NUMBER
+                        )
+                        
+
+                        rtPublishBuildInfo (
+                            serverId: env.ART_ID,
+                            buildName: 'jenkins-python',
+                            buildNumber: env.BUILD_NUMBER
+                        )
+                    }
                 }
             }
         }
-*/ 
+        
         stage ('Docker Build & Push') {
+            when {
+                expression {
+                    params.DOCKER_BUILD
+                }
+            }
             steps {
                 container('docker') {
 
                     rtServer (
                         id: env.ART_ID,
                         url: "https://${params.JPD_URL}/artifactory",
-                        credentialsId: 'jenkins'
+                        credentialsId: 'jenkins_rt'
                     )
 
                     rtBuildInfo (
@@ -101,33 +171,32 @@ pipeline {
                     
                     rtDownload (
                         serverId: env.ART_ID,
-                        spec: '''{
+                        spec: """{
                               "files": [
                                 {
-                                  "pattern": "${MVN_REPO}/com/example/multi-module-application/1.4.1/multi-module-application-1.4.1.jar",
-                                  "target": "multi-module-application.jar",
-                                  "flat": "true"
+                                  \"pattern\": \"${params.GENERIC_REPO}/webapp-${params.NEW_VERSION}.tar.gz\",
+                                  \"target\": \"webapp_python.tar.gz\",
+                                  \"flat\": \"true\"
                                   
                                 }
                               ]
-                        }''',
+                        }""",
                         module: 'webapp',
                         buildName: 'jenkins-python-docker',
                         buildNumber: env.BUILD_NUMBER
                     )
                     
-                    sh '''
+                    sh """
                         apk add curl openjdk11
-                        curl -O https://raw.githubusercontent.com/cyan21/su301/main/lab2/java/Dockerfile
-                        docker login -u ${ARTY_CREDS_USR} -p ${ARTY_CREDS_PSW} ${JPD_URL}
-                        ls -l 
-                        docker build -t ${JPD_URL}/${DOCKER_REPO}/jenkins-python-webapp:2.0.0 .
-                        docker images
-                    '''
+                        cat /etc/resolv.conf
+                        curl -O https://raw.githubusercontent.com/jfrog/SwampUp2021/main/${params.TRAINING_PATH}/lab2/python/Dockerfile
+                        docker login -u ${ARTY_CREDS_USR} -p ${ARTY_CREDS_PSW} ${params.JPD_URL}
+                        docker build --network=host -t ${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-python-webapp:${params.NEW_VERSION} .
+                    """
                 
                     rtDockerPush(
                         serverId: env.ART_ID,
-                        image: "${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-javapp:2.0.0",
+                        image: "${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-python-webapp:${params.NEW_VERSION}",
                         targetRepo: 'urs-docker-dev-local',
                         properties: 'project-name=uranus;status=stable',
                         // If the build name and build number are not set here, the current job name and number will be used:
@@ -146,16 +215,15 @@ pipeline {
            
         stage('Call to JFrog Pipelines') {
             steps {
-                sh '''
-                    curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST -H "authorization: ${WEBHOOK_PASS}"  ${WEBHOOK_URL}  --data-binary @- <<DATA
+                sh """
+                    curl -H "Accept: application/json" -H "Content-Type: application/json" -XPOST -H "authorization: ${params.WEBHOOK_PASS}"  ${params.WEBHOOK_URL}  --data-binary @- <<DATA
 {
-  "image_name": "${JPD_URL}/${DOCKER_REPO}/jenkins-python-webapp",
+  "image_name": "${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-python-webapp",
   "image_tag": "2.0.0"
 }
 DATA
-                 '''
+                 """
             } // end steps
         } // end stage 
-        
     }
 }
