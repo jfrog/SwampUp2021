@@ -17,14 +17,12 @@ git push -u origin python
 ```
 
 3. Create the following Pipelines integrations :
-* Github and name it `my_github`
+* Github and name it `my_github`, choose **Pipelines** for the usage
 * Artifactory and name it `artifactory_eu`
 
-4. Load the pipeline source of your choice
-* ta **Pipeline Config File Filter**
-* specify one of the following **Pipeline Config File Filter**
-* java : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab1\/java\/pipelines.*\.yml`
-* python : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab1\/python\/pipelines.*\.yml`
+4. Load the pipeline source of your choice and specify one of the following **Pipeline Config File Filter**
+* java : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab1/java/pipelines.*\.yml`
+* python : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab1/python/pipelines.*\.yml`
 
 4. Run the pipeline ... and fix it :P
 

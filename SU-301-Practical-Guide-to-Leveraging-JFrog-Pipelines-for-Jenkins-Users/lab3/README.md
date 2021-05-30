@@ -31,7 +31,7 @@ K8sResources:
 4. Add a new pipeline source
 * Single Branch
 * From Yaml 
-* Pipeline Config File Filter : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab3\/cd\/k8s\/.*\.yml`
+* Pipeline Config File Filter : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab3/cd/k8s/.*\.yml`
 
 5. Run the pipeline called **lab3_k8s_create_helm_chart** to generate the helm chart
 
@@ -59,7 +59,7 @@ git push -u origin vm
 2. Add a new pipeline source
 * Single Branch
 * From Yaml 
-* Pipeline Config File Filter : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab3\/cd\/vm\/.*\.yml`
+* Pipeline Config File Filter : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab3/cd/vm/.*\.yml`
 
 3. Fork this github repository `https://github.com/cyan21/JFrogPipeExtensions`
 
