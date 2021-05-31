@@ -92,7 +92,7 @@ pipelines:
             JFROG_CLI_LOG_LEVEL: INFO
           affinityGroup: together
           dockerFileName: Dockerfile
-          dockerFileLocation: src/lab3/java/
+          dockerFileLocation: ${trainingPath}/lab2/java/
           dockerImageName: ${dockerRepo}/urs-docker/backapp-mvn-docker
           dockerImageTag: ${runVarAppVersion}
           inputSteps:
