@@ -5,13 +5,34 @@
       path: cyan21/SwampUp2021
 ```
 
-2. In `lab2/{java,python}/pipelines.steps.yml` and `src/{java,python}/Dockerfile`, replace all the occurences of **swampup301.jfrog.io** with your own JFrog Platform URL 
+2. In `lab2/{java,python}/pipelines.steps.yml`, replace  **swampup301.jfrog.io** **ONLY** in the Docker Pipeline with your own JFrog Platform URL
+* Java pipeline
+```
+  - name: lab2_backapp_mvn_docker
+    configuration:
+      environmentVariables:
+        readOnly:
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
+          dockerRepo: swampup301.jfrog.io/urs-docker
+```
 
-3. Modify your pipeline source by editing the  **Pipeline Config File Filter** :
+* Python pipeline
+```
+  - name: lab2_webapp_python_docker
+    configuration:
+      environmentVariables:
+        readOnly:
+          dockerRepo: swampup301.jfrog.io/urs-docker
+          trainingPath: SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users
+```
+
+3. In `src/{java,python}/Dockerfile`, replace  **swampup301.jfrog.io** with your own JFrog Platform URL 
+
+4. Modify your pipeline source by editing the  **Pipeline Config File Filter** :
 * java : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab2/java/pipelines.*\.yml`
 * python : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users/lab2/python/pipelines.*\.yml`
 
-4. Run the pipeline and fix it :P
+5. Run the pipeline and fix it :P
 
 > Hint for troubleshooting : you may need another integration ...
 
