@@ -70,14 +70,14 @@ pipeline {
 
                     git branch: params.MY_GIT_BRANCH , url: params.MY_GIT_URL
 
-                    dir (params.TRAINING_PATH) {
+                    dir (params.TRAINING_PATH + "/src/python") {
                     
                         sh """
                             ls -l 
-                            sed -i "s|yann|${params.YOUR_NAME}|" src/python/config.yaml
+                            sed -i "s|yann|${params.YOUR_NAME}|" config.yaml
 
-                            cat src/python/config.yaml
-                            cat src/python/requirements.txt
+                            cat config.yaml
+                            cat requirements.txt
                             
                             apk add curl openjdk11
 
@@ -104,7 +104,7 @@ pipeline {
     
                         rtPipInstall (
                             resolverId: "ART_RESOLVER",
-                            args: "-r src/python/requirements.txt",
+                            args: "-r requirements.txt",
                             module: 'dependencies',
                             buildName: 'jenkins-python',
                             buildNumber: env.BUILD_NUMBER
@@ -114,7 +114,7 @@ pipeline {
                         sh """
                             ls -l 
                             pwd
-                            tar -czvf webapp-${params.NEW_VERSION}.tar.gz src/python/
+                            tar -czvf webapp-${params.NEW_VERSION}.tar.gz *.yaml *.txt *.py
                             ls -l 
 
                         """
@@ -188,8 +188,7 @@ pipeline {
                     
                     sh """
                         apk add curl openjdk11
-                        cat /etc/resolv.conf
-                        curl -O https://raw.githubusercontent.com/jfrog/SwampUp2021/main/${params.TRAINING_PATH}/lab2/python/Dockerfile
+                        curl -O https://raw.githubusercontent.com/jfrog/SwampUp2021/main/${params.TRAINING_PATH}/src/python/Dockerfile
                         docker login -u ${ARTY_CREDS_USR} -p ${ARTY_CREDS_PSW} ${params.JPD_URL}
                         docker build --network=host -t ${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-python-webapp:${params.NEW_VERSION} .
                     """

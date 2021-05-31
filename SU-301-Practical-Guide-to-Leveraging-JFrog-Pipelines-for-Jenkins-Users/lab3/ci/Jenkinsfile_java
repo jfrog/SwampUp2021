@@ -15,7 +15,7 @@ pipeline {
                 - cat
                 tty: true
               - name: docker
-                image: docker:docker:20.10.6-dind
+                image: docker:latest
                 command:
                 - cat
                 tty: true
@@ -31,7 +31,7 @@ pipeline {
     }
 
     environment {
-        ARTY_CREDS=credentials('jenkins')
+        ARTY_CREDS=credentials('jenkins_rt')
         ART_ID="artifactory-eu"
         JAVA_HOME = '/usr/lib/jvm/java-1.8-openjdk/'
         MAVEN_HOME = '/usr/share/maven'
@@ -41,7 +41,7 @@ pipeline {
         string(name: 'MY_GIT_URL', defaultValue: 'https://github.com/cyan21/Swampup2021.git', description: '')
         string(name: 'MY_GIT_BRANCH', defaultValue: 'main', description: '')
         string(name: 'TRAINING_PATH', defaultValue: 'SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users', description: '')
-        string(name: 'NEW_VERSION', defaultValue: '1.6.2', description: '')
+        string(name: 'NEW_VERSION', defaultValue: '1.0.0', description: '')
         string(name: 'NEW_MSG', defaultValue: 'Welcome to Swampup 2021', description: '')
 
         string(name: 'JPD_URL', defaultValue: 'swampup301.jfrog.io', description: 'DO NOT ADD PROTOCOL')
@@ -49,10 +49,12 @@ pipeline {
         string(name: 'DOCKER_REPO', defaultValue: 'urs-docker', description: '')
         
         string(name: 'WEBHOOK_PASS', defaultValue: 'Chaysinh21', description: '')
-        string(name: 'WEBHOOK_URL', defaultValue: 'https://swampup301-pipelines-api.jfrog.io/v1/projectIntegrations/57/hook', description: '')
+//        string(name: 'WEBHOOK_URL', defaultValue: 'https://swampup301-pipelines-api.jfrog.io/v1/projectIntegrations/57/hook', description: '')
+        string(name: 'WEBHOOK_URL', defaultValue: 'https://swampup301-pipelines-api.jfrog.io/v1/projectIntegrations/32/hook', description: '')
         
         booleanParam(name: 'MVN_BUILD', defaultValue: false, description: 'Execute Maven build')
-        booleanParam(name: 'DOCKER_BUILD', defaultValue: false, description: 'Execute Docker build')        
+        booleanParam(name: 'DOCKER_BUILD', defaultValue: false, description: 'Execute Docker build')
+        
     }
     
     stages {
@@ -87,7 +89,7 @@ pipeline {
                     rtServer (
                         id: env.ART_ID,
                         url: "https://${params.JPD_URL}/artifactory",
-                        credentialsId: 'jenkins'
+                        credentialsId: 'jenkins_rt'
                     )
     
                     rtMavenDeployer (
@@ -134,11 +136,10 @@ pipeline {
             }
             steps {
                 container('docker') {
-
                     rtServer (
                         id: env.ART_ID,
                         url: "https://${params.JPD_URL}/artifactory",
-                        credentialsId: 'jenkins'
+                        credentialsId: 'jenkins_rt'
                     )
 
                     rtBuildInfo (
@@ -168,11 +169,10 @@ pipeline {
                     
                     sh """
                         apk add curl openjdk11
-                        curl -O https://raw.githubusercontent.com/jfrog/SwampUp2021/main/${params.TRAINING_PATH}/lab2/java/Dockerfile
+                        curl -O https://raw.githubusercontent.com/jfrog/SwampUp2021/main/${params.TRAINING_PATH}/src/java/Dockerfile
                         docker login -u ${ARTY_CREDS_USR} -p ${ARTY_CREDS_PSW} ${params.JPD_URL}
                         ls -l 
                         docker build -t ${params.JPD_URL}/${params.DOCKER_REPO}/jenkins-javapp:${params.NEW_VERSION} .
-                        docker images
                     """
                 
                     rtDockerPush(
@@ -190,6 +190,7 @@ pipeline {
                         buildName: 'jenkins-mvn-docker',
                         buildNumber: env.BUILD_NUMBER
                     )
+
                 }
             } // end steps
         } // end stage
