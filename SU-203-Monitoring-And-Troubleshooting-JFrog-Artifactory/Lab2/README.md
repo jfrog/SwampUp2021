@@ -78,10 +78,10 @@ You will need to:
     <summary>Expand for step-by-step resolution</summary>
 
 * **Resolution**:
-    * Navigate to `{{your_jfrog_artifactory_protocol}}://{{your_jfrog_artifactory_host}}:{{your_jfrog_artifactory_port}}/artifactory/[[REPO_NAME]]/jfree/jfreechart/1.0.0/jfreechart-1.0.0.jar?trace` (with your preferred browser)
+    * Navigate to `{{your_jfrog_artifactory_protocol}}://{{your_jfrog_artifactory_host}}:{{your_jfrog_artifactory_port}}/artifactory/swampup-gradle/jfree/jfreechart/1.0.0/jfreechart-1.0.0.jar?trace` (with your preferred browser)
         * {{your_jfrog_artifactory_protocol}}: http OR https
         * {{your_jfrog_artifactory_host}}: Your Artifactory instance's host name
-        * {{your_jfrog_artifactory_port}}: 80 for http, 443 for https
+        * {{your_jfrog_artifactory_port}}: 80/8080 for http, 443 for https
     * Find at the trace the origin (repository name) of the artifact:
       ![trace](images/bonus.png?raw=true "trace")
 

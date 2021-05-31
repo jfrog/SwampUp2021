@@ -61,7 +61,7 @@
         `curl -uADMIN_USERNAME {{your_jfrog_artifactory_protocol}}://{{your_jfrog_artifactory_host}}:{{your_jfrog_artifactory_port}}/artifactory/api/storageinfo | json_pp`
             * {{your_jfrog_artifactory_protocol}}: http OR https
             * {{your_jfrog_artifactory_host}}: Your Artifactory instance's host name
-            * {{your_jfrog_artifactory_port}}: 80 for http, 443 for https
+            * {{your_jfrog_artifactory_port}}: 80/8080 for http, 443 for https
 
 ![Storage Info](images/q3_2.png?raw=true "Storage Info")
 
