@@ -86,10 +86,6 @@ pipelines:
       - name: lab2_build_backapp_mvn_docker
         type: DockerBuild
         configuration:
-          environmentVariables:
-            JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_backapp_mvn_docker"
-            JFROG_CLI_BUILD_URL: "${step_url}${res_lab2_src_code_backapp_mvn_branchName}"
-            JFROG_CLI_LOG_LEVEL: INFO
           affinityGroup: together
           dockerFileName: Dockerfile
           dockerFileLocation: ${trainingPath}/lab2/java/
@@ -115,6 +111,10 @@ pipelines:
       - name: lab2_publish_backapp_mvn_docker
         type: DockerPush
         configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_NAME: "{{ gitBranch }}_backapp_mvn_docker"
+            JFROG_CLI_BUILD_URL: "${step_url}{{ gitBranch }}"
+            JFROG_CLI_LOG_LEVEL: INFO
           affinityGroup: together
           targetRepository: urs-docker-dev-local
           autoPublishBuildInfo: true
