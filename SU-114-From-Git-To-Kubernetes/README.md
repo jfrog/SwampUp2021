@@ -42,7 +42,7 @@ git push
 <img src="https://i.ibb.co/vVrLwtP/Screen-Shot-2021-05-01-at-14-13-10.png" width="50%" height="50%"></br>
 The following repositories should be created (Go to "Artifactory" -> "Artifacts"):</br>
 <img src="https://i.ibb.co/qY4YK77/Screen-Shot-2021-05-16-at-19-48-58.png" width="25%" height="25%"></br>
-<b>* For any issues, please assist the instructor and T.A's!</b>
+<b>* For any issues, please request assistance from the instructor and T.A's!</b>
 
 ### <ins>Lab #2 - Understanding the Environment</ins>
 

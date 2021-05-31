@@ -44,12 +44,6 @@ localRepositories:
       description: "helm local dev "
       xray:
         enabled: true
-  su-114-helm-prod-local:
-    type: helm
-    repoLayout: simple-default
-    description: "helm local dev "
-    xray:
-      enabled: true
 
 remoteRepositories:
   su-114-docker-remote:
@@ -100,7 +94,6 @@ virtualRepositories:
       type: helm
       repositories:
         - su-114-helm-dev-local
-        - su-114-helm-prod-local
         - su-114-helm-remote
       description: "helm virtual"
       defaultDeploymentRepo: su-114-helm-dev-local
