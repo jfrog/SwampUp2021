@@ -68,7 +68,7 @@
 </details>
               
 * **Q**: Add a custom property to an artifact (through the UI) and find its request and trace ID, then mention which Microservices were part of this request
-    * **Hint**: Please use this artifact: (already populated to your Artifactory instance)
+    * **Hint**: Please use this artifact: `swampup-gradle-dev-local/ant/ant/1.6.5/ant-1.6.5.jar`
 
 <details>
     <summary>Expand for step-by-step answer</summary>
@@ -77,10 +77,10 @@
     * Go over [Artifactory architecture diagram](https://www.jfrog.com/confluence/display/JFROG/System+Architecture) for reference
     * Browse to the pre-populated artifact using your default browser
         * Navigate to `Artifacts` section
-        * Navigate to repository: ``
-        * Expand and navigate to artifact: ``
+        * Navigate to repository: `swampup-gradle-dev-local`
+        * Expand and navigate to artifact: `ant/ant/1.6.5/ant-1.6.5.jar`
         * Switch to Properties tab
-        * Add custom property: key=swampUp, value=2021
+        * Add custom property: `key=swampUp, value=2021`
     * Connect to your JFrog Artifactory instance using SSH
     * Navigate to: `/opt/jfrog/artifactory/var/log/`
     * Start with finding the first log line represents the request for that artifact in: `router-request.log`
