@@ -33,7 +33,7 @@ with rule
 fail-build-on-high-severity-rule
 ```
 
-- trigger a violation on **high severity** security issue discovered
+- trigger a violation on **Critical severity** security issue discovered
 - **Fail Build** as action
 
 ## Create Xray watch

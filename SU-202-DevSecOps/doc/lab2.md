@@ -28,7 +28,7 @@ with rule
 block-download-on-high-severity-rule
 ```
 
-- trigger a violation on **high severity** security issue discovered
+- trigger a violation on **Critical severity** security issue discovered
 - **Block Download** and **Block Unscanned** Artifacts as actions
 
 ## Create Xray watch

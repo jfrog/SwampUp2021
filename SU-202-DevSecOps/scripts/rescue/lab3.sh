@@ -31,7 +31,7 @@ curl -u "${ARTIFACTORY_LOGIN}:${ARTIFACTORY_API_KEY}" \
             {
                 \"name\": \"fail-build-on-high-severity-rule\",
                 \"criteria\": {
-                    \"min_severity\": \"high\"
+                    \"min_severity\": \"critical\"
                 },
                 \"actions\": {
                     \"fail_build\": true
