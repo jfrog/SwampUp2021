@@ -18,15 +18,13 @@ A critical vulnerability is present on both allowing remote code execution.
 
 ## Share the environment
 
-```bash
-printf "Artifactory: ${ARTIFACTORY_URL}\nGradle repo: ${GRADLE_REPO_DEV}\nDocker Repo: ${DOCKER_REGISTRY_DEV}\n" 
-```
+Artifactory: https://swampup202.jfrog.io/artifactory
+Gradle repo: devsecops-gradle-dev
+Docker Repo: swampup202.jfrog.io/devsecops-docker-dev
 
 ## Build the gradle project
 
-```bash
-printf "Building ${PROJECT_VERSION_LAB1}\nwith struts ${STRUTS_VERSION_UNSAFE} (unsafe)\n" 
-```
+Building 0.0.9 with struts 2.0.5 (unsafe)
 
 ```bash
 gradle clean artifactoryPublish \
@@ -46,9 +44,7 @@ docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REG
 
 ## Build Docker image
 
-```bash
-printf "Building ${IMAGE_ABSOLUTE_NAME_DEV_LAB1}\nwith base image ${BASE_IMAGE_UNSAFE} (unsafe)\n" 
-```
+Building swampup202.jfrog.io/devsecops-docker-dev/swampup/devsecops:0.0.9 with base image swampup202.jfrog.io/devsecops-docker-prod/alpine:3.1 (unsafe)
 
 ```bash
 docker build -t "${IMAGE_ABSOLUTE_NAME_DEV_LAB1}" --build-arg "BASE_IMAGE=${BASE_IMAGE_UNSAFE}" .
