@@ -49,6 +49,8 @@ block-download-on-high-severity
 
 ## Apply on existing content
 
+Click the "Play" button to apply the watch on the existing content
+
 ## Visit the Artifact
 
 Artifactory => Artifacts => devsecops-docker-prod-local/swampup/devsecops/0.0.9/manifest.json 
