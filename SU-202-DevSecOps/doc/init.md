@@ -14,7 +14,6 @@ https://github.com/jfrog/SwampUp2021/blob/main/SU-202-DevSecOps/doc/init.md
 
 ## Requirements
 
-- JFrog Platform instance
 - Docker
 
 ## API Key
