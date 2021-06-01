@@ -25,10 +25,7 @@ jfrog rt gradle-config --server-id-resolve="${CLI_INSTANCE_ID}" --repo-resolve="
 ```
 
 ## Build the gradle project
-
-```bash
-printf "Building ${PROJECT_VERSION_LAB4}\nwith struts ${STRUTS_VERSION_SAFE} (safe)\n" 
-```
+Building 1.0.0 with struts 2.5.26 (safe)
 
 ```bash
 jfrog rt gradle clean artifactoryPublish \
@@ -62,9 +59,7 @@ docker login -u "${ARTIFACTORY_LOGIN}" -p "${ARTIFACTORY_API_KEY}" "${DOCKER_REG
 
 ## Build Docker image
 
-```bash
-printf "Building ${IMAGE_ABSOLUTE_NAME_DEV_LAB4}\nwith base image ${BASE_IMAGE_SAFE} (safe)\n" 
-```
+Building swampup202.jfrog.io/devsecops-docker-dev/swampup/devsecops:1.0.0 with base image swampup202.jfrog.io/devsecops-docker-prod/alpine:3.13.0 (safe)
 
 ```bash
 docker build -t "${IMAGE_ABSOLUTE_NAME_DEV_LAB4}" --build-arg "BASE_IMAGE=${BASE_IMAGE_SAFE}" . --no-cache
