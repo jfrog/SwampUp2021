@@ -5,7 +5,7 @@
     - Navigate to the git code folder which you cloned/forked in Lab1
     - Navigate to  ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials```
 
-    - Execute the below commands which will create a docker image with Alpine, curl,git, VI and docker installed and then run the docker container
+    - Execute the below commands which will create a docker image with Alpine, curl, git, vim and docker installed and then run the docker container
         - ```docker build -t swampup113-lab-image:latest .```
         - ```docker run -ti -v /var/run/docker.sock:/var/run/docker.sock swampup113-lab-image:latest```
         

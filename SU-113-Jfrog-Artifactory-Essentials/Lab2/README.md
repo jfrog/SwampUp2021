@@ -1,7 +1,7 @@
 # Lab2 - Creating repositories
 
 ## Prerequisites
-A SAAS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
+- A SAAS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
 
 ## Creating Repositories
 
