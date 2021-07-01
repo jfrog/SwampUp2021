@@ -4,8 +4,7 @@
 
 - A SaaS Instance of JFrog. This will be provided as part of your enrollment to the training class.
 
-- Clone the Git repo
-  - ```mkdir Swampup2021```
+- [Git CLI](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and clone the Git repo
   - ```git clone https://github.com/jfrog/SwampUp2021.git```
   - Navigate to "SU-113-Jfrog-Artifactory-Essentials"
     ```cd SwampUp2021/SU-113-Jfrog-Artifactory-Essentials```

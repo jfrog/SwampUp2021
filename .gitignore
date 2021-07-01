@@ -1,4 +1,35 @@
 /SU-307-Software-Distribution-Patterns/Lab1/spring-petclinic-2.4.2.jar
 /SU-307-Software-Distribution-Patterns/Lab2/spring-petclinic-2.4.2.jar
-/.idea/
+
 .DS_Store
+settings.xml
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.gradle/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode
+.jfrog_vscode

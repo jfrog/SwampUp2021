@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-A SaaS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
+- A SaaS Instance of JFrog. This will be provided as part of your enrollment to the Training class.
 
 ## Create a User and a Group
 
@@ -46,16 +46,16 @@ A SaaS Instance of JFrog. This will be provided as part of your enrollment to th
   
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/docker-dev-permission.png" alt="Admin tab" style="height: 100px; width:100px;"/>  
   
-  - Navigate to the Groups tab and add "developers" group
+  - Navigate to the Groups tab and add "Developers" group
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/choose-developers.png" alt="Choose Developers tab" style="height: 100px; width:100px;"/>
   
-  - Provide the appropriate permissions to the developers group. In our case, we have given Read,Annotate and Deploy/Cache permissions
+  - Provide the appropriate permissions to the Developers group. In our case, we have given Read, Annotate and Deploy/Cache permissions
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/group-permissions.png" alt="Choose Developers tab" style="height: 100px; width:100px;"/>
   - Add SRE group and provide only "Read" permission to the developer repository
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/sre-dev-permission.png" alt="Choose SRE tab" style="height: 100px; width:100px;"/>
 
 - SRE repository Permission
-  - Create another permission for the 'SRE' group with the ability to deploy to the 'prod' repository and save. In our case, we have given Read,Annotate ,Deploy/Cache, Delete/Overwrite permissions to our SRE team
+  - Create another permission "docker-prod-permission" for the 'SRE' group with the ability to deploy to the 'swampup-docker-prod-local' repository and save. In our case, we have given Read, Annotate, Deploy/Cache, Delete/Overwrite permissions to our SRE team
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/prod-permission.png" alt="Choose SRE tab" style="height: 100px; width:100px;"/>
     <img src="/SU-113-Jfrog-Artifactory-Essentials/Lab3/images/prod-association.png" alt="Choose SRE tab" style="height: 100px; width:100px;"/>
   - Add Developers group and provide only "Read" permission to the production repository
