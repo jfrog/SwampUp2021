@@ -7,7 +7,7 @@ pipelines:
           affinityGroup: fmkGroup
           dockerFileLocation: SU-302-Advanced-Artifactory-Security/framework/
           dockerFileName: Dockerfile
-          dockerImageName: ${int_server_name_value}.jfrog.io/su-302-docker-virtual/jfrog-docker-framework
+          dockerImageName: ${int_server_name_value}/su-302-docker-virtual/jfrog-docker-framework
           dockerImageTag: ${run_number}
           dockerOptions: --build-arg SERVER_NAME=${int_server_name_value}
           integrations:        
