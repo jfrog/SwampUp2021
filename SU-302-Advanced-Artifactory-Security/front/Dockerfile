@@ -1,5 +1,5 @@
 ARG SERVER_NAME
-FROM $SERVER_NAME.jfrog.io/su-302-docker-virtual/node:16-alpine3.11
+FROM $SERVER_NAME/su-302-docker-virtual/node:16-alpine3.11
 
 WORKDIR /tmp/
 
