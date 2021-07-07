@@ -1,6 +1,6 @@
 ARG SERVER_NAME
 ARG DOCKER_FRAMEWORK_VERSION
-FROM $SERVER_NAME.jfrog.io/su-302-docker-virtual/jfrog-docker-framework:$DOCKER_FRAMEWORK_VERSION
+FROM $SERVER_NAME/su-302-docker-virtual/jfrog-docker-framework:$DOCKER_FRAMEWORK_VERSION
 
 RUN rm -rf /home/exec/apache-tomcat-8.0.32/webapps/*
 
