@@ -109,7 +109,7 @@ pipelines:
           affinityGroup: swampupgrp
           dockerFileName: Dockerfile
           dockerFileLocation: SU-302-Advanced-Artifactory-Security/front/
-          dockerImageName: ${int_server_name_value}.jfrog.io/su-302-docker-virtual/frontapp
+          dockerImageName: ${int_server_name_value}/su-302-docker-virtual/frontapp
           dockerImageTag: ${res_build_info_frontapp_promoted_staging_myversion}-${res_source_code_commitSha}
           dockerOptions: --build-arg SERVER_NAME=${int_server_name_value}
           inputResources:
