@@ -1,0 +1,88 @@
+template: true   # required for local templates
+valuesFilePath: ./values.yml
+
+resources:
+  # Build info of first build to bundle
+  - name: multi_tier_application_frontend
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: {{ .Values.myArtifactoryIntegration }}
+      buildName: suv_302_frontapp_docker_pipeline
+      buildNumber: ${run_number}
+
+  # Build info of second build to bundle
+  - name: multi_tier_application_backend
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: {{ .Values.myArtifactoryIntegration }}
+      buildName: suv_302_backapp_docker_pipeline
+      buildNumber: ${run_number}
+
+  # Release bundle
+  - name: release_bundle
+    type: ReleaseBundle
+    configuration:
+      sourceDistribution: {{ .Values.distributionIntegration }}
+      name: webapp_release_bundle
+      version: v1.0.0
+
+  # Signed version of the same release bundle
+  - name: signed_bundle
+    type: ReleaseBundle
+    configuration:
+      sourceDistribution: {{ .Values.distributionIntegration }}
+      name: webapp_release_bundle
+      version: v1.0.0
+
+  # Distribution rules
+  - name: distribution_rules
+    type: DistributionRule
+    configuration:
+      sourceDistribution: {{ .Values.distributionIntegration }}
+      serviceName: "*"
+      siteName: "*"
+      cityName: "*"
+      countryCodes:
+        - "IN"
+        - "AU"
+
+pipelines:
+  - name: demo_release_mgmt
+    steps:
+      - name: bundle
+        type: CreateReleaseBundle
+        configuration:
+          releaseBundleName: release_bundle
+          releaseBundleVersion: v1.0.${run_number}
+          dryRun: false                             # when 'true' parse and validate only to test whether a release bundle version can be created
+          sign: false                               # specifies whether the release bundle version will be signed as part of this step
+          description: "Release created for Web Application"
+          inputResources:
+            - name: multi_tier_application_frontend
+              trigger: true
+            - name: multi_tier_application_backend
+              trigger: true
+          outputResources:
+            - name: release_bundle
+          releaseNotes:
+            syntax: markdown
+            content: |
+              ## Release Notes for specific version
+                * Fixes
+                * Instructions
+            
+      - name: sign
+        type: SignReleaseBundle
+        configuration:
+          inputResources:
+            - name: release_bundle
+          outputResources:
+            - name: signed_bundle
+
+      - name: distribute
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: false
+          inputResources:
+            - name: signed_bundle
+            - name: distribution_rules

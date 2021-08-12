@@ -1,0 +1,2 @@
+myArtifactoryIntegration: artifactory       # <-- replace with your Artifactory integration name
+distributionIntegration: Distribution       # <-- replace with your Distribution integration name
