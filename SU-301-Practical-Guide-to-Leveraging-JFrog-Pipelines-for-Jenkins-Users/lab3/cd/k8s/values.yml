@@ -9,21 +9,22 @@ K8s:
     artifactory: artifactory_eu
     k8s: yann_k8s
   namespace: build-plane
+  releaseName: my-web-app
 
 K8sResources:
   gitRepoHelm:
     name: lab3_src_code_helm
     gitProvider: my_github
-    path: cyan21/su301
+    path: cyan21/SwampUp2021
     branches:
-      include: main
+      include: {{ gitBranch }}
     files:
-      include: lab3/cd/k8s/.*.yml
+      include:  ${trainingPath}/lab3/cd/k8s/.*.yml
   chart:
     name: lab3_hc
   buildInfo:
     resourceName: lab3_bi_chart
-    name: k8s_helm_chart
+    name: {{ gitBranch }}_k8s_helm_chart
   incomingWebhook:
     resourceName: lab3_incoming_webhook
     integrationName: trigger_chart_deployment
@@ -31,7 +32,7 @@ K8sResources:
 K8sSteps:
   publishHelm:
     name: lab3_publish_helm_chart
-    path: lab3/cd/k8s/helm_chart/
+    path: ${trainingPath}/lab3/cd/k8s/helm_chart/
     lint: true
     autoPublishBuildInfo: true
   deployHelm:

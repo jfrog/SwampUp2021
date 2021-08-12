@@ -11,10 +11,13 @@ read -sp 'Password: ' password
 echo "Creating repos"
 
 jfrog rt repo-create acme-docker-dev-local.json
+jfrog rt repo-create acme-helm-dev-local.json
 
 jfrog rt repo-create acme-docker-remote.json
+jfrog rt repo-create acme-helm-remote.json
 
 jfrog rt repo-create acme-docker-virtual.json
+jfrog rt repo-create acme-helm-virtual.json
 
 echo "Creating policies and watches"
 

@@ -74,7 +74,7 @@ pipelines:
           affinityGroup: swampup
           dockerFileName: Dockerfile
           dockerFileLocation: SU-302-Advanced-Artifactory-Security/back/
-          dockerImageName: ${int_server_name_value}.jfrog.io/su-302-docker-virtual/backapp
+          dockerImageName: ${int_server_name_value}/su-302-docker-virtual/backapp
           dockerImageTag: ${dockerImageTagVersion}
           dockerOptions: --build-arg SERVER_NAME=${int_server_name_value} --build-arg DOCKER_FRAMEWORK_VERSION=${dockerFrameworkVersion}
           inputResources:
