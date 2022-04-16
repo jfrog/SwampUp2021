@@ -14,7 +14,7 @@
     "express": "^4.12.1",
     "http-errors": "^1.7.2",
     "jquery": "3.1.0",
-    "lodash": "4.17.11",
+    "lodash": "4.17.21",
     "mathjs": "^6.6.5",
     "morgan": "^1.10.0",
     "npm-example": "^0.0.1",
